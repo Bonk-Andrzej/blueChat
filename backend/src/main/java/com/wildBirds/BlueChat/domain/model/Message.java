@@ -13,7 +13,7 @@ import java.time.Instant;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-class Message extends BaseEntity{
+class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

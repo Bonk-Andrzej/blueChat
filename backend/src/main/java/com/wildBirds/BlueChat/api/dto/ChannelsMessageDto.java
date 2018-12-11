@@ -1,4 +1,5 @@
 package com.wildBirds.BlueChat.api.dto;
 
-public class GroupDto {
+public class ChannelsMessageDto {
+
 }

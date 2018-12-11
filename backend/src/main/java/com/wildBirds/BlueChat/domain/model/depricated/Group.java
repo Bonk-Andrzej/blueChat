@@ -22,6 +22,6 @@
 //    private String name;
 //
 //    @OneToMany(mappedBy = "group", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    private List<GroupsMessage> groupsMessage;
+//    private List<ChannelsMessage> chanelsMessages;
 //
 //}

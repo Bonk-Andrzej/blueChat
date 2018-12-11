@@ -13,7 +13,7 @@ import java.time.Instant;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-class GroupsMessage extends BaseEntity{
+class ChannelsMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ class GroupsMessage extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "idChanel")
-    private Chanel chanel;
+    private Channel channel;
 
     private String content;
 

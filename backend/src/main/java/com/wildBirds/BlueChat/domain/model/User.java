@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-class User extends BaseEntity{
+class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,12 @@ class User extends BaseEntity{
     private List<Message> messageReceiver;
 
     @OneToMany(mappedBy = "sender", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<GroupsMessage> groupsMessages;
+    private List<ChannelsMessage> channelsMessages;
 
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name ="USERS_IN_CHANNEL",
+            joinColumns = {@JoinColumn(name = "idUser")},
+            inverseJoinColumns = {@JoinColumn(name = "idChannel")})
+    private List<Channel> channelsStaffed;
 }
