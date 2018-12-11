@@ -8,6 +8,6 @@ public class MessageDto {
         private Long idMessage;
         private String content;
         private Instant sendDate;
-        private UserDto sender;
-        private UserDto receiver;
+        private UserDto idSender;
+        private UserDto idReceiver;
 }

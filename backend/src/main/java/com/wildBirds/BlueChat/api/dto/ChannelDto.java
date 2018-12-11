@@ -16,4 +16,5 @@ public class ChannelDto {
     private String name;
     private UserDto channelOwner;
     private boolean isPublic;
+    private List<UserDto> usersInChannel;
 }

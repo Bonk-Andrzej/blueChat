@@ -8,7 +8,7 @@ public class ChannelFacade {
     public ChannelDto addChannel(ChannelDto channelDto){
         return null;
     }
-    public void removeChannel(ChannelDto channelDto){
+    public void removeChannel(Integer idChannel){
 
     }
     public ChannelDto addUserToChannel(ChannelDto channelDto) {

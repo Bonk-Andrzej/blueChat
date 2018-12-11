@@ -6,6 +6,5 @@ public class UserDto {
 
     private Long idUser;
     private String nick;
-    private String password;
     private List<ChannelDto> channelsStaffed;
 }
