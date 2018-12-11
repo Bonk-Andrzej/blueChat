@@ -12,6 +12,7 @@ public class ChannelController {
 
     private ChannelFacade channelFacade;
 
+    @CrossOrigin
     @PostMapping("addChannel")
     public ResponseEntity addChannel(@RequestBody ChannelDto channelDto) {
         ChannelDto response = channelFacade.addChannel(channelDto);
@@ -19,13 +20,14 @@ public class ChannelController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping("addUser")
     public ResponseEntity addUser(@RequestBody ChannelDto channelDto) {
         ChannelDto response = channelFacade.addUserToChannel(channelDto);
 
         return new ResponseEntity(response, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @DeleteMapping({"idChannel"})
     public ResponseEntity deleteChannel(@PathVariable Integer idChannel) {
         channelFacade.removeChannel(idChannel);

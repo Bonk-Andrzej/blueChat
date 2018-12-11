@@ -16,6 +16,7 @@ public class ChannelsMessageController {
 
     private ChannelsMessageFacade channelsMessageFacade;
 
+    @CrossOrigin
     @GetMapping
     @RequestMapping
     public ResponseEntity getConversation(@RequestParam("idChannel") Integer idChannel,
@@ -26,7 +27,7 @@ public class ChannelsMessageController {
 
         return new ResponseEntity(conversation, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity addMessage(@RequestBody ChannelsMessageDto channelsMessageDto) {
 

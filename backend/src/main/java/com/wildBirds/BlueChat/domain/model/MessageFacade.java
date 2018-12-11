@@ -11,7 +11,7 @@ public class MessageFacade {
         return null;
     }
 
-    public List<MessageDto> getConversation(UserDto sender, UserDto receiver, Integer limit, Integer toBound) {
+    public List<MessageDto> getConversation(Integer sender, Integer receiver, Integer limit, Integer toBound) {
         return null;
     }
 }
