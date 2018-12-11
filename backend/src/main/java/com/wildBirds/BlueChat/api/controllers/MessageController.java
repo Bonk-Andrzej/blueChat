@@ -1,0 +1,10 @@
+package com.wildBirds.BlueChat.api.controllers;
+
+import com.wildBirds.BlueChat.domain.model.MessageFacade;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MessageController {
+
+    private MessageFacade messageFacade;
+}

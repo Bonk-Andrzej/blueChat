@@ -5,7 +5,7 @@ import com.wildBirds.BlueChat.api.dto.UserDto;
 
 import java.util.List;
 
-public class ChannelsMessageFasade {
+public class ChannelsMessageFacade {
 
     public ChannelsMessageDto addMessages(ChannelsMessageDto channelsMessageDto){
         return null;

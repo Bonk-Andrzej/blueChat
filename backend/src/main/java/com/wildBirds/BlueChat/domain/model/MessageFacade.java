@@ -5,7 +5,7 @@ import com.wildBirds.BlueChat.api.dto.UserDto;
 
 import java.util.List;
 
-public class MessageFasade {
+public class MessageFacade {
 
     public MessageDto sendMessage(MessageDto messageDto) {
         return null;
