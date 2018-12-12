@@ -22,11 +22,11 @@ class Message {
     private Instant sendDate;
 
     @ManyToOne
-    @JoinColumn(name = "idSender")
+    @JoinColumn(name = "sender")
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "idReceiver")
+    @JoinColumn(name = "receiver")
     private User receiver;
 
 }

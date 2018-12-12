@@ -14,5 +14,5 @@ public class UserDto {
 
     private Long idUser;
     private String nick;
-    private List<ChannelDto> channelsStaffed;
+//    private List<ChannelDto> channelsStaffed;
 }

@@ -16,5 +16,13 @@ public class ChannelDto {
     private String name;
     private UserDto channelOwner;
     private boolean isPublic;
-    private List<UserDto> usersInChannel;
+
+    public boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setIsPublic(boolean isPublic) {
+        this.isPublic = isPublic;
+    }
+
 }
