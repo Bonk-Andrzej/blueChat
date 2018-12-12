@@ -1,4 +1,6 @@
 package com.wildBirds.BlueChat.domain.model;
 
-interface MessageRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+interface MessageRepository extends JpaRepository<Message, Long> {
 }

@@ -17,8 +17,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    MessageFacade messageFacade() {
-        return new MessageFacade();
+    MessageFacade messageFacade(MessageRepository messageRepository) {
+        return new MessageFacade(messageRepository,messageService());
     }
 
     @Bean
@@ -42,6 +42,10 @@ class ModelConfiguration {
     @Bean
     public UserService userService() {
         return new UserService();
+    }
+    @Bean
+    MessageRepository messageRepository(MessageRepository messageRepository){
+        return messageRepository;
     }
 
 }

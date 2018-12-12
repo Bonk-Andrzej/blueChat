@@ -2,14 +2,17 @@ package com.wildBirds.BlueChat.api.controllers;
 
 import com.wildBirds.BlueChat.api.dto.MessageDto;
 import com.wildBirds.BlueChat.domain.model.MessageFacade;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.List;
 
 @RestController
 @RequestMapping("/messages")
+@AllArgsConstructor
 public class MessageController {
 
     private MessageFacade messageFacade;
@@ -28,6 +31,8 @@ public class MessageController {
     @CrossOrigin
     @PostMapping()
     public ResponseEntity sendMessages(@RequestBody MessageDto messageDto){
+
+        messageDto.setSendDate(Instant.now());
         MessageDto response = messageFacade.sendMessage(messageDto);
 
         return new ResponseEntity(response, HttpStatus.OK);

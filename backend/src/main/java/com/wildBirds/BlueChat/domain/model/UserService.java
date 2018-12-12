@@ -2,14 +2,18 @@ package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.dto.UserDto;
 import com.wildBirds.BlueChat.api.dto.UserDtoPass;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class UserService {
+    @Autowired
+    private UserRepository userRepository;
 
     public User toEntity(UserDto userDto) {
         User user = new User();
-        if (userDto.getIdUser() == null) {
+        if (userDto.getIdUser() != null) {
             user.setIdUser(userDto.getIdUser());
+            user = userRepository.getOne(userDto.getIdUser());
         }
         user.setNick(userDto.getNick());
         return user;
@@ -26,7 +30,6 @@ public class UserService {
     public UserDto toDto(User user) {
         UserDto userDto = new UserDto();
         if (user.getIdUser() != null) {
-
             userDto.setIdUser(user.getIdUser());
         }
         userDto.setNick(user.getNick());

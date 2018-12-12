@@ -2,12 +2,14 @@ package com.wildBirds.BlueChat.api.controllers;
 
 import com.wildBirds.BlueChat.api.dto.ChannelDto;
 import com.wildBirds.BlueChat.domain.model.ChannelFacade;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/channel")
+@AllArgsConstructor
 public class ChannelController {
 
     private ChannelFacade channelFacade;

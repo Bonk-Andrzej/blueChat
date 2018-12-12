@@ -11,7 +11,7 @@ public class MessageService {
     public Message toEntity(MessageDto messageDto) {
         Message message = new Message();
 
-        if (messageDto.getIdMessage() == null) {
+        if (messageDto.getIdMessage() != null) {
             message.setIdMessage(messageDto.getIdMessage());
         }
         message.setContent(messageDto.getContent());

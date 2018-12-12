@@ -21,11 +21,11 @@ class Message {
     private String content;
     private Instant sendDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "sender")
     private User sender;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "receiver")
     private User receiver;
 
