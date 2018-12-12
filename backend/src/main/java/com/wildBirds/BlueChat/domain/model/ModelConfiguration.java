@@ -3,31 +3,28 @@ package com.wildBirds.BlueChat.domain.model;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
-
 @Configuration
 class ModelConfiguration {
 
     @Bean
-    public ChannelFacade channelFacade() {
+    ChannelFacade channelFacade() {
         return new ChannelFacade();
     }
 
     @Bean
-    public ChannelsMessageFacade channelsMessageFacade() {
+    ChannelsMessageFacade channelsMessageFacade() {
         return new ChannelsMessageFacade();
     }
 
     @Bean
-    public MessageFacade messageFacade(){
+    MessageFacade messageFacade() {
         return new MessageFacade();
     }
 
     @Bean
-    public UserFacade userFacade(){
-        return new UserFacade();
+    UserFacade userFacade(UserRepository userRepository) {
+        return new UserFacade(userRepository, userService());
     }
-
     @Bean
     public ChannelService channelService() {
         return new ChannelService(userService());

@@ -1,10 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.dto.UserDto;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.stream.Collectors;
+import com.wildBirds.BlueChat.api.dto.UserDtoPass;
 
 
 public class UserService {
@@ -18,9 +15,20 @@ public class UserService {
         return user;
     }
 
+    public User toEntity(UserDtoPass userDtoPass) {
+        User user = new User();
+        user.setNick(userDtoPass.getNick());
+        user.setPassword(userDtoPass.getPassword());
+
+        return user;
+    }
+
     public UserDto toDto(User user) {
         UserDto userDto = new UserDto();
-        userDto.setIdUser(user.getIdUser());
+        if (user.getIdUser() != null) {
+
+            userDto.setIdUser(user.getIdUser());
+        }
         userDto.setNick(user.getNick());
         return userDto;
     }
