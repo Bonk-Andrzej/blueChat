@@ -1,0 +1,19 @@
+<div id="active-user-wrapper">
+    <div [ngStyle]="activeUserStatusBar" id="active-user-bar"></div>
+    <div id="active-user-header">
+        <div><p>Users</p></div>
+        <div>
+            <div id="img"></div>
+        </div>
+    </div>
+    <div id="active-user-list">
+        <ng-container *ngFor="let user of users">
+
+            <div (click)="setReceiver(user)" class="user">
+                <div id="active-user-status"></div>
+                <p>{{user.nick | titlecase}}</p>
+            </div>
+
+        </ng-container>
+    </div>
+</div>

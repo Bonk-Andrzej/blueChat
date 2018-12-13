@@ -1,0 +1,43 @@
+<div id="wrapper-conversation">
+    <div [ngStyle]="conversationStatusBar" id="conversation-bar"></div>
+    <div id="conversation-header">
+        <p id="conversation-brand-chat">Chat</p>
+        <div *ngIf="displayLayout" id="conversation-interlocutors">{{sender.nick | titlecase }} : {{receiver.nick | titlecase }}</div>
+        <p id="conversation-filter"></p>
+    </div>
+
+    <div id="conversation-box">
+        <div *ngIf="displayLayout" id="conversation-list" #conversationListRef>
+
+            <ng-container *ngFor="let message of conversation | async">
+                <ng-container *ngIf="(message.idSender === sender.idUser); then senderT; else recieverT"></ng-container>
+                <ng-template #senderT>
+                    <div class="wrapper">
+                        <div class="message sender">
+                            <div class="date">{{message.sentDate | date :'medium'}}</div>
+                            <div class="senderMessage">{{sender.nick | titlecase}}</div>
+                            <div class="content">{{message.content}}</div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template #recieverT>
+                    <div class="wrapper">
+                        <div class="message receiver">
+                            <div class="date">{{message.sentDate | date :'medium'}}</div>
+                            <div class="senderMessage">{{receiver.nick | titlecase}}</div>
+                            <div class="content">{{message.content}}</div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+
+        </div>
+        <div *ngIf="displayLayout" class="conversation-input">
+            <div>
+                <input (keydown)="key($event)" #inputMessageNode id="text-input" type="text">
+                <button id="send-button" (click)="sendMessage(inputMessageNode)"></button>
+            </div>
+        </div>
+    </div>
+</div>
