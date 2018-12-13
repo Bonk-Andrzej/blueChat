@@ -14,8 +14,8 @@ export class UserRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = 'http://51.38.133.76:90/users';
-        // this.host = 'http://localhost:8080/users';
+        // this.host = 'http://51.38.133.76:90/users';
+        this.host = 'http://localhost:8099';
     }
 
     private getHeaders(): HttpHeaders {
@@ -27,33 +27,33 @@ export class UserRepositoryService {
     }
 
     public getUsers(): Observable<Array<UserDTO>> {
-        return this.http.get<Array<UserDTO>>(this.host);
+        return this.http.get<Array<UserDTO>>(this.host + '/users');
     }
 
     public postNewUser(newUser: NewUser): Observable<NewUser> {
         const headers = this.getHeaders();
 
-        return this.http.post<NewUser>(this.host, {nick: newUser.nick, password: newUser.password, headers});
+        return this.http.post<NewUser>(this.host + '/users', {nick: newUser.nick, password: newUser.password, headers});
     }
 
-    public getUserById(id: number): Observable<UserDTO> {
-        return this.http.get<UserDTO>(this.host + id);
-    }
-
-    public repleaceUser(newUser: NewUser, id: number): Observable<NewUser> {
-        const headers = this.getHeaders();
-        return this.http.put<NewUser>(this.host, {nick: newUser.nick, password: newUser.password, headers});
-    }
-
-    public deleteUser(id: number) {
-
-        return this.http.delete<UserDTO>(this.host + '/' + id, {headers: this.getHeaders()});
-    }
+    // public getUserById(id: number): Observable<UserDTO> {
+    //     return this.http.get<UserDTO>(this.host + id);
+    // }
+    //
+    // public repleaceUser(newUser: NewUser, id: number): Observable<NewUser> {
+    //     const headers = this.getHeaders();
+    //     return this.http.put<NewUser>(this.host, {nick: newUser.nick, password: newUser.password, headers});
+    // }
+    //
+    // public deleteUser(id: number) {
+    //
+    //     return this.http.delete<UserDTO>(this.host + '/' + id, {headers: this.getHeaders()});
+    // }
 
     public getUserByNickPass(nick: string, pass: string) {
         const headers = this.getHeaders();
         const userDto: NewUser = new NewUser(nick, pass);
-        return this.http.post(this.host + '/login', userDto);
+        return this.http.post(this.host + '/rpc/login', userDto);
     }
 }
 

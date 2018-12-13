@@ -15,8 +15,8 @@ export class MessagesRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = 'http://51.38.133.76:90/messages';
-        // this.host = 'http://localhost:8080/messages';
+        // this.host = 'http://51.38.133.76:90/messages';
+        this.host = 'http://localhost:8099/messages';
     }
 
     private getHeaders(): HttpHeaders {
