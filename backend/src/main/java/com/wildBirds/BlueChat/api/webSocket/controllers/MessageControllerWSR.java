@@ -40,8 +40,8 @@ public class MessageControllerWSR implements InitializingBean {
 
                 MessageDto message = new MessageDto();
                 message.setContent(data.getContent());
-                message.setIdReceiver(data.getReceiverId());
-                message.setIdSender(session.getId());
+                message.setReceiverId(data.getReceiverId());
+                message.setSenderId(session.getId());
                 message.setSentDate(Instant.now());
 
 

@@ -18,7 +18,7 @@ public class MessageController {
     private MessageFacade messageFacade;
 
     @CrossOrigin
-    @GetMapping("/by")
+    @GetMapping("/conversation")
     public ResponseEntity getConversation(@RequestParam Integer idSender,
                                           @RequestParam Integer idReceiver,
                                           @RequestParam Integer limit,
@@ -32,7 +32,7 @@ public class MessageController {
     @PostMapping()
     public ResponseEntity sendMessages(@RequestBody MessageDto messageDto){
 
-        messageDto.setSendDate(Instant.now());
+        messageDto.setSentDate(Instant.now());
         MessageDto response = messageFacade.saveMessage(messageDto);
 
         return new ResponseEntity(response, HttpStatus.OK);

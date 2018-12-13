@@ -9,8 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
+@RequestMapping("/users")
 public class UserController {
 
 
@@ -22,5 +25,12 @@ public class UserController {
         UserDto registerNewUser = userFacade.registerNewUser(userDtoPass);
 
         return new ResponseEntity(registerNewUser, HttpStatus.OK);
+    }
+    @GetMapping
+    @CrossOrigin
+    public ResponseEntity getAll(){
+        List<UserDto> userDtoList = userFacade.getUsers();
+
+        return new ResponseEntity(userDtoList, HttpStatus.OK);
     }
 }

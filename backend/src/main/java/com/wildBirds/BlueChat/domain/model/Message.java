@@ -19,7 +19,7 @@ class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMessage;
     private String content;
-    private Instant sendDate;
+    private Instant sentDate;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "sender")

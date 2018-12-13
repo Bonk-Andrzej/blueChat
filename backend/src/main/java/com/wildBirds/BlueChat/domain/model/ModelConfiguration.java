@@ -32,7 +32,7 @@ class ModelConfiguration {
 
     @Bean
     public MessageService messageService() {
-        return new MessageService(userService());
+        return new MessageService();
     }
 
     @Bean
