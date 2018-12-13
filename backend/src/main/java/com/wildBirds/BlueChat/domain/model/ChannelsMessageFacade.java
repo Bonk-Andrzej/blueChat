@@ -1,6 +1,6 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.dto.ChannelsMessageDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelsMessageDto;
 
 import java.util.List;
 

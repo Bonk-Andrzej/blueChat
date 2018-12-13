@@ -1,6 +1,6 @@
 //package com.wildBirds.BlueChat.domain.model;
 //
-//import com.wildBirds.BlueChat.api.dto.GroupDto;
+//import com.wildBirds.BlueChat.api.rest.dto.GroupDto;
 //
 //public class GroupFasade {
 //

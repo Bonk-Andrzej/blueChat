@@ -1,4 +1,4 @@
-package com.wildBirds.BlueChat.api.dto;
+package com.wildBirds.BlueChat.api.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

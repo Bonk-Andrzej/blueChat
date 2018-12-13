@@ -1,7 +1,8 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.dto.UserDto;
-import com.wildBirds.BlueChat.api.dto.UserDtoPass;
+
+import com.wildBirds.BlueChat.api.rest.dto.UserDto;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

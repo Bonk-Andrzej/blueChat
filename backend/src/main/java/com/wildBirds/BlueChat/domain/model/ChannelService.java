@@ -1,6 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.dto.ChannelDto;
+
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
 import lombok.AllArgsConstructor;
 
 

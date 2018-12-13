@@ -1,6 +1,6 @@
 //package com.wildBirds.BlueChat.domain.model;
 //
-//import com.wildBirds.BlueChat.api.dto.GroupsMessageDto;
+//import com.wildBirds.BlueChat.api.rest.dto.GroupsMessageDto;
 //
 //import java.util.List;
 //

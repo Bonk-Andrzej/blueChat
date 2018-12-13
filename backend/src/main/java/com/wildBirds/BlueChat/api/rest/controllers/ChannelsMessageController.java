@@ -1,6 +1,6 @@
-package com.wildBirds.BlueChat.api.controllers;
+package com.wildBirds.BlueChat.api.rest.controllers;
 
-import com.wildBirds.BlueChat.api.dto.ChannelsMessageDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelsMessageDto;
 import com.wildBirds.BlueChat.domain.model.ChannelsMessageFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

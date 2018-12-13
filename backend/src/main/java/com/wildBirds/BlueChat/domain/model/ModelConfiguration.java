@@ -43,9 +43,4 @@ class ModelConfiguration {
     public UserService userService() {
         return new UserService();
     }
-    @Bean
-    MessageRepository messageRepository(MessageRepository messageRepository){
-        return messageRepository;
-    }
-
 }

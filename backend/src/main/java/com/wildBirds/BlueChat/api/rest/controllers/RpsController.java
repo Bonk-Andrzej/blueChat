@@ -1,7 +1,7 @@
-package com.wildBirds.BlueChat.api.controllers;
+package com.wildBirds.BlueChat.api.rest.controllers;
 
-import com.wildBirds.BlueChat.api.dto.UserDto;
-import com.wildBirds.BlueChat.api.dto.UserDtoPass;
+import com.wildBirds.BlueChat.api.rest.dto.UserDto;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
 import com.wildBirds.BlueChat.domain.model.UserFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

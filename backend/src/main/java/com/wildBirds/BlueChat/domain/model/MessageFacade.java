@@ -1,7 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.dto.MessageDto;
-import com.wildBirds.BlueChat.api.dto.UserDto;
+
+import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -10,7 +10,7 @@ public class MessageFacade {
     private MessageRepository messageRepository;
     private MessageService messageService;
 
-    public MessageDto sendMessage(MessageDto messageDto) {
+    public MessageDto saveMessage(MessageDto messageDto) {
         Message message = messageService.toEntity(messageDto);
 
 

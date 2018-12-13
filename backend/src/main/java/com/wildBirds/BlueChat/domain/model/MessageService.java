@@ -1,12 +1,14 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.dto.MessageDto;
+
+import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class MessageService {
 
     private UserService userService;
+
 
     public Message toEntity(MessageDto messageDto) {
         Message message = new Message();

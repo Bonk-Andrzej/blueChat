@@ -1,7 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.dto.ChannelDto;
-import com.wildBirds.BlueChat.api.dto.UserDto;
+
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
 
 public class ChannelFacade {
 
