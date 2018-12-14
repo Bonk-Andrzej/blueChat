@@ -14,12 +14,16 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-class User{
+class User extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
+
+    @Column(unique = true)
     private String nick;
+
+    @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "sender", cascade = {CascadeType.PERSIST , CascadeType.MERGE})

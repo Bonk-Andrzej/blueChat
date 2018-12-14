@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
-import java.util.List;
 
 @RestController
 @RequestMapping("/messages")
@@ -19,14 +18,24 @@ public class MessageController {
 
     @CrossOrigin
     @GetMapping("/conversation")
-    public ResponseEntity getConversation(@RequestParam Integer idSender,
-                                          @RequestParam Integer idReceiver,
-                                          @RequestParam Integer limit,
-                                          @RequestParam Integer toBound) {
+    public ResponseEntity getConversation(@RequestParam String idSender,
+                                          @RequestParam String idReceiver,
+                                          @RequestParam String limit,
+                                          @RequestParam String toBound) {
 
-        List<MessageDto> conversation = messageFacade.getConversation(idSender, idReceiver, limit, toBound);
 
-        return new ResponseEntity(conversation, HttpStatus.OK);
+        System.out.println(idSender);
+
+        System.out.println(idReceiver);
+
+        System.out.println(limit);
+
+        System.out.println(toBound);
+
+//        List<MessageDto> conversation = messageFacade.getConversation(idSender, idReceiver, limit, toBound);
+
+//        return new ResponseEntity("OK", HttpStatus.OK);
+return null;
     }
     @CrossOrigin
     @PostMapping()
