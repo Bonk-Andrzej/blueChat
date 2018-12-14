@@ -18,13 +18,15 @@ class ModelConfiguration {
 
     @Bean
     MessageFacade messageFacade(MessageRepository messageRepository) {
-        return new MessageFacade(messageRepository,messageService());
+        return new MessageFacade(messageRepository,messageService(), messageRepositoryImpl());
     }
 
     @Bean
     UserFacade userFacade(UserRepository userRepository) {
         return new UserFacade(userRepository, userService());
     }
+
+
     @Bean
     public ChannelService channelService() {
         return new ChannelService(userService());
@@ -43,4 +45,10 @@ class ModelConfiguration {
     public UserService userService() {
         return new UserService();
     }
+
+    @Bean
+    public MessageRepositoryImpl messageRepositoryImpl(){
+        return new MessageRepositoryImpl();
+    }
+
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.List;
 
 @RestController
 @RequestMapping("/messages")
@@ -24,18 +25,16 @@ public class MessageController {
                                           @RequestParam String toBound) {
 
 
-        System.out.println(idSender);
+        Integer idSenderInt = Integer.valueOf(idSender);
+        Integer idReceiverrInt = Integer.valueOf(idReceiver);
+        Integer limitInt = Integer.valueOf(limit);
+        Integer toBoundInt = Integer.valueOf(toBound);
 
-        System.out.println(idReceiver);
 
-        System.out.println(limit);
+        List<MessageDto> conversation = messageFacade.getConversation(idSenderInt, idReceiverrInt, limitInt, toBoundInt);
 
-        System.out.println(toBound);
+        return new ResponseEntity("OK", HttpStatus.OK);
 
-//        List<MessageDto> conversation = messageFacade.getConversation(idSender, idReceiver, limit, toBound);
-
-//        return new ResponseEntity("OK", HttpStatus.OK);
-return null;
     }
     @CrossOrigin
     @PostMapping()
