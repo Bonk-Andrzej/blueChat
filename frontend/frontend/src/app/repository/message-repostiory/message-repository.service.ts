@@ -51,10 +51,16 @@ export class MessagesRepositoryService {
             this.host + '/by/' + sender.idUser + ',' + receiver.idUser + '/' + startBound + ',' + toBound, {headers: headers});
     }
 
+
     public getConversation(sender: UserDTO, receiver: UserDTO, limit: number, toBound: number): Observable<Array<MessageDTO>> {
         const headers = this.getHeaders();
-        return this.http.get<Array<MessageDTO>>(
-            this.host + '/conversation/' + sender.idUser + ',' + receiver.idUser + '/' + limit + ',' + toBound, {headers: headers});
+        const params = new HttpParams()
+            .set('idSender', sender.idUser.toString())
+            .set('idReceiver', receiver.idUser.toString())
+            .set('limit', limit.toString())
+            .set('toBound', toBound.toString());
 
+        return this.http.get<Array<MessageDTO>>(
+            this.host + '/conversation/', {headers: headers, params: params});
     }
 }
