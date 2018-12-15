@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,10 +22,10 @@ class Channel {
     private String name;
 
     @OneToMany(mappedBy = "channel", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<ChannelsMessage> channelsMessage;
+    private List<ChannelsMessage> channelsMessage = new ArrayList<>();
 
     @ManyToMany(mappedBy = "channelsStaffed")
-    private List<User> usersInChannel;
+    private List<User> usersInChannel = new ArrayList<>();
 
     @ManyToOne
     private User channelOwner;
