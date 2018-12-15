@@ -18,7 +18,7 @@ class ModelConfiguration {
 
     @Bean
     MessageFacade messageFacade(MessageRepository messageRepository) {
-        return new MessageFacade(messageRepository,messageService(), messageRepositoryImpl());
+        return new MessageFacade(messageRepository,messageService());
     }
 
     @Bean

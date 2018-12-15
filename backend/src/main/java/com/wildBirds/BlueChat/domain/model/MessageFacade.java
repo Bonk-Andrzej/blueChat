@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class MessageFacade {
     private MessageRepository messageRepository;
     private MessageService messageService;
-    private MessageRepositoryImpl messageRepositoryImpl;
+
 
 
     public MessageDto saveMessage(MessageDto messageDto) {
@@ -25,7 +25,7 @@ public class MessageFacade {
 
     public List<MessageDto> getConversation(Integer sender, Integer receiver, Integer limit, Integer toBound) {
 
-        List<Message> conversation = messageRepositoryImpl.getConversation(sender, receiver, limit, toBound);
+        List<Message> conversation = messageRepository.getConversation(sender, receiver, limit, toBound);
 
         List<MessageDto> conversationDto = conversation.stream()
                 .map(message -> messageService.toDto(message))

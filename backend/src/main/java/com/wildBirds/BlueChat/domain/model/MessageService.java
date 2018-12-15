@@ -20,6 +20,7 @@ public class MessageService {
         if (messageDto.getIdMessage() != null) {
             message = msgRepo.getOne(messageDto.getIdMessage());
         }
+
         message.setContent(messageDto.getContent());
         message.setReceiver(userRepo.getOne(messageDto.getReceiverId()));
         message.setSender(userRepo.getOne(messageDto.getSenderId()));

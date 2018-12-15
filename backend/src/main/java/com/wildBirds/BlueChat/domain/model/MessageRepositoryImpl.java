@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 
-class MessageRepositoryImpl {
+class MessageRepositoryImpl implements MessagesRepositoryCustom{
 
     @PersistenceContext
     private EntityManager entityManager;

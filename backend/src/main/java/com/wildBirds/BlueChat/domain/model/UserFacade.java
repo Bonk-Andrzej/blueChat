@@ -16,7 +16,7 @@ public class UserFacade {
 
     public List<UserDto> getUsers() {
         List<User> getUsers = userRep.findAll();
-
+//userRep.fullSave()
         List<UserDto> userDtoList = getUsers.stream()
                 .map(user -> userService.toDto(user))
                 .collect(Collectors.toList());

@@ -3,6 +3,8 @@ package com.wildBirds.WebSocketRpc.domain.ports;
 import com.wildBirds.WebSocketRpc.domain.model.Session;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.util.Map;
+
 /**
  *
  * @param <RT> Remote type
@@ -17,4 +19,6 @@ public interface SessionRepository<RT extends Enum<RT>,I> {
     Session<RT,I> getSession(WebSocketSession session);
 
     void removeSession(WebSocketSession session);
+
+    Map<I, Session<RT, I>> getAuthorizedSessionMap();
 }

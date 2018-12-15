@@ -47,6 +47,7 @@ export class MessagesRepositoryService {
 
     public getMessages(sender: UserDTO, receiver: UserDTO, startBound: number, toBound: number): Observable<Array<MessageDTO>> {
         const headers = this.getHeaders();
+        //todo Have to implement in backend
         return this.http.get<Array<MessageDTO>>(
             this.host + '/by/' + sender.idUser + ',' + receiver.idUser + '/' + startBound + ',' + toBound, {headers: headers});
     }
