@@ -18,8 +18,8 @@ public class MessageFacade {
         Message message = messageService.toEntity(messageDto);
 
 
-//        Message savedMessage = messageRepository.saveMessage(message);
-        MessageDto response = messageService.toDto(message);
+        Message savedMessage = messageRepository.saveMessage(message);
+        MessageDto response = messageService.toDto(savedMessage);
         return response;
     }
 

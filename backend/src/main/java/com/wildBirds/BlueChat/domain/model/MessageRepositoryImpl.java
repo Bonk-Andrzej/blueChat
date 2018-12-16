@@ -1,10 +1,9 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.time.Instant;
 import java.util.List;
 
 
@@ -37,9 +36,28 @@ class MessageRepositoryImpl implements MessagesRepositoryCustom{
     @Override
     @Transactional
     public Message saveMessage(Message message) {
-        entityManager.persist(message);
-        return entityManager.find(Message.class, message.getIdMessage());
+        Message msgToSave = new Message();
+
+        String content = message.getContent();
+        User sender = message.getSender();
+        User receiver = message.getReceiver();
+        Instant sentDate = message.getSentDate();
+
+        sender = entityManager.find(User.class, sender.getIdUser());
+        receiver = entityManager.find(User.class, receiver.getIdUser());
+
+        msgToSave.setSender(sender);
+        msgToSave.setReceiver(receiver);
+        msgToSave.setContent(content);
+        msgToSave.setSentDate(sentDate);
+
+// TODO: 16.12.2018 merge ??? message have null ID
+
+        Message savedMsg = entityManager.merge(msgToSave);
 
 
+//        entityManager.persist(message);
+//        return entityManager.find(Message.class, message.getIdMessage());
+        return savedMsg;
     }
 }

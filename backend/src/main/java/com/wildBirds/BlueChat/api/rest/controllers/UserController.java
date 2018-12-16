@@ -45,6 +45,7 @@ public class UserController {
         try {
             List<UserDto> userDtoList = userFacade.getUsers();
 
+            userDtoList.stream().forEach(userDto -> System.out.println(userDto));
             return new ResponseEntity(userDtoList, HttpStatus.OK);
         } catch (Exception e) {
             HttpHeaders headers = new HttpHeaders();

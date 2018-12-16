@@ -3,6 +3,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
+import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -14,11 +15,20 @@ public class UserFacade {
     private UserRepository userRep;
     private UserService userService;
 
+    private MessageControllerWSR wsr;
+
     public List<UserDto> getUsers() {
         List<User> getUsers = userRep.findAll();
+        List<Long> authorizatedSessionsIdentificators = wsr.getAuthorizatedSessionsIdentificators();
 //userRep.fullSave()
         List<UserDto> userDtoList = getUsers.stream()
                 .map(user -> userService.toDto(user))
+                .map(userDto -> {
+                    if (authorizatedSessionsIdentificators.contains(userDto.getIdUser())) {
+                        userDto.setActive(true);
+                    }
+                    return userDto;
+                })
                 .collect(Collectors.toList());
 
         return userDtoList;

@@ -2,33 +2,26 @@ package com.wildBirds.BlueChat.domain.model;
 
 
 import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.transaction.Transactional;
 
 
-public class MessageService {
+class MessageService {
 
-
-    @Autowired
-    private MessageRepository msgRepo;
-
-    @Autowired
-    private UserRepository userRepo;
-
-    @Transactional
     public Message toEntity(MessageDto messageDto) {
         Message message = new Message();
 
         if (messageDto.getIdMessage() != null) {
-            message = msgRepo.getOne(messageDto.getIdMessage());
-        }else {
-            message = msgRepo.save(message);
+            message.setIdMessage(messageDto.getIdMessage());
         }
 
+        User sender = new User();
+        sender.setIdUser(messageDto.getSenderId());
+
+        User receiver = new User();
+        receiver.setIdUser(messageDto.getReceiverId());
+
         message.setContent(messageDto.getContent());
-        message.setReceiver(userRepo.getOne(messageDto.getReceiverId()));
-        message.setSender(userRepo.getOne(messageDto.getSenderId()));
+        message.setReceiver(receiver);
+        message.setSender(sender);
         message.setSentDate(messageDto.getSentDate());
 
         return message;

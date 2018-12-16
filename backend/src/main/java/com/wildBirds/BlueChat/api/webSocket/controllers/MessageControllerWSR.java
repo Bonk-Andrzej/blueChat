@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 @Component
 public class MessageControllerWSR implements InitializingBean {
@@ -79,5 +80,9 @@ public class MessageControllerWSR implements InitializingBean {
 
         });
 
+    }
+
+    public List<Long> getAuthorizatedSessionsIdentificators(){
+        return this.wsr.getAuthorizatedSessionsIdentificators();
     }
 }

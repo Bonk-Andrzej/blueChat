@@ -1,5 +1,6 @@
 package com.wildBirds.BlueChat.domain.model;
 
+import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,8 +23,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    UserFacade userFacade(UserRepository userRepository) {
-        return new UserFacade(userRepository, userService());
+    UserFacade userFacade(UserRepository userRepository, MessageControllerWSR messageControllerWSR) {
+        return new UserFacade(userRepository, userService(), messageControllerWSR);
     }
 
 
@@ -41,6 +42,7 @@ class ModelConfiguration {
     public ChannelsMessageService channelsMessageService() {
         return new ChannelsMessageService(channelService(), userService());
     }
+
     @Bean
     public UserService userService() {
         return new UserService();
@@ -50,5 +52,4 @@ class ModelConfiguration {
     public MessageRepositoryImpl messageRepositoryImpl(){
         return new MessageRepositoryImpl();
     }
-
 }
