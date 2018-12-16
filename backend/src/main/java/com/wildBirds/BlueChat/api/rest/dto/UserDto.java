@@ -13,5 +13,6 @@ public class UserDto {
 
     private Long idUser;
     private String nick;
+//    private boolean isActive;
 //    private List<ChannelDto> channelsStaffed;
 }

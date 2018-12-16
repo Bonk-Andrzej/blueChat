@@ -18,12 +18,12 @@ public class MessageFacade {
         Message message = messageService.toEntity(messageDto);
 
 
-        Message savedMessage = messageRepository.save(message);
-        MessageDto response = messageService.toDto(savedMessage);
+//        Message savedMessage = messageRepository.saveMessage(message);
+        MessageDto response = messageService.toDto(message);
         return response;
     }
 
-    public List<MessageDto> getConversation(Integer sender, Integer receiver, Integer limit, Integer toBound) {
+    public List<MessageDto> getConversation(Long sender, Long receiver, Integer limit, Integer toBound) {
 
         List<Message> conversation = messageRepository.getConversation(sender, receiver, limit, toBound);
 

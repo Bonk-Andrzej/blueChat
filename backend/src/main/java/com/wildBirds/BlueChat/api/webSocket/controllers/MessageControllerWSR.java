@@ -66,7 +66,6 @@ public class MessageControllerWSR implements InitializingBean {
 
 
         });
-
         wsr.addProcedure(LocalProcedure.AUTHSESSION, AuthSessionDTO.class, (data, session) -> {
 
             Long userId = data.getUserId();

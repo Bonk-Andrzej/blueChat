@@ -10,6 +10,9 @@ import com.wildBirds.WebSocketRpc.infrastructure.ProcedureRepositoryInMemory;
 import com.wildBirds.WebSocketRpc.infrastructure.SessionRepositoryInMemory;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @param <LT> Local type
@@ -58,6 +61,9 @@ public class WSR<LT extends Enum<LT>,RT extends Enum<RT>,I extends Comparable<I>
         return this.textWebSocketHandler;
     }
 
+    public List<I> getAuthorizatedSessionsIdentificators(){
+        return new ArrayList<>(this.sessionRepository.getAuthorizedSessionMap().keySet());
+    }
 //    public static void main(String[] args) {
 //
 //

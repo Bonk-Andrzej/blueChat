@@ -2,28 +2,18 @@ package com.wildBirds.BlueChat.domain.model;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-public class ChannelTest {
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@ActiveProfiles("test")
+public class ChannelTest extends ConfigurationTest {
 
-    @Autowired
-    ChannelRepository channelRepository;
-
-    @Autowired
-    UserRepository userRepository;
     @Test
     public void shouldCreateNewChanel() {
 
         //given
         User user = new User();
-        user.setNick("Igor");
+        user.setNick("Milena");
         user.setPassword("password");
         user.setPassword("somepassword");
         user = userRepository.save(user);
@@ -39,7 +29,7 @@ public class ChannelTest {
 
         Assert.assertNotNull(savedChannel.getIdChanel());
         Assert.assertEquals(channel.getName(), savedChannel.getName());
-        Assert.assertEquals("Igor", savedChannel.getChannelOwner().getNick());
+        Assert.assertEquals("Milena", savedChannel.getChannelOwner().getNick());
 
     }
     @Test
@@ -47,13 +37,13 @@ public class ChannelTest {
 
         //given
         User ownerChannel = new User();
-        ownerChannel.setNick("Igor");
+        ownerChannel.setNick("IgorChannel");
         ownerChannel.setPassword("password");
         ownerChannel.setPassword("somepassword");
         ownerChannel = userRepository.save(ownerChannel);
 
         User interlocutor = new User();
-        interlocutor.setNick("Mark");
+        interlocutor.setNick("MarkChannel");
         interlocutor.setPassword("somePass");
         interlocutor = userRepository.save(interlocutor);
 

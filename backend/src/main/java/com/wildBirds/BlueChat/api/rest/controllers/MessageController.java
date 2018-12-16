@@ -25,15 +25,15 @@ public class MessageController {
                                           @RequestParam String toBound) {
 
 
-        Integer idSenderInt = Integer.valueOf(idSender);
-        Integer idReceiverrInt = Integer.valueOf(idReceiver);
+        Long idSenderInt = Long.valueOf(idSender);
+        Long idReceiverrInt = Long.valueOf(idReceiver);
         Integer limitInt = Integer.valueOf(limit);
         Integer toBoundInt = Integer.valueOf(toBound);
 
 
         List<MessageDto> conversation = messageFacade.getConversation(idSenderInt, idReceiverrInt, limitInt, toBoundInt);
 
-        return new ResponseEntity("OK", HttpStatus.OK);
+        return new ResponseEntity(conversation, HttpStatus.OK);
 
     }
     @CrossOrigin

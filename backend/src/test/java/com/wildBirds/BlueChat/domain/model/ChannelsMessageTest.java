@@ -2,28 +2,14 @@ package com.wildBirds.BlueChat.domain.model;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.Instant;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-public class ChannelsMessageTest {
-
-    @Autowired
-    ChannelsMessageRepository chanMsgRep;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    ChannelRepository channelRepository;
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@ActiveProfiles("test")
+public class ChannelsMessageTest extends ConfigurationTest {
 
     @Test
     public void shouldCreateNewChannelMessage() {

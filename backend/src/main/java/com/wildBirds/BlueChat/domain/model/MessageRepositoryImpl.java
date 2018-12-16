@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ class MessageRepositoryImpl implements MessagesRepositoryCustom{
 
 
     // TODO: 14.12.2018 HAVE TO TESTING
-    public List<Message> getConversation(Integer idSender, Integer idReceiver, Integer limit, Integer toBound) {
+    public List<Message> getConversation(Long idSender, Long idReceiver, Integer limit, Integer toBound) {
 
         String query = "SELECT messages FROM Message messages " +
                 "JOIN messages.receiver receiver " +
@@ -31,5 +32,14 @@ class MessageRepositoryImpl implements MessagesRepositoryCustom{
                 .setMaxResults(limit)
                 .setFirstResult(toBound)
                 .getResultList();
+    }
+
+    @Override
+    @Transactional
+    public Message saveMessage(Message message) {
+        entityManager.persist(message);
+        return entityManager.find(Message.class, message.getIdMessage());
+
+
     }
 }
