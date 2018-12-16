@@ -2,18 +2,19 @@ package com.wildBirds.BlueChat.domain.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 
-
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@ActiveProfiles("test")
 public class ChannelsMessageTest extends ConfigurationTest {
+
+    private Logger logger = LoggerFactory.getLogger(ChannelsMessageTest.class);
 
     @Test
     public void shouldCreateNewChannelMessage() {
 
+        logger.info("Running test >> shouldCreateNewChannelMessage");
         //given
         ChannelsMessage channelsMessage = new ChannelsMessage();
 

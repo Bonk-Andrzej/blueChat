@@ -20,7 +20,6 @@ public class UserFacade {
     public List<UserDto> getUsers() {
         List<User> getUsers = userRep.findAll();
         List<Long> authorizatedSessionsIdentificators = wsr.getAuthorizatedSessionsIdentificators();
-//userRep.fullSave()
         List<UserDto> userDtoList = getUsers.stream()
                 .map(user -> userService.toDto(user))
                 .map(userDto -> {

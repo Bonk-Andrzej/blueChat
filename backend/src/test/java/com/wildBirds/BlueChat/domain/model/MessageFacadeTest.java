@@ -4,14 +4,18 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 
-public class MessageFasadeTest extends ConfigurationTest {
+public class MessageFacadeTest extends ConfigurationTest {
+
+    private Logger logger = LoggerFactory.getLogger(MessageFacadeTest.class);
 
     @Test
     public void shouldSaveMessage(){
-
+        logger.info("Running test >> shouldSaveMessage");
 
         //before
         User sender = new User();

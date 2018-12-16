@@ -3,6 +3,8 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
@@ -11,13 +13,12 @@ import java.util.List;
 
 public class MessageTest extends ConfigurationTest {
 
-//    @Autowired
-//    MessageRepository messageRepository;
 
+    private Logger logger = LoggerFactory.getLogger(MessageTest.class);
 
     @Test
     public void shouldSaveMessage() {
-
+        logger.info("Running test >> shouldSaveMessage");
         //given
         User sender = new User();
         sender.setNick("igorMessage");

@@ -2,15 +2,16 @@ package com.wildBirds.BlueChat.domain.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@ActiveProfiles("test")
 public class ChannelTest extends ConfigurationTest {
+
+    private Logger logger = LoggerFactory.getLogger(ChannelTest.class);
 
     @Test
     public void shouldCreateNewChanel() {
-
+        logger.info("Running test >> shouldCreateNewChanel");
         //given
         User user = new User();
         user.setNick("Milena");
@@ -21,12 +22,11 @@ public class ChannelTest extends ConfigurationTest {
         Channel channel = new Channel();
         channel.setName("general");
         channel.setChannelOwner(user);
-        //when
 
+        //when
         Channel savedChannel = channelRepository.save(channel);
 
-                //then
-
+        //then
         Assert.assertNotNull(savedChannel.getIdChanel());
         Assert.assertEquals(channel.getName(), savedChannel.getName());
         Assert.assertEquals("Milena", savedChannel.getChannelOwner().getNick());
