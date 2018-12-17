@@ -5,14 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChannelDto {
-    private Long idChanel;
+    private Long idChannel;
     private String name;
-    private UserDto channelOwner;
+    private Long userIdChannelOwner;
+    private List<UserDto> userList = new ArrayList<>();
     private boolean isPublic;
 
     public boolean getIsPublic() {

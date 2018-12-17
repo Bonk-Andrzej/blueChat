@@ -28,17 +28,20 @@ public class ChannelController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
+//    @CrossOrigin
+//    @PostMapping("addUser")
+//    public ResponseEntity addUser(@RequestBody ChannelDto channelDto) {
+//        ChannelDto response = channelFacade.addUserToChannel(channelDto);
+//
+//        return new ResponseEntity(response, HttpStatus.OK);
+//    }
     @CrossOrigin
-    @PostMapping("addUser")
-    public ResponseEntity addUser(@RequestBody ChannelDto channelDto) {
-        ChannelDto response = channelFacade.addUserToChannel(channelDto);
+    @DeleteMapping({"deleteChannel"})
+    public ResponseEntity deleteChannel(@RequestBody ChannelDto channelDto) {
 
-        return new ResponseEntity(response, HttpStatus.OK);
-    }
-    @CrossOrigin
-    @DeleteMapping({"idChannel"})
-    public ResponseEntity deleteChannel(@PathVariable Integer idChannel) {
-        channelFacade.removeChannel(idChannel);
+        System.out.println("DELETE");
+        System.out.println(channelDto.getIdChannel());
+        channelFacade.removeChannel(channelDto);
 
         return new ResponseEntity(HttpStatus.OK);
     }

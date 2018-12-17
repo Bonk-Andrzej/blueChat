@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 class ModelConfiguration {
 
     @Bean
-    ChannelFacade channelFacade() {
-        return new ChannelFacade();
+    ChannelFacade channelFacade(ChannelRepository channelRepository, ChannelService channelService, UserRepository userRepository) {
+        return new ChannelFacade(channelRepository, channelService, userRepository);
     }
 
     @Bean
@@ -29,8 +29,8 @@ class ModelConfiguration {
 
 
     @Bean
-    public ChannelService channelService() {
-        return new ChannelService(userService());
+    public ChannelService channelService(UserService userService) {
+        return new ChannelService(userService);
     }
 
     @Bean
@@ -39,8 +39,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    public ChannelsMessageService channelsMessageService() {
-        return new ChannelsMessageService(channelService(), userService());
+    public ChannelsMessageService channelsMessageService(ChannelService channelService, UserService userService) {
+        return new ChannelsMessageService(channelService, userService);
     }
 
     @Bean

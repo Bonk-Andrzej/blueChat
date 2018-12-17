@@ -16,7 +16,7 @@ public class ChannelTest extends ConfigurationTest {
         User user = new User();
         user.setNick("Milena");
         user.setPassword("password");
-        user.setPassword("somepassword");
+
         user = userRepository.save(user);
 
         Channel channel = new Channel();
@@ -34,7 +34,7 @@ public class ChannelTest extends ConfigurationTest {
     }
     @Test
     public void shouldAddUserToChannelToExistingChannel(){
-
+        logger.info("Running test >> shouldAddUserToChannelToExistingChannel");
         //given
         User ownerChannel = new User();
         ownerChannel.setNick("IgorChannel");

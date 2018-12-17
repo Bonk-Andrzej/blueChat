@@ -14,22 +14,31 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("test")
 public class ConfigurationTest {
 
-    private Logger logger = LoggerFactory.getLogger(ChannelFacadeTest.class);
+    private Logger logger = LoggerFactory.getLogger(ConfigurationTest.class);
 
     @Autowired
-    MessageFacade messageFacade;
+    protected ChannelRepository channelRepository;
 
     @Autowired
-    MessageRepository messageRepository;
+    protected ChannelFacade channelFacade;
 
     @Autowired
-    ChannelsMessageRepository chanMsgRep;
+    protected ChannelsMessageRepository chanMsgRep;
 
     @Autowired
-    UserRepository userRepository;
+    protected ChannelsMessageService channelsMessageService;
 
     @Autowired
-    ChannelRepository channelRepository;
+    protected MessageFacade messageFacade;
+
+    @Autowired
+    protected MessageRepository messageRepository;
+
+    @Autowired
+    protected UserRepository userRepository;
+
+    @Autowired
+    protected UserFacade userFacade;
 
     @Test
     public void contextLoads() {

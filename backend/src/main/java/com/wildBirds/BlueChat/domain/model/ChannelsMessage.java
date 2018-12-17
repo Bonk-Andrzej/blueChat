@@ -24,7 +24,7 @@ class ChannelsMessage {
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "idChanel")
+    @JoinColumn(name = "idChannel")
     private Channel channel;
 
     private String content;
