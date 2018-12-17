@@ -13,7 +13,6 @@ class MessageRepositoryImpl implements MessagesRepositoryCustom{
     private EntityManager entityManager;
 
 
-    // TODO: 14.12.2018 HAVE TO TESTING
     public List<Message> getConversation(Long idSender, Long idReceiver, Integer limit, Integer toBound) {
 
         String query = "SELECT messages FROM Message messages " +

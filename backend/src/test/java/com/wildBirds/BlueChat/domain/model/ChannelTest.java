@@ -27,7 +27,7 @@ public class ChannelTest extends ConfigurationTest {
         Channel savedChannel = channelRepository.save(channel);
 
         //then
-        Assert.assertNotNull(savedChannel.getIdChanel());
+        Assert.assertNotNull(savedChannel.getIdChannel());
         Assert.assertEquals(channel.getName(), savedChannel.getName());
         Assert.assertEquals("Milena", savedChannel.getChannelOwner().getNick());
 

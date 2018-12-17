@@ -19,6 +19,7 @@ public class ChannelController {
         this.channelFacade = channelFacade;
     }
 
+    // TODO: 17.12.2018 have to finish impl , add handling exceptions
     @CrossOrigin
     @PostMapping("addChannel")
     public ResponseEntity addChannel(@RequestBody ChannelDto channelDto) {
@@ -28,19 +29,25 @@ public class ChannelController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-//    @CrossOrigin
-//    @PostMapping("addUser")
-//    public ResponseEntity addUser(@RequestBody ChannelDto channelDto) {
-//        ChannelDto response = channelFacade.addUserToChannel(channelDto);
-//
-//        return new ResponseEntity(response, HttpStatus.OK);
-//    }
+    @CrossOrigin
+    @GetMapping("addUser")
+    public ResponseEntity addUser(@RequestParam String userId,
+                                  @RequestParam String channelId) {
+
+        // TODO: 17.12.2018 Can it by paramater ? 
+        System.out.println(userId);
+        System.out.println(channelId);
+        Long useId = Long.valueOf(userId);
+        Long chanId = Long.valueOf(channelId);
+
+        ChannelDto response = channelFacade.addUserToChannel(useId, chanId);
+
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
     @CrossOrigin
     @DeleteMapping({"deleteChannel"})
     public ResponseEntity deleteChannel(@RequestBody ChannelDto channelDto) {
 
-        System.out.println("DELETE");
-        System.out.println(channelDto.getIdChannel());
         channelFacade.removeChannel(channelDto);
 
         return new ResponseEntity(HttpStatus.OK);

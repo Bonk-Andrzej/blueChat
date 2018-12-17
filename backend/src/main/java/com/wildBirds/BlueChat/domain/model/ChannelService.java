@@ -2,6 +2,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ class ChannelService {
         Channel channel = new Channel();
 
         if(channelDto.getIdChannel() != null){
-            channel.setIdChanel(channelDto.getIdChannel());
+            channel.setIdChannel(channelDto.getIdChannel());
         }
         channel.setName(channelDto.getName());
         channel.setPublic(channelDto.getIsPublic());
@@ -42,10 +43,16 @@ class ChannelService {
     protected ChannelDto toDto(Channel channel){
         ChannelDto channelDto = new ChannelDto();
 
-        channelDto.setIdChannel(channel.getIdChanel());
+        channelDto.setIdChannel(channel.getIdChannel());
         channelDto.setName(channel.getName());
         channelDto.setUserIdChannelOwner(channel.getChannelOwner().getIdUser());
         channelDto.setIsPublic(channel.isPublic());
+         if (channel.getUsersInChannel() != null){
+             List<UserDto> userDtos = channel.getUsersInChannel().stream()
+                     .map(user -> userService.toDto(user))
+                     .collect(Collectors.toList());
+             channelDto.setUserList(userDtos);
+         }
 
         return channelDto;
     }

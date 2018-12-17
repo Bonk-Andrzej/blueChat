@@ -35,10 +35,6 @@ class User extends BaseEntity{
     @OneToMany(mappedBy = "sender", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<ChannelsMessage> channelsMessages;
 
-
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name ="USERS_IN_CHANNEL",
-            joinColumns = {@JoinColumn(name = "idUser")},
-            inverseJoinColumns = {@JoinColumn(name = "idChannel")})
+    @ManyToMany(mappedBy = "usersInChannel", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private List<Channel> channelsStaffed;
 }

@@ -4,6 +4,8 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 public class ChannelFacade {
 
@@ -30,7 +32,13 @@ public class ChannelFacade {
 
         Channel channel = channelRepository.getOne(channelId);
         User user = userRepository.getOne(userId);
-        channel.getUsersInChannel().add(user);
+
+        List<User> usersInChannel = channel.getUsersInChannel();
+
+        usersInChannel.add(user);
+
+        channel.setUsersInChannel(usersInChannel);
+
         channel = channelRepository.save(channel);
         ChannelDto resposne = channelService.toDto(channel);
         return resposne;

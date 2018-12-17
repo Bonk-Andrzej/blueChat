@@ -40,7 +40,6 @@ public class ChannelFacadeTest extends ConfigurationTest{
 
     }
 
-
     @Test
     @Transactional
     public void shouldRemoveExcisingChannel() {
