@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -23,11 +25,12 @@ class Channel {
     private List<ChannelsMessage> channelsMessage = new ArrayList<>();
 
 
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name ="CHANNEL_CONTAIN_USERS",
             joinColumns = {@JoinColumn(name = "idChannel")},
             inverseJoinColumns = {@JoinColumn(name = "idUser")})
-    private List<User> usersInChannel = new ArrayList<>();
+    private Set<User> usersInChannel = new HashSet<>();
 
 
 

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -36,5 +37,5 @@ class User extends BaseEntity{
     private List<ChannelsMessage> channelsMessages;
 
     @ManyToMany(mappedBy = "usersInChannel", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-    private List<Channel> channelsStaffed;
+    private Set<Channel> channelsStaffed;
 }

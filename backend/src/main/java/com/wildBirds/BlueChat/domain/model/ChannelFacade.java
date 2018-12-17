@@ -4,7 +4,7 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
 import lombok.AllArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 public class ChannelFacade {
@@ -33,7 +33,7 @@ public class ChannelFacade {
         Channel channel = channelRepository.getOne(channelId);
         User user = userRepository.getOne(userId);
 
-        List<User> usersInChannel = channel.getUsersInChannel();
+        Set<User> usersInChannel = channel.getUsersInChannel();
 
         usersInChannel.add(user);
 

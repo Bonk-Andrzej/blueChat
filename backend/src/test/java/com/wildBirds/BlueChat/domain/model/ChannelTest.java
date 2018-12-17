@@ -57,7 +57,7 @@ public class ChannelTest extends ConfigurationTest {
         savedChannel.getUsersInChannel().add(interlocutor);
 
         //then
-        Assert.assertEquals(savedChannel.getUsersInChannel().get(0).getNick(), interlocutor.getNick() );
+        Assert.assertEquals(savedChannel.getUsersInChannel().iterator().next().getNick(), interlocutor.getNick() );
 
     }
 }

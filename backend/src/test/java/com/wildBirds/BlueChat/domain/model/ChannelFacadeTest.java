@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.Set;
 
 public class ChannelFacadeTest extends ConfigurationTest{
 
@@ -106,8 +106,9 @@ public class ChannelFacadeTest extends ConfigurationTest{
 
 
         //then
-        List<User> usersInChannel = channelRepository.getOne(idChannel).getUsersInChannel();
-        Assert.assertEquals(addingUser.getIdUser(), usersInChannel.get(0).getIdUser());
+        Set<User> usersInChannel = channelRepository.getOne(idChannel).getUsersInChannel();
+
+        Assert.assertEquals(addingUser.getIdUser(), usersInChannel.iterator().next().getIdUser());
 
     }
 }

@@ -4,18 +4,27 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
 import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
-import lombok.AllArgsConstructor;
+import com.wildBirds.BlueChat.domain.model.exceptions.UserNotExistExceptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
+
 public class UserFacade {
 
     private UserRepository userRep;
     private UserService userService;
-
     private MessageControllerWSR wsr;
+    private Logger log = LoggerFactory.getLogger(UserFacade.class);
+
+    public UserFacade(UserRepository userRep, UserService userService, MessageControllerWSR wsr) {
+        this.userRep = userRep;
+        this.userService = userService;
+        this.wsr = wsr;
+    }
+
 
     public List<UserDto> getUsers() {
         List<User> getUsers = userRep.findAll();
@@ -29,7 +38,7 @@ public class UserFacade {
                     return userDto;
                 })
                 .collect(Collectors.toList());
-
+        log.info("Method getUsers ", userDtoList.toString());
         return userDtoList;
     }
 
@@ -43,9 +52,14 @@ public class UserFacade {
 
     public UserDto loginUser(UserDtoPass userDtoPass){
 
-        User loginedUser = userRep.getUserByNickAndPassword(userDtoPass.getNick(), userDtoPass.getPassword());
-        UserDto responseDto = userService.toDto(loginedUser);
+        User onlineUser = userRep.getUserByNickAndPassword(userDtoPass.getNick(), userDtoPass.getPassword());
+        if (onlineUser == null) {
+            log.error("Method loginUser ", "User not exist or invalid login or password");
+           throw new  UserNotExistExceptions("User not exist or invalid login or password");
+        }
 
+        UserDto responseDto = userService.toDto(onlineUser);
+        log.info("Method loginUser ", responseDto.toString());
         return responseDto;
     }
 }
