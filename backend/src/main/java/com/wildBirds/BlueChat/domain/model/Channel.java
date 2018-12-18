@@ -28,7 +28,7 @@ class Channel {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name ="CHANNEL_CONTAIN_USERS",
-            joinColumns = {@JoinColumn(name = "idChannel")},
+            joinColumns = {@JoinColumn(name = "channelId")},
             inverseJoinColumns = {@JoinColumn(name = "idUser")})
     private Set<User> usersInChannel = new HashSet<>();
 

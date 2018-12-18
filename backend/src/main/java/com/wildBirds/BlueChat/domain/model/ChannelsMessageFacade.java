@@ -16,7 +16,7 @@ public class ChannelsMessageFacade {
 
         ChannelsMessage channelsMessage = service.toEntity(channelsMessageDto);
 
-        ChannelsMessage addedMessage = repository.save(channelsMessage);
+        ChannelsMessage addedMessage = repository.saveMessage(channelsMessage);
 
         return service.toDto(addedMessage);
 

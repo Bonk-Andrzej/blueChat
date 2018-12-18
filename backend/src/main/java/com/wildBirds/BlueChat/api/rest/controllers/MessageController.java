@@ -33,12 +33,12 @@ public class MessageController {
                                           @RequestParam String toBound) {
 
         try {
-            Long idSenderInt = Long.valueOf(idSender);
-            Long idReceiverrInt = Long.valueOf(idReceiver);
+            Long idSenderLong = Long.valueOf(idSender);
+            Long idReceiverLong = Long.valueOf(idReceiver);
             Integer limitInt = Integer.valueOf(limit);
             Integer toBoundInt = Integer.valueOf(toBound);
 
-            List<MessageDto> conversation = messageFacade.getConversation(idSenderInt, idReceiverrInt, limitInt, toBoundInt);
+            List<MessageDto> conversation = messageFacade.getConversation(idSenderLong, idReceiverLong, limitInt, toBoundInt);
             log.info("Method getConversation", conversation.toString());
             return new ResponseEntity(conversation, HttpStatus.OK);
 
@@ -47,10 +47,11 @@ public class MessageController {
             headers.add("Error", e.getMessage());
             log.error("Method getConversation", e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+
         } catch (MessageServiceException e) {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());
-            log.error("Method sendMessage", e.getMessage());
+            log.error("Method getConversation", e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
 
@@ -64,6 +65,7 @@ public class MessageController {
             MessageDto response = messageFacade.saveMessage(messageDto);
             log.info("Method sendMessage", response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
+
         } catch (MessageServiceException e) {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());

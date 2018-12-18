@@ -42,9 +42,9 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
 
         ChannelDto channelDto = channelService.toDto(channel);
 
-        channelsMessageDto.setChannel(channelDto);
+        channelsMessageDto.setChannelId(channelDto.getIdChannel());
         channelsMessageDto.setContent(content);
-        channelsMessageDto.setSender(senderDto);
+        channelsMessageDto.setSenderId(senderDto.getIdUser());
         channelsMessageDto.setSentDate(Instant.now());
 
         //when
@@ -52,8 +52,8 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
 
         //then
         Assert.assertNotNull(addedMessages.getIdMessageGroup());
-        Assert.assertEquals(channel.getName(), addedMessages.getChannel().getName());
-        Assert.assertEquals(sender.getNick(), addedMessages.getSender().getNick());
+        Assert.assertEquals(channel.getIdChannel(), addedMessages.getChannelId());
+        Assert.assertEquals(sender.getIdUser(), addedMessages.getSenderId());
         Assert.assertEquals(content, addedMessages.getContent());
     }
 
@@ -85,9 +85,9 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
 
         ChannelDto channelDto = channelService.toDto(channel);
 
-        channelsMessageDto.setChannel(channelDto);
+        channelsMessageDto.setChannelId(channelDto.getIdChannel());
         channelsMessageDto.setContent(content);
-        channelsMessageDto.setSender(senderDto);
+        channelsMessageDto.setSenderId(senderDto.getIdUser());
         channelsMessageDto.setSentDate(Instant.now());
         //given
 

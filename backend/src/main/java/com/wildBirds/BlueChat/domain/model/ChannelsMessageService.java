@@ -2,13 +2,19 @@ package com.wildBirds.BlueChat.domain.model;
 
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelsMessageDto;
-import lombok.AllArgsConstructor;
+import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@AllArgsConstructor
 public class ChannelsMessageService {
     private ChannelService channelService;
     private UserService userService;
+    private Logger log = LoggerFactory.getLogger(ChannelsMessageService.class);
 
+    public ChannelsMessageService(ChannelService channelService, UserService userService) {
+        this.channelService = channelService;
+        this.userService = userService;
+    }
 
     public ChannelsMessage toEntity(ChannelsMessageDto channelsMessageDto) {
         ChannelsMessage channelsMessage = new ChannelsMessage();
@@ -16,20 +22,48 @@ public class ChannelsMessageService {
         if (channelsMessageDto.getIdMessageGroup() == null) {
             channelsMessage.setIdMessageGroup(channelsMessageDto.getIdMessageGroup());
         }
-        channelsMessage.setSentDate(channelsMessageDto.getSentDate());
-        channelsMessage.setSender(userService.toEntity(channelsMessageDto.getSender()));
-        channelsMessage.setContent(channelsMessageDto.getContent());
-        channelsMessage.setChannel(channelService.toEntity(channelsMessageDto.getChannel()));
+        try {
+            channelsMessage.setSentDate(channelsMessageDto.getSentDate());
+            User senderDto = new User();
+            senderDto.setIdUser(channelsMessageDto.getSenderId());
+
+            channelsMessage.setSender(senderDto);
+            channelsMessage.setContent(channelsMessageDto.getContent());
+
+            Channel channelDto = new Channel();
+            channelDto.setIdChannel(channelsMessageDto.getChannelId());
+            channelsMessage.setChannel(channelDto);
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            log.error("ChannelsMessage Service - Some field was null", e.getMessage());
+            throw new ChannelServiceExceptions("Message Service - Some field was null");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("ChannelsMessage Service Exception", e.getMessage());
+            throw new ChannelServiceExceptions("Message Service Exception");
+        }
+
         return channelsMessage;
     }
     public ChannelsMessageDto toDto(ChannelsMessage channelsMessage){
         ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
 
-        channelsMessageDto.setIdMessageGroup(channelsMessage.getIdMessageGroup());
-        channelsMessageDto.setChannel(channelService.toDto(channelsMessage.getChannel()));
-        channelsMessageDto.setSender(userService.toDto(channelsMessage.getSender()));
-        channelsMessageDto.setContent(channelsMessage.getContent());
-        channelsMessageDto.setSentDate(channelsMessage.getSentDate());
+        try {
+            channelsMessageDto.setIdMessageGroup(channelsMessage.getIdMessageGroup());
+            channelsMessageDto.setChannelId(channelsMessage.getChannel().getIdChannel());
+            channelsMessageDto.setSenderId(channelsMessage.getSender().getIdUser());
+            channelsMessageDto.setContent(channelsMessage.getContent());
+            channelsMessageDto.setSentDate(channelsMessage.getSentDate());
+        } catch (NullPointerException e) {
+            log.error("ChannelsMessage Service - Some field was null", e.getMessage());
+            throw new ChannelServiceExceptions("Message Service - Some field was null");
+
+        } catch (Exception e) {
+            log.error("ChannelsMessage Service Exception", e.getMessage());
+            throw new ChannelServiceExceptions("Message Service Exception");
+        }
         return channelsMessageDto;
     }
 }

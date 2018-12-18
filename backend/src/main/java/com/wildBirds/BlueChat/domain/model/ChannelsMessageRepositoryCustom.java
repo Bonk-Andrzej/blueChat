@@ -6,4 +6,6 @@ interface ChannelsMessageRepositoryCustom {
 
     List<ChannelsMessage> getConversation(Long idChannel, Integer limit, Integer toBound);
 
+    ChannelsMessage saveMessage(ChannelsMessage channelsMessage);
+
 }

@@ -12,8 +12,8 @@ import java.time.Instant;
 public class ChannelsMessageDto {
 
     private Long idMessageGroup;
-    private UserDto sender;
-    private ChannelDto channel;
+    private Long senderId;
+    private Long channelId;
     private String content;
     private Instant sentDate;
 }

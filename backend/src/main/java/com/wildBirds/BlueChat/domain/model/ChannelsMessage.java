@@ -20,11 +20,11 @@ class ChannelsMessage {
     private Long idMessageGroup;
 
     @ManyToOne
-    @JoinColumn(name = "sender")
+    @JoinColumn(name = "sender", nullable = false)
     private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "idChannel")
+    @JoinColumn(name = "channelId", nullable = false)
     private Channel channel;
 
     private String content;
