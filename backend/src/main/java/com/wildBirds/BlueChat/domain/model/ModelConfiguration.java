@@ -13,8 +13,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    ChannelsMessageFacade channelsMessageFacade() {
-        return new ChannelsMessageFacade();
+    ChannelsMessageFacade channelsMessageFacade(ChannelsMessageRepository channelsMessageRepository, ChannelsMessageService channelsMessageService) {
+        return new ChannelsMessageFacade(channelsMessageRepository,channelsMessageService );
     }
 
     @Bean

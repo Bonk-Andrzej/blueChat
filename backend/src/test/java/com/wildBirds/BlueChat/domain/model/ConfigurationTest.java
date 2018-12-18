@@ -26,7 +26,7 @@ public class ConfigurationTest {
     protected ChannelsMessageRepository chanMsgRep;
 
     @Autowired
-    protected ChannelsMessageService channelsMessageService;
+    protected ChannelsMessageFacade channelsMessageFacade;
 
     @Autowired
     protected MessageFacade messageFacade;

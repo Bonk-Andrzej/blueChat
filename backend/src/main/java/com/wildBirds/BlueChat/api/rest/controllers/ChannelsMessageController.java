@@ -19,11 +19,15 @@ public class ChannelsMessageController {
     @CrossOrigin
     @GetMapping
     @RequestMapping
-    public ResponseEntity getConversation(@RequestParam("idChannel") Integer idChannel,
-                                          @RequestParam("limit") Integer limit,
-                                          @RequestParam("toBound") Integer toBound) {
+    public ResponseEntity getConversation(@RequestParam("idChannel") String idChannel,
+                                          @RequestParam("limit") String limit,
+                                          @RequestParam("toBound") String toBound) {
 
-        List<ChannelsMessageDto> conversation = channelsMessageFacade.getConversation(idChannel, limit, toBound);
+        Long idChannelLong = Long.valueOf(idChannel);
+        Integer limitInt = Integer.valueOf(limit);
+        Integer toBoundInt = Integer.valueOf(toBound);
+
+        List<ChannelsMessageDto> conversation = channelsMessageFacade.getConversation(idChannelLong, limitInt, toBoundInt);
 
         return new ResponseEntity(conversation, HttpStatus.OK);
     }

@@ -1,7 +1,6 @@
 package com.wildBirds.BlueChat.domain.model;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,6 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 class User extends BaseEntity{
 
@@ -38,4 +36,9 @@ class User extends BaseEntity{
 
     @ManyToMany(mappedBy = "usersInChannel", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Set<Channel> channelsStaffed;
+
+    public User(String nick, String password) {
+        this.nick = nick;
+        this.password = password;
+    }
 }

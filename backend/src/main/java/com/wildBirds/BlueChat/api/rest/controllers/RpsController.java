@@ -33,6 +33,11 @@ public class RpsController {
             headers.add("Error", e.getMessage());
             log.error("Method login", e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        } catch (Exception e){
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method login", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
 
