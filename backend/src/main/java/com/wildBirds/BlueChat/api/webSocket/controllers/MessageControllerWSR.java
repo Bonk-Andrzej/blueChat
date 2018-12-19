@@ -1,6 +1,7 @@
 package com.wildBirds.BlueChat.api.webSocket.controllers;
 
 
+import com.wildBirds.BlueChat.api.rest.controllers.ChannelsMessageController;
 import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
 import com.wildBirds.BlueChat.api.webSocket.dto.AuthSessionDTO;
 import com.wildBirds.BlueChat.api.webSocket.dto.ErrorDTO;
@@ -10,6 +11,8 @@ import com.wildBirds.BlueChat.api.webSocket.types.RemoteProcedure;
 import com.wildBirds.BlueChat.domain.model.MessageFacade;
 import com.wildBirds.WebSocketRpc.api.Session;
 import com.wildBirds.WebSocketRpc.api.WSR;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +26,7 @@ public class MessageControllerWSR implements InitializingBean {
 
     private WSR<LocalProcedure, RemoteProcedure, Long> wsr;
     private MessageFacade messageFacade;
+    private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
 
     @Autowired
     public MessageControllerWSR(WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade) {

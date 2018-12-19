@@ -52,14 +52,11 @@ public class ChannelController {
     }
 
     @CrossOrigin
-    @GetMapping("addUser")
+    @PostMapping("addUser")
     public ResponseEntity addUser(@RequestParam String userId,
                                   @RequestParam String channelId) {
 
         try {
-            // TODO: 17.12.2018 Can it by paramater ?
-            System.out.println(userId);
-            System.out.println(channelId);
             Long useId = Long.valueOf(userId);
             Long chanId = Long.valueOf(channelId);
 

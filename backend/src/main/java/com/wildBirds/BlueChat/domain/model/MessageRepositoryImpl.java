@@ -50,13 +50,8 @@ class MessageRepositoryImpl implements MessagesRepositoryCustom{
         msgToSave.setContent(content);
         msgToSave.setSentDate(sentDate);
 
-// TODO: 16.12.2018 merge ??? message have null ID
+        entityManager.persist(msgToSave);
 
-        Message savedMsg = entityManager.merge(msgToSave);
-
-
-//        entityManager.persist(message);
-//        return entityManager.find(Message.class, message.getIdMessage());
-        return savedMsg;
+        return msgToSave;
     }
 }
