@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/channel")
 public class ChannelController {
@@ -22,6 +24,16 @@ public class ChannelController {
     }
 
     // TODO: 17.12.2018 have to finish impl , add handling exceptions
+
+    @CrossOrigin
+    @GetMapping
+    public ResponseEntity getChannels(){
+        List<ChannelDto> channels = channelFacade.getChannels();
+
+        return new ResponseEntity(channels, HttpStatus.OK);
+
+    }
+
     @CrossOrigin
     @PostMapping("addChannel")
     public ResponseEntity addChannel(@RequestBody ChannelDto channelDto) {

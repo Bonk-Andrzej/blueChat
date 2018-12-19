@@ -3,7 +3,7 @@
     <div id="active-user-header">
         <div><p>Users</p></div>
         <div>
-            <div id="img"></div>
+            <div id="findUser"></div>
         </div>
     </div>
     <div id="active-user-list">
@@ -14,6 +14,20 @@
                 <p>{{user.nick | titlecase}}</p>
             </div>
 
+        </ng-container>
+    </div>
+    <div id="active-channel-header">
+        <div><p>Channels</p></div>
+        <div>
+            <div id="findChannel"></div>
+        </div>
+    </div>
+    <div id="active-channel-list">
+        <ng-container *ngFor="let channel of channels">
+            <div class="channel">
+                <div id="active-channel-status"></div>
+                <p>{{channel.name | titlecase}}</p>
+            </div>
         </ng-container>
     </div>
 </div>

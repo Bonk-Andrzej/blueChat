@@ -4,6 +4,8 @@ import {UserRepositoryService} from '../../repository/user-repository/user-repos
 import {AuthorizationServiceService} from '../../services/authorization-service/authorization-service.service';
 import {MessageWsrService} from '../../services/messege-service/message-wsr.service';
 import {UserDTO} from '../../repository/user-repository/user-d-t.o';
+import {ChannelDTO} from '../../repository/channel-repository/channelDTO';
+import {ChannelRepositoryService} from '../../repository/channel-repository/channel-repository.service';
 
 @Component({
     selector: 'app-active-user-list',
@@ -13,14 +15,16 @@ import {UserDTO} from '../../repository/user-repository/user-d-t.o';
 export class ActiveUserListComponent implements OnInit {
 
     public users: Array<UserDTO>;
+    public channels : Array<ChannelDTO>;
     public activeUserStatusBar = {
         'backgroundColor': '#df1b37'
     };
 
     constructor(private userRepository: UserRepositoryService,
                 private authorizationService: AuthorizationServiceService,
-                private messageService: MessageWsrService) {
-
+                private messageService: MessageWsrService,
+                private channelRepository: ChannelRepositoryService) {
+        this.channels = [];
         this.users = [];
     }
 
@@ -33,6 +37,13 @@ export class ActiveUserListComponent implements OnInit {
             }
         });
         document.documentElement.style.setProperty('--status-color', '#df1b37');
+
+        this.channelRepository.getChannels().subscribe(channels => {
+            console.log(channels);
+            for (const channel of channels){
+                this.channels.push(new ChannelDTO(channel.idChannel , channel.name, channel.userIdChannelOwner, channel.userList, channel.isPublic))
+            }
+        });
     }
 
     setReceiver(user: UserDTO) {

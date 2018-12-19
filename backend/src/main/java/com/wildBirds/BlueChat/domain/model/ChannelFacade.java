@@ -4,7 +4,9 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class ChannelFacade {
@@ -42,5 +44,17 @@ public class ChannelFacade {
         channel = channelRepository.save(channel);
         ChannelDto resposne = channelService.toDto(channel);
         return resposne;
+    }
+
+    // TODO: 19.12.2018 have to write tests
+    public List<ChannelDto> getChannels(){
+
+        List<Channel> channels = channelRepository.findAll();
+
+        List<ChannelDto> channelDtoList = channels.stream()
+                .map(channel -> channelService.toDto(channel))
+                .collect(Collectors.toList());
+
+        return channelDtoList;
     }
 }
