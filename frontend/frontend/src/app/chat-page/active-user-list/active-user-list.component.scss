@@ -153,11 +153,12 @@
       padding: 10px;
 
       #active-channel-status {
-        height: 30px;
-        width: 30px;
-        margin: 5px;
+        height: 20px;
+        width: 20px;
+        margin: 0px;
         float: left;
-        background: url("./../../../assets/channel_open2.png") no-repeat center;
+        background: url("./../../../assets/channel_open_white.png") no-repeat center;
+        background-size: 80%;
         display: inline-block;
       }
       p {
