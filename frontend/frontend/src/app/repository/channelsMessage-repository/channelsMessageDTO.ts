@@ -1,4 +1,4 @@
-export class ChannelMessageDTO {
+export class ChannelsMessageDTO {
     private _idMessageGroup: number;
     private _senderId: number;
     private _channelId: number;

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ChannelDTO} from '../channel-repository/channelDTO';
-import {ChannelMessageDTO} from './channelMessageDTO';
+import {ChannelsMessageDTO} from './channelsMessageDTO';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChannelsMessageService {
+export class ChannelsMessageRepositoryService {
 
     private http: HttpClient;
     private readonly host: string;
@@ -26,14 +26,14 @@ export class ChannelsMessageService {
         return headers;
     }
 
-    public getConversation(channel: ChannelDTO, limit: number, toBound: number): Observable<Array<ChannelMessageDTO>> {
+    public getConversation(channel: ChannelDTO, limit: number, toBound: number): Observable<Array<ChannelsMessageDTO>> {
         const headers = this.getHeaders();
         const params = new HttpParams()
             .set('channelId', channel.idChannel.toString())
             .set('limit', limit.toString())
             .set('toBound', toBound.toString());
 
-        return this.http.get<Array<ChannelMessageDTO>>(
+        return this.http.get<Array<ChannelsMessageDTO>>(
             this.host , {headers: headers, params: params});
     }
 }
