@@ -48,7 +48,7 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
         channelsMessageDto.setSentDate(Instant.now());
 
         //when
-        ChannelsMessageDto addedMessages = channelsMessageFacade.addMessages(channelsMessageDto);
+        ChannelsMessageDto addedMessages = channelsMessageFacade.saveMessage(channelsMessageDto);
 
         //then
         Assert.assertNotNull(addedMessages.getIdMessageGroup());
@@ -91,8 +91,8 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
         channelsMessageDto.setSentDate(Instant.now());
         //given
 
-        ChannelsMessageDto addedMessages1 = channelsMessageFacade.addMessages(channelsMessageDto);
-        ChannelsMessageDto addedMessages2 = channelsMessageFacade.addMessages(channelsMessageDto);
+        ChannelsMessageDto addedMessages1 = channelsMessageFacade.saveMessage(channelsMessageDto);
+        ChannelsMessageDto addedMessages2 = channelsMessageFacade.saveMessage(channelsMessageDto);
         Long idChannel = channel.getIdChannel();
         Integer limit = 10;
         Integer toBound = 0;

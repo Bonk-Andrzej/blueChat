@@ -60,7 +60,7 @@ public class ChannelsMessageController {
 
         try {
             channelsMessageDto.setSentDate(Instant.now());
-            ChannelsMessageDto savedMessages = channelsMessageFacade.addMessages(channelsMessageDto);
+            ChannelsMessageDto savedMessages = channelsMessageFacade.saveMessage(channelsMessageDto);
             log.info("Method sendMessage ", savedMessages.toString());
             return new ResponseEntity(savedMessages, HttpStatus.OK);
         } catch (MessageServiceException e) {

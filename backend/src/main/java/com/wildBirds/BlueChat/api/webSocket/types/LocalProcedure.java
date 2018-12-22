@@ -1,7 +1,7 @@
 package com.wildBirds.BlueChat.api.webSocket.types;
 
 public enum LocalProcedure {
-    FORWARDMESSAGE,  AUTHSESSION;
+    FORWARDMESSAGE,  AUTHSESSION, FORWARDCHANNELSMESSAGE;
 
     @Override
     public String toString() {

@@ -2,12 +2,14 @@ package com.wildBirds.BlueChat.api.webSocket.controllers;
 
 
 import com.wildBirds.BlueChat.api.rest.controllers.ChannelsMessageController;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelsMessageDto;
 import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
 import com.wildBirds.BlueChat.api.webSocket.dto.AuthSessionDTO;
 import com.wildBirds.BlueChat.api.webSocket.dto.ErrorDTO;
 import com.wildBirds.BlueChat.api.webSocket.dto.MessageDTO;
 import com.wildBirds.BlueChat.api.webSocket.types.LocalProcedure;
 import com.wildBirds.BlueChat.api.webSocket.types.RemoteProcedure;
+import com.wildBirds.BlueChat.domain.model.ChannelsMessageFacade;
 import com.wildBirds.BlueChat.domain.model.MessageFacade;
 import com.wildBirds.WebSocketRpc.api.Session;
 import com.wildBirds.WebSocketRpc.api.WSR;
@@ -26,6 +28,7 @@ public class MessageControllerWSR implements InitializingBean {
 
     private WSR<LocalProcedure, RemoteProcedure, Long> wsr;
     private MessageFacade messageFacade;
+    private ChannelsMessageFacade channelsMessageFacade;
     private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
 
     @Autowired
@@ -83,6 +86,20 @@ public class MessageControllerWSR implements InitializingBean {
             session.executeRemoteProcedure(RemoteProcedure.ERROR, ErrorDTO.class, errorDTO);
 
         });
+
+        wsr.addProcedure(LocalProcedure.FORWARDCHANNELSMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
+            ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
+
+            channelsMessageDto.setSenderId(data.getSenderId());
+            channelsMessageDto.setChannelId(data.getChannelId());
+            channelsMessageDto.setSentDate(Instant.now());
+            channelsMessageDto.setContent(data.getContent());
+
+            channelsMessageFacade.saveMessage(channelsMessageDto);
+
+            session.executeRemoteProcedure(RemoteProcedure.ADDMYCHANNELMESSAGE, ChannelsMessageDto.class, channelsMessageDto);
+
+        }));
 
     }
 

@@ -12,7 +12,7 @@ public class ChannelsMessageFacade {
     private ChannelsMessageRepository repository;
     private ChannelsMessageService service;
 
-    public ChannelsMessageDto addMessages(ChannelsMessageDto channelsMessageDto){
+    public ChannelsMessageDto saveMessage(ChannelsMessageDto channelsMessageDto){
 
         ChannelsMessage channelsMessage = service.toEntity(channelsMessageDto);
 
