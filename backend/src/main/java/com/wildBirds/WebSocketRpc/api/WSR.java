@@ -64,6 +64,9 @@ public class WSR<LT extends Enum<LT>,RT extends Enum<RT>,I extends Comparable<I>
     public List<I> getAuthorizatedSessionsIdentificators(){
         return new ArrayList<>(this.sessionRepository.getAuthorizedSessionMap().keySet());
     }
+    public List<Session<RT,I>> getAllAuthorizedSession(){
+        return (List<Session<RT, I>>) this.sessionRepository.getAuthorizedSessionMap();
+    }
 //    public static void main(String[] args) {
 //
 //

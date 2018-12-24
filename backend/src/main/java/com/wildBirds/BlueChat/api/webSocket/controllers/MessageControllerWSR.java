@@ -32,16 +32,16 @@ public class MessageControllerWSR implements InitializingBean {
     private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
 
     @Autowired
-    public MessageControllerWSR(WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade) {
+    public MessageControllerWSR(WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade, ChannelsMessageFacade channelsMessageFacade) {
         this.wsr = wsr;
         this.messageFacade = messageFacade;
-
+        this.channelsMessageFacade = channelsMessageFacade;
     }
 
     @Override
     public void afterPropertiesSet() {
 
-        System.out.println(" WSR Message controller start");
+        log.info(" WSR Message controller start");
         wsr.addProcedure(LocalProcedure.FORWARDMESSAGE, MessageDTO.class, (data, session) -> {
 
             if (session.hasId()) {
@@ -79,14 +79,13 @@ public class MessageControllerWSR implements InitializingBean {
             Long userId = data.getUserId();
             session.setId(userId);
 
-            System.out.println("Authorized User by id: " + data.getUserId());
+            log.info("Authorized User by id: " + data.getUserId());
             final ErrorDTO errorDTO = new ErrorDTO();
             errorDTO.setMessage("Authorized succeed");
             errorDTO.setStatus("OK");
             session.executeRemoteProcedure(RemoteProcedure.ERROR, ErrorDTO.class, errorDTO);
 
         });
-
         wsr.addProcedure(LocalProcedure.FORWARDCHANNELSMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
             ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
 
@@ -98,6 +97,10 @@ public class MessageControllerWSR implements InitializingBean {
             channelsMessageFacade.saveMessage(channelsMessageDto);
 
             session.executeRemoteProcedure(RemoteProcedure.ADDMYCHANNELMESSAGE, ChannelsMessageDto.class, channelsMessageDto);
+
+//            List<Session<RemoteProcedure, Long>> allAuthorizedSession = wsr.getAllAuthorizedSession();
+//            allAuthorizedSession.forEach(session.executeRemoteProcedure
+//                    (RemoteProcedure.REFRESHCHANNELMESSAGES, ChannelsMessageDto.class, channelsMessageDto));
 
         }));
 
