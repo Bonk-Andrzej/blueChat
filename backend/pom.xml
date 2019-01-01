@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.wildBirds</groupId>
 	<artifactId>BlueChat</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>BlueChat</name>
 	<description>BlueChat</description>

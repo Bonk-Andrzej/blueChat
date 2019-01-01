@@ -19,12 +19,12 @@ public class MessageFacadeTest extends ConfigurationTest {
 
         //before
         User sender = new User();
-        sender.setNick("igorMessage");
+        sender.setNick("igorMessageFacade");
         sender.setPassword("password");
         sender = userRepository.save(sender);
 
         User receiver = new User();
-        receiver.setNick("pawelMessage");
+        receiver.setNick("pawelMessageFacade");
         receiver.setPassword("password");
         receiver = userRepository.save(receiver);
 
@@ -40,10 +40,9 @@ public class MessageFacadeTest extends ConfigurationTest {
         MessageDto messageSaved = messageFacade.saveMessage(messageDto);
 
         //then
-        Assert.assertEquals(Long.valueOf(1), messageSaved.getIdMessage());
         Assert.assertEquals(content, messageSaved.getContent() );
         Assert.assertEquals(sentDate, messageSaved.getSentDate());
-        Assert.assertEquals(Long.valueOf(1), messageSaved.getSenderId());
-        Assert.assertEquals(Long.valueOf(2), messageSaved.getReceiverId());
+        Assert.assertEquals(sender.getIdUser(), messageSaved.getSenderId());
+        Assert.assertEquals(receiver.getIdUser(), messageSaved.getReceiverId());
     }
 }
