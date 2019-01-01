@@ -1,0 +1,115 @@
+@import "~src/style-primary";
+
+#mainPage {
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .loggingBox {
+    box-sizing: border-box;
+    width: 400px;
+    height: 600px;
+    margin: auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(20,1fr);
+    grid-template-rows: repeat(40,1fr);
+    background-color: $color-black;
+    #status-line{
+      box-sizing: border-box;
+      background-color: $color-green;
+      grid-column: 1/21;
+      grid-row: 1/4;
+      transition: $transition-default;
+      color: $color-white;
+      text-align: center;
+      font-family: $font-lato;
+      padding-top: 8px;
+      font-size: 16px;
+    }
+
+    #logo{
+      grid-column: 4/18;
+      grid-row: 6/20;
+      background: url("./../../assets/Logo.png") no-repeat center;
+      background-size: 80%;
+    }
+    #logo-brand{
+      grid-column: 4/18;
+      grid-row: 20/22;
+      color: $color-white;
+      font-family: $font-Pacifico;
+      text-align: center;
+      font-size: 34px;
+      margin: 0;
+    }
+    input {
+      border: none;
+      outline: none;
+      border-radius: $box-radius;
+      box-sizing: border-box;
+      padding: 2px 6px;
+    }
+    button {
+      outline: none;
+      cursor: pointer;
+      border-radius: $box-radius;
+      font-family: $font-Pacifico;
+      border: none;
+      transition: $transition-default;
+    }
+
+    #login {
+      grid-column: 4/18;
+      grid-row: 24/27;
+    }
+    #password {
+      grid-column: 4/18;
+      grid-row: 27/30;
+    }
+    #buttonLogIn {
+
+      color: $color-white;
+      background-color: $color-green;
+      grid-column: 11/18;
+      grid-row: 30/33;
+    }
+    #buttonRegister {
+
+      grid-column: 4/11;
+      grid-row: 30/33;
+      color: $color-white;
+      background-color: $color-red;
+    }
+
+  }
+}
+
+//#buttonRegister {
+//
+//  width: 100px;
+//  height: 30px;
+//  font-family: "Pacifico";
+//  margin-right: 3px;
+//  border: 0;
+//  background-color: #d13314;
+//  color: white;
+//}
+//
+//#buttonLogIn {
+//  width: 100px;
+//  height: 30px;
+//  font-family: "Pacifico";
+//  border: 0;
+//  margin-left: 3px;
+//  background-color: #78af0e;
+//  color: white;
+//
+//}
+//
+//.default-radius {
+//  border-radius: 5px;
+//}
+
+
