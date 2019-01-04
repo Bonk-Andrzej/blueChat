@@ -23,8 +23,8 @@ services:
             - mysqlChat
         networks:
             - lan
-    #    volumes:      
-    #  - ./backend:/home/chat/backend:rw
+        volumes:      
+        - ./backend/target:/home/chat/backend
         command: java -jar -Dspring.profiles.active=remote BlueChat-2-SNAPSHOT.jar
     
 #    web:
