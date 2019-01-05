@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
         email: "",
         password: "",
         repeatPassword: ""
-    }
+    };
 
     constructor() {
     }

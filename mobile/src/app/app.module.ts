@@ -9,6 +9,7 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
 import { BigLogoComponent } from './components/big-logo/big-logo.component';
 import { InputWithTitleComponent } from './components/input-with-title/input-with-title.component';
 import { FormsModule }   from '@angular/forms';
+import { ButtonWideComponent } from './components/button-wide/button-wide.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { FormsModule }   from '@angular/forms';
         BackgroundWrapperComponent,
         HamburgerMenuComponent,
         BigLogoComponent,
-        InputWithTitleComponent
+        InputWithTitleComponent,
+        ButtonWideComponent
     ],
     imports: [
         BrowserModule,
