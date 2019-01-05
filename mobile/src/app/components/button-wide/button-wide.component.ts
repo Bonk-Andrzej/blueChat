@@ -8,6 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class ButtonWideComponent implements OnInit {
 
     @Input() buttonTitle: string;
+    @Input() colorButton: string;
     constructor() {
     }
 

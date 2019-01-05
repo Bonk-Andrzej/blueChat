@@ -10,6 +10,10 @@ import { BigLogoComponent } from './components/big-logo/big-logo.component';
 import { InputWithTitleComponent } from './components/input-with-title/input-with-title.component';
 import { FormsModule }   from '@angular/forms';
 import { ButtonWideComponent } from './components/button-wide/button-wide.component';
+import { HomeMenuComponent } from './pages/home-menu/home-menu.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { InformationSupportComponent } from './components/information-support/information-support.component';
+import { InputWithButtonComponent } from './components/input-with-button/input-with-button.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +23,11 @@ import { ButtonWideComponent } from './components/button-wide/button-wide.compon
         HamburgerMenuComponent,
         BigLogoComponent,
         InputWithTitleComponent,
-        ButtonWideComponent
+        ButtonWideComponent,
+        HomeMenuComponent,
+        ResetPasswordComponent,
+        InformationSupportComponent,
+        InputWithButtonComponent
     ],
     imports: [
         BrowserModule,

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ColorsService} from '../../services/colors.service';
 
 @Component({
     selector: 'app-home',
@@ -9,21 +10,24 @@ export class HomeComponent implements OnInit {
 
 
     form = {
-        email: "",
-        password: "",
-        repeatPassword: ""
+        email: '',
+        password: '',
+        repeatPassword: ''
     };
+    buttonColor: string;
 
-    constructor() {
+    constructor(private colors: ColorsService) {
     }
 
     ngOnInit() {
+        this.buttonColor = this.colors.getColor('--yellow');
     }
 
     showMenuHandler() {
-        alert("showMenuHandler click")
+        alert('showMenuHandler click');
     }
-    onChange(e){
-        console.log(this.form)
+
+    onChange(e) {
+        console.log(this.form);
     }
 }
