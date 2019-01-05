@@ -1,0 +1,47 @@
+
+%body-shape {
+  border-radius: 25px;
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+%absolute-element {
+  position: absolute;
+}
+
+.bg{
+  background-color: var(--black-dark);
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+
+.layer {
+  @extend %absolute-element;
+  padding: 10px;
+  float: left;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+
+  .body {
+    @extend %body-shape;
+  }
+
+  .mask {
+    @extend %body-shape;
+    background-color: var(--cyan);
+    opacity: 0.9;
+  }
+
+  .image {
+    @extend %body-shape;
+    background-image: url("../../../assets/joel-filipe-191372-unsplash.jpg");
+    background-size: cover;
+  }
+
+}
+

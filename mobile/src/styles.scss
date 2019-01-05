@@ -2,7 +2,6 @@
 
 
 // Colors
-
 :root {
   --red-light: #ff5a4f;
   --red: #ed463b;
@@ -33,4 +32,13 @@
   --black-dark: rgba(30, 30, 30, 0.95);
 
   --back-shadow: rgba(0, 0, 0, 0.25);
+}
+
+
+// Global
+body, html{
+  height: 100%;
+  width: 100%;
+  float: left;
+  margin: 0;
 }
