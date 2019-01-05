@@ -5,16 +5,24 @@ import {AppComponent} from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import { BackgroundWrapperComponent } from './components/background-wrapper/background-wrapper.component';
+import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
+import { BigLogoComponent } from './components/big-logo/big-logo.component';
+import { InputWithTitleComponent } from './components/input-with-title/input-with-title.component';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        BackgroundWrapperComponent
+        BackgroundWrapperComponent,
+        HamburgerMenuComponent,
+        BigLogoComponent,
+        InputWithTitleComponent
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

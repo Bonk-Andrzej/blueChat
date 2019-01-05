@@ -29,6 +29,8 @@
 
   .body {
     @extend %body-shape;
+    padding: 20px;
+    box-sizing: border-box;
   }
 
   .mask {

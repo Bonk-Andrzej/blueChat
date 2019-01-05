@@ -32,8 +32,16 @@
   --black-dark: rgba(30, 30, 30, 0.95);
 
   --back-shadow: rgba(0, 0, 0, 0.25);
+
+
+
+  --font-Wallpoet: 'Wallpoet', cursive;
 }
 
+
+// Fonts
+
+@import url('https://fonts.googleapis.com/css?family=Wallpoet');
 
 // Global
 body, html{
@@ -42,3 +50,5 @@ body, html{
   float: left;
   margin: 0;
 }
+
+
