@@ -12,12 +12,12 @@
         "source": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-mdpi\\icon.png"
     },
     {
-        "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_icon.png.flat",
-        "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\icon.png"
-    },
-    {
         "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
         "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
+    },
+    {
+        "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_icon.png.flat",
+        "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\icon.png"
     },
     {
         "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-mdpi_screen.png.flat",
@@ -36,10 +36,6 @@
         "source": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\drawable-land-xxxhdpi\\screen.png"
     },
     {
-        "merged": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-ldpi_icon.png.flat",
-        "source": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-ldpi\\icon.png"
-    },
-    {
         "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xhdpi_screen.png.flat",
         "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\drawable-land-xhdpi\\screen.png"
     },
@@ -56,10 +52,6 @@
         "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-ldpi\\icon.png"
     },
     {
-        "merged": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
-        "source": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
-    },
-    {
         "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-xxxhdpi_screen.png.flat",
         "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\drawable-port-xxxhdpi\\screen.png"
     },
@@ -70,10 +62,6 @@
     {
         "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-mdpi_screen.png.flat",
         "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\drawable-land-mdpi\\screen.png"
-    },
-    {
-        "merged": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_icon.png.flat",
-        "source": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-xhdpi\\icon.png"
     },
     {
         "merged": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xxhdpi_screen.png.flat",
@@ -138,14 +126,6 @@
     {
         "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_icon.png.flat",
         "source": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-mdpi\\icon.png"
-    },
-    {
-        "merged": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_icon.png.flat",
-        "source": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\icon.png"
-    },
-    {
-        "merged": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_icon.png.flat",
-        "source": "C:\\Users\\PawelJastrzebski\\Desktop\\Projects\\blueChat\\cordovaApp\\platforms\\android\\app\\src\\main\\res\\mipmap-hdpi\\icon.png"
     },
     {
         "merged": "D:\\PROGRAMOWANIE\\BlueChatNew\\cordovaApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-xhdpi_screen.png.flat",

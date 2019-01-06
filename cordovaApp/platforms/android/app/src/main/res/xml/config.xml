@@ -20,5 +20,11 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <icon dentisy="xxxhdpi" src="/res/icon/android/icon-192-xxxhdpi.png" />
+    <icon dentisy="xxhdpi" src="/res/icon/android/icon-144-xxhdpi.png" />
+    <icon dentisy="xhdpi" src="/res/icon/android/icon-96-xhdpi.png" />
+    <icon dentisy="hdpi" src="/res/icon/android/icon-72-hdpi.png" />
+    <icon dentisy="mdpi" src="/res/icon/android/icon-48-mdpi.png" />
+    <icon dentisy="idpi" src="/res/icon/android/icon-36-ldpi.png" />
     <preference name="loglevel" value="DEBUG" />
 </widget>
