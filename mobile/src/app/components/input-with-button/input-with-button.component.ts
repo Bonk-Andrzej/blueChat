@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class InputWithButtonComponent implements OnInit {
 
-    @Input() title: 'jakis tytul';
+    @Input() title: string;
     @Input() value: string;
     @Input() buttonTitle: string;
 
