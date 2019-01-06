@@ -44,6 +44,7 @@ export class ColorsService {
         let color = this.colors[name];
         if (color == null) {
             color = 'red';
+            console.error("ColorServices: Color Not Exist")
         }
         return color;
     }
