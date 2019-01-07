@@ -15,12 +15,12 @@ export class HomeMenuComponent implements OnInit {
     }
 
     logIn() {
-        alert('Log In');
+        // alert('Log In');
         this.router.navigateByUrl('/home');
     }
 
     singUp() {
-        alert('Sing Up');
+        // alert('Sing Up');
         this.router.navigateByUrl('/register');
     }
 
@@ -30,12 +30,11 @@ export class HomeMenuComponent implements OnInit {
     }
 
     contact() {
-        alert('Contact');
+        alert('Contact -working at this..');
         this.router.navigateByUrl('/contact');
     }
 
     resetPass() {
-        alert('Reset-pass');
         this.router.navigateByUrl('/reset-pass');
     }
 }
