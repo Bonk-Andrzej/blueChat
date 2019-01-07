@@ -15,6 +15,7 @@ import {InformationSupportComponent} from './components/information-support/info
 import {InputWithButtonComponent} from './components/input-with-button/input-with-button.component';
 import {RegisterComponent} from './pages/register/register.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { TitlePageComponent } from './components/title-page/title-page.component
         ResetPasswordComponent,
         InformationSupportComponent,
         InputWithButtonComponent,
-        TitlePageComponent
+        TitlePageComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,

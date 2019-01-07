@@ -1,8 +1,8 @@
 <div app-hamburger-menu=""></div>
 <div class="box">
-    <div class="home-menu-buttons" buttonTitle="LOG IN" app-button-wide=""></div>
-    <div class="home-menu-buttons" buttonTitle="SING UP" app-button-wide=""></div>
-    <div class="home-menu-buttons" buttonTitle="ABOUT OUS" app-button-wide=""></div>
-    <div class="home-menu-buttons" buttonTitle="CONTACT" app-button-wide=""></div>
-    <div class="home-menu-buttons" buttonTitle="RESET PASSWORD" app-button-wide=""></div>
+    <div (click)="logIn()" class="home-menu-buttons" buttonTitle="LOG IN" app-button-wide=""></div>
+    <div (click)="singUp()" class="home-menu-buttons" buttonTitle="SING UP" app-button-wide=""></div>
+    <div (click)="aboutOus()" class="home-menu-buttons" buttonTitle="ABOUT OUS" app-button-wide=""></div>
+    <div (click)="contact()" class="home-menu-buttons" buttonTitle="CONTACT" app-button-wide=""></div>
+    <div (click)="resetPass()" class="home-menu-buttons" buttonTitle="RESET PASSWORD" app-button-wide=""></div>
 </div>
