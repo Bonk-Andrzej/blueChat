@@ -6,10 +6,10 @@ import {ResetPasswordComponent} from '../pages/reset-password/reset-password.com
 
 
 const routes: Routes = [
-    {path: 'home-menu', component: RegisterComponent},
-    {path: 'register-menu', component: HomeMenuComponent},
-    {path: 'reset-password', component: ResetPasswordComponent},
-    {path: '', component: ResetPasswordComponent}
+    {path: '', component: RegisterComponent},
+    {path: 'home-menu', component: HomeMenuComponent},
+    {path: 'reset-pass', component: ResetPasswordComponent},
+
 ];
 
 @NgModule({
