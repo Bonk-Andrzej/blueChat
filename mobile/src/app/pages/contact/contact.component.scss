@@ -1,0 +1,33 @@
+
+.ham-menu {
+  position: absolute;
+}
+
+.title {
+  width: 100%;
+}
+
+.topic {
+  height: 65px;
+  font-family: var(--font-Wallpoet);
+  font-style: normal;
+  //font-weight: normal;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--white);
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 64px;
+  box-sizing: border-box;
+}
+
+.email-input {
+  margin-top: 30px;
+
+}
+.box{
+  height: 260px;
+  padding-bottom: 40px;
+}

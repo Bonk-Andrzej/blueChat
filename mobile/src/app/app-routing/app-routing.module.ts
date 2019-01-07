@@ -4,6 +4,7 @@ import {RegisterComponent} from "../pages/register/register.component";
 import {HomeMenuComponent} from '../pages/home-menu/home-menu.component';
 import {ResetPasswordComponent} from '../pages/reset-password/reset-password.component';
 import {HomeComponent} from '../pages/home/home.component';
+import {ContactComponent} from '../pages/contact/contact.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
     {path: 'home-menu', component: HomeMenuComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'reset-pass', component: ResetPasswordComponent},
+    {path: 'contact', component: ContactComponent}
 
 ];
 

@@ -1,4 +1,4 @@
 <div class="box">
   <h5>{{title}}</h5>
-  <input [type]="type" [(ngModel)]="value" (keyup)="onChangeHandler($event)">
+  <input [type]="type" [(ngModel)]="value" [placeholder]='titleInside' (keyup)="onChangeHandler($event)">
 </div>
