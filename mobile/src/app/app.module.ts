@@ -14,6 +14,7 @@ import {ResetPasswordComponent} from './pages/reset-password/reset-password.comp
 import {InformationSupportComponent} from './components/information-support/information-support.component';
 import {InputWithButtonComponent} from './components/input-with-button/input-with-button.component';
 import {RegisterComponent} from './pages/register/register.component';
+import { TitlePageComponent } from './components/title-page/title-page.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {RegisterComponent} from './pages/register/register.component';
         HomeMenuComponent,
         ResetPasswordComponent,
         InformationSupportComponent,
-        InputWithButtonComponent
+        InputWithButtonComponent,
+        TitlePageComponent
     ],
     imports: [
         BrowserModule,
