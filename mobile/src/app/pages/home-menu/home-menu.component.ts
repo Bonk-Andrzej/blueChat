@@ -25,12 +25,12 @@ export class HomeMenuComponent implements OnInit {
     }
 
     aboutOus() {
-        alert('About Ous');
+        alert('About Ous - working at this..');
         this.router.navigateByUrl('/about-ous');
     }
 
     contact() {
-        alert('Contact -working at this..');
+        // alert('Contact -working at this..');
         this.router.navigateByUrl('/contact');
     }
 

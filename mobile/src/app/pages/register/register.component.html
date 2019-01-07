@@ -2,7 +2,7 @@
 <div (click)="showMenuHandler()" app-hamburger-menu></div>
 <div app-big-logo></div>
 
-<div type="text" [(value)]="form.email" title="EMAIL" class="email-input"  app-input-with-title=""></div>
-<div type="password" [(value)]="form.password" title="PASSWORD" (inputChange)="onChange($event)" app-input-with-title=""></div>
-<div type="password" [(value)]="form.repeatPassword" title="REPEAT PASSWORD" (inputChange)="onChange($event)" app-input-with-title=""></div>
-<div [colorButton]='buttonColor' buttonTitle="SIGN UP" class="sing-button" app-button-wide ></div>
+<div type="text" [(value)]="form.email" title="EMAIL" class="email-input" titleInside="" app-input-with-title=""></div>
+<div type="password" [(value)]="form.password" title="PASSWORD" (inputChange)="onChange($event)" titleInside="" app-input-with-title=""></div>
+<div type="password" [(value)]="form.repeatPassword" title="REPEAT PASSWORD" (inputChange)="onChange($event)" titleInside="" app-input-with-title=""></div>
+<div [colorButton]='buttonColor' buttonTitle="SIGN UP" class="sing-button" titleInside="" app-button-wide ></div>

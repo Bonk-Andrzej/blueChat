@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
     buttonColor: string;
 
     constructor(private colors: ColorsService, private router: Router) {
-
     }
 
     ngOnInit() {
@@ -26,7 +25,6 @@ export class RegisterComponent implements OnInit {
     }
 
     showMenuHandler() {
-        alert('showMenuHandler click');
         this.router.navigateByUrl('/home-menu');
     }
 
