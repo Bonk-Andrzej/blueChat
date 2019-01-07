@@ -1,4 +1,4 @@
 <div class="box">
     <textarea [style.textAlign]="textAreaStyleTextAlign" (keyup)="keyPressHandler($event)" [placeholder]='title' class="input" [(ngModel)]="value"></textarea>
-    <button class="button" [(ngModel)]="buttonTitle"></button>
+    <button class="button">{{buttonTitle}}</button>
 </div>
