@@ -25,6 +25,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
 import { ListUsersWithTitleComponent } from './components/list-users-with-title/list-users-with-title.component';
 import { ConversationComponent } from './pages/conversation/conversation.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
