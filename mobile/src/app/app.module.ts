@@ -17,6 +17,8 @@ import {RegisterComponent} from './pages/register/register.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { LogOutComponent } from './pages/log-out/log-out.component';
+import { BoxWithTwoButtonsComponent } from './components/box-with-two-buttons/box-with-two-buttons.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +35,9 @@ import { ContactComponent } from './pages/contact/contact.component';
         InputWithButtonComponent,
         TitlePageComponent,
         HomeComponent,
-        ContactComponent
+        ContactComponent,
+        LogOutComponent,
+        BoxWithTwoButtonsComponent
     ],
     imports: [
         BrowserModule,
