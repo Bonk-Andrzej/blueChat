@@ -6,16 +6,19 @@ import {ResetPasswordComponent} from '../pages/reset-password/reset-password.com
 import {HomeComponent} from '../pages/home/home.component';
 import {ContactComponent} from '../pages/contact/contact.component';
 import {LogOutComponent} from '../pages/log-out/log-out.component';
+import {MainLoginComponent} from '../pages/main-login/main-login.component';
 
 
 const routes: Routes = [
-    {path: '', component: RegisterComponent},
+    // {path: '', component: RegisterComponent},
     {path: 'home', component: HomeComponent},
     {path: 'home-menu', component: HomeMenuComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'reset-pass', component: ResetPasswordComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'log-out', component: LogOutComponent}
+    {path: 'log-out', component: LogOutComponent},
+    {path: 'main-login', component: MainLoginComponent},
+    {path: '', component: MainLoginComponent}
 
 ];
 

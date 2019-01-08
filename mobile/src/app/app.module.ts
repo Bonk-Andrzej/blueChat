@@ -20,6 +20,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LogOutComponent } from './pages/log-out/log-out.component';
 import { BoxLogOutComponent } from './components/box-log-out/box-log-out.component';
 import { MenuBottomComponent } from './components/menu-bottom/menu-bottom.component';
+import { MainLoginComponent } from './pages/main-login/main-login.component';
+import { InputSearchComponent } from './components/input-search/input-search.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +41,9 @@ import { MenuBottomComponent } from './components/menu-bottom/menu-bottom.compon
         ContactComponent,
         LogOutComponent,
         BoxLogOutComponent,
-        MenuBottomComponent
+        MenuBottomComponent,
+        MainLoginComponent,
+        InputSearchComponent
     ],
     imports: [
         BrowserModule,
