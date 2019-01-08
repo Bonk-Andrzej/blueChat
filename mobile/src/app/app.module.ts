@@ -19,6 +19,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LogOutComponent } from './pages/log-out/log-out.component';
 import { BoxLogOutComponent } from './components/box-log-out/box-log-out.component';
+import { MenuBottomComponent } from './components/menu-bottom/menu-bottom.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { BoxLogOutComponent } from './components/box-log-out/box-log-out.compone
         HomeComponent,
         ContactComponent,
         LogOutComponent,
-        BoxLogOutComponent
+        BoxLogOutComponent,
+        MenuBottomComponent
     ],
     imports: [
         BrowserModule,

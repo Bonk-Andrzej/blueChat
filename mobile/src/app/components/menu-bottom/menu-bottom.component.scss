@@ -1,0 +1,62 @@
+.wrapper {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: auto;
+
+  .icons {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    display: grid;
+    width: 100%;
+    height: 100%;
+    //margin: 10px;
+    //padding: 10px;
+    box-sizing: border-box;
+    background-size: auto;
+
+    #hover-menu {
+      background: url("../../../assets/left-menu-icon.svg") no-repeat center;
+      grid-row: 1/1;
+      grid-column: 1/1;
+      height: 25px;
+      width: 25px;
+      background-size: 100%;
+      position: fixed;
+    }
+    #user-profile {
+      background: url("../../../assets/profile-icon.svg") no-repeat center;
+      grid-row: 1/1;
+      grid-column: 2/2;
+      background-size: 100%;
+      height: 25px;
+      width: 25px;
+    }
+    #main-menu {
+      background: url("../../../assets/home-icon.svg") no-repeat center;
+      grid-row: 1/1;
+      grid-column: 3/3;
+      background-size: 100%;
+      height: 25px;
+      width: 25px;
+    }
+    #settings {
+      background: url("../../../assets/settings-icon.svg") no-repeat center;
+      grid-row: 1/1;
+      grid-column: 4/4;
+      background-size: 100%;
+      height: 25px;
+      width: 25px;
+    }
+    #log-out {
+      background: url("../../../assets/logout-icon.svg") no-repeat center;
+      grid-row: 1/1;
+      grid-column: 5/5;
+      background-size: 100%;
+      height: 25px;
+      width: 25px;
+    }
+  }
+}
