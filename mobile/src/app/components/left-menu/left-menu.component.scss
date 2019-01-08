@@ -1,0 +1,22 @@
+
+%absolute{
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.wrapper {
+  width: 100%;
+  @extend %absolute;
+  background: var(--black);
+  z-index: 100;
+  opacity: .5;
+}
+
+#menu {
+  width: 60%;
+  @extend %absolute;
+  background: var(--black);
+  z-index: 200;
+}

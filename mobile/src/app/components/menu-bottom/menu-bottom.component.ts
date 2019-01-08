@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LeftMenuServiceService} from '../../services/left-menu-service.service';
 
 @Component({
   selector: '[app-menu-bottom]',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuBottomComponent implements OnInit {
 
-  constructor() { }
+  constructor( public leftMenuService : LeftMenuServiceService) { }
 
   ngOnInit() {
   }

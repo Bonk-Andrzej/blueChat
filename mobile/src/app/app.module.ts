@@ -23,6 +23,8 @@ import { MenuBottomComponent } from './components/menu-bottom/menu-bottom.compon
 import { MainLoginComponent } from './pages/main-login/main-login.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { ListUsersWithTitleComponent } from './components/list-users-with-title/list-users-with-title.component';
+import { ConversationComponent } from './pages/conversation/conversation.component';
+import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +47,9 @@ import { ListUsersWithTitleComponent } from './components/list-users-with-title/
         MenuBottomComponent,
         MainLoginComponent,
         InputSearchComponent,
-        ListUsersWithTitleComponent
+        ListUsersWithTitleComponent,
+        ConversationComponent,
+        LeftMenuComponent
     ],
     imports: [
         BrowserModule,

@@ -7,8 +7,6 @@
   box-sizing: border-box;
 
   #input {
-
-    display: block;
     float: left;
     box-sizing: border-box;
     border: none;
@@ -26,17 +24,15 @@
     font-weight: 400;
   }
   #icon {
-    display: block;
     border: none;
     outline: none;
-
     width: 35px;
     height: 35px;
     position: absolute;
     right: 0;
-    background-size: auto;
     background: url("../../../assets/search-icon.svg") no-repeat center;
     box-sizing: border-box;
     padding: 5px;
+    background-size: 25px;
   }
 }

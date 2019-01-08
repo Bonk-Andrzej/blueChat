@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLoginComponent implements OnInit {
 
+
+  users = [
+      "test",
+      "test1"
+  ]
   constructor() { }
 
   ngOnInit() {
