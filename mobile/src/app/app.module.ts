@@ -22,6 +22,7 @@ import { BoxLogOutComponent } from './components/box-log-out/box-log-out.compone
 import { MenuBottomComponent } from './components/menu-bottom/menu-bottom.component';
 import { MainLoginComponent } from './pages/main-login/main-login.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
+import { ListUsersWithTitleComponent } from './components/list-users-with-title/list-users-with-title.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { InputSearchComponent } from './components/input-search/input-search.com
         BoxLogOutComponent,
         MenuBottomComponent,
         MainLoginComponent,
-        InputSearchComponent
+        InputSearchComponent,
+        ListUsersWithTitleComponent
     ],
     imports: [
         BrowserModule,

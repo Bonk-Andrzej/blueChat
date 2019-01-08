@@ -1,8 +1,19 @@
-#ham-menu{
+#ham-menu {
   position: absolute;
 }
-#input-search{
+
+#input-search {
   width: 100%;
   padding-top: 20px;
   height: auto;
+}
+
+.new-message {
+  padding-top: 35px;
+  height: 20%;
+}
+.last-conversation{
+  padding-top: 35px;
+  //height: call(80% - 35 px);
+  height: 50%;
 }
