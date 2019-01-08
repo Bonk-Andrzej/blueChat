@@ -18,7 +18,7 @@ import { TitlePageComponent } from './components/title-page/title-page.component
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LogOutComponent } from './pages/log-out/log-out.component';
-import { BoxWithTwoButtonsComponent } from './components/box-with-two-buttons/box-with-two-buttons.component';
+import { BoxLogOutComponent } from './components/box-log-out/box-log-out.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +37,7 @@ import { BoxWithTwoButtonsComponent } from './components/box-with-two-buttons/bo
         HomeComponent,
         ContactComponent,
         LogOutComponent,
-        BoxWithTwoButtonsComponent
+        BoxLogOutComponent
     ],
     imports: [
         BrowserModule,
