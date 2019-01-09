@@ -23,8 +23,40 @@ import {ColorsService} from '../../services/colors.service';
         ]),
     ],
 })
-export class LeftMenuComponent implements OnInit {
 
+
+
+
+export class LeftMenuComponent implements OnInit {
+    groups = [
+        {
+            'name': 'Java Poz 9',
+            'noReadMessages' : '5'
+        },
+        {
+            'name': 'random',
+            'noReadMessages' : '3'
+        },
+        {
+            'name': 'off topic' ,
+            'noReadMessages' : '1'
+        }
+    ];
+
+    users = [
+        {
+            'nick': 'Paweł Jastrzębski',
+            'noReadMessages' : '2'
+        },
+        {
+            'nick': 'Igor Sowiński',
+            'noReadMessages' : '11'
+        },
+        {
+            'nick': 'Marian Kowalski' ,
+            'noReadMessages' : '1'
+        }
+    ];
     backgroundAnimationStatus = 'hide';
     backgroundColorList: string;
 
@@ -35,8 +67,8 @@ export class LeftMenuComponent implements OnInit {
     ngOnInit() {
         this.backgroundAnimationStatus = 'hide';
         this.leftMenuService.onToggle(this.onToggleHandler.bind(this));
-        // this.backgroundColorList = this.colorService.getColor('--black');
-        this.backgroundColorList = this.colorService.getColor('--white');
+        this.backgroundColorList = this.colorService.getColor('--black');
+        // this.backgroundColorList = this.colorService.getColor('--white');
     }
 
     private onToggleHandler(isDisplay: boolean) {

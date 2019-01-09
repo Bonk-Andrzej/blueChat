@@ -33,6 +33,7 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { ButtonPlusComponent } from './components/button-plus/button-plus.component';
 import { ButtonBackComponent } from './components/button-back/button-back.component';
 import { ObjectWithXComponent } from './components/object-with-x/object-with-x.component';
+import { ObjectWithStatusComponent } from './components/object-with-status/object-with-status.component';
 
 @NgModule({
     declarations: [
@@ -64,7 +65,8 @@ import { ObjectWithXComponent } from './components/object-with-x/object-with-x.c
         GroupsComponent,
         ButtonPlusComponent,
         ButtonBackComponent,
-        ObjectWithXComponent
+        ObjectWithXComponent,
+        ObjectWithStatusComponent
     ],
     imports: [
         BrowserModule,
