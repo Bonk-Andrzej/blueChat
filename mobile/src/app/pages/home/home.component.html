@@ -2,4 +2,4 @@
 <div id="logo" app-big-logo=""></div>
 <div id="email" title="EMAIL" titleInside="" app-input-with-title=""></div>
 <div id="password" title="PASSWORD" titleInside="" app-input-with-title=""></div>
-<div [colorButton]='colorButton' [colorTextOnButton]="colorTextOnButton" id="log-in" buttonTitle="LOG IN" app-button-wide=""></div>
+<div (click)="logIn()"  [colorButton]='colorButton' [colorTextOnButton]="colorTextOnButton" id="log-in" buttonTitle="LOG IN" app-button-wide=""></div>

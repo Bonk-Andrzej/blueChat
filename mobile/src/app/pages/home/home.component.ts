@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
         this.colorTextOnButton = this.colorService.getColor('--black');
     }
 
-    hamMenu() {
-        this.router.navigateByUrl('/home-menu');
+    logIn() {
+        this.router.navigateByUrl('/main-login');
     }
 
 }
