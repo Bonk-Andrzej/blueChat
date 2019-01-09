@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LeftMenuServiceService} from '../../services/left-menu-service.service';
 
-import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ColorsService} from '../../services/colors.service';
 
 @Component({
     selector: 'app-left-menu',
@@ -25,14 +26,17 @@ import {animate, keyframes, state, style, transition, trigger} from '@angular/an
 export class LeftMenuComponent implements OnInit {
 
     backgroundAnimationStatus = 'hide';
+    backgroundColorList: string;
 
-
-    constructor(public leftMenuService: LeftMenuServiceService) {
+    constructor(public leftMenuService: LeftMenuServiceService,
+                private colorService: ColorsService) {
     }
 
     ngOnInit() {
         this.backgroundAnimationStatus = 'hide';
         this.leftMenuService.onToggle(this.onToggleHandler.bind(this));
+        // this.backgroundColorList = this.colorService.getColor('--black');
+        this.backgroundColorList = this.colorService.getColor('--white');
     }
 
     private onToggleHandler(isDisplay: boolean) {

@@ -1,7 +1,8 @@
 <div [style.display]="'none'" [@hide-bg]="backgroundAnimationStatus" (click)="leftMenuService.toggle()" class="wrapper">
-
 </div>
 
 <div [style.display]="'none'" [@hide-menu]="backgroundAnimationStatus"  id="menu">
- test
+ <div id="logo"> </div>
+ <div [backgroundColor]="backgroundColorList" id="groups" title="GROUP CONVERSATION" app-list-users-with-title=""></div>
+ <div id="friends" title="FRIENDS" app-list-users-with-title=""></div>
 </div>
