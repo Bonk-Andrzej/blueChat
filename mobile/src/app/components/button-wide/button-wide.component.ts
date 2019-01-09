@@ -9,6 +9,7 @@ export class ButtonWideComponent implements OnInit {
 
     @Input() buttonTitle: string;
     @Input() colorButton: string;
+    @Input() colorTextOnButton: string;
     constructor() {
     }
 

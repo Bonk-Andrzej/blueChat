@@ -10,12 +10,14 @@ import {Router} from '@angular/router';
 export class HomeComponent implements OnInit {
 
     colorButton : string;
+    colorTextOnButton: string;
 
     constructor(private colorService: ColorsService, private router: Router) {
     }
 
     ngOnInit() {
         this.colorButton = this.colorService.getColor('--yellow');
+        this.colorTextOnButton = this.colorService.getColor('--black');
     }
 
     hamMenu() {

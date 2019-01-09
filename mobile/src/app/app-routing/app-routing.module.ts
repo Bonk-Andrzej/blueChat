@@ -8,6 +8,7 @@ import {ContactComponent} from '../pages/contact/contact.component';
 import {LogOutComponent} from '../pages/log-out/log-out.component';
 import {MainLoginComponent} from '../pages/main-login/main-login.component';
 import {ConversationComponent} from '../pages/conversation/conversation.component';
+import {CreateGroupComponent} from '../pages/create-group/create-group.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
     {path: 'log-out', component: LogOutComponent},
     {path: 'main-login', component: MainLoginComponent},
     {path: 'conversation', component: ConversationComponent},
-    {path: '', component: ConversationComponent}
+    {path: 'create-group', component: CreateGroupComponent},
+    {path: '', component: CreateGroupComponent}
 
 ];
 

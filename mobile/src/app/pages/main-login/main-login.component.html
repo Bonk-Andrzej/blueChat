@@ -7,13 +7,8 @@
     </ng-container>
 </div>
 <div title="LAST CONVERSATION" class="last-conversation" app-list-users-with-title="">
-
     <ng-container *ngFor="let messageDTO of messageDTOs">
         <div class="element" [userNick]=messageDTO.userNick [message]=messageDTO.content app-user-with-message=""></div>
-
-
     </ng-container>
-
-
 </div>
 <div app-menu-bottom=""></div>

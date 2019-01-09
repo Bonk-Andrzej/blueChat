@@ -27,6 +27,8 @@ import { ConversationComponent } from './pages/conversation/conversation.compone
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserWithMessageComponent } from './components/user-with-message/user-with-message.component';
+import { CreateGroupComponent } from './pages/create-group/create-group.component';
+import { TextareaWithTitleComponent } from './components/textarea-with-title/textarea-with-title.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,9 @@ import { UserWithMessageComponent } from './components/user-with-message/user-wi
         ListUsersWithTitleComponent,
         ConversationComponent,
         LeftMenuComponent,
-        UserWithMessageComponent
+        UserWithMessageComponent,
+        CreateGroupComponent,
+        TextareaWithTitleComponent
     ],
     imports: [
         BrowserModule,

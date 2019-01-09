@@ -16,12 +16,14 @@ export class RegisterComponent implements OnInit {
         repeatPassword: ''
     };
     buttonColor: string;
+    colorTextOnButton: string;
 
-    constructor(private colors: ColorsService, private router: Router) {
+    constructor(private colorService: ColorsService, private router: Router) {
     }
 
     ngOnInit() {
-        this.buttonColor = this.colors.getColor('--yellow');
+        this.buttonColor = this.colorService.getColor('--yellow');
+        this.colorTextOnButton = this.colorService.getColor('--black');
     }
 
     showMenuHandler() {
