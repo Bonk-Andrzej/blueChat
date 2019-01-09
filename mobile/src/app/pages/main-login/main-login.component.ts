@@ -56,6 +56,32 @@ export class MainLoginComponent implements OnInit {
             'content': 'I\'m fine thank you so much :)',
             'userNick': 'Anna Ostrowska',
         },
+        {
+            'idMessage': 5,
+            'content': 'What are you doing today at the morning ?.',
+            'userNick': 'Ola Taraska',
+        },
+        {
+            'idMessage': 6,
+            'content': 'I\'m fine thank you so much :)',
+            'userNick': 'Anna Ostrowska',
+
+        },
+        {
+            'idMessage': 6,
+            'content': 'I\'m fine thank you so much :)',
+            'userNick': 'Anna Ostrowska',
+        },
+        {
+            'idMessage': 5,
+            'content': 'What are you doing today at the morning ?.',
+            'userNick': 'Ola Taraska',
+        },
+        {
+            'idMessage': 6,
+            'content': 'I\'m fine thank you so much :)',
+            'userNick': 'Anna Ostrowska',
+        },
 
     ];
 

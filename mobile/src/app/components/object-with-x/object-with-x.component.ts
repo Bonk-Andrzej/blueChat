@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-    selector: '[app-user-with-message]',
-    templateUrl: './user-with-message.component.html',
-    styleUrls: ['./user-with-message.component.scss']
+    selector: '[app-object-with-x]',
+    templateUrl: './object-with-x.component.html',
+    styleUrls: ['./object-with-x.component.scss']
 })
-export class UserWithMessageComponent implements OnInit {
+export class ObjectWithXComponent implements OnInit {
 
-    @Input() userNick: string;
-    @Input() message: string;
+
+    @Input() objectName: string;
     randomColor: string;
 
     constructor() {
@@ -25,4 +25,6 @@ export class UserWithMessageComponent implements OnInit {
             + ',' + Math.floor(Math.random() * 255) + ','
             + Math.floor(Math.random() * 255) + ')');
     }
+
+
 }

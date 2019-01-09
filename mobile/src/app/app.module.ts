@@ -32,6 +32,7 @@ import { TextareaWithTitleComponent } from './components/textarea-with-title/tex
 import { GroupsComponent } from './pages/groups/groups.component';
 import { ButtonPlusComponent } from './components/button-plus/button-plus.component';
 import { ButtonBackComponent } from './components/button-back/button-back.component';
+import { ObjectWithXComponent } from './components/object-with-x/object-with-x.component';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import { ButtonBackComponent } from './components/button-back/button-back.compon
         TextareaWithTitleComponent,
         GroupsComponent,
         ButtonPlusComponent,
-        ButtonBackComponent
+        ButtonBackComponent,
+        ObjectWithXComponent
     ],
     imports: [
         BrowserModule,

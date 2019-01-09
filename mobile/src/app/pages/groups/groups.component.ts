@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-
 @Component({
-  selector: 'app-groups',
-  templateUrl: './groups.component.html',
-  styleUrls: ['./groups.component.scss']
+    selector: 'app-groups',
+    templateUrl: './groups.component.html',
+    styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
 
-  constructor() { }
+    groups = [
+        {
+            'name': 'Java Poz 9',
+        },
+        {
+            'name': 'random',
+        },
+        {
+            'name': 'off topic' ,
+        }
+    ];
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
 
 }
+
+import {Component, OnInit} from '@angular/core';

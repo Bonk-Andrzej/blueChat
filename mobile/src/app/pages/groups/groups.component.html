@@ -3,5 +3,9 @@
 <div id="plus" app-button-plus=""></div>
 
 <div id="input-search" app-input-search=""></div>
-<div id="list" title="MY GROUPS" app-list-users-with-title=""></div>
+<div id="list" title="MY GROUPS" app-list-users-with-title="">
+    <ng-container *ngFor="let group of groups">
+        <div [objectName]=group.name app-object-with-x=""></div>
+    </ng-container>
+</div>
 <div app-menu-bottom=""></div>

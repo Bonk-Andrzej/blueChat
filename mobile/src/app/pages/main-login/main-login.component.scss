@@ -7,6 +7,7 @@
   padding-top: 20px;
   height: auto;
 }
+
 .element{
   padding-top: 5px;
   padding-left: 5px;
@@ -19,7 +20,11 @@
   height: 20%;
 }
 .last-conversation{
-  overflow: scroll;
+  //overflow: scroll;
   padding-top: 35px;
   height: 50%;
+  box-sizing: border-box;
+  .wrapper{
+    overflow: auto;
+  }
 }
