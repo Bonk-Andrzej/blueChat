@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: '[app-hamburger-menu]',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HamburgerMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
+
+    hamMenu() {
+        this.router.navigateByUrl('/home-menu');
+    }
 
 }
