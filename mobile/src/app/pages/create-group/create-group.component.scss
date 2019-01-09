@@ -1,0 +1,30 @@
+.ham-menu {
+  position: absolute;
+}
+#contentPage {
+  width: 100%;
+  height: calc(100% - 52px);
+  grid-template-rows: repeat(30, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  display: grid;
+  #input {
+    grid-row: 1/1;
+    grid-column: 1/1;
+  }
+  #textarea {
+    grid-column: 1/1;
+    grid-row: 2/10;
+  }
+
+  #user-list {
+    grid-column: 1/1;
+    grid-row: 12/27;
+  }
+
+  #button {
+    grid-column: 1/1;
+    grid-row: 30/30;
+    padding-bottom: 5px;
+
+  }
+}
