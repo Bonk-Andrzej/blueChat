@@ -1,0 +1,26 @@
+#title {
+  width: 100%;
+  position: relative;
+  display: inline;
+}
+
+#plus {
+  display: inline;
+  overflow: auto;
+  right: 0;
+  float: right;
+  //position: absolute;
+}
+#back{
+  display: inline;
+  overflow: auto;
+  right: 0;
+  float: left;
+  //position: absolute;
+}
+#input-search{
+
+}
+#list{
+  height: 80%;
+}

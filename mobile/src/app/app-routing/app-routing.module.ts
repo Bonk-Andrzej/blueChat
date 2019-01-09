@@ -9,10 +9,11 @@ import {LogOutComponent} from '../pages/log-out/log-out.component';
 import {MainLoginComponent} from '../pages/main-login/main-login.component';
 import {ConversationComponent} from '../pages/conversation/conversation.component';
 import {CreateGroupComponent} from '../pages/create-group/create-group.component';
+import {GroupsComponent} from '../pages/groups/groups.component';
 
 
 const routes: Routes = [
-    // {path: '', component: RegisterComponent},
+    // {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
     {path: 'home-menu', component: HomeMenuComponent},
     {path: 'register', component: RegisterComponent},
@@ -22,8 +23,7 @@ const routes: Routes = [
     {path: 'main-login', component: MainLoginComponent},
     {path: 'conversation', component: ConversationComponent},
     {path: 'create-group', component: CreateGroupComponent},
-    {path: '', component: CreateGroupComponent}
-
+    {path: '', component: GroupsComponent},
 ];
 
 @NgModule({

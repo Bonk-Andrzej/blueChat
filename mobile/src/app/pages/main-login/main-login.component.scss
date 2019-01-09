@@ -11,12 +11,15 @@
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
+  overflow: scroll;
 }
 .new-message {
+  //overflow: scroll;
   padding-top: 35px;
   height: 20%;
 }
 .last-conversation{
+  overflow: scroll;
   padding-top: 35px;
   height: 50%;
 }

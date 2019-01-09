@@ -29,6 +29,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserWithMessageComponent } from './components/user-with-message/user-with-message.component';
 import { CreateGroupComponent } from './pages/create-group/create-group.component';
 import { TextareaWithTitleComponent } from './components/textarea-with-title/textarea-with-title.component';
+import { GroupsComponent } from './pages/groups/groups.component';
+import { ButtonPlusComponent } from './components/button-plus/button-plus.component';
+import { ButtonBackComponent } from './components/button-back/button-back.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +59,10 @@ import { TextareaWithTitleComponent } from './components/textarea-with-title/tex
         LeftMenuComponent,
         UserWithMessageComponent,
         CreateGroupComponent,
-        TextareaWithTitleComponent
+        TextareaWithTitleComponent,
+        GroupsComponent,
+        ButtonPlusComponent,
+        ButtonBackComponent
     ],
     imports: [
         BrowserModule,
