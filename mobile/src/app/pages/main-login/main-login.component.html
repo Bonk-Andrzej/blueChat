@@ -1,12 +1,19 @@
 <div id="ham-menu" app-hamburger-menu=""></div>
 <div id="title" valueContent="HOME" app-title-page=""></div>
 <div id="input-search" app-input-search=""></div>
-<div title="NEW MESSAGES" class="new-message" app-list-users-with-title=""></div>
+<div title="NEW MESSAGES" class="new-message" app-list-users-with-title="">
+    <ng-container *ngFor="let messageDTO of newMessageDTOs">
+        <div class="element" [userNick]=messageDTO.userNick message={{messageDTO.content}}  app-user-with-message=""></div>
+    </ng-container>
+</div>
 <div title="LAST CONVERSATION" class="last-conversation" app-list-users-with-title="">
 
-    <ng-container *ngFor="let user of users">
-        <p>{{user}}</p>
+    <ng-container *ngFor="let messageDTO of messageDTOs">
+        <div class="element" [userNick]=messageDTO.userNick [message]=messageDTO.content app-user-with-message=""></div>
+
+
     </ng-container>
+
 
 </div>
 <div app-menu-bottom=""></div>

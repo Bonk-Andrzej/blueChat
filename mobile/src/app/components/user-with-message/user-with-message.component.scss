@@ -1,0 +1,35 @@
+#box {
+  height: 40px;
+  width: 100%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  #photo {
+    height: 14px;
+    width: 14px;
+    margin: 3px;
+    float: left;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  #name {
+    text-align: left;
+    font-family: var(--font-Kanit);
+    font-style: normal;
+    font-weight: bold;
+    //line-height: b
+    font-size: 12px;
+    text-indent: 5px;
+    color: var(--black);
+  }
+  #message {
+    text-align: left;
+    font-family: var(--font-Kanit);
+    font-style: normal;
+    font-weight: normal;
+    //line-height: b
+    font-size: 12px;
+    text-indent: 5px;
+    color: var(--black-light);
+
+  }
+}

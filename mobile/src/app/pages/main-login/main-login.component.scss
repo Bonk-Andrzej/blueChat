@@ -7,13 +7,16 @@
   padding-top: 20px;
   height: auto;
 }
-
+.element{
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 .new-message {
   padding-top: 35px;
   height: 20%;
 }
 .last-conversation{
   padding-top: 35px;
-  //height: call(80% - 35 px);
   height: 50%;
 }

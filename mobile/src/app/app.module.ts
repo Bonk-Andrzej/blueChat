@@ -26,6 +26,7 @@ import { ListUsersWithTitleComponent } from './components/list-users-with-title/
 import { ConversationComponent } from './pages/conversation/conversation.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { UserWithMessageComponent } from './components/user-with-message/user-with-message.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         InputSearchComponent,
         ListUsersWithTitleComponent,
         ConversationComponent,
-        LeftMenuComponent
+        LeftMenuComponent,
+        UserWithMessageComponent
     ],
     imports: [
         BrowserModule,
