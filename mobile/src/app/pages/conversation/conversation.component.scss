@@ -1,0 +1,19 @@
+#wrapper {
+  width: 100%;
+  height: min-content;
+
+  .sender {
+    float: left;
+    background: #75d727;
+  }
+  .interlocutor {
+    float: right;
+    background: #d93227;
+  }
+
+  #conversation {
+    .message {
+      width: 100%;
+    }
+  }
+}

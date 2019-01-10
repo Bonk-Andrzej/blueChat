@@ -10,6 +10,7 @@ import {MainLoginComponent} from '../pages/main-login/main-login.component';
 import {ConversationComponent} from '../pages/conversation/conversation.component';
 import {CreateGroupComponent} from '../pages/create-group/create-group.component';
 import {GroupsComponent} from '../pages/groups/groups.component';
+import {HelperComponent} from '../pages/helper/helper.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,9 @@ const routes: Routes = [
     {path: 'main-login', component: MainLoginComponent},
     {path: 'conversation', component: ConversationComponent},
     {path: 'create-group', component: CreateGroupComponent},
-    {path: '', component: GroupsComponent},
+    // {path: '', component: ConversationComponent},
+    {path: '', component: HelperComponent},
+
 ];
 
 @NgModule({

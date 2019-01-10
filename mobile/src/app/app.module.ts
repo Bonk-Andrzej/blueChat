@@ -34,6 +34,8 @@ import { ButtonPlusComponent } from './components/button-plus/button-plus.compon
 import { ButtonBackComponent } from './components/button-back/button-back.component';
 import { ObjectWithXComponent } from './components/object-with-x/object-with-x.component';
 import { ObjectWithStatusComponent } from './components/object-with-status/object-with-status.component';
+import { BoxMessageComponent } from './components/box-message/box-message.component';
+import { HelperComponent } from './pages/helper/helper.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +68,9 @@ import { ObjectWithStatusComponent } from './components/object-with-status/objec
         ButtonPlusComponent,
         ButtonBackComponent,
         ObjectWithXComponent,
-        ObjectWithStatusComponent
+        ObjectWithStatusComponent,
+        BoxMessageComponent,
+        HelperComponent
     ],
     imports: [
         BrowserModule,

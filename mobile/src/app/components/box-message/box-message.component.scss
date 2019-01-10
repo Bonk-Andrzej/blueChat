@@ -1,0 +1,29 @@
+#box {
+  box-sizing: border-box;
+  width: 100%;
+  height: min(52px);
+  #messageOwner {
+    float: left;
+    width: 50%;
+    text-align: left;
+    background: none;
+    box-sizing: border-box;
+    display: inline;
+  }
+  #date {
+    text-align: right;
+    float: left;
+    width: 50%;
+    background: none;
+    box-sizing: border-box;
+    display: inline;
+
+  }
+  #content {
+    float: left;
+    height: 50%;
+    width: 100%;
+    background: white;
+    box-sizing: border-box;
+  }
+}
