@@ -5,29 +5,18 @@
 #input-search {
   width: 100%;
   padding-top: 20px;
-  height: auto;
 }
 
-.element{
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow: scroll;
+.element {
+
 }
+
 .new-message {
-  //overflow: scroll;
-  padding-top: 35px;
-  height: 20%;
+
+  height: 30%;
 }
 
-.last-conversation{
-  //overflow: scroll;
-  padding-top: 35px;
-  height: 55%;
-  box-sizing: border-box;
-  overflow: scroll;
-  .wrapper{
-    overflow: hidden;
-    box-sizing: border-box;
-  }
+.last-conversation {
+
+  height: 50%;
 }

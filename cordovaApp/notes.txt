@@ -1,0 +1,5 @@
+    <preference name="android-maxSdkVersion" value="28" />
+
+    <preference name="android-targetSdkVersion" value="21" />
+    
+    <preference name="android-minSdkVersion" value="21" />

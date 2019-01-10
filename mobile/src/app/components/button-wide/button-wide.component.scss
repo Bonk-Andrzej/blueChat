@@ -1,7 +1,12 @@
 .box{
-    //height: 56px;
+    height: 100%;
     width: 100%;
     box-sizing: border-box;
+    overflow: auto;
+
+    .space{
+        height: calc(100% - 40px);
+    }
 
     button{
         width: 100%;
