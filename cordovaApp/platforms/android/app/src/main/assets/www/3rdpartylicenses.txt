@@ -278,6 +278,9 @@ MIT
 @angular/forms
 MIT
 
+@angular/animations
+MIT
+
 core-js
 MIT
 Copyright (c) 2014-2018 Denis Pushkarev

@@ -4,38 +4,38 @@
 #contentPage {
   width: 100%;
   height: calc(100% - 80px);
-  //grid-template-rows: repeat(30, 1fr);
-  //grid-template-columns: repeat(1, 1fr);
-  //display: grid;
-  display: block;
+  grid-template-rows: repeat(30, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  display: grid;
+  //display: block;
   box-sizing: border-box;
   #input {
-    height: 10%;
-    //grid-row: 1/1;
-    //grid-column: 1/1;
+    //height: 10%;
+    grid-row: 1/1;
+    grid-column: 1/1;
   }
   #textarea {
-    height: 30%;
-    //grid-column: 1/1;
-    //grid-row: 2/10;
+    //height: 30%;
+    grid-column: 1/1;
+    grid-row: 2/10;
     margin-bottom: 15px;
 
   }
 
   #user-list {
-    height: 50%;
-    //grid-column: 1/1;
-    //grid-row: 12/27;
-    //padding-bottom: 20px;
+    //height: 50%;
+    grid-column: 1/1;
+    grid-row: 12/27;
+    padding-bottom: 20px;
     margin-bottom: 15px;
 
   }
 
   #button {
     height: 10%;
-    //grid-column: 1/1;
-    //grid-row: 30/30;
-    //padding-bottom: 5px;
+    grid-column: 1/1;
+    grid-row: 30/30;
+    padding-bottom: 5px;
     margin-bottom: 15px;
 
   }

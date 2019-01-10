@@ -1,7 +1,6 @@
 #wrapper {
   width: 100%;
   height: min-content;
-
   .sender {
     float: left;
     background: #75d727;
@@ -11,9 +10,10 @@
     background: #d93227;
   }
 
-  #conversation {
+  .conversation {
+    width: 50%;
     .message {
-      width: 100%;
+      width: 70%;
     }
   }
 }

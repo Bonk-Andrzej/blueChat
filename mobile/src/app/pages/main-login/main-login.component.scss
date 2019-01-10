@@ -19,12 +19,15 @@
   padding-top: 35px;
   height: 20%;
 }
+
 .last-conversation{
   //overflow: scroll;
   padding-top: 35px;
-  height: 50%;
+  height: 55%;
   box-sizing: border-box;
+  overflow: scroll;
   .wrapper{
-    overflow: auto;
+    overflow: hidden;
+    box-sizing: border-box;
   }
 }

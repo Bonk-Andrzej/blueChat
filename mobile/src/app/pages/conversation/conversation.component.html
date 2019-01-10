@@ -1,6 +1,6 @@
 <div valueContent="{{interlocutorName}}" app-title-page=""></div>
 <div id="wrapper">
-    <ng-container id="conversation" *ngFor="let message of messagesDTOs">
+    <ng-container class="conversation" *ngFor="let message of messagesDTOs">
         <ng-container *ngIf="(message.idSender === idSender); then messageOvner else sessageInterlocutor"></ng-container>
 
         <ng-template #messageOvner>
