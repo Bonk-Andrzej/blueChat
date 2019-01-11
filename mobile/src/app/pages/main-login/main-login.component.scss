@@ -5,6 +5,7 @@
   display: flex;
   //overflow: auto;
   //box-sizing: border-box;
+
   #ham-menu {
     width: 20%;
     background: #d93227;
@@ -21,28 +22,39 @@
 
 #main {
   height: calc(100% - 72px);
+  //height: 100%;
   width: 100%;
   background: grey;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 0;
+  display: grid;
 
   #input-search {
-
+    //grid-row-start: 1;
+    grid-column: 1/1;
+    grid-row: 1/2;
     //width: 100%;
     padding-top: 20px;
   }
 
   .element {
-
+    padding: 5px;
   }
 
   .new-message {
+    grid-column: 1/1;
+    grid-row: 2/5;
     // 37 height of input element
-    height: calc(30% - 37px);
+    //height: calc(30% - 37px);
     //height: 30%;
   }
 
   .last-conversation {
+    grid-column: 1/1;
+    grid-row: 5/11;
     // 20 parring-top of input element
-    height: calc(70% - 20px);
+    //height: calc(70% - 20px);
     //height: 70%;
   }
 }
