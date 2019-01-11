@@ -24,7 +24,7 @@ const routes: Routes = [
     {path: 'main-login', component: MainLoginComponent},
     {path: 'conversation', component: ConversationComponent},
     {path: 'create-group', component: CreateGroupComponent},
-    // {path: '', component: ConversationComponent},
+    {path: 'help', component: HelperComponent},
     {path: '', component: MainLoginComponent},
 
 ];

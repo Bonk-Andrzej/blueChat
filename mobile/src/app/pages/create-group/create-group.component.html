@@ -1,9 +1,13 @@
-<div class="ham-menu" app-hamburger-menu=""></div>
-<div valueContent="CREATE GROUP" app-title-page=""></div>
-<div id="contentPage">
-    <div id="input" title="GROUP NAME" app-input-with-title=""></div>
-    <div id="textarea" title="DESCREPTION" app-textarea-with-title=""></div>
-    <div id="user-list" title="ADD FRIEND TO GROUP" app-list-users-with-title=""></div>
-    <div id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton" app-button-wide=""></div>
+<div id="head">
+    <div id="ham-menu" app-hamburger-menu=""></div>
+    <div id="title" valueContent="CREATE GROUP" app-title-page=""></div>
+    <div id="right-button"></div>
 </div>
-<div app-menu-bottom=""></div>
+<div id="main">
+    <div id="input" title="GROUP NAME" app-input-with-title=""></div>
+    <div id="descreption" title="DESCREPTION" app-textarea-with-title=""></div>
+    <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title=""></div>
+    <div id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
+         app-button-wide=""></div>
+</div>
+<div id="menu-bottom" app-menu-bottom=""></div>

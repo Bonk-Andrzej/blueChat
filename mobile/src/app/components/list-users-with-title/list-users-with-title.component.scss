@@ -3,14 +3,16 @@
   width: 100%;
 
   //margin-bottom: 50px;
-  //margin: 0;
+  margin: 0;
   border: 0;
 
-  h5 {
+  #title {
      color: var(--white-light);
-     padding: 8px 0 8px 0;
+     //padding: 8px 0 8px 0;
+    padding-top: 8px;
+    padding-bottom: 5px;
      margin: 0;
-     font-size: 12px;
+    font-size: 1.16em;
      font-family: var(--font-Wallpoet);
      font-weight: 400;
 
@@ -25,7 +27,7 @@
     border-radius: 0px 10px;
     border: 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 1em;
     font-family: var(--font-Wallpoet);
     font-weight: 400;
   }
