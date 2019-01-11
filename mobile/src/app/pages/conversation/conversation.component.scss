@@ -23,7 +23,8 @@
   height: calc(100% - 72px);
   width: 100%;
   background: grey;
-
+  overflow: scroll;
+  overflow-x: hidden;
   #conversation-wrapper {
     width: 100%;
     height: min-content;
