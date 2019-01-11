@@ -1,26 +1,60 @@
-#title {
+
+//#plus {
+//  display: inline;
+//  overflow: auto;
+//  right: 0;
+//  float: right;
+//  //position: absolute;
+//}
+//#back{
+//  display: inline;
+//  overflow: auto;
+//  right: 0;
+//  float: left;
+//  //position: absolute;
+//}
+
+
+
+
+
+
+#head {
+  height: 22px;
   width: 100%;
-  position: relative;
-  display: inline;
+  display: flex;
+  //overflow: auto;
+  //box-sizing: border-box;
+  #back {
+    background: var(--der-color1);
+    width: 20%;
+  }
+  #title {
+    background: var(--der-color2);
+    width: 60%;
+  }
+  #plus {
+    width: 20%;
+    background: var(--der-color1);
+  }
 }
 
-#plus {
-  display: inline;
-  overflow: auto;
-  right: 0;
-  float: right;
-  //position: absolute;
-}
-#back{
-  display: inline;
-  overflow: auto;
-  right: 0;
-  float: left;
-  //position: absolute;
-}
-#input-search{
+#main {
+  height: calc(100% - 72px);
+  width: 100%;
+  background: var(--der-background);
+
+  #input-search{
+    padding-top: 20px;
+  }
+  #list{
+    height: calc(100% - 20px);
+  }
 
 }
-#list{
-  height: 80%;
+
+#menu-bottom {
+
 }
+
+

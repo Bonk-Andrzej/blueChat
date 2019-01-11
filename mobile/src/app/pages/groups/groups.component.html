@@ -1,11 +1,26 @@
-<div id="title" valueContent="GROUPS" app-title-page=""></div>
-<div id="back" app-button-back=""></div>
-<div id="plus" app-button-plus=""></div>
 
-<div id="input-search" app-input-search=""></div>
-<div id="list" title="MY GROUPS" app-list-users-with-title="">
-    <ng-container *ngFor="let group of groups">
-        <div [objectName]=group.name app-object-with-x=""></div>
-    </ng-container>
+<div id="head">
+    <div id="back" app-button-back=""></div>
+    <div id="title" valueContent="GROUPS" app-title-page=""></div>
+    <div id="plus" app-button-plus=""></div>
 </div>
-<div app-menu-bottom=""></div>
+<div id="main">
+
+    <div id="input-search" app-input-search=""></div>
+    <div id="list" title="MY GROUPS" app-list-users-with-title="">
+        <ng-container *ngFor="let group of groups">
+            <div [objectName]=group.name app-object-with-x=""></div>
+        </ng-container>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+<div id="menu-bottom" app-menu-bottom=""></div>
