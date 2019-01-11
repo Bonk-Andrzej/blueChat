@@ -1,7 +1,8 @@
-#box {
+#box-message {
   box-sizing: border-box;
   width: 100%;
   height: min(52px);
+  border-radius: 0px 10px;
   #messageOwner {
     float: left;
     width: 50%;
@@ -14,16 +15,18 @@
     text-align: right;
     float: left;
     width: 50%;
-    background: none;
+
     box-sizing: border-box;
     display: inline;
-
+    padding-right: 5px;
   }
   #content {
     float: left;
     height: 50%;
     width: 100%;
-    background: white;
+    background: var(--white);
     box-sizing: border-box;
+    padding-left: 5px;
+
   }
 }

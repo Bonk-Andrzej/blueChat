@@ -2,18 +2,16 @@
   height: 22px;
   width: 100%;
   display: flex;
-  //overflow: auto;
-  //box-sizing: border-box;
   #left-button {
     width: 20%;
-    background: #d93227;
+    background: var(--der-color1);
   }
   #title {
-    background: #75d727;
+    background: var(--der-color2);
     width: 60%;
   }
   #right-button {
-    background: deeppink;
+    background: var(--der-color3);
     width: 20%;
   }
 }
@@ -22,7 +20,7 @@
   padding-top: 5px;
   height: calc(100% - 72px);
   width: 100%;
-  background: grey;
+  background: var(--der-background);
   overflow: scroll;
   overflow-x: hidden;
   #conversation-wrapper {
@@ -36,9 +34,13 @@
       float: right;
       background: #d93227;
     }
-
     .message {
+      height: 100%;
       width: 70%;
+      padding: 0;
+      margin: 0;
+
+      border-radius: 0px 10px;
     }
   }
 }

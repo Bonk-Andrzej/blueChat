@@ -52,7 +52,7 @@ export class ConversationComponent implements OnInit {
             'idSender': '3',
             'idInterlocutorName': '1',
             'date': '11:18',
-            'content': 'No to na pewno, ale z dwojga złego wole Angluara, bo w Reactie jest straaaaaaszna JavaScript, której nie lubie. Po to wójek google wymyslił TS, żeby korzystać :)'
+            'content': 'No to na pewno, ale z dwojga złego wole Angluara, bo w Reactie jest straaaaaaszna JavaScript, której nie lubie.'
         },
         {
             'idSender': '3',
@@ -63,20 +63,26 @@ export class ConversationComponent implements OnInit {
         {
             'idSender': '1',
             'idInterlocutorName': '3',
-            'date': '11:17',
+            'date': '11:20',
+            'content': 'Zobaczmy'
+        },
+        {
+            'idSender': '3',
+            'idInterlocutorName': '1',
+            'date': '11:20',
             'content': 'Zobaczmy'
         },
 
         {
             'idSender': '1',
             'idInterlocutorName': '3',
-            'date': '11:18',
+            'date': '11:21',
             'content': 'Powodzenia :)'
         },
         {
             'idSender': '3',
             'idInterlocutorName': '3',
-            'date': '11:19',
+            'date': '11:22',
             'content': 'Powodzenia :)'
         },
 

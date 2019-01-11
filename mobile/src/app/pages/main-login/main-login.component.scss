@@ -8,14 +8,14 @@
 
   #ham-menu {
     width: 20%;
-    background: #d93227;
+    background: var(--der-color1);
   }
   #title {
-    background: #75d727;
+    background: var(--der-color2);
     width: 60%;
   }
   #right-button {
-    background: deeppink;
+    background: var(--der-color3);
     width: 20%;
   }
 }
@@ -24,7 +24,7 @@
   height: calc(100% - 72px);
   //height: 100%;
   width: 100%;
-  background: grey;
+  background: var(--der-background);
   //grid-template-rows: repeat(10, 1fr);
   //grid-template-columns: repeat(1, 1fr);
   //grid-gap: 0;

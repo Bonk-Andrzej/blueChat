@@ -4,14 +4,14 @@
   display: flex;
   #ham-menu {
     width: 20%;
-    background: #d93227;
+    background: var(--der-color1);
   }
   #title {
-    background: #75d727;
+    background: var(--der-color2);
     width: 60%;
   }
   #right-button {
-    background: deeppink;
+    background: var(--der-color3);
     width: 20%;
   }
 }
@@ -19,7 +19,7 @@
 #main {
   height: calc(100% - 72px);
   width: 100%;
-  background: grey;
+  background: var(--der-background);
   #logo{
 
     margin: 0px auto 0px auto;
