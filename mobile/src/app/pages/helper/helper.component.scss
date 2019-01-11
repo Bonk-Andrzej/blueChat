@@ -1,0 +1,30 @@
+
+#head {
+  height: 22px;
+  width: 100%;
+  display: flex;
+  //overflow: auto;
+  //box-sizing: border-box;
+  #ham-menu {
+    width: 20%;
+    background: #d93227;
+  }
+  #title {
+    background: #75d727;
+    width: 60%;
+  }
+  #right-button {
+    background: deeppink;
+    width: 20%;
+  }
+}
+
+  #main {
+    height: calc(100% - 72px);
+    width: 100%;
+    background: yellow;
+  }
+
+  #menu-bottom {
+
+  }

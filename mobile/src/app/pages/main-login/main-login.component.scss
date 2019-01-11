@@ -1,22 +1,46 @@
-#ham-menu {
-  position: absolute;
+
+#head {
+  height: 22px;
+  overflow: auto;
+  box-sizing: border-box;
+  #ham-menu {
+    width: 20%;
+  }
+  #title {
+    width: 60%;
+  }
+  #right-button{
+    width: 20%;
+  }
+
 }
 
-#input-search {
+#main {
+  height: calc(100% - 72px);
   width: 100%;
-  padding-top: 20px;
+
+  #input-search {
+    height: 15px;
+    //width: 100%;
+    //padding-top: 20px;
+  }
+
+  .element {
+
+  }
+
+  .new-message {
+
+    height: 30%;
+  }
+
+  .last-conversation {
+
+    height: 50%;
+  }
+
 }
 
-.element {
+#menu-bottom {
 
-}
-
-.new-message {
-
-  height: 30%;
-}
-
-.last-conversation {
-
-  height: 50%;
 }
