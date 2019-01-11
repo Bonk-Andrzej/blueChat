@@ -6,7 +6,14 @@
 <div id="main">
     <div id="input" title="GROUP NAME" app-input-with-title=""></div>
     <div id="descreption" title="DESCREPTION" app-textarea-with-title=""></div>
-    <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title=""></div>
+    <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title="">
+
+        <ng-container *ngFor="let user of users">
+            <div [objectName]="user.name" app-object-with-checkbox=""></div>
+        </ng-container>
+    </div>
+
+
     <div id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
          app-button-wide=""></div>
 </div>
