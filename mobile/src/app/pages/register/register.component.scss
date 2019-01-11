@@ -11,3 +11,51 @@ div[app-big-logo]{
 .sing-button{
   margin-top: 30px;
 }
+
+
+#head {
+  height: 22px;
+  width: 100%;
+  display: flex;
+  #ham-menu {
+    width: 20%;
+    background: #d93227;
+  }
+  #title {
+    background: #75d727;
+    width: 60%;
+  }
+  #right-button {
+    background: deeppink;
+    width: 20%;
+  }
+}
+
+#main {
+  height: calc(100% - 72px);
+  width: 100%;
+  background: grey;
+  #logo{
+
+    margin: 0px auto 0px auto;
+    width: fit-content;
+  }
+  #space{
+    height: 30%;
+  }
+  #email-input{
+    padding-top: 57px;
+  }
+  .password{
+    padding-top: 5px;
+
+  }
+  #sing-button{
+
+    margin-top: 30px;
+  }
+}
+
+#menu-bottom {
+
+}

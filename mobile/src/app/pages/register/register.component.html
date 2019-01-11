@@ -1,8 +1,18 @@
+<div id="head">
+    <div id="ham-menu" app-hamburger-menu=""></div>
+    <div id="title" valueContent="HOME" app-title-page=""></div>
+    <div id="right-button"></div>
+</div>
+<div id="main">
+    <div id="space"></div>
+    <div app-big-logo></div>
 
-<div app-hamburger-menu></div>
-<div app-big-logo></div>
+    <div id="email-input" type="text" [(value)]="form.email" title="EMAIL" titleInside=""
+         app-input-with-title=""></div>
+    <div class="password" type="password" [(value)]="form.password" title="PASSWORD" (inputChange)="onChange($event)" titleInside=""
+         app-input-with-title=""></div>
+    <div class="password" type="password" [(value)]="form.repeatPassword" title="REPEAT PASSWORD" (inputChange)="onChange($event)"
+         titleInside="" app-input-with-title=""></div>
+    <div id="sing-button" [colorTextOnButton]="colorTextOnButton" [colorButton]='buttonColor' buttonTitle="SIGN UP" app-button-wide></div>
 
-<div type="text" [(value)]="form.email" title="EMAIL" class="email-input" titleInside="" app-input-with-title=""></div>
-<div type="password" [(value)]="form.password" title="PASSWORD" (inputChange)="onChange($event)" titleInside="" app-input-with-title=""></div>
-<div type="password" [(value)]="form.repeatPassword" title="REPEAT PASSWORD" (inputChange)="onChange($event)" titleInside="" app-input-with-title=""></div>
-<div [colorTextOnButton]="colorTextOnButton" [colorButton]='buttonColor' buttonTitle="SIGN UP" class="sing-button" app-button-wide ></div>
+</div>
