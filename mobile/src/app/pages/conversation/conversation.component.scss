@@ -1,19 +1,47 @@
-#wrapper {
+#head {
+  height: 22px;
   width: 100%;
-  height: min-content;
-  .sender {
-    float: left;
-    background: #75d727;
-  }
-  .interlocutor {
-    float: right;
+  display: flex;
+  //overflow: auto;
+  //box-sizing: border-box;
+  #left-button {
+    width: 20%;
     background: #d93227;
   }
+  #title {
+    background: #75d727;
+    width: 60%;
+  }
+  #right-button {
+    background: deeppink;
+    width: 20%;
+  }
+}
 
-  .conversation {
-    width: 50%;
+#main {
+  padding-top: 5px;
+  height: calc(100% - 72px);
+  width: 100%;
+  background: grey;
+
+  #conversation-wrapper {
+    width: 100%;
+    height: min-content;
+    #sender {
+      float: left;
+      background: #75d727;
+    }
+    #interlocutor {
+      float: right;
+      background: #d93227;
+    }
+
     .message {
       width: 70%;
     }
   }
+}
+
+#button-sending {
+  //width: 100%;
 }

@@ -36,6 +36,7 @@ import { ObjectWithXComponent } from './components/object-with-x/object-with-x.c
 import { ObjectWithStatusComponent } from './components/object-with-status/object-with-status.component';
 import { BoxMessageComponent } from './components/box-message/box-message.component';
 import { HelperComponent } from './pages/helper/helper.component';
+import { ButtonSendingComponent } from './components/button-sending/button-sending.component';
 
 @NgModule({
     declarations: [
@@ -70,7 +71,8 @@ import { HelperComponent } from './pages/helper/helper.component';
         ObjectWithXComponent,
         ObjectWithStatusComponent,
         BoxMessageComponent,
-        HelperComponent
+        HelperComponent,
+        ButtonSendingComponent
     ],
     imports: [
         BrowserModule,

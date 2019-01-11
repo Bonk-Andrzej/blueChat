@@ -20,21 +20,47 @@ export class ConversationComponent implements OnInit {
         {
             'idSender': '3',
             'idInterlocutorName': '3',
-            'date': '11:12',
+            'date': '11:13',
             'content': 'Response interlocutor'
         },
         {
             'idSender': '3',
             'idInterlocutorName': '3',
-            'date': '11:12',
+            'date': '11:14',
             'content': 'Response interlocutor'
         },
         {
             'idSender': '1',
             'idInterlocutorName': '3',
-            'date': '11:12',
+            'date': '11:15',
             'content': 'Response interlocutor'
-        }
+        },
+        {
+            'idSender': '3',
+            'idInterlocutorName': '3',
+            'date': '11:16',
+            'content': 'Response interlocutor'
+        },
+        {
+            'idSender': '1',
+            'idInterlocutorName': '3',
+            'date': '11:17',
+            'content': 'Response interlocutor'
+        },
+
+        {
+            'idSender': '1',
+            'idInterlocutorName': '3',
+            'date': '11:18',
+            'content': 'Response interlocutor'
+        },
+        {
+            'idSender': '3',
+            'idInterlocutorName': '3',
+            'date': '11:19',
+            'content': 'Response interlocutor'
+        },
+
     ];
 
     constructor() {

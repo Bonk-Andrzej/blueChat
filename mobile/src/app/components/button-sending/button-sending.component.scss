@@ -1,0 +1,39 @@
+#wrapper-button {
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  box-sizing: border-box;
+  overflow: auto;
+
+  #text-content {
+    //height: 100%;
+    width: 100%;
+    float: left;
+    //width: calc(100% - 40px);
+    margin: 0;
+    //padding: 3px;
+    border: none;
+    outline: none;
+    padding: 3px 42px 3px 3px;
+    border-radius: 0px 10px;
+    box-sizing: border-box;
+    font-size: 1.16em;
+  }
+  #red-button {
+    //display: block;
+    float: left;
+    height: 100%;
+    width: 40px;
+    margin: 0;
+    border-radius: 0px 10px;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 0;
+    background: url("./../../../assets/send-vector.png") no-repeat center;
+    background: #d93227;
+    background-size: 25px;
+
+    cursor: pointer;
+  }
+}

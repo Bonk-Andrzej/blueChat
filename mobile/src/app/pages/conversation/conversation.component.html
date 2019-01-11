@@ -1,15 +1,26 @@
-<div valueContent="{{interlocutorName}}" app-title-page=""></div>
-<div id="wrapper">
-    <ng-container class="conversation" *ngFor="let message of messagesDTOs">
-        <ng-container *ngIf="(message.idSender === idSender); then messageOvner else sessageInterlocutor"></ng-container>
-
-        <ng-template #messageOvner>
-            <div [messageOwner]="messageOwnerName" [date]="message.date" [content]="message.content" class="message sender" app-box-message=""></div>
-        </ng-template>
-
-        <ng-template #sessageInterlocutor>
-            <div [messageOwner]="interlocutorName"  [date]="message.date" [content]="message.content" class="message interlocutor" app-box-message=""></div>
-        </ng-template>
-
-    </ng-container>
+<div id="head">
+    <div id="left-button"></div>
+    <div id="title" valueContent="{{interlocutorName}}" app-title-page=""></div>
+    <div id="right-button"></div>
 </div>
+<div id="main">
+    <div id="conversation-wrapper">
+        <ng-container class="conversation" *ngFor="let message of messagesDTOs">
+            <ng-container
+                    *ngIf="(message.idSender === idSender); then messageOvner else sessageInterlocutor"></ng-container>
+
+            <ng-template #messageOvner>
+                <div class="message" id="sender" [messageOwner]="messageOwnerName" [date]="message.date"
+                     [content]="message.content" app-box-message=""></div>
+            </ng-template>
+
+            <ng-template #sessageInterlocutor>
+                <div class="message" id="interlocutor" [messageOwner]="interlocutorName" [date]="message.date"
+                     [content]="message.content" app-box-message=""></div>
+            </ng-template>
+
+        </ng-container>
+    </div>
+</div>
+
+<div id="button-sending" app-button-sending=""></div>
