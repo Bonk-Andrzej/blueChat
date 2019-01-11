@@ -38,6 +38,7 @@ import { BoxMessageComponent } from './components/box-message/box-message.compon
 import { HelperComponent } from './pages/helper/helper.component';
 import { ButtonSendingComponent } from './components/button-sending/button-sending.component';
 import { InputWithInsideTextComponent } from './components/input-with-inside-text/input-with-inside-text.component';
+import { ObjectWithCheckboxComponent } from './components/object-with-checkbox/object-with-checkbox.component';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { InputWithInsideTextComponent } from './components/input-with-inside-tex
         HelperComponent,
         ButtonSendingComponent,
         InputWithInsideTextComponent,
+        ObjectWithCheckboxComponent,
     ],
     imports: [
         BrowserModule,

@@ -67,8 +67,8 @@ export class LeftMenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.backgroundAnimationStatus = 'hide';
-        this.backgroundAnimationStatus = 'show';
+        this.backgroundAnimationStatus = 'hide';
+        // this.backgroundAnimationStatus = 'show';
         this.leftMenuService.onToggle(this.onToggleHandler.bind(this));
         this.backgroundColorList = this.colorService.getColor('--black');
         // this.backgroundColorList = this.colorService.getColor('--white');

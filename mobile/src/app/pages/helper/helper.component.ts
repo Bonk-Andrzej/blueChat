@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-helper',
-  templateUrl: './helper.component.html',
-  styleUrls: ['./helper.component.scss']
+    selector: 'app-helper',
+    templateUrl: './helper.component.html',
+    styleUrls: ['./helper.component.scss']
 })
 export class HelperComponent implements OnInit {
 
-  constructor() { }
+    objectname: string;
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.objectname = 'Igor Sowiński';
+    }
 
 }
