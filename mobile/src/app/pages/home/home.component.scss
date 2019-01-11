@@ -1,10 +1,46 @@
-#logo{
-  margin: 0px auto 0px auto;
-  width: fit-content;
+#head {
+  height: 22px;
+  width: 100%;
+  display: flex;
+  #ham-menu {
+    width: 20%;
+    background: #d93227;
+  }
+  #title {
+    background: #75d727;
+    width: 60%;
+  }
+  #right-button {
+    background: deeppink;
+    width: 20%;
+  }
 }
-#email{
-  margin-top: 57px;
+
+#main {
+  height: calc(100% - 72px);
+  width: 100%;
+  background: grey;
+  #logo{
+
+    margin: 0px auto 0px auto;
+    width: fit-content;
+  }
+  #space{
+    height: 30%;
+  }
+  #email{
+    padding-top: 57px;
+  }
+  #password{
+    padding-top: 5px;
+
+  }
+  #log-in{
+
+    margin-top: 30px;
+  }
 }
-#log-in{
-  margin-top: 30px;
+
+#menu-bottom {
+
 }
