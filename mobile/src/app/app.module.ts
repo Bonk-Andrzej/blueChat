@@ -37,6 +37,7 @@ import { ObjectWithStatusComponent } from './components/object-with-status/objec
 import { BoxMessageComponent } from './components/box-message/box-message.component';
 import { HelperComponent } from './pages/helper/helper.component';
 import { ButtonSendingComponent } from './components/button-sending/button-sending.component';
+import { InputWithInsideTextComponent } from './components/input-with-inside-text/input-with-inside-text.component';
 
 @NgModule({
     declarations: [
@@ -72,7 +73,8 @@ import { ButtonSendingComponent } from './components/button-sending/button-sendi
         ObjectWithStatusComponent,
         BoxMessageComponent,
         HelperComponent,
-        ButtonSendingComponent
+        ButtonSendingComponent,
+        InputWithInsideTextComponent,
     ],
     imports: [
         BrowserModule,

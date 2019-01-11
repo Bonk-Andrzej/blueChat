@@ -10,9 +10,9 @@ export class InputWithTitleComponent implements OnInit {
     @Input() title: string;
     @Input() type: string;
     @Input() value: string;
-    @Input() titleInside : string;
-    @Output() valueChange = new EventEmitter()
-    @Output() inputChange = new EventEmitter<Event>()
+    @Input() titleInside: string;
+    @Output() valueChange = new EventEmitter();
+    @Output() inputChange = new EventEmitter<Event>();
 
     constructor() {
     }
