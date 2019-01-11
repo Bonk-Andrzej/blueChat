@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-groups',
@@ -15,16 +16,19 @@ export class GroupsComponent implements OnInit {
             'name': 'random',
         },
         {
-            'name': 'off topic' ,
+            'name': 'off topic',
         }
     ];
 
-    constructor() {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
 
     }
 
+    createGroup() {
+        this.router.navigateByUrl('/create-group');
+    }
 }
 
