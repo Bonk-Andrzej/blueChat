@@ -19,15 +19,16 @@
   }
 
   .buttons {
-    //grid-template-columns: repeat(2, 1fr);
-    //grid-template-rows: repeat(1, 1fr);
-    display: inline;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    //display: inline;
     width: 100%;
     height: 35px;
     box-sizing: border-box;
 
     button {
-      width: 46%;
+      //width: 46%;
+      width: calc(50% - 15px);
       height: 35px;
       box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
       border-radius: 10px 0px;
@@ -43,8 +44,8 @@
     #left {
       overflow: hidden;
       float: left;
-      //grid-column: 1/1;
-      //grid-row: 1/1;
+      grid-column: 1/1;
+      grid-row: 1/1;
       margin-left: 10px;
       //margin-right: 5px;
       background-color: var(--orange);
@@ -54,8 +55,8 @@
       //position: fixed;
       float: right;
       right: 0;
-      //grid-column: 2/3;
-      //grid-row: 1/1;
+      grid-column: 2/3;
+      grid-row: 1/1;
       //margin-left: 5px;
       margin-right: 10px;
       background-color: var(--black-light);
