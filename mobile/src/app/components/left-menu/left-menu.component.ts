@@ -3,6 +3,7 @@ import {LeftMenuServiceService} from '../../services/left-menu-service.service';
 
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ColorsService} from '../../services/colors.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-left-menu',
@@ -61,7 +62,8 @@ export class LeftMenuComponent implements OnInit {
     backgroundColorList: string;
 
     constructor(public leftMenuService: LeftMenuServiceService,
-                private colorService: ColorsService) {
+                private colorService: ColorsService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -81,4 +83,7 @@ export class LeftMenuComponent implements OnInit {
 
     }
 
+    showConversation() {
+        this.router.navigateByUrl('/conversation');
+    }
 }

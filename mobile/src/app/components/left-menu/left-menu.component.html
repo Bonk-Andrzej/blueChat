@@ -5,15 +5,13 @@
     <div id="logo"></div>
     <div [backgroundColor]="backgroundColorList" id="groups" title="GROUP CONVERSATION"
          app-list-users-with-title="">
-
         <ng-container *ngFor="let group of groups">
             <div [messageCounter]="group.noReadMessages" [objectName]="group.name" app-object-with-status=""></div>
-
         </ng-container>
     </div>
     <div [backgroundColor]="backgroundColorList" id="friends" title="FRIENDS" app-list-users-with-title="">
         <ng-container *ngFor="let user of users">
-            <div [messageCounter]="user.noReadMessages" [objectName]="user.nick" app-object-with-status=""></div>
+            <div (click)="showConversation()" [messageCounter]="user.noReadMessages" [objectName]="user.nick" app-object-with-status=""></div>
         </ng-container>
     </div>
 </div>
