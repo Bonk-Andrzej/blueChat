@@ -1,28 +1,33 @@
 
 #head {
   height: 22px;
-  overflow: auto;
-  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  //overflow: auto;
+  //box-sizing: border-box;
   #ham-menu {
     width: 20%;
+    background: #d93227;
   }
   #title {
+    background: #75d727;
     width: 60%;
   }
-  #right-button{
+  #right-button {
+    background: deeppink;
     width: 20%;
   }
-
 }
 
 #main {
   height: calc(100% - 72px);
   width: 100%;
+  background: grey;
 
   #input-search {
-    height: 15px;
+
     //width: 100%;
-    //padding-top: 20px;
+    padding-top: 20px;
   }
 
   .element {
@@ -30,17 +35,20 @@
   }
 
   .new-message {
-
-    height: 30%;
+    // 37 height of input element
+    height: calc(30% - 37px);
+    //height: 30%;
   }
 
   .last-conversation {
-
-    height: 50%;
+    // 20 parring-top of input element
+    height: calc(70% - 20px);
+    //height: 70%;
   }
-
 }
 
 #menu-bottom {
 
 }
+
+
