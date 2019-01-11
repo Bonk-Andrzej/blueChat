@@ -32,6 +32,18 @@ export class CreateGroupComponent implements OnInit {
         },
         {
             'name': 'Paweł Janas'
+        },
+        {
+            'name': 'Marek Nowak'
+        },
+        {
+            'name': 'Łukasz Paprotka'
+        },
+        {
+            'name': 'Tomek Malinowski'
+        },
+        {
+            'name': 'Paweł Janas'
         }
     ];
 

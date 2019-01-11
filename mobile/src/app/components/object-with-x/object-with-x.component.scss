@@ -5,28 +5,41 @@
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
-  #photo {
-    height: 20px;
-    width: 20px;
-    margin: 3px;
-    float: left;
-    border-radius: 50%;
-    display: inline-block;
+  align-items: center;
+  justify-items: center;
+  display: flex;
+
+  #wrapper-photo {
+    width: 25%;
+    #photo {
+      height: 20px;
+      width: 20px;
+      margin: 3px;
+      float: left;
+      border-radius: 50%;
+      display: inline-block;
+    }
   }
   #object-name {
+    width: 60%;
+    height: fit-content;
+    align-items: center;
+    justify-items: center;
+    vertical-align: middle;
     text-align: left;
     font-family: var(--font-Kanit);
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 1.16em;
     text-indent: 5px;
     color: var(--black);
   }
   #icon{
+    width: 15%;
+    align-items: center;
+    justify-items: center;
     background: url("../../../assets/colose-icon.svg") no-repeat center;
-    float: right;
     height: 20px;
-    width: 20px;
-    background-size: 100%;
+    background-size: 20%;
   }
 }
