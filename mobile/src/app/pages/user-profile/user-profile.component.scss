@@ -1,0 +1,56 @@
+
+#head {
+  height: 22px;
+  width: 100%;
+  display: flex;
+  #ham-menu {
+    width: 20%;
+    background: var(--dev-color1);
+  }
+  #title {
+    background: var(--dev-color2);
+    width: 60%;
+  }
+  #right-button {
+    background: var(--dev-color3);
+    width: 20%;
+  }
+}
+
+#main {
+  height: calc(100% - 72px);
+  width: 100%;
+  background: var(--der-background);
+
+  #box-profile {
+    width: 100%;
+    height: content-box;
+  }
+  #button-wrapper {
+    height: calc(100% - 300px);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: center;
+    justify-content: center;
+
+    .button {
+
+
+      max-width: 130px;
+      max-height: 130px;
+      flex-basis: 48%;
+      flex-shrink: 2;
+      flex-grow: 1;
+      height: 50%;
+      margin: 5px;
+    }
+  }
+}
+
+#menu-bottom {
+
+}
+
+
