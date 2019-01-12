@@ -7,14 +7,14 @@
   //box-sizing: border-box;
   #ham-menu {
     width: 20%;
-    background: var(--der-color1);
+    background: var(--dev-color1);
   }
   #title {
-    background: var(--der-color2);
+    background: var(--dev-color2);
     width: 60%;
   }
   #right-button {
-    background: var(--der-color3);
+    background: var(--dev-color3);
     width: 20%;
   }
 }
@@ -22,7 +22,7 @@
 #main {
   height: calc(100% - 72px);
   width: 100%;
-  background: var(--der-color4);
+  background: var(--dev-color4);
   //grid-template-rows: repeat(30, 1fr);
   //grid-template-columns: repeat(1, 1fr);
   //display: grid;

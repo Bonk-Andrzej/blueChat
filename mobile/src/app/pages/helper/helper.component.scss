@@ -7,14 +7,14 @@
   //box-sizing: border-box;
   #ham-menu {
     width: 20%;
-    background: var(--der-color1);
+    background: var(--dev-color1);
   }
   #title {
-    background: var(--der-color2);
+    background: var(--dev-color2);
     width: 60%;
   }
   #right-button {
-    background: var(--der-color3);
+    background: var(--dev-color3);
     width: 20%;
   }
 }
@@ -24,7 +24,13 @@
     width: 100%;
     background: var(--der-background);
 
+    #space{
+      width: 100%;
+      height: 150px;
+
+    }
     #test{
+
       width: 100%;
       height: 300px;
     }

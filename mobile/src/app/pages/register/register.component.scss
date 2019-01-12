@@ -19,14 +19,14 @@ div[app-big-logo]{
   display: flex;
   #ham-menu {
     width: 20%;
-    background: var(--der-color1);
+    background: var(--dev-color1);
   }
   #title {
-    background: var(--der-color2);
+    background: var(--dev-color2);
     width: 60%;
   }
   #right-button {
-    background: var(--der-color3);
+    background: var(--dev-color3);
     width: 20%;
   }
 }
