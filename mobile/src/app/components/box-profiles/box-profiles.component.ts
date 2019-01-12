@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: '[app-box-profiles]',
-  templateUrl: './box-profiles.component.html',
-  styleUrls: ['./box-profiles.component.scss']
+    selector: '[app-box-profiles]',
+    templateUrl: './box-profiles.component.html',
+    styleUrls: ['./box-profiles.component.scss']
 })
 export class BoxProfilesComponent implements OnInit {
 
-  constructor() { }
+    @Input() title: string;
+    @Input() content: string;
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
 
 }
