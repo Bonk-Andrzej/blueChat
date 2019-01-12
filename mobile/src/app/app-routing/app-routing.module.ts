@@ -14,7 +14,7 @@ import {HelperComponent} from '../pages/helper/helper.component';
 
 
 const routes: Routes = [
-    {path: '', component: HomeComponent},
+    // {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
     {path: 'home-menu', component: HomeMenuComponent},
     {path: 'register', component: RegisterComponent},
@@ -25,7 +25,7 @@ const routes: Routes = [
     {path: 'conversation', component: ConversationComponent},
     {path: 'create-group', component: CreateGroupComponent},
     {path: 'groups', component: GroupsComponent},
-    {path: 'help', component: HelperComponent},
+    {path: '', component: HelperComponent},
     // {path: '', component: ConversationComponent},
 
 ];
