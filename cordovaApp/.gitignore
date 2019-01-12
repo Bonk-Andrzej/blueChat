@@ -1,1 +1,4 @@
 ### Cordova Git Ignore 
+
+/www/
+/platforms/
