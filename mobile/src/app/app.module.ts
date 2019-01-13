@@ -97,7 +97,7 @@ export function init_app(userProfileService: UserProfileService) {
         BrowserAnimationsModule
     ],
     providers: [UserProfileService,
-        { provide: APP_INITIALIZER, useFactory: init_app, deps: [UserProfileService], multi: true }
+        // { provide: APP_INITIALIZER, useFactory: init_app, deps: [UserProfileService], multi: true }
         ],
     bootstrap: [AppComponent]
 })
