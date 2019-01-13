@@ -1,4 +1,4 @@
-import {UserDtoShort} from '../user-repository/userDtoShort';
+import {UserDtoShort} from '../user/userDtoShort';
 
 export class FriendsDto {
     private id: number;

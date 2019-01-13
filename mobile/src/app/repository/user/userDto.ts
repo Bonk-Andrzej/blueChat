@@ -1,4 +1,4 @@
-import {PhotoDto} from '../photo-repository/photoDto';
+import {PhotoDto} from '../photo/photoDto';
 
 export class UserDto {
     private id : number;

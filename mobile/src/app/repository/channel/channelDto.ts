@@ -1,5 +1,5 @@
-import {UserDtoShort} from '../user-repository/userDtoShort';
-import {PhotoDto} from '../photo-repository/photoDto';
+import {UserDtoShort} from '../user/userDtoShort';
+import {PhotoDto} from '../photo/photoDto';
 
 export class ChannelDto {
     private id: number;

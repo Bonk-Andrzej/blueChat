@@ -1,5 +1,5 @@
-import {UserDtoShort} from '../user-repository/userDtoShort';
-import {ChannelDtoShort} from '../channel-repository/channelDtoShort';
+import {UserDtoShort} from '../user/userDtoShort';
+import {ChannelDtoShort} from '../channel/channelDtoShort';
 
 export class ChannelMessageDto {
     private id: number;
