@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
@@ -43,7 +43,11 @@ import { BoxProfilesComponent } from './components/box-profiles/box-profiles.com
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { ButtonAddFriendComponent } from './components/button-add-friend/button-add-friend.component';
+import {UserProfileService} from './services/user-profile.service';
 
+export function init_app(userProfileService: UserProfileService) {
+    return () => userProfileService.ngOnInit();
+}
 @NgModule({
     declarations: [
         AppComponent,
@@ -92,7 +96,9 @@ import { ButtonAddFriendComponent } from './components/button-add-friend/button-
         FormsModule,
         BrowserAnimationsModule
     ],
-    providers: [],
+    providers: [UserProfileService,
+        { provide: APP_INITIALIZER, useFactory: init_app, deps: [UserProfileService], multi: true }
+        ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

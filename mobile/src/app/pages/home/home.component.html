@@ -6,8 +6,8 @@
 <div id="main">
     <div id="space"></div>
     <div id="logo" app-big-logo=""></div>
-    <div id="email" title="EMAIL" titleInside="" app-input-with-title=""></div>
-    <div id="password" title="PASSWORD" titleInside="" app-input-with-title=""></div>
-    <div (click)="logIn()" [colorButton]='colorButton' [colorTextOnButton]="colorTextOnButton" id="log-in"
+    <div [(value)]='this.user.name' id="email" title="EMAIL" titleInside="" app-input-with-title=""></div>
+    <div [(value)]='this.user.pass' id="password" title="PASSWORD" titleInside="" app-input-with-title=""></div>
+    <div (click)='logIn()'  [colorButton]='colorButton' [colorTextOnButton]="colorTextOnButton" id="log-in"
          buttonTitle="LOG IN" app-button-wide=""></div>
 </div>

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {UserDto} from '../../repository/user/userDto';
+import {UserProfileService} from '../../services/user-profile.service';
 
 @Component({
     selector: 'app-user-profile',
@@ -7,19 +9,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-    // name: string;
-    // descreption: string;
-    // userProfile = [
-    //     }
-    // ];
-    name: string;
     descreption: string;
-    constructor() {
+
+    public userDto: UserDto = new UserDto();
+    constructor(private userProfileService : UserProfileService) {
       }
     ngOnInit() {
-        this.name = 'Paweł Jastrzębski'
-        this.descreption = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eveniet neque veritatis nihil recusandae, omnis velit, expedita non, dolore maiores tempore debitis consequuntur doloribus pariatur esse incidunt.'
-
+        this.userDto.name = 'Paweł Jastrzębski';
+        this.userDto.description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eveniet neque veritatis nihil recusandae, omnis velit, expedita non, dolore maiores tempore debitis consequuntur doloribus pariatur esse incidunt.';
+        this.userDto = this.userProfileService.getUser();
+        console.log(this.userProfileService)
     }
 
 }

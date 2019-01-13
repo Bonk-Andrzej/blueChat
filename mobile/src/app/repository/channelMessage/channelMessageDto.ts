@@ -5,7 +5,7 @@ export class ChannelMessageDto {
     private id: number;
     private content: string;
     private sentDate: string;
-    private isRead: boolean;
+    private isReadLogInUser: boolean;
     private sender: UserDtoShort;
     private channel: ChannelDtoShort;
 

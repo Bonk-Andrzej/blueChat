@@ -11,7 +11,7 @@ export class InputWithTitleComponent implements OnInit {
     @Input() type: string;
     @Input() value: string;
     @Input() titleInside: string;
-    @Output() valueChange = new EventEmitter();
+    @Output() valueChange = new EventEmitter<string>();
     @Output() inputChange = new EventEmitter<Event>();
 
     constructor() {
@@ -23,6 +23,5 @@ export class InputWithTitleComponent implements OnInit {
     onChangeHandler(event: Event) {
         this.valueChange.emit(this.value)
         this.inputChange.emit(event)
-        console.log(this.value)
     }
 }

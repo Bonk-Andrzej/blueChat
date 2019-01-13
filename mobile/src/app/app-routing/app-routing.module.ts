@@ -15,7 +15,7 @@ import {UserProfileComponent} from '../pages/user-profile/user-profile.component
 
 
 const routes: Routes = [
-    // {path: '', component: HomeComponent},
+    {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
     {path: 'home-menu', component: HomeMenuComponent},
     {path: 'register', component: RegisterComponent},
@@ -28,7 +28,7 @@ const routes: Routes = [
     {path: 'groups', component: GroupsComponent},
     {path: 'help', component: HelperComponent},
     {path: 'user-profile', component: UserProfileComponent},
-    {path: '', component: UserProfileComponent},
+    // {path: '', component: UserProfileComponent},
     // {path: '', component: ConversationComponent},
 
 ];

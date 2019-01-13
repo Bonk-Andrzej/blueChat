@@ -16,8 +16,8 @@ export class MenuBottomComponent implements OnInit {
     ngOnInit() {
     }
 
-    groups() {
-        this.router.navigateByUrl('/groups');
+    userProfile() {
+        this.router.navigateByUrl('/user-profile');
     }
 
     mainLogin() {
