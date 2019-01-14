@@ -13,7 +13,7 @@ export class MessageRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = 'http://192.168.99.100:90/channel';
+        this.host = 'http://192.168.99.100:90/messages';
         this.headers = this.getHeaders();
     }
 
