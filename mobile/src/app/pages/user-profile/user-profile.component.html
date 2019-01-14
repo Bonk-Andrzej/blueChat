@@ -6,10 +6,10 @@
 <div id="main">
     <div id="box-profile" [content]='this.userDto.description' [title]='this.userDto.name' app-box-profiles=""></div>
     <div id="button-wrapper">
-        <div class="button" app-button-add-friend=""></div>
-        <div class="button" app-button-add-friend=""></div>
-        <div class="button" app-button-add-friend=""></div>
-        <div class="button" app-button-add-friend=""></div>
+        <div (click)="onAddFriend()" id="add-friend" class="button" app-button-add-friend=""></div>
+        <div (click)="onFriends()" id="friends" class="button" app-button-add-friend=""></div>
+        <div (click)="onGroups()" id="groups" class="button" app-button-add-friend=""></div>
+        <div (click)="onSearch()" id="search" class="button" app-button-add-friend=""></div>
     </div>
 
 </div>

@@ -19,11 +19,11 @@ export class UserProfileService {
     }
 
     ngOnInit() {
-        this.loginService.onLogin.subscribe((user) => {
-            this.userDto = user;
-            console.log(user)
-        });
-        alert("UserProfileService -- init")
+        // this.loginService.onLogin.subscribe((user) => {
+        //     this.userDto = user;
+        //     console.log(user)
+        // });
+        // alert("UserProfileService -- init")
 
     }
 
