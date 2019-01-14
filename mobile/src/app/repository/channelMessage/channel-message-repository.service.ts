@@ -26,11 +26,10 @@ export class ChannelMessageRepositoryService {
         return headers;
     }
 
-    public getConversation(idSender: number, idReceiver: number, limit: number, toBound: number): Observable<Array<ChannelMessageDto>>{
+    public getConversation(idChannel: number, limit: number, toBound: number): Observable<Array<ChannelMessageDto>>{
 
       const params = new HttpParams()
-          .set('idSender', idSender.toString())
-          .set('idReceiver', idReceiver.toString())
+          .set('idChannel', idChannel.toString())
           .set('limit', limit.toString())
           .set('toBound', toBound.toString());
       return this.http.get<Array<ChannelMessageDto>>(this.http + '/conversation/', {headers: this.headers, params: params});
