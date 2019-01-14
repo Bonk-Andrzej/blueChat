@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {FriendsDto} from './friendsDto';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +23,14 @@ export class FriendRepositoryService {
         headers.set('Access-Control-Allow-Origin', '*');
         headers.set('Access-Control-Allow-Origin', 'true');
         return headers;
+    }
+    public getFriendshipsList(idUser : number): Observable<FriendsDto>{
+      return null;
+    }
+    public removeFriendship(friendsDto: FriendsDto){
+
+    }
+    public addFriendship(friendsDto: FriendsDto){
+
     }
 }
