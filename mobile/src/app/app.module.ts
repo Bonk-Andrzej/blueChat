@@ -14,7 +14,7 @@ import {ResetPasswordComponent} from './pages/reset-password/reset-password.comp
 import {InformationSupportComponent} from './components/information-support/information-support.component';
 import {InputWithButtonComponent} from './components/input-with-button/input-with-button.component';
 import {RegisterComponent} from './pages/register/register.component';
-import { TitlePageComponent } from './components/title-page/title-page.component';
+import { TitleComponent } from './components/title/title.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LogOutComponent } from './pages/log-out/log-out.component';
@@ -61,7 +61,7 @@ export function init_app(userProfileService: UserProfileService) {
         ResetPasswordComponent,
         InformationSupportComponent,
         InputWithButtonComponent,
-        TitlePageComponent,
+        TitleComponent,
         HomeComponent,
         ContactComponent,
         LogOutComponent,

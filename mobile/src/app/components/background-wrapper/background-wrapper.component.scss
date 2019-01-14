@@ -1,48 +1,48 @@
 
-%body-shape {
-  width: 100%;
-  height: 100%;
-  float: left;
-}
+@import "~src/stylesAssets";
 
-%absolute-element {
-  position: absolute;
+
+.center-body{
+  @extend %full-size;
+  display: flex;
 }
 
 .bg{
+
+  // only for mobile
+  @media (pointer:none), (pointer:coarse) {
+    max-width: 100%;
+  }
+
+  @extend %full-size;
+  position: relative;
+  max-width: 500px;
   background-color: var(--black-dark);
-  float: left;
-  width: 100%;
-  height: 100%;
+  margin: auto;
 }
 
 .layer {
-  @extend %absolute-element;
-  float: left;
-  width: 100%;
-  height: 100%;
+  @extend %full-size;
+  position: absolute;
+  margin: auto;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow: auto;
+  overflow-x: hidden;
 
 
   .body {
-    @extend %body-shape;
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-left: 20px;
-    padding-bottom: 0;
-    box-sizing: border-box;
+    @extend %full-size;
   }
 
   .mask {
-    @extend %body-shape;
+    @extend %full-size;
     background-color: var(--cyan);
     opacity: 0.9;
   }
 
   .image {
-    @extend %body-shape;
-    background-image: url("../../../assets/joel-filipe-191372-unsplash.jpg");
+    @extend %full-size;
+    background-image: url("~src/assets/joel-filipe-191372-unsplash.jpg");
     background-size: cover;
   }
 
