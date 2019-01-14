@@ -1,4 +1,8 @@
 export class PhotoDto {
-    private id : number;
-    private photo: string;
+    public id : number;
+    public photo: string;
+
+
+    constructor() {
+    }
 }

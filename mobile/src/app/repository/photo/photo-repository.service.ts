@@ -1,9 +1,28 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {PhotoDto} from './photoDto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class PhotoRepositoryService {
 
-  constructor() { }
+    private photo: PhotoDto = new PhotoDto();
+
+    // randomColor: string;
+
+    ngOnInit() {
+        // this.randomColorTrigger();
+    }
+
+    randomColorTrigger(): string {
+
+        return ('rgb(' + Math.floor(Math.random() * 255)
+            + ',' + Math.floor(Math.random() * 255) + ','
+            + Math.floor(Math.random() * 255) + ')');
+    }
+
+    public getRandomPhoto(): PhotoDto {
+        this.photo.photo = this.randomColorTrigger();
+        return new PhotoDto();
+    }
 }

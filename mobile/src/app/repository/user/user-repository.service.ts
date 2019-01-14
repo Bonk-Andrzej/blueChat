@@ -17,7 +17,7 @@ export class UserRepositoryService {
     constructor(http: HttpClient) {
         this.http = http;
         this.host = 'http://192.168.99.100:90';
-        this.headers = this.getHeaders();
+        this.headers == this.getHeaders();
 
     }
 
@@ -32,12 +32,20 @@ export class UserRepositoryService {
     public getUserDtoList(): Observable<Array<UserDto>> {
         return this.http.get<Array<UserDto>>(this.host + '/users');
     }
-    public getUserDtoShortList() : Observable<Array<UserDtoShort>>{
+
+    public getUserDtoShortList(): Observable<Array<UserDtoShort>> {
         return this.http.get<Array<UserDtoShort>>(this.host + '/users/short');
     }
 
     public postNewUser(userPassDto: UserPassDto): Observable<UserPassDto> {
         return this.http.post<UserPassDto>(this.host + '/users', userPassDto, {headers: this.headers});
+    }
+
+    public resetPass(userPassDto: UserDtoShort) {
+        return this.http.patch(this.host + '/users/pass', userPassDto, {headers: this.headers});
+    }
+    public updateUser(userDto: UserDto) : Observable<UserDto>{
+        return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers})
     }
 
     public getUserById(id: number): Observable<UserDto> {
