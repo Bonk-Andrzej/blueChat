@@ -33,4 +33,9 @@ export class RegisterComponent implements OnInit {
     onChange(e) {
         console.log(this.form);
     }
+
+
+    public openGithub(){
+        window.open('https://github.com/newBlueChat/blueChat', '_blank');
+    }
 }

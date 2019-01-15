@@ -3,7 +3,7 @@
     <div id="ham-menu" app-hamburger-menu></div>
     <div id="title" valueContent="HOME" app-title></div>
     <div id="right-button"></div>
-    <div id="logo" app-big-logo></div>
+    <div routerLink="/" id="logo" app-big-logo></div>
 
     <div id="form">
         <div id="inputs">
@@ -11,8 +11,8 @@
             <div [(value)]='this.user.pass' id="password" title="PASSWORD" titleInside="" app-input-with-title></div>
             <div (click)='logIn()' [colorButton]='colorButton' [colorTextOnButton]="colorTextOnButton" buttonTitle="LOG IN" app-button-wide></div>
         </div>
-        <div routerLink="reset-pass" textAlign='left' fontSize='10px' id="reset-password" valueContent="Forget password" app-title></div>
-        <div routerLink="register" textAlign='right' fontSize='10px' id="register" valueContent="Sing up" app-title></div>
+        <div routerLink="/reset-pass" textAlign='left' fontSize='10px' id="reset-password" valueContent="Forget password" app-title></div>
+        <div routerLink="/register" textAlign='right' fontSize='10px' id="register" valueContent="Sing up" app-title></div>
     </div>
 
 

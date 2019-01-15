@@ -1,61 +1,60 @@
-
-div[app-big-logo]{
-  margin: 0px auto 0px auto;
-  width: fit-content;
-}
-
-.email-input{
-  margin-top: 57px;
-}
-
-.sing-button{
-  margin-top: 30px;
-}
+@import "~src/stylesAssets";
 
 
-#head {
-  height: 22px;
+
+.grid{
+  @extend %page-default-padding;
+  display: grid;
   width: 100%;
-  display: flex;
-  #ham-menu {
-    width: 20%;
-    background: var(--dev-color1);
-  }
-  #title {
-    background: var(--dev-color2);
-    width: 60%;
-  }
-  #right-button {
-    background: var(--dev-color3);
-    width: 20%;
-  }
+  height: 100%;
+  grid-template-columns: repeat(10 , 1fr);
+  grid-template-rows: repeat(20 , 1fr);
+  grid-gap: 10px;
+  min-height: 560px;
+
 }
 
-#main {
-  height: calc(100% - 72px);
-  width: 100%;
-  background: var(--der-background);
-  #logo{
-
-    margin: 0px auto 0px auto;
-    width: fit-content;
-  }
-  #space{
-    height: 25%;
-  }
-  #email-input{
-    padding-top: 57px;
-  }
-  .password{
-    padding-top: 5px;
-
-  }
-  #sing-button{
-
-    margin-top: 30px;
-  }
+#ham-menu{
+  grid-column: 1/3;
+  grid-row: 1/3;
 }
 
-#menu-bottom {
+#title {
+  grid-column: 3/9;
+  grid-row: 1/3;
+}
+#right-button {
+  grid-column: 9/11;
+  grid-row: 1/3;
+}
 
+#logo{
+  grid-column: 1/11;
+  grid-row: 3/9;
+  align-self: center;
+}
+
+#form{
+  grid-column: 1/11;
+  grid-row: 9/16;
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(4,min-content);
+  grid-gap: 10px;
+
+  #inputs{
+    grid-column: 1/3;
+    grid-row: 1/4;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-rows: repeat(3 ,min-content);
+  }
+
+}
+
+#github{
+  grid-column: 4/8;
+  grid-row: 19/21;
+  align-self: end;
 }
