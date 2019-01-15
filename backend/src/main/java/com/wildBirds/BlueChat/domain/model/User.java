@@ -45,6 +45,9 @@ class User extends BaseEntity{
     @ManyToMany(mappedBy = "usersInChannel", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Set<Channel> channelsStaffed;
 
+    @ManyToMany(mappedBy = "usersChannelsMessages", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    private Set<ChannelsMessage> readChannelsMessage;
+
     public User(String nick, String password) {
         this.nick = nick;
         this.password = password;

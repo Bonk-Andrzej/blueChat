@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -17,7 +19,10 @@ class ChannelsMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMessageGroup;
+    private Long idChannelsMessage;
+    private String content;
+
+    private Instant sentDate;
 
     @ManyToOne
     @JoinColumn(name = "sender", nullable = false)
@@ -27,10 +32,11 @@ class ChannelsMessage {
     @JoinColumn(name = "channelId", nullable = false)
     private Channel channel;
 
-    private String content;
 
-    private Instant sentDate;
-
-
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name ="USER_READ_CHANNEL_MESSAGE",
+            joinColumns = {@JoinColumn(name = "idChannel")},
+            inverseJoinColumns = {@JoinColumn(name = "idUser")})
+    private Set<User> usersChannelsMessages = new HashSet<>();
 
 }

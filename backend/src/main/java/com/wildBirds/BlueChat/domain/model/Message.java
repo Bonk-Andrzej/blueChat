@@ -20,6 +20,7 @@ class Message {
     private Long idMessage;
     private String content;
     private Instant sentDate;
+    private boolean isRead;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "sender")

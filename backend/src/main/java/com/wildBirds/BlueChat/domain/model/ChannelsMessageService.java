@@ -20,7 +20,7 @@ public class ChannelsMessageService {
         ChannelsMessage channelsMessage = new ChannelsMessage();
 
         if (channelsMessageDto.getIdMessageGroup() == null) {
-            channelsMessage.setIdMessageGroup(channelsMessageDto.getIdMessageGroup());
+            channelsMessage.setIdChannelsMessage(channelsMessageDto.getIdMessageGroup());
         }
         try {
             channelsMessage.setSentDate(channelsMessageDto.getSentDate());
@@ -51,7 +51,7 @@ public class ChannelsMessageService {
         ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
 
         try {
-            channelsMessageDto.setIdMessageGroup(channelsMessage.getIdMessageGroup());
+            channelsMessageDto.setIdMessageGroup(channelsMessage.getIdChannelsMessage());
             channelsMessageDto.setChannelId(channelsMessage.getChannel().getIdChannel());
             channelsMessageDto.setSenderId(channelsMessage.getSender().getIdUser());
             channelsMessageDto.setContent(channelsMessage.getContent());

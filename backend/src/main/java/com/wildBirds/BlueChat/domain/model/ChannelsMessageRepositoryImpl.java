@@ -37,7 +37,7 @@ class ChannelsMessageRepositoryImpl implements ChannelsMessageRepositoryCustom {
     public ChannelsMessage saveMessage(ChannelsMessage channelsMessage) {
         String content = channelsMessage.getContent();
         Instant sentDate = channelsMessage.getSentDate();
-        Long idMessageGroup = channelsMessage.getIdMessageGroup();
+        Long idMessageGroup = channelsMessage.getIdChannelsMessage();
 
         User sender = channelsMessage.getSender();
         Channel channel = channelsMessage.getChannel();
@@ -47,7 +47,7 @@ class ChannelsMessageRepositoryImpl implements ChannelsMessageRepositoryCustom {
         ChannelsMessage chanMsgToSave = new ChannelsMessage();
         chanMsgToSave.setContent(content);
         chanMsgToSave.setSentDate(sentDate);
-        chanMsgToSave.setIdMessageGroup(idMessageGroup);
+        chanMsgToSave.setIdChannelsMessage(idMessageGroup);
         chanMsgToSave.setSender(sender);
         chanMsgToSave.setChannel(channel);
 

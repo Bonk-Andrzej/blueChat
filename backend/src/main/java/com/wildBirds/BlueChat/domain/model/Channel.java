@@ -21,6 +21,10 @@ class Channel {
     private Long idChannel;
     private String name;
 
+    @OneToOne
+    @JoinColumn(name = "idPhoto")
+    private Photo profilePhoto;
+
     @OneToMany(mappedBy = "channel", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<ChannelsMessage> channelsMessage = new ArrayList<>();
 
