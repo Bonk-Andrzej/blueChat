@@ -1,4 +1,14 @@
 <div class="box">
-    <textarea [style.textAlign]="textAreaStyleTextAlign" (keyup)="keyPressHandler($event)" [placeholder]='title' class="input" [(ngModel)]="value"></textarea>
+
+    <ng-container *ngIf="texArea; then trueBlock; else falseBlock"></ng-container>
+        <ng-template #trueBlock >
+            <textarea [style.textAlign]="textAreaStyleTextAlign"   [placeholder]='title' class="text-field text-area" [(ngModel)]="value"></textarea>
+        </ng-template>
+
+        <ng-template #falseBlock >
+            <input [style.textAlign]="textAreaStyleTextAlign" [placeholder]='title' class="text-field input" [(ngModel)]="value" />
+        </ng-template>
+
+
     <button class="button">{{buttonTitle}}</button>
 </div>
