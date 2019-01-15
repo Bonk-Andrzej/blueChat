@@ -24,6 +24,14 @@ class User extends BaseEntity{
 
     @Column(nullable = false)
     private String password;
+    //    @Column(nullable = false)
+    private String email;
+
+    private String description;
+
+    @OneToOne
+    @JoinColumn(name = "idPhoto")
+    private Photo profilePhoto;
 
     @OneToMany(mappedBy = "sender", cascade = {CascadeType.PERSIST , CascadeType.MERGE})
     private List<Message> messageSender;

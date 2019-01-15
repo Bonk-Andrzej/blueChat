@@ -28,13 +28,13 @@ class Channel {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name ="CHANNEL_CONTAIN_USERS",
-            joinColumns = {@JoinColumn(name = "channelId")},
+            joinColumns = {@JoinColumn(name = "idChannel")},
             inverseJoinColumns = {@JoinColumn(name = "idUser")})
     private Set<User> usersInChannel = new HashSet<>();
 
 
-
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "channelOwner")
     private User channelOwner;
 
     private boolean isPublic;
