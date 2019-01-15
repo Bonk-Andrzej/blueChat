@@ -14,18 +14,18 @@ services:
         networks:
             - lan
     
-    backend:
-        build: ./backend
-        container_name: backend
-        ports:
-            - "90:8080"
-        depends_on:
-            - mysqlChat
-        networks:
-            - lan
-        volumes:      
-        - ./backend/target:/home/chat/backend
-        command: java -jar -Dspring.profiles.active=remote BlueChat-2-SNAPSHOT.jar
+#    backend:
+ #       build: ./backend
+  #      container_name: backend
+   #     ports:
+    #        - "90:8080"
+    #    depends_on:
+    #        - mysqlChat
+    #    networks:
+    #        - lan
+     #   volumes:      
+      #  - ./backend/target:/home/chat/backend
+       # command: java -jar -Dspring.profiles.active=remote BlueChat-2-SNAPSHOT.jar
     
 #    web:
  #       build: ./web
