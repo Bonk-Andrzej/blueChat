@@ -2,11 +2,11 @@
 
     <ng-container *ngIf="texArea; then trueBlock; else falseBlock"></ng-container>
         <ng-template #trueBlock >
-            <textarea [style.textAlign]="textAreaStyleTextAlign"   [placeholder]='title' class="text-field text-area" [(ngModel)]="value"></textarea>
+            <textarea [style.textAlign]="textAlign"   [placeholder]='title' class="text-field text-area" [(ngModel)]="value"></textarea>
         </ng-template>
 
         <ng-template #falseBlock >
-            <input [style.textAlign]="textAreaStyleTextAlign" [placeholder]='title' class="text-field input" [(ngModel)]="value" />
+            <input [style.textAlign]="textAlign" [placeholder]='title' class="text-field input" [(ngModel)]="value" />
         </ng-template>
 
 

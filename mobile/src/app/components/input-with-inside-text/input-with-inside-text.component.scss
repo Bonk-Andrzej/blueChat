@@ -1,8 +1,11 @@
+@import "~src/stylesAssets";
+
 .box {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
   input {
+    @extend %input-padding;
     width: 100%;
     height: 35px;
     background: var(--white-light);
@@ -11,8 +14,8 @@
     border-radius: 0px 10px;
     border: 0;
     text-align: center;
-    font-size: 1em;
     font-family: var(--font-Wallpoet);
     font-weight: 400;
+    font-size: 1.3em;
   }
 }

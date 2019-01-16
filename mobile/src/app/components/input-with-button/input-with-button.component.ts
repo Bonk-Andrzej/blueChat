@@ -11,13 +11,14 @@ export class InputWithButtonComponent implements OnInit {
     @Input() value: string;
     @Input() buttonTitle: string;
     @Input() texArea: boolean;
+    @Input() textAlign: string
 
-    textAreaStyleTextAlign = "center"
     constructor() {
     }
 
     ngOnInit() {
         this.texArea = this.texArea || false;
+        this.textAlign = this.textAlign || "center";
     }
 
 
