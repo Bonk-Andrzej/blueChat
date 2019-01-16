@@ -58,6 +58,14 @@ export class LeftMenuComponent implements OnInit {
             'noReadMessages' : '1'
         }
     ];
+
+    titleStyle = {
+       paddingLeft: '10px'
+    }
+    listStyle = {
+        padding : '5px',
+        gridGap: '3px'
+    }
     backgroundAnimationStatus = 'hide';
     backgroundColorList: string;
 

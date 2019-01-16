@@ -7,37 +7,33 @@
 }
 
 .wrapper {
-  width: 100%;
   @extend %absolute;
+  width: 100%;
   background: var(--black);
   z-index: 100;
-
 }
 
 #menu {
-  width: 60%;
   @extend %absolute;
+  width: 65%;
   background: var(--black);
   z-index: 200;
   #logo{
-    width: 100%;
+    width: 150px;
+    margin: 0 auto;
     height: 70px;
-    background: url("../../../assets/logo.svg") no-repeat center;
     box-sizing: border-box;
-    padding: 5px;
-    background-size: 70%;
+    padding: 15px;
+    cursor: pointer;
   }
   #groups{
-    padding-left: 10px;
-    padding-right: 10px;
-    width: calc(100% - 20px);
-    height: 30%;
+    width: 100%;
+    height: calc(30% - 40px);
+    margin-bottom: 5px;
   }
   #friends{
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: calc(100% - 20px);
-    height: 48%;
+    width: 100%;
+    height: calc(70% - 40px);
+    margin-bottom: 5px;
   }
 }
