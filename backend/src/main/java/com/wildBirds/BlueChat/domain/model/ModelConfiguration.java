@@ -28,6 +28,18 @@ class ModelConfiguration {
     }
 
 
+
+    //services
+    @Bean
+    public ContactMessageService contactMessageService(){
+        return new ContactMessageService();
+    }
+
+    @Bean
+    public ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService){
+        return new ContactMessageFacade(contactMessageRepository, contactMessageService);
+    }
+
     @Bean
     public ChannelService channelService(UserService userService) {
         return new ChannelService(userService);

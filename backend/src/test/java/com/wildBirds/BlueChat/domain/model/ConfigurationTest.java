@@ -29,6 +29,12 @@ public class ConfigurationTest {
     protected ChannelsMessageFacade channelsMessageFacade;
 
     @Autowired
+    protected ContactMessageRepository contactMessageRepository;
+
+    @Autowired
+    protected ContactMessageFacade contactMessageFacade;
+
+    @Autowired
     protected MessageFacade messageFacade;
 
     @Autowired
@@ -39,6 +45,7 @@ public class ConfigurationTest {
 
     @Autowired
     protected UserFacade userFacade;
+
 
     @Test
     public void contextLoads() {
