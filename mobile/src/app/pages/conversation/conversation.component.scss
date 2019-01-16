@@ -1,50 +1,54 @@
-#head {
-  height: 22px;
-  width: 100%;
-  display: flex;
-  #left-button {
-    width: 20%;
-    background: var(--dev-color1);
-  }
-  #title {
-    background: var(--dev-color2);
-    width: 60%;
-  }
-  #right-button {
-    background: var(--dev-color3);
-    width: 20%;
-  }
-}
+@import "~src/stylesAssets";
 
-#main {
-  padding-top: 5px;
-  height: calc(100% - 72px);
-  width: 100%;
-  background: var(--der-background);
-  overflow: scroll;
-  overflow-x: hidden;
+.grid {
+  @extend %default-grid;
+
+  #ham-menu {
+    grid-column: 1/3;
+    grid-row: 1/2;
+  }
+
+  #title {
+    grid-column: 3/9;
+    grid-row: 1/2;
+  }
+
+  #right-button {
+    grid-column: 9/11;
+    grid-row: 1/2;
+  }
+
   #conversation-wrapper {
-    width: 100%;
-    height: min-content;
+    box-sizing: border-box;
+    grid-column: 1/11;
+    grid-row: 2/20;
+    width: calc(100% + 15px);
+    padding-right: 15px;
+    overflow: scroll;
+    overflow-x: hidden;
+
     #sender {
       float: left;
-      background: #75d727;
     }
     #interlocutor {
       float: right;
-      background: #d93227;
     }
     .message {
-      height: 100%;
       width: 70%;
-      padding: 0;
-      margin: 0;
-
-      border-radius: 0px 10px;
     }
   }
+
+  #conversation-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--orange);
+    opacity: 0.01;
+    outline: 1px solid slategrey;
+  }
+
+  #button-sending {
+    grid-column: 1/11;
+    grid-row: 20/21;
+    align-self: end;
+  }
+
 }
 
-#button-sending {
-  //width: 100%;
-}

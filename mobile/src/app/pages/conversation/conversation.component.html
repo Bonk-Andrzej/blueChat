@@ -1,9 +1,9 @@
-<div id="head">
+<div class="grid">
+
     <div id="left-button"></div>
     <div id="title" valueContent="{{interlocutorName}}" app-title=""></div>
     <div id="right-button"></div>
-</div>
-<div id="main">
+
     <div id="conversation-wrapper">
         <ng-container class="conversation" *ngFor="let message of messagesDTOs">
             <ng-container
@@ -21,6 +21,5 @@
 
         </ng-container>
     </div>
+    <div id="button-sending" app-button-sending></div>
 </div>
-
-<div id="button-sending" app-button-sending=""></div>
