@@ -1,7 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.ContactMessageDto;
-import com.wildBirds.BlueChat.domain.model.exceptions.ContactMessageExceprion;
+import com.wildBirds.BlueChat.domain.model.exceptions.ContactMessageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,12 +24,12 @@ class ContactMessageService {
         } catch (NullPointerException e) {
             e.printStackTrace();
             log.error("ContactMessage Service - Some field was null", e.getMessage());
-            throw new ContactMessageExceprion("Message Service - Some field was null");
+            throw new ContactMessageException("Message Service - Some field was null");
 
         } catch (Exception e) {
             e.printStackTrace();
             log.error("ChannelsMessage Service Exception", e.getMessage());
-            throw new ContactMessageExceprion("Message Service Exception");
+            throw new ContactMessageException("Message Service Exception");
         }
         return contactMessage;
     }
@@ -46,12 +46,12 @@ class ContactMessageService {
         } catch (NullPointerException e) {
             e.printStackTrace();
             log.error("ChannelsMessage Service - Some field was null", e.getMessage());
-            throw new ContactMessageExceprion("Message Service - Some field was null");
+            throw new ContactMessageException("Message Service - Some field was null");
 
         } catch (Exception e) {
             e.printStackTrace();
             log.error("ChannelsMessage Service Exception", e.getMessage());
-            throw new ContactMessageExceprion("Message Service Exception");
+            throw new ContactMessageException("Message Service Exception");
         }
         return contactMessageDto;
     }

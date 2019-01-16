@@ -33,7 +33,8 @@ public class ContactMessageFacade {
     }
 
     public List<ContactMessageDto> getAllOrderedByDateAsc(){
-        List<ContactMessage> allByOrOrderBySentDateDesc = repository.findAllByOrderBySentDateAsc();
+        List<ContactMessage> allByOrOrderBySentDateDesc = repository.findAllByOrderBySentDateDesc();
+//        List<ContactMessage> allByOrOrderBySentDateDesc = repository.findAll();
 
 
         List<ContactMessageDto> contactMessageDtoList = allByOrOrderBySentDateDesc.stream()

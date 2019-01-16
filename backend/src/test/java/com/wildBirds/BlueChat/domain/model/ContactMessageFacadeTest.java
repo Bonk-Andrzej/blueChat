@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ContactMessageFacadeTest extends ConfigurationTest {
@@ -80,7 +81,7 @@ public class ContactMessageFacadeTest extends ConfigurationTest {
         contactMessageDto.setMessage(message1);
         contactMessageDto.setSentDate(Instant.now());
 
-
+       contactMessageFacade.saveMessage(contactMessageDto);
 
         ContactMessageDto contactMessageDto2 = new ContactMessageDto();
         String email2 = "contactMessage2@wp.pl";
@@ -88,7 +89,8 @@ public class ContactMessageFacadeTest extends ConfigurationTest {
 
         contactMessageDto2.setEmail(email2);
         contactMessageDto2.setMessage(message2);
-        contactMessageDto2.setSentDate(Instant.now());
+        contactMessageDto2.setSentDate(Instant.now().plus(5, ChronoUnit.MINUTES));
+       contactMessageFacade.saveMessage(contactMessageDto2);
 
         ContactMessageDto contactMessageDto3 = new ContactMessageDto();
         String email3 = "contactMessage3@wp.pl";
@@ -96,7 +98,8 @@ public class ContactMessageFacadeTest extends ConfigurationTest {
 
         contactMessageDto3.setEmail(email3);
         contactMessageDto3.setMessage(message3);
-        contactMessageDto3.setSentDate(Instant.now());
+        contactMessageDto3.setSentDate(Instant.now().plus(15, ChronoUnit.MINUTES));
+        contactMessageFacade.saveMessage(contactMessageDto3);
 
         //when
 
@@ -104,8 +107,8 @@ public class ContactMessageFacadeTest extends ConfigurationTest {
 
         //then
 
-        Assert.assertEquals(allOrderedByDateAsc.get(1).getEmail(), email3);
-        Assert.assertEquals(allOrderedByDateAsc.get(3).getEmail(), email1);
+        Assert.assertEquals(allOrderedByDateAsc.get(0).getEmail(), email3);
+        Assert.assertEquals(allOrderedByDateAsc.get(2).getEmail(), email1);
 
     }
 }

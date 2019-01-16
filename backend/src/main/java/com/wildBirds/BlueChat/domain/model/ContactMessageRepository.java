@@ -6,5 +6,5 @@ import java.util.List;
 
 interface ContactMessageRepository extends JpaRepository<ContactMessage, Long> {
 
-    public List<ContactMessage> findAllByOrderBySentDateAsc();
+    public List<ContactMessage> findAllByOrderBySentDateDesc();
 }
