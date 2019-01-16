@@ -2,10 +2,10 @@ import {UserDtoShort} from '../user/userDtoShort';
 import {PhotoDto} from '../photo/photoDto';
 
 export class ChannelDto {
-    private id: number;
+    private idChannel: number;
     private name: string;
     private isPublic: boolean;
-    private channelOwner: UserDtoShort;
+    private userIdChannelOwner: UserDtoShort;
     private userList: Array<UserDtoShort>;
-    private photo: PhotoDto;
+    private photoDto: PhotoDto;
 }

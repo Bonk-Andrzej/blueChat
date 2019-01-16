@@ -40,7 +40,7 @@ export class ChannelRepositoryService {
         return this.http.post<ChannelDto>(this.host, channelDto, {headers: this.headers});
     }
 
-    public removeChannel(idChannel: number) {
+    public deleteChannel(idChannel: number) {
         return this.http.delete(this.host + idChannel, {headers: this.headers});
     }
 
