@@ -1,35 +1,38 @@
 #box-user-message {
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  padding: 5px 0;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  overflow: auto;
   #photo {
-    height: 14px;
-    width: 14px;
-    margin: 3px;
     float: left;
+    height: 35px;
+    width: 35px;
+    margin-right: 10px;
     background-color: green;
     border-radius: 50%;
-    display: inline-block;
   }
   #name {
+    float: left;
+    width: calc(100% - 45px);
     text-align: left;
     font-family: var(--font-Kanit);
     font-style: normal;
     font-weight: bold;
-    //line-height: b
     font-size: 12px;
     text-indent: 5px;
-    color: var(--black);
+    color: var(--black-light);
   }
   #message {
+    float: left;
+    width: calc(100% - 50px);
     text-align: left;
     font-family: var(--font-Kanit);
     font-style: normal;
     font-weight: normal;
-    //line-height: b
     font-size: 12px;
     text-indent: 5px;
     color: var(--black-light);
-
   }
 }

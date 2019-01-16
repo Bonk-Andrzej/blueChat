@@ -5,6 +5,7 @@
 .center-body{
   @extend %full-size;
   display: flex;
+  min-height: 560px;
 }
 
 .bg{

@@ -19,10 +19,9 @@
   grid-template-columns: repeat(10 , 1fr);
   grid-template-rows: repeat(20 , 1fr);
   grid-gap: 10px;
-  min-height: 560px;
 }
 
 %input-padding{
   box-sizing: border-box;
-  padding: 5px;
+  padding: 5px 10px;
 }

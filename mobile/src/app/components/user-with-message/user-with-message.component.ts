@@ -20,9 +20,9 @@ export class UserWithMessageComponent implements OnInit {
     }
 
     randomColorTrigger() {
-
-        this.randomColor = ('rgb(' + Math.floor(Math.random() * 255)
-            + ',' + Math.floor(Math.random() * 255) + ','
-            + Math.floor(Math.random() * 255) + ')');
+        this.randomColor = "#cfcfcf"
+        // this.randomColor = ('rgb(' + Math.floor(Math.random() * 255)
+        //     + ',' + Math.floor(Math.random() * 255) + ','
+        //     + Math.floor(Math.random() * 255) + ')');
     }
 }

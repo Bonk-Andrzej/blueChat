@@ -1,23 +1,26 @@
-<div id="head">
-    <div id="ham-menu" app-hamburger-menu=""></div>
-    <div id="title" valueContent="HOME" app-title=""></div>
-    <div id="right-button">XX</div>
-</div>
 
-<div id="main">
-    <div id="input-search" app-input-search=""></div>
-    <div title="NEW MESSAGES" class="new-message" app-list-users-with-title="">
-        <ng-container *ngFor="let messageDTO of newMessageDTOs">
-            <div class="element" [userNick]=messageDTO.userNick message={{messageDTO.content}}
-                 app-user-with-message=""></div>
-        </ng-container>
-    </div>
-    <div title="LAST CONVERSATION" class="last-conversation" app-list-users-with-title="">
-        <ng-container *ngFor="let messageDTO of messageDTOs">
-            <div class="element" [userNick]=messageDTO.userNick [message]=messageDTO.content
-                 app-user-with-message=""></div>
-        </ng-container>
-    </div>
-</div>
+    <div class="grid">
 
-<div id="menu-bottom" app-menu-bottom=""></div>
+        <div id="ham-menu" app-hamburger-menu=""></div>
+        <div id="title" valueContent="HOME" app-title=""></div>
+        <div id="right-button"></div>
+
+
+        <div id="input-search" app-input-search=""></div>
+
+        <div title="NEW MESSAGES" class="new-message" app-list-users-with-title="">
+            <div *ngFor="let messageDTO of newMessageDTOs"
+                 class="element" [userNick]=messageDTO.userNick message={{messageDTO.content}}
+                 app-user-with-message=""></div>
+        </div>
+
+        <div title="LAST CONVERSATION" class="last-conversation" app-list-users-with-title="">
+            <div *ngFor="let messageDTO of messageDTOs"
+                 class="element" [userNick]=messageDTO.userNick [message]=messageDTO.content app-user-with-message=""></div>
+        </div>
+    </div>
+    <div id="menu-bottom" app-menu-bottom=""></div>
+
+
+
+
