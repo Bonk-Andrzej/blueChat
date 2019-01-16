@@ -9,24 +9,17 @@
     float: left;
     height: 35px;
     width: 35px;
-    margin-right: 10px;
+    margin: 0 10px;
     background-color: green;
     border-radius: 50%;
   }
+
   #name {
-    float: left;
-    width: calc(100% - 45px);
-    text-align: left;
-    font-family: var(--font-Kanit);
-    font-style: normal;
     font-weight: bold;
-    font-size: 12px;
-    text-indent: 5px;
-    color: var(--black-light);
   }
-  #message {
+  .text {
     float: left;
-    width: calc(100% - 50px);
+    width: calc(100% - 55px);
     text-align: left;
     font-family: var(--font-Kanit);
     font-style: normal;
