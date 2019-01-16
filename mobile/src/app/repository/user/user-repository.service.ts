@@ -33,7 +33,11 @@ export class UserRepositoryService {
         return this.http.get<Array<UserDto>>(this.host + '/users');
     }
 
-    public getUserDtoShortList(): Observable<Array<UserDtoShort>> {
+    // public getUserDtoShortList(): Observable<Array<UserDtoShort>> {
+    //     return this.http.get<Array<UserDtoShort>>(this.host + '/users/short');
+    // }
+
+    public findUserByPhrase(phrase: string): Observable<Array<UserDtoShort>> {
         return this.http.get<Array<UserDtoShort>>(this.host + '/users/short');
     }
 
@@ -41,8 +45,8 @@ export class UserRepositoryService {
         return this.http.post<UserPassDto>(this.host + '/users', userPassDto, {headers: this.headers});
     }
 
-    public resetPass(userPassDto: UserDtoShort) {
-        return this.http.patch(this.host + '/users/pass', userPassDto, {headers: this.headers});
+    public resetPass(email: string) {
+        return this.http.patch(this.host + '/users/pass', email, {headers: this.headers});
     }
     public updateUser(userDto: UserDto) : Observable<UserDto>{
         return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers})
