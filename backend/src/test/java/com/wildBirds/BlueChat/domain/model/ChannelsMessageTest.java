@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import java.time.Instant;
 
 public class ChannelsMessageTest extends ConfigurationTest {
@@ -12,6 +13,7 @@ public class ChannelsMessageTest extends ConfigurationTest {
     private Logger logger = LoggerFactory.getLogger(ChannelsMessageTest.class);
 
     @Test
+    @Transactional
     public void shouldCreateNewChannelMessage() {
 
         logger.info("Running test >> shouldCreateNewChannelMessage");

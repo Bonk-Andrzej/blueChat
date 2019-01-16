@@ -24,7 +24,7 @@ public class ChannelTest extends ConfigurationTest {
         channel.setChannelOwner(user);
 
         //when
-        Channel savedChannel = channelRepository.save(channel);
+        Channel savedChannel = channelRepository.saveMessage(channel);
 
         //then
         Assert.assertNotNull(savedChannel.getIdChannel());
@@ -51,7 +51,7 @@ public class ChannelTest extends ConfigurationTest {
         channel.setName("general");
         channel.setChannelOwner(ownerChannel);
 
-        Channel savedChannel = channelRepository.save(channel);
+        Channel savedChannel = channelRepository.saveMessage(channel);
         //when
 
         savedChannel.getUsersInChannel().add(interlocutor);

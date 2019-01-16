@@ -15,9 +15,10 @@ import java.util.List;
 public class ChannelDto {
     private Long idChannel;
     private String name;
+    private boolean isPublic;
     private Long userIdChannelOwner;
     private List<UserDto> userList = new ArrayList<>();
-    private boolean isPublic;
+    private PhotoDto photoDto;
 
     public boolean getIsPublic() {
         return isPublic;

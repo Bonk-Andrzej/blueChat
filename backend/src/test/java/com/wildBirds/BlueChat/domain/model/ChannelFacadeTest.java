@@ -15,6 +15,7 @@ public class ChannelFacadeTest extends ConfigurationTest{
     private Logger logger = LoggerFactory.getLogger(ChannelFacadeTest.class);
 
     @Test
+    @Transactional
     public void shouldAddNewChannel() {
         logger.info("Running test >> shouldCreateNewChanel");
         //before
@@ -28,7 +29,10 @@ public class ChannelFacadeTest extends ConfigurationTest{
         Long idUser = user.getIdUser();
         String channelName = "task force";
 
-        ChannelDto channelDto = new ChannelDto(null, channelName, idUser, null, false);
+        ChannelDto channelDto = new ChannelDto();
+        channelDto.setName(channelName);
+        channelDto.setUserIdChannelOwner(idUser);
+        channelDto.setIsPublic(false);
         //when
         ChannelDto savedChannel = channelFacade.addChannel(channelDto);
 
@@ -55,7 +59,10 @@ public class ChannelFacadeTest extends ConfigurationTest{
 
         Long idUser = user.getIdUser();
         String channelName = "task force";
-        ChannelDto channelDto = new ChannelDto(null, channelName, idUser, null, false);
+        ChannelDto channelDto = new ChannelDto();
+        channelDto.setName(channelName);
+        channelDto.setUserIdChannelOwner(idUser);
+        channelDto.setIsPublic(false);
         ChannelDto savedChannel = channelFacade.addChannel(channelDto);
         Long idChannel = savedChannel.getIdChannel();
 

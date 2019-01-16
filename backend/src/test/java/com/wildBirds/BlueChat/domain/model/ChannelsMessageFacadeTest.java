@@ -23,7 +23,7 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
         //create necessary channel
         Channel channel = new Channel();
         channel.setName("TestMessageFacade");
-        channel.setPublic(true);
+        channel.setIsPublic(true);
         channel.setChannelOwner(new User("UserMessageFacade", "password"));
 
         channel = channelRepository.save(channel);
@@ -67,7 +67,7 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
 
         Channel channel = new Channel();
         channel.setName("TestConversation");
-        channel.setPublic(true);
+        channel.setIsPublic(true);
         channel.setChannelOwner(owner);
 
         channel = channelRepository.save(channel);

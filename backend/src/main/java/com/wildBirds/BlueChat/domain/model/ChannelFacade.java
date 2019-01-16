@@ -18,7 +18,7 @@ public class ChannelFacade {
     public ChannelDto addChannel(ChannelDto channelDto){
         Channel channel = channelService.toEntity(channelDto);
 
-        Channel addedChannel = channelRepository.save(channel);
+        Channel addedChannel = channelRepository.saveMessage(channel);
 
         ChannelDto response = channelService.toDto(addedChannel);
 

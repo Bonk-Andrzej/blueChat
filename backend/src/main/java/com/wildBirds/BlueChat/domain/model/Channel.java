@@ -20,6 +20,7 @@ class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idChannel;
     private String name;
+    private boolean isPublic;
 
     @OneToOne
     @JoinColumn(name = "idPhoto")
@@ -41,6 +42,12 @@ class Channel {
     @JoinColumn(name = "channelOwner")
     private User channelOwner;
 
-    private boolean isPublic;
 
+    public boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setIsPublic(boolean aPublic) {
+        isPublic = aPublic;
+    }
 }

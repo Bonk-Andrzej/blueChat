@@ -29,7 +29,7 @@ class ChannelService {
                 channel.setIdChannel(channelDto.getIdChannel());
             }
             channel.setName(channelDto.getName());
-            channel.setPublic(channelDto.getIsPublic());
+            channel.setIsPublic(channelDto.getIsPublic());
 
             User user = new User();
             user.setIdUser(channelDto.getUserIdChannelOwner());
@@ -64,7 +64,7 @@ class ChannelService {
             channelDto.setIdChannel(channel.getIdChannel());
             channelDto.setName(channel.getName());
             channelDto.setUserIdChannelOwner(channel.getChannelOwner().getIdUser());
-            channelDto.setIsPublic(channel.isPublic());
+            channelDto.setIsPublic(channel.getIsPublic());
             if (channel.getUsersInChannel() != null){
                 List<UserDto> userDtos = channel.getUsersInChannel().stream()
                         .map(user -> userService.toDto(user))
