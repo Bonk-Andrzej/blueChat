@@ -15,8 +15,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/channel")
 public class ChannelController {
-
     private Logger log = LoggerFactory.getLogger(ChannelController.class);
+
     private ChannelFacade channelFacade;
 
     public ChannelController(ChannelFacade channelFacade) {
@@ -25,13 +25,24 @@ public class ChannelController {
 
     // TODO: 17.12.2018 have to finish impl , add handling exceptions
 
-    @CrossOrigin
-    @GetMapping
-    public ResponseEntity getChannels(){
-        List<ChannelDto> channels = channelFacade.getChannels();
+    // TODO: 16.01.2019 HAVE TO TESTING
 
-        return new ResponseEntity(channels, HttpStatus.OK);
+    // TODO: 16.01.2019 add handling exception
 
+    /**
+     * } catch (DataIntegrityViolationException e) {
+     * e.printStackTrace();
+     * throw new DataIntegrityViolationException(e.getMessage());
+     * }
+     */
+
+
+    public ResponseEntity getShortList() {
+        return null;
+    }
+
+    public ResponseEntity getById(Long idChannel) {
+        return null;
     }
 
     @CrossOrigin
@@ -47,6 +58,22 @@ public class ChannelController {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());
             log.error("Method addChannel ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @CrossOrigin
+    @DeleteMapping({"deleteChannel"})
+    public ResponseEntity deleteChannel(@RequestBody ChannelDto channelDto) {
+
+        try {
+            channelFacade.removeChannel(channelDto);
+            log.info("Method deleteChannel ", channelDto.toString());
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method deleteChannel ", e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
@@ -76,19 +103,18 @@ public class ChannelController {
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
-    @CrossOrigin
-    @DeleteMapping({"deleteChannel"})
-    public ResponseEntity deleteChannel(@RequestBody ChannelDto channelDto) {
 
-        try {
-            channelFacade.removeChannel(channelDto);
-            log.info("Method deleteChannel ", channelDto.toString());
-            return new ResponseEntity(HttpStatus.OK);
-        } catch (Exception e) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Error", e.getMessage());
-            log.error("Method deleteChannel ", e.getMessage());
-            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity removeUserFromChannel(@RequestParam String userId,
+                                                @RequestParam String channelId) {
+        return null;
+    }
+
+    @CrossOrigin
+    @GetMapping
+    public ResponseEntity getChannels() {
+        List<ChannelDto> channels = channelFacade.getChannels();
+
+        return new ResponseEntity(channels, HttpStatus.OK);
+
     }
 }

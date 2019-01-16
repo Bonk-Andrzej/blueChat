@@ -23,35 +23,12 @@ public class ChannelRepositoryImpl implements ChannelRepositoryCustom {
 
         Long idChannel = channel.getIdChannel();
         String name = channel.getName();
-
         boolean isPublic = channel.getIsPublic();
-
-        Photo profilePhoto = null;
-        if (channel.getProfilePhoto() != null) {
-            profilePhoto = entityManager.find(Photo.class, profilePhoto.getPhoto());
-        }
-
-
+        Photo profilePhoto = getPhoto(channel);
         User channelOwner = channel.getChannelOwner();
-        User userJpa = entityManager.find(User.class, channelOwner.getIdUser());
-
-        Set<User> usersInChannel = null;
-        if (!channel.getUsersInChannel().isEmpty()) {
-            usersInChannel = usersInChannel.stream()
-                    .map(user -> entityManager.find(User.class, user.getIdUser()))
-                    .collect(Collectors.toSet());
-        }else {
-            usersInChannel = new HashSet<>();
-        }
-
-        List<ChannelsMessage> channelsMessageList = null;
-        if (!channel.getChannelsMessage().isEmpty()) {
-            channelsMessageList = channelsMessageList.stream()
-                    .map(channelsMessage1 -> entityManager.find(ChannelsMessage.class, channelsMessage1.getIdChannelsMessage()))
-                    .collect(Collectors.toList());
-        } else {
-            channelsMessageList = new ArrayList<>();
-        }
+        User userJpa = getUser(channelOwner);
+        Set<User> usersInChannel = getUsers(channel);
+        List<ChannelsMessage> channelsMessageList = getChannelsMessages(channel);
 
 
         Channel channelToSave = new Channel();
@@ -71,5 +48,41 @@ public class ChannelRepositoryImpl implements ChannelRepositoryCustom {
             throw new DataIntegrityViolationException(e.getMessage());
         }
         return response;
+    }
+
+    private User getUser(User channelOwner) {
+        return entityManager.find(User.class, channelOwner.getIdUser());
+    }
+
+    private Photo getPhoto(Channel channel) {
+        Photo profilePhoto = null;
+        if (channel.getProfilePhoto() != null) {
+            profilePhoto = entityManager.find(Photo.class, profilePhoto.getPhoto());
+        }
+        return profilePhoto;
+    }
+
+    private Set<User> getUsers(Channel channel) {
+        Set<User> usersInChannel = null;
+        if (!channel.getUsersInChannel().isEmpty()) {
+            usersInChannel = usersInChannel.stream()
+                    .map(user -> entityManager.find(User.class, user.getIdUser()))
+                    .collect(Collectors.toSet());
+        }else {
+            usersInChannel = new HashSet<>();
+        }
+        return usersInChannel;
+    }
+
+    private List<ChannelsMessage> getChannelsMessages(Channel channel) {
+        List<ChannelsMessage> channelsMessageList = null;
+        if (!channel.getChannelsMessage().isEmpty()) {
+            channelsMessageList = channelsMessageList.stream()
+                    .map(channelsMessage1 -> entityManager.find(ChannelsMessage.class, channelsMessage1.getIdChannelsMessage()))
+                    .collect(Collectors.toList());
+        } else {
+            channelsMessageList = new ArrayList<>();
+        }
+        return channelsMessageList;
     }
 }
