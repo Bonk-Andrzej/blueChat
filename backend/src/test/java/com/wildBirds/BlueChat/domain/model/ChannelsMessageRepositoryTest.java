@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 import javax.transaction.Transactional;
 import java.time.Instant;
 
-public class ChannelsMessageTest extends ConfigurationTest {
+public class ChannelsMessageRepositoryTest extends ConfigurationTest {
 
-    private Logger logger = LoggerFactory.getLogger(ChannelsMessageTest.class);
+    private Logger logger = LoggerFactory.getLogger(ChannelsMessageRepositoryTest.class);
 
     @Test
     @Transactional

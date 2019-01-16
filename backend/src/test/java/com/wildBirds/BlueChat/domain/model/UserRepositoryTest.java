@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserTest extends ConfigurationTest {
+public class UserRepositoryTest extends ConfigurationTest {
 
-    private Logger logger = LoggerFactory.getLogger(UserTest.class);
+    private Logger logger = LoggerFactory.getLogger(UserRepositoryTest.class);
 
     @Test
     public void shouldCreateNewUser() {

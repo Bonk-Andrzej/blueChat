@@ -24,11 +24,11 @@ class ChannelsMessage {
 
     private Instant sentDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "sender", nullable = false)
     private User sender;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "channelId", nullable = false)
     private Channel channel;
 

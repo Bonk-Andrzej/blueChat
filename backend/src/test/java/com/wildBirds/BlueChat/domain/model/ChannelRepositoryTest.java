@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ChannelTest extends ConfigurationTest {
+public class ChannelRepositoryTest extends ConfigurationTest {
 
-    private Logger logger = LoggerFactory.getLogger(ChannelTest.class);
+    private Logger logger = LoggerFactory.getLogger(ChannelRepositoryTest.class);
 
     @Test
     public void shouldCreateNewChanel() {

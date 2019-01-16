@@ -15,6 +15,11 @@ import java.util.Set;
 @NoArgsConstructor
 class User extends BaseEntity{
 
+    public User(String nick, String password) {
+        this.nick = nick;
+        this.password = password;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
@@ -24,6 +29,7 @@ class User extends BaseEntity{
 
     @Column(nullable = false)
     private String password;
+
     //    @Column(nullable = false)
     private String email;
 
@@ -33,23 +39,21 @@ class User extends BaseEntity{
     @JoinColumn(name = "idPhoto")
     private Photo profilePhoto;
 
-    @OneToMany(mappedBy = "sender", cascade = {CascadeType.PERSIST , CascadeType.MERGE})
+    @OneToMany(mappedBy = "sender")
     private List<Message> messageSender;
 
-    @OneToMany(mappedBy = "receiver", cascade = {CascadeType.PERSIST , CascadeType.MERGE})
+    @OneToMany(mappedBy = "receiver")
     private List<Message> messageReceiver;
 
-    @OneToMany(mappedBy = "sender", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "sender")
     private List<ChannelsMessage> channelsMessages;
 
-    @ManyToMany(mappedBy = "usersInChannel", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    @ManyToMany(mappedBy = "usersInChannel")
     private Set<Channel> channelsStaffed;
 
-    @ManyToMany(mappedBy = "usersChannelsMessages", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-    private Set<ChannelsMessage> readChannelsMessage;
+    @OneToMany(mappedBy = "channelOwner")
+    private Set<Channel> channelsOwner;
 
-    public User(String nick, String password) {
-        this.nick = nick;
-        this.password = password;
-    }
+    @ManyToMany(mappedBy = "usersChannelsMessages")
+    private Set<ChannelsMessage> readChannelsMessage;
 }
