@@ -1,39 +1,37 @@
+@import "~src/stylesAssets";
 
-#head {
-  height: 22px;
-  width: 100%;
-  display: flex;
-  //overflow: auto;
-  //box-sizing: border-box;
+.grid {
+  @extend %default-grid;
+  height: calc(100% - 50px);
+  float: left;
+
+
   #ham-menu {
-    width: 20%;
-    background: var(--dev-color1);
+    grid-column: 1/3;
+    grid-row: 1/2;
   }
+
   #title {
-    background: var(--dev-color2);
-    width: 60%;
+    grid-column: 3/9;
+    grid-row: 1/2;
   }
+
   #right-button {
-    background: var(--dev-color3);
-    width: 20%;
+    grid-column: 9/11;
+    grid-row: 1/2;
   }
+
+  .confirm-box {
+    grid-column: 1/11;
+    grid-row: 3/18;
+    align-self: center;
+  }
+
+
 }
 
-#main {
-  height: calc(100% - 72px);
-  width: 100%;
-  background: var(--der-background);
 
-  #space{
-    height: 30%;
-    width: 100%;
-  }
-  .log-out-frame{
 
-    //padding-top: 50%;
-  }
-}
-
-#menu-bottom {
-
+.menu-bottom {
+  float: left;
 }
