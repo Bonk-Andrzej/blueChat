@@ -51,7 +51,7 @@ public class ChannelsMessageFacadeTest extends ConfigurationTest{
         ChannelsMessageDto addedMessages = channelsMessageFacade.saveMessage(channelsMessageDto);
 
         //then
-        Assert.assertNotNull(addedMessages.getIdMessageGroup());
+        Assert.assertNotNull(addedMessages.getIdChannelsMessageDto());
         Assert.assertEquals(channel.getIdChannel(), addedMessages.getChannelId());
         Assert.assertEquals(sender.getIdUser(), addedMessages.getSenderId());
         Assert.assertEquals(content, addedMessages.getContent());

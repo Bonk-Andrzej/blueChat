@@ -133,7 +133,7 @@ public class UserContainFriendFacadeTest extends ConfigurationTest {
 
         //then
 
-        Assert.assertNotNull(savedFriends.getIdUserContainFriend());
+        Assert.assertNotNull(savedFriends.getIdFriendship());
         Assert.assertEquals("MarkIgorFriends3Facade8",savedFriends.getHisFriend().getName());
     }
 
@@ -170,7 +170,7 @@ public class UserContainFriendFacadeTest extends ConfigurationTest {
         //then
 
         try {
-            userContainFriendRepository.getOne(savedFriends.getIdUserContainFriend());
+            userContainFriendRepository.getOne(savedFriends.getIdFriendship());
             Assert.assertTrue(false);
         } catch (JpaObjectRetrievalFailureException e) {
             Assert.assertTrue(true);

@@ -15,17 +15,9 @@ public class MessageDto {
         private Long idMessage;
         private String content;
         private Instant sentDate;
+//        private boolean isRead;
         private Long senderId;
         private Long receiverId;
 
-        @Override
-        public String toString() {
-                return "MessageDto{" +
-                        "idMessage=" + idMessage +
-                        ", content='" + content + '\'' +
-                        ", sentDate=" + sentDate +
-                        ", senderId=" + senderId +
-                        ", receiverId=" + receiverId +
-                        '}';
-        }
+
 }

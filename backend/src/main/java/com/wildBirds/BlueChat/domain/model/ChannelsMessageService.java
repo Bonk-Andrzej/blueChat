@@ -19,8 +19,8 @@ public class ChannelsMessageService {
     public ChannelsMessage toEntity(ChannelsMessageDto channelsMessageDto) {
         ChannelsMessage channelsMessage = new ChannelsMessage();
 
-        if (channelsMessageDto.getIdMessageGroup() == null) {
-            channelsMessage.setIdChannelsMessage(channelsMessageDto.getIdMessageGroup());
+        if (channelsMessageDto.getIdChannelsMessageDto() == null) {
+            channelsMessage.setIdChannelsMessage(channelsMessageDto.getIdChannelsMessageDto());
         }
         try {
             channelsMessage.setSentDate(channelsMessageDto.getSentDate());
@@ -51,7 +51,7 @@ public class ChannelsMessageService {
         ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
 
         try {
-            channelsMessageDto.setIdMessageGroup(channelsMessage.getIdChannelsMessage());
+            channelsMessageDto.setIdChannelsMessageDto(channelsMessage.getIdChannelsMessage());
             channelsMessageDto.setChannelId(channelsMessage.getChannel().getIdChannel());
             channelsMessageDto.setSenderId(channelsMessage.getSender().getIdUser());
             channelsMessageDto.setContent(channelsMessage.getContent());

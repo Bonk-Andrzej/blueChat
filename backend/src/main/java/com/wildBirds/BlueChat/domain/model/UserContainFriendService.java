@@ -13,8 +13,8 @@ class UserContainFriendService {
     public UserContainFriend toEntity(Long idLoggedUser, FriendsDto friendsDto) {
         UserContainFriend userContainFriend = new UserContainFriend();
 
-        if (friendsDto.getIdUserContainFriend() != null) {
-            userContainFriend.setIdUserContainFriend(friendsDto.getIdUserContainFriend());
+        if (friendsDto.getIdFriendship() != null) {
+            userContainFriend.setIdUserContainFriend(friendsDto.getIdFriendship());
         }
 
         User loggedUserEntity = new User();
@@ -60,7 +60,7 @@ class UserContainFriendService {
 
     private void setId(UserContainFriend userContainFriend, FriendsDto friendsDto) {
         if (userContainFriend.getIdUserContainFriend() != null) {
-            friendsDto.setIdUserContainFriend(userContainFriend.getIdUserContainFriend());
+            friendsDto.setIdFriendship(userContainFriend.getIdUserContainFriend());
         }
     }
 

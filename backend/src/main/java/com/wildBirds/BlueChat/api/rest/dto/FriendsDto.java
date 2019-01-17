@@ -13,9 +13,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class FriendsDto {
 
-    private Long idUserContainFriend;
-
-//    private UserDtoShort loggedUser;
+    private Long idFriendship;
 
     private UserDtoShort hisFriend;
 

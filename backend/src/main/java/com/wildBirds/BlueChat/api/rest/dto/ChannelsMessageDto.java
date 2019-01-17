@@ -11,9 +11,9 @@ import java.time.Instant;
 @ToString
 public class ChannelsMessageDto {
 
-    private Long idMessageGroup;
-    private Long senderId;
-    private Long channelId;
+    private Long idChannelsMessageDto;
     private String content;
     private Instant sentDate;
+    private Long senderId;
+    private Long channelId;
 }

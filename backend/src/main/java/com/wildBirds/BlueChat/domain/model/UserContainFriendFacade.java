@@ -36,7 +36,7 @@ public class UserContainFriendFacade {
     }
 
     public void remove(FriendsDto friendsDto){
-        repository.deleteByIdUserContainFriend(friendsDto.getIdUserContainFriend());
+        repository.deleteByIdUserContainFriend(friendsDto.getIdFriendship());
     }
 
 }
