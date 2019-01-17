@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
@@ -137,6 +138,42 @@ public class UserContainFriendFacadeTest extends ConfigurationTest {
     }
 
     @Test
-    public void remove() {
+    @Transactional
+    public void shouldRemoveRelation() {
+        logger.info("Running test >> shouldRemoveRelation");
+        //given
+
+        //firstFriendship  --- 1
+        User loggedUser = new User();
+        loggedUser.setNick("loggedUserFriendFacade9");
+        loggedUser.setPassword("password");
+        loggedUser.setPassword("somepassword");
+        loggedUser = userRepository.save(loggedUser);
+
+        User hisFriend1 = new User();
+        hisFriend1.setNick("MarkIgorFriends3Facade9");
+        hisFriend1.setPassword("somePass");
+        hisFriend1 = userRepository.save(hisFriend1);
+
+        FriendsDto friendsDto = new FriendsDto();
+
+        UserDtoShort hisFriendShort = new UserDtoShort();
+        hisFriendShort.setIdUser(hisFriend1.getIdUser());
+
+        friendsDto.setHisFriend(hisFriendShort);
+        friendsDto.setDateFriendShip(Instant.now().plus(5, ChronoUnit.MINUTES));
+
+        FriendsDto savedFriends = userContainFriendFacade.addFriendship(loggedUser.getIdUser(), friendsDto);
+        //when
+        userContainFriendFacade.remove(savedFriends);
+
+        //then
+
+        try {
+            userContainFriendRepository.getOne(savedFriends.getIdUserContainFriend());
+            Assert.assertTrue(false);
+        } catch (JpaObjectRetrievalFailureException e) {
+            Assert.assertTrue(true);
+        }
     }
 }

@@ -34,6 +34,7 @@ public class UserContainFriendFacade {
         return service.toDto(idUser, saveEntity);
 
     }
+
     public void remove(FriendsDto friendsDto){
         repository.deleteByIdUserContainFriend(friendsDto.getIdUserContainFriend());
     }
