@@ -5,8 +5,8 @@ export class UserPassDto {
     public pass: string;
 
     //
-    // constructor(id: number = 0, name: string = "", pass: string = "") {
-    //     this.id = id;
+    // constructor(idUser: number = 0, name: string = "", pass: string = "") {
+    //     this.idUser = idUser;
     //     this.name = name;
     //     this.pass = pass;
     // }

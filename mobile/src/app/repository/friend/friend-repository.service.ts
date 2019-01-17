@@ -24,13 +24,13 @@ export class FriendRepositoryService {
         headers.set('Access-Control-Allow-Origin', 'true');
         return headers;
     }
-    public getFriendshipsList(idUser : number): Observable<FriendsDto>{
+    public getFriendshipsList(idUser : number): Observable<Array<FriendsDto>>{
       return null;
     }
     public removeFriendship(friendsDto: FriendsDto){
 
     }
-    public addFriendship(friendsDto: FriendsDto){
+    public addFriendship(idUser : number, friendsDto: FriendsDto){
 
     }
 }

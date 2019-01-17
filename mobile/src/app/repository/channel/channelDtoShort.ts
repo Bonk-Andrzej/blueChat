@@ -3,8 +3,8 @@ export class ChannelDtoShort {
     public name: string;
 
 
-    // constructor(id: number, name: string) {
-    //     this.id = id;
+    // constructor(idUser: number, name: string) {
+    //     this.idUser = idUser;
     //     this.name = name;
     // }
 

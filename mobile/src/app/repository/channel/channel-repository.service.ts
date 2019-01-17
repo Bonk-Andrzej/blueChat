@@ -32,7 +32,7 @@ export class ChannelRepositoryService {
     }
 
     public getById(id: number): Observable<ChannelDto> {
-        // return this.http.get<ChannelDtoShort>(this.host + id);
+        // return this.http.get<ChannelDtoShort>(this.host + idUser);
         return this.http.get<ChannelDto>(this.host + id);
     }
 

@@ -2,7 +2,7 @@ import {UserDtoShort} from '../user/userDtoShort';
 import {ChannelDtoShort} from '../channel/channelDtoShort';
 
 export class ChannelMessageDto {
-    private id: number;
+    private idChannelsMessageDto: number;
     private content: string;
     private sentDate: string;
     private isReadLogInUser: boolean;

@@ -1,8 +1,7 @@
 import {UserDtoShort} from '../user/userDtoShort';
 
 export class FriendsDto {
-    private id: number;
-    private you: UserDtoShort;
+    private idFriendship: number;
     private friend: UserDtoShort;
     private dateFriendship : string;
 
