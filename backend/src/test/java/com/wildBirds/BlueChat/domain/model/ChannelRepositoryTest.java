@@ -14,7 +14,7 @@ public class ChannelRepositoryTest extends ConfigurationTest {
         logger.info("Running test >> shouldCreateNewChanel");
         //given
         User user = new User();
-        user.setNick("Milena");
+        user.setNick("MilenaChannel");
         user.setPassword("password");
 
         user = userRepository.save(user);
@@ -29,7 +29,7 @@ public class ChannelRepositoryTest extends ConfigurationTest {
         //then
         Assert.assertNotNull(savedChannel.getIdChannel());
         Assert.assertEquals(channel.getName(), savedChannel.getName());
-        Assert.assertEquals("Milena", savedChannel.getChannelOwner().getNick());
+        Assert.assertEquals("MilenaChannel", savedChannel.getChannelOwner().getNick());
 
     }
     @Test

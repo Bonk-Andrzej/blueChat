@@ -18,6 +18,11 @@ class ModelConfiguration {
     }
 
     @Bean
+    UserContainFriendFacade userContainFriendFacade(){
+        return new UserContainFriendFacade();
+    }
+
+    @Bean
     MessageFacade messageFacade(MessageRepository messageRepository) {
         return new MessageFacade(messageRepository,messageService());
     }
@@ -43,6 +48,11 @@ class ModelConfiguration {
     @Bean
     public ChannelService channelService(UserService userService) {
         return new ChannelService(userService);
+    }
+
+    @Bean
+    public UserContainFriendService userContainFriendService(){
+        return new UserContainFriendService();
     }
 
     @Bean

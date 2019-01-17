@@ -21,7 +21,7 @@ public class ChannelsMessageRepositoryTest extends ConfigurationTest {
         ChannelsMessage channelsMessage = new ChannelsMessage();
 
         User ownerChannel = new User();
-        ownerChannel.setNick("Igor");
+        ownerChannel.setNick("IgorChannelMessage");
         ownerChannel.setPassword("password");
         ownerChannel = userRepository.save(ownerChannel);
 

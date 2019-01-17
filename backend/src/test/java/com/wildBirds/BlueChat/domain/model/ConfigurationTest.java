@@ -22,11 +22,13 @@ public class ConfigurationTest {
     @Autowired
     protected ChannelFacade channelFacade;
 
+
     @Autowired
     protected ChannelsMessageRepository chanMsgRep;
 
     @Autowired
     protected ChannelsMessageFacade channelsMessageFacade;
+
 
     @Autowired
     protected ContactMessageRepository contactMessageRepository;
@@ -34,11 +36,20 @@ public class ConfigurationTest {
     @Autowired
     protected ContactMessageFacade contactMessageFacade;
 
+
+    @Autowired
+    protected UserContainFriendRepository userContainFriendRepository;
+
+    @Autowired
+    protected UserContainFriendFacade userContainFriendFacade;
+
+
     @Autowired
     protected MessageFacade messageFacade;
 
     @Autowired
     protected MessageRepository messageRepository;
+
 
     @Autowired
     protected UserRepository userRepository;
