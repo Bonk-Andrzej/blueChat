@@ -18,8 +18,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    UserContainFriendFacade userContainFriendFacade(){
-        return new UserContainFriendFacade();
+    ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService){
+        return new ContactMessageFacade(contactMessageRepository, contactMessageService);
     }
 
     @Bean
@@ -32,17 +32,18 @@ class ModelConfiguration {
         return new UserFacade(userRepository, userService(), messageControllerWSR);
     }
 
+    @Bean
+    UserContainFriendFacade userContainFriendFacade(UserContainFriendService userContainFriendService, UserContainFriendRepository userContainFriendRepository){
+        return new UserContainFriendFacade(userContainFriendService, userContainFriendRepository);
+    }
+
 
 
     //services
+
     @Bean
     public ContactMessageService contactMessageService(){
         return new ContactMessageService();
-    }
-
-    @Bean
-    public ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService){
-        return new ContactMessageFacade(contactMessageRepository, contactMessageService);
     }
 
     @Bean
@@ -51,8 +52,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    public UserContainFriendService userContainFriendService(){
-        return new UserContainFriendService();
+    public ChannelsMessageService channelsMessageService(ChannelService channelService, UserService userService) {
+        return new ChannelsMessageService(channelService, userService);
     }
 
     @Bean
@@ -61,17 +62,17 @@ class ModelConfiguration {
     }
 
     @Bean
-    public ChannelsMessageService channelsMessageService(ChannelService channelService, UserService userService) {
-        return new ChannelsMessageService(channelService, userService);
-    }
-
-    @Bean
     public UserService userService() {
         return new UserService();
     }
 
+//    @Bean
+//    public MessageRepositoryImpl messageRepositoryImpl(){
+//        return new MessageRepositoryImpl();
+//    }
+
     @Bean
-    public MessageRepositoryImpl messageRepositoryImpl(){
-        return new MessageRepositoryImpl();
+    public UserContainFriendService userContainFriendService(){
+        return new UserContainFriendService();
     }
 }

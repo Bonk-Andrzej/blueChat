@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
+class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
 
     @PersistenceContext
     EntityManager entityManager;

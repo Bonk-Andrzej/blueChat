@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.util.List;
 
 
-class MessageRepositoryImpl implements MessagesRepositoryCustom{
+class MessageRepositoryImpl implements MessageRepositoryCustom {
 
     @PersistenceContext
     private EntityManager entityManager;
