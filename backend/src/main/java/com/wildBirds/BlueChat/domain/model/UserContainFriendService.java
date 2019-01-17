@@ -51,8 +51,10 @@ class UserContainFriendService {
         if(!userContainFriend.getUser1().getIdUser().equals(idUser)){
 
             friend.setIdUser(userContainFriend.getUser1().getIdUser());
+            friend.setName(userContainFriend.getUser1().getNick());
         }else {
             friend.setIdUser(userContainFriend.getUser2().getIdUser());
+            friend.setName(userContainFriend.getUser2().getNick());
         }
     }
 

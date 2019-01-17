@@ -3,6 +3,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -35,5 +36,16 @@ public class UserService {
         }
         userDto.setNick(user.getNick());
         return userDto;
+    }
+
+    public UserDtoShort toEntity(User user){
+        UserDtoShort userDtoShort = new UserDtoShort();
+
+        if (user.getIdUser() != null){
+            userDtoShort.setIdUser(user.getIdUser());
+        }
+        userDtoShort.setName(user.getNick());
+
+        return userDtoShort;
     }
 }

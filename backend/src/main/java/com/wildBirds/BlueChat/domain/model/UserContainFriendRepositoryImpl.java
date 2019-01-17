@@ -24,4 +24,24 @@ class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
                 .setParameter("idUser", idUser)
                 .getResultList();
     }
+
+    @Override
+    public UserContainFriend saveUserContainFriends(UserContainFriend userContainFriend) {
+        UserContainFriend toSave = new UserContainFriend();
+
+        User user1 = entityManager.find(User.class, userContainFriend.getUser1().getIdUser());
+        User user2 = entityManager.find(User.class, userContainFriend.getUser2().getIdUser());
+
+        if (userContainFriend.getIdUserContainFriend() != null){
+            toSave.setIdUserContainFriend(userContainFriend.getIdUserContainFriend());
+        }
+
+        toSave.setUser1(user1);
+        toSave.setUser2(user2);
+        toSave.setDateFriendShip(userContainFriend.getDateFriendShip());
+        entityManager.persist(toSave);
+
+
+        return toSave;
+    }
 }

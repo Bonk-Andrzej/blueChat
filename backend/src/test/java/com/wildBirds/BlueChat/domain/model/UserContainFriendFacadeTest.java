@@ -1,6 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.FriendsDto;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -100,7 +101,39 @@ public class UserContainFriendFacadeTest extends ConfigurationTest {
     }
 
     @Test
-    public void add() {
+    @Transactional
+    public void shouldAddNewFriendship() {
+        logger.info("Running test >> shouldAddNewFriendship");
+        //given
+
+        //firstFriendship  --- 1
+        User loggedUser = new User();
+        loggedUser.setNick("loggedUserFriendFacade8");
+        loggedUser.setPassword("password");
+        loggedUser.setPassword("somepassword");
+        loggedUser = userRepository.save(loggedUser);
+
+        User hisFriend1 = new User();
+        hisFriend1.setNick("MarkIgorFriends3Facade8");
+        hisFriend1.setPassword("somePass");
+        hisFriend1 = userRepository.save(hisFriend1);
+
+        FriendsDto friendsDto = new FriendsDto();
+
+        UserDtoShort hisFriendShort = new UserDtoShort();
+        hisFriendShort.setIdUser(hisFriend1.getIdUser());
+
+        friendsDto.setHisFriend(hisFriendShort);
+        friendsDto.setDateFriendShip(Instant.now().plus(5, ChronoUnit.MINUTES));
+
+        //when
+        FriendsDto savedFriends = userContainFriendFacade.addFriendship(loggedUser.getIdUser(), friendsDto);
+
+
+        //then
+
+        Assert.assertNotNull(savedFriends.getIdUserContainFriend());
+        Assert.assertEquals("MarkIgorFriends3Facade8",savedFriends.getHisFriend().getName());
     }
 
     @Test

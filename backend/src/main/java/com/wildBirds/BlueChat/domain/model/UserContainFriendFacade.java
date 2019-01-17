@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 public class UserContainFriendFacade {
 
-    private UserContainFriendService userContainFriendService;
+    private UserContainFriendService service;
     private UserContainFriendRepository repository;
 
     public UserContainFriendFacade(UserContainFriendService userContainFriendService, UserContainFriendRepository repository) {
-        this.userContainFriendService = userContainFriendService;
+        this.service = userContainFriendService;
         this.repository = repository;
     }
 
@@ -20,17 +20,22 @@ public class UserContainFriendFacade {
 
         List<UserContainFriend> userFriendship = repository.getUserFriendship(idUser);
         List<FriendsDto> friendsDtoList = userFriendship.stream()
-                .map(userContainFriend -> userContainFriendService.toDto(idUser, userContainFriend))
+                .map(userContainFriend -> service.toDto(idUser, userContainFriend))
                 .collect(Collectors.toList());
 
         return friendsDtoList;
     }
-    public FriendsDto add(FriendsDto friendsDto){
-        return null;
+
+    public FriendsDto addFriendship(Long idUser, FriendsDto friendsDto) {
+        UserContainFriend userContainFriend = service.toEntity(idUser, friendsDto);
+
+        UserContainFriend saveEntity = repository.saveUserContainFriends(userContainFriend);
+
+        return service.toDto(idUser, saveEntity);
 
     }
     public void remove(FriendsDto friendsDto){
-
+        repository.deleteByIdUserContainFriend(friendsDto.getIdUserContainFriend());
     }
 
 }
