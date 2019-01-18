@@ -2,7 +2,9 @@ package com.wildBirds.BlueChat.domain.model;
 
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ class ChannelService {
             channel.setIsPublic(channelDto.getIsPublic());
 
             User user = new User();
-            user.setIdUser(channelDto.getUserIdChannelOwner());
+            user.setIdUser(channelDto.getChannelOwner().getIdUser());
 
             channel.setChannelOwner(user);
 
@@ -61,9 +63,13 @@ class ChannelService {
         try {
             channelDto = new ChannelDto();
 
+            UserDtoShort userDtoShort = new UserDtoShort();
+            userDtoShort.setIdUser(channel.getChannelOwner().getIdUser());
+            userDtoShort.setNick(channel.getChannelOwner().getNick());
+            channelDto.setChannelOwner(userDtoShort);
+
             channelDto.setIdChannel(channel.getIdChannel());
             channelDto.setName(channel.getName());
-            channelDto.setUserIdChannelOwner(channel.getChannelOwner().getIdUser());
             channelDto.setIsPublic(channel.getIsPublic());
             if (channel.getUsersInChannel() != null){
                 List<UserDto> userDtos = channel.getUsersInChannel().stream()
@@ -80,5 +86,13 @@ class ChannelService {
             throw new ChannelServiceExceptions("Channel Service Exception");
         }
         return channelDto;
+    }
+    protected ChannelDtoShort toDtoShort(Channel channel){
+        ChannelDtoShort channelDtoShort = new ChannelDtoShort();
+
+        channelDtoShort.setIdChannel(channel.getIdChannel());
+        channelDtoShort.setName(channel.getName());
+
+        return channelDtoShort;
     }
 }

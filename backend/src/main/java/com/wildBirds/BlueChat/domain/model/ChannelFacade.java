@@ -2,6 +2,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -56,5 +57,20 @@ public class ChannelFacade {
                 .collect(Collectors.toList());
 
         return channelDtoList;
+    }
+
+    public List<ChannelDtoShort> getChannelsShort() {
+        List<Channel> channelList = channelRepository.getListNameAndId();
+        List<ChannelDtoShort> channelDtoShortList = channelList.stream()
+                .map(channel -> channelService.toDtoShort(channel))
+                .collect(Collectors.toList());
+
+        return channelDtoShortList;
+    }
+
+    // TODO: 18.01.2019 have to write tests
+    public  ChannelDto getById(Long id){
+        Channel channel = channelRepository.getOne(id);
+        return channelService.toDto(channel);
     }
 }

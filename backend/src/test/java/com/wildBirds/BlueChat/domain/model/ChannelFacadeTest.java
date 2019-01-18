@@ -1,6 +1,8 @@
 package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -8,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Set;
 
 public class ChannelFacadeTest extends ConfigurationTest{
@@ -22,16 +25,18 @@ public class ChannelFacadeTest extends ConfigurationTest{
         User user = new User();
         user.setNick("MilenaOwner");
         user.setPassword("password1234");
-
         user = userRepository.save(user);
 
         //given
-        Long idUser = user.getIdUser();
+        UserDtoShort userDtoShort = new UserDtoShort();
+        userDtoShort.setIdUser(user.getIdUser());
+        userDtoShort.setNick(user.getNick());
+
         String channelName = "task force";
 
         ChannelDto channelDto = new ChannelDto();
         channelDto.setName(channelName);
-        channelDto.setUserIdChannelOwner(idUser);
+        channelDto.setChannelOwner(userDtoShort);
         channelDto.setIsPublic(false);
         //when
         ChannelDto savedChannel = channelFacade.addChannel(channelDto);
@@ -40,7 +45,7 @@ public class ChannelFacadeTest extends ConfigurationTest{
         //then
         Assert.assertNotNull(savedChannel.getIdChannel());
         Assert.assertEquals(channelName, savedChannel.getName());
-        Assert.assertEquals(idUser, savedChannel.getUserIdChannelOwner());
+        Assert.assertEquals(userDtoShort, savedChannel.getChannelOwner());
 
     }
 
@@ -57,11 +62,15 @@ public class ChannelFacadeTest extends ConfigurationTest{
 
         // given
 
-        Long idUser = user.getIdUser();
+        UserDtoShort userDtoShort = new UserDtoShort();
+        userDtoShort.setIdUser(user.getIdUser());
+        userDtoShort.setNick(user.getNick());
+
+
         String channelName = "task force";
         ChannelDto channelDto = new ChannelDto();
         channelDto.setName(channelName);
-        channelDto.setUserIdChannelOwner(idUser);
+        channelDto.setChannelOwner(userDtoShort);
         channelDto.setIsPublic(false);
         ChannelDto savedChannel = channelFacade.addChannel(channelDto);
         Long idChannel = savedChannel.getIdChannel();
@@ -99,12 +108,14 @@ public class ChannelFacadeTest extends ConfigurationTest{
         addingUser = userRepository.save(addingUser);
 
         // given
+        UserDtoShort userDtoShort = new UserDtoShort();
+        userDtoShort.setIdUser(owner.getIdUser());
+        userDtoShort.setNick(owner.getNick());
 
-        Long idUser = owner.getIdUser();
         String channelName = "task force";
         ChannelDto channelDto = new ChannelDto();
         channelDto.setName(channelName);
-        channelDto.setUserIdChannelOwner(idUser);
+        channelDto.setChannelOwner(userDtoShort);
         ChannelDto savedChannel = channelFacade.addChannel(channelDto);
         Long idChannel = savedChannel.getIdChannel();
 
@@ -116,6 +127,46 @@ public class ChannelFacadeTest extends ConfigurationTest{
         Set<User> usersInChannel = channelRepository.getOne(idChannel).getUsersInChannel();
 
         Assert.assertEquals(addingUser.getIdUser(), usersInChannel.iterator().next().getIdUser());
+
+    }
+
+    @Test
+    @Transactional
+    public void shouldReturnShortListOfChannelsOnlyWithNameAndId() {
+        //given
+        logger.info("Running test >> shouldReturnShortListOfChannelsOnlyWithNameAndId");
+        User user = new User();
+        user.setNick("MilenaChannel33");
+        user.setPassword("password");
+
+        user = userRepository.save(user);
+
+        Channel channel = new Channel();
+        channel.setName("general33");
+        channel.setChannelOwner(user);
+
+        Channel channel2 = new Channel();
+        channel2.setName("general34");
+        channel2.setChannelOwner(user);
+
+        channelRepository.saveMessage(channel);
+        channelRepository.saveMessage(channel2);
+
+        //when
+        List<ChannelDtoShort> channelsShort = channelFacade.getChannelsShort();
+        ChannelDtoShort channelDtoShort = channelsShort.get(0);
+
+//        then
+
+        Assert.assertNotNull(channelDtoShort.getName());
+        Assert.assertNotNull(channelDtoShort.getIdChannel());
+
+        if (channelsShort.size() >= 2){
+            Assert.assertTrue(true);
+        }else {
+            Assert.assertTrue(false);
+        }
+
 
     }
 }

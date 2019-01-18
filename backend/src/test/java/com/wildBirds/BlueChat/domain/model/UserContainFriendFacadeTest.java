@@ -124,7 +124,7 @@ public class UserContainFriendFacadeTest extends ConfigurationTest {
         UserDtoShort hisFriendShort = new UserDtoShort();
         hisFriendShort.setIdUser(hisFriend1.getIdUser());
 
-        friendsDto.setHisFriend(hisFriendShort);
+        friendsDto.setFriend(hisFriendShort);
         friendsDto.setDateFriendShip(Instant.now().plus(5, ChronoUnit.MINUTES));
 
         //when
@@ -134,7 +134,7 @@ public class UserContainFriendFacadeTest extends ConfigurationTest {
         //then
 
         Assert.assertNotNull(savedFriends.getIdFriendship());
-        Assert.assertEquals("MarkIgorFriends3Facade8",savedFriends.getHisFriend().getName());
+        Assert.assertEquals("MarkIgorFriends3Facade8",savedFriends.getFriend().getNick());
     }
 
     @Test
@@ -160,7 +160,7 @@ public class UserContainFriendFacadeTest extends ConfigurationTest {
         UserDtoShort hisFriendShort = new UserDtoShort();
         hisFriendShort.setIdUser(hisFriend1.getIdUser());
 
-        friendsDto.setHisFriend(hisFriendShort);
+        friendsDto.setFriend(hisFriendShort);
         friendsDto.setDateFriendShip(Instant.now().plus(5, ChronoUnit.MINUTES));
 
         FriendsDto savedFriends = userContainFriendFacade.addFriendship(loggedUser.getIdUser(), friendsDto);

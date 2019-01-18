@@ -5,18 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Instant;
-
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class FriendsDto {
-
-    private Long idFriendship;
-
-    private UserDtoShort friend;
-
-    private Instant dateFriendShip;
-
+@NoArgsConstructor
+public class ChannelDtoShort {
+    private Long idChannel;
+    private String name;
 }

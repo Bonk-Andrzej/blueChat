@@ -11,15 +11,15 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
 class Channel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idChannel;
+
     private String name;
+
     private boolean isPublic;
 
     @OneToOne
@@ -42,6 +42,13 @@ class Channel {
     @JoinColumn(name = "channelOwner")
     private User channelOwner;
 
+    public Channel() {
+    }
+
+    public Channel(Long idChannel, String name) {
+        this.idChannel = idChannel;
+        this.name = name;
+    }
 
     public boolean getIsPublic() {
         return isPublic;

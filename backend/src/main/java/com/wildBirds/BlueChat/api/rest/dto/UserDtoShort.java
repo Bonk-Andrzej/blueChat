@@ -1,17 +1,15 @@
 package com.wildBirds.BlueChat.api.rest.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 public class UserDtoShort {
     private Long idUser ;
-    private String name;
+    private String nick;
 
 }

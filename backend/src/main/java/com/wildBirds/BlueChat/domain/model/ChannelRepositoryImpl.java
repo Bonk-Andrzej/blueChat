@@ -50,6 +50,15 @@ public class ChannelRepositoryImpl implements ChannelRepositoryCustom {
         return response;
     }
 
+    @Override
+    public List<Channel> getListNameAndId() {
+        String query ="SELECT new " + Channel.class.getName() + "(channel.idChannel, channel.name) FROM Channel channel";
+
+
+        return entityManager.createQuery(query)
+                .getResultList();
+    }
+
     private User getUser(User channelOwner) {
         return entityManager.find(User.class, channelOwner.getIdUser());
     }

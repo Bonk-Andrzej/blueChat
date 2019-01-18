@@ -21,7 +21,7 @@ class UserContainFriendService {
         loggedUserEntity.setIdUser(idLoggedUser);
 
         User hisFriendEntity = new User();
-        hisFriendEntity.setIdUser(friendsDto.getHisFriend().getIdUser());
+        hisFriendEntity.setIdUser(friendsDto.getFriend().getIdUser());
 
         userContainFriend.setUser1(loggedUserEntity);
         userContainFriend.setUser2(hisFriendEntity);
@@ -42,7 +42,7 @@ class UserContainFriendService {
 
         checkWhoIsFriend(idUser, userContainFriend, friend);
 
-        friendsDto.setHisFriend(friend);
+        friendsDto.setFriend(friend);
 
         return friendsDto;
     }
@@ -51,10 +51,10 @@ class UserContainFriendService {
         if(!userContainFriend.getUser1().getIdUser().equals(idUser)){
 
             friend.setIdUser(userContainFriend.getUser1().getIdUser());
-            friend.setName(userContainFriend.getUser1().getNick());
+            friend.setNick(userContainFriend.getUser1().getNick());
         }else {
             friend.setIdUser(userContainFriend.getUser2().getIdUser());
-            friend.setName(userContainFriend.getUser2().getNick());
+            friend.setNick(userContainFriend.getUser2().getNick());
         }
     }
 

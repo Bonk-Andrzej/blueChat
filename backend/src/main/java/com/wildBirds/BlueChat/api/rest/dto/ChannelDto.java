@@ -1,9 +1,6 @@
 package com.wildBirds.BlueChat.api.rest.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +9,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class ChannelDto {
     private Long idChannel;
     private String name;
     private boolean isPublic;
-    private Long userIdChannelOwner;
+    private UserDtoShort channelOwner;
     private List<UserDto> userList = new ArrayList<>();
     private PhotoDto photoDto;
 

@@ -44,7 +44,7 @@ public class UserService {
         if (user.getIdUser() != null){
             userDtoShort.setIdUser(user.getIdUser());
         }
-        userDtoShort.setName(user.getNick());
+        userDtoShort.setNick(user.getNick());
 
         return userDtoShort;
     }

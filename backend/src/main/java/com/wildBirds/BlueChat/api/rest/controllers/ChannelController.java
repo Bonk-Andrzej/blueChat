@@ -1,6 +1,7 @@
 package com.wildBirds.BlueChat.api.rest.controllers;
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
 import com.wildBirds.BlueChat.domain.model.ChannelFacade;
 import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ public class ChannelController {
         this.channelFacade = channelFacade;
     }
 
-    // TODO: 17.12.2018 have to finish impl , add handling exceptions
+    // TODO: 17.12.2018 have to finish impl , add handling exceptions and logger
 
     // TODO: 16.01.2019 HAVE TO TESTING
 
@@ -36,13 +37,28 @@ public class ChannelController {
      * }
      */
 
-
+    @CrossOrigin
+    @GetMapping
     public ResponseEntity getShortList() {
-        return null;
+
+        List<ChannelDtoShort> channelsShort = channelFacade.getChannelsShort();
+
+        return new ResponseEntity(channelsShort, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping
+    public ResponseEntity getChannels() {
+        List<ChannelDto> channels = channelFacade.getChannels();
+
+        return new ResponseEntity(channels, HttpStatus.OK);
+
     }
 
     public ResponseEntity getById(Long idChannel) {
-        return null;
+        ChannelDto channelDto = channelFacade.getById(idChannel);
+
+        return new ResponseEntity(channelDto, HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -80,12 +96,12 @@ public class ChannelController {
 
     @CrossOrigin
     @PostMapping("addUser")
-    public ResponseEntity addUser(@RequestParam String userId,
-                                  @RequestParam String channelId) {
+    public ResponseEntity addUser(@RequestParam String idUser,
+                                  @RequestParam String idChannel) {
 
         try {
-            Long useId = Long.valueOf(userId);
-            Long chanId = Long.valueOf(channelId);
+            Long useId = Long.valueOf(idUser);
+            Long chanId = Long.valueOf(idChannel);
 
             ChannelDto response = channelFacade.addUserToChannel(useId, chanId);
             log.info("Method addUser ", response.toString());
@@ -104,17 +120,10 @@ public class ChannelController {
         }
     }
 
-    public ResponseEntity removeUserFromChannel(@RequestParam String userId,
-                                                @RequestParam String channelId) {
+    public ResponseEntity removeUserFromChannel(@RequestParam String idUser,
+                                                @RequestParam String idChannel) {
+
+
         return null;
-    }
-
-    @CrossOrigin
-    @GetMapping
-    public ResponseEntity getChannels() {
-        List<ChannelDto> channels = channelFacade.getChannels();
-
-        return new ResponseEntity(channels, HttpStatus.OK);
-
     }
 }
