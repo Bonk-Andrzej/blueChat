@@ -43,6 +43,7 @@ import { BoxProfilesComponent } from './components/box-profiles/box-profiles.com
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { ButtonAddFriendComponent } from './components/button-add-friend/button-add-friend.component';
+import { FriendsComponent } from './pages/friends/friends.component';
 
 @NgModule({
     declarations: [
@@ -85,6 +86,7 @@ import { ButtonAddFriendComponent } from './components/button-add-friend/button-
         ProfileComponent,
         UserProfileComponent,
         ButtonAddFriendComponent,
+        FriendsComponent,
     ],
     imports: [
         BrowserModule,

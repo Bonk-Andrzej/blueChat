@@ -93,6 +93,7 @@ export class LeftMenuComponent implements OnInit {
     }
 
     showConversation() {
+        this.leftMenuService.toggle()
         this.router.navigateByUrl('/conversation');
     }
 }
