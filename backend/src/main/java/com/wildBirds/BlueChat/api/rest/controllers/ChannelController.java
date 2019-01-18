@@ -1,6 +1,7 @@
 package com.wildBirds.BlueChat.api.rest.controllers;
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
 import com.wildBirds.BlueChat.domain.model.ChannelFacade;
 import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/channel")
@@ -34,31 +37,31 @@ public class ChannelController {
      * }
      */
 
-//    @CrossOrigin
-//    @GetMapping
-//    public ResponseEntity getShortList() {
-//
-//        List<ChannelDtoShort> channelsShort = channelFacade.getChannelsShort();
-//
-//        return new ResponseEntity(channelsShort, HttpStatus.OK);
-//    }
-//
-//    @CrossOrigin
-//    @GetMapping
-//    public ResponseEntity getChannels() {
-//        List<ChannelDto> channels = channelFacade.getChannels();
-//
-//        return new ResponseEntity(channels, HttpStatus.OK);
-//
-//    }
-//
-//    @CrossOrigin
-//    @GetMapping
-//    public ResponseEntity getById(Long idChannel) {
-//        ChannelDto channelDto = channelFacade.getById(idChannel);
-//
-//        return new ResponseEntity(channelDto, HttpStatus.OK);
-//    }
+    @CrossOrigin
+    @GetMapping("shorts")
+    public ResponseEntity getShortList() {
+
+        List<ChannelDtoShort> channelsShort = channelFacade.getChannelsShort();
+
+        return new ResponseEntity(channelsShort, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping
+    public ResponseEntity getChannels() {
+        List<ChannelDto> channels = channelFacade.getChannels();
+
+        return new ResponseEntity(channels, HttpStatus.OK);
+
+    }
+
+    @CrossOrigin
+    @GetMapping({"idChannel"})
+    public ResponseEntity getById(Long idChannel) {
+        ChannelDto channelDto = channelFacade.getById(idChannel);
+
+        return new ResponseEntity(channelDto, HttpStatus.OK);
+    }
 
     @CrossOrigin
     @PostMapping("addChannel")
@@ -76,7 +79,6 @@ public class ChannelController {
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
-
     @CrossOrigin
     @DeleteMapping({"deleteChannel"})
     public ResponseEntity deleteChannel(@RequestBody ChannelDto channelDto) {
@@ -94,7 +96,7 @@ public class ChannelController {
     }
 
     @CrossOrigin
-    @PostMapping("addUser")
+    @PatchMapping("addUser")
     public ResponseEntity addUser(@RequestParam String idUser,
                                   @RequestParam String idChannel) {
 
@@ -119,10 +121,17 @@ public class ChannelController {
         }
     }
 
-//    public ResponseEntity removeUserFromChannel(@RequestParam String idUser,
-//                                                @RequestParam String idChannel) {
-//
-//
-//        return null;
-//    }
+    @CrossOrigin
+    @PatchMapping("removeUser")
+    public ResponseEntity removeUserFromChannel(@RequestParam String idUser,
+                                                @RequestParam String idChannel) {
+        Long useId = Long.valueOf(idUser);
+        Long chanId = Long.valueOf(idChannel);
+
+        ChannelDto response = channelFacade.removeUserFromChannel(useId, chanId);
+
+        return new ResponseEntity(response,HttpStatus.OK);
+    }
+
+
 }
