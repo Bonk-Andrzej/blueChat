@@ -133,5 +133,15 @@ public class ChannelController {
         return new ResponseEntity(response,HttpStatus.OK);
     }
 
+//    @ExceptionHandler(ChannelServiceExceptions.class)
+//    public ResponseEntity channelException(ChannelServiceExceptions e){
+//
+//    }
+//
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity channelException(){
+//
+//    }
+
 
 }
