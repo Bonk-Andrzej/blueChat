@@ -132,6 +132,44 @@ public class ChannelFacadeTest extends ConfigurationTest{
 
     @Test
     @Transactional
+    public void shouldRemoveUserFromExistingChannel() {
+        logger.info("Running test >> shouldRemoveUserFromExistingChannel");
+        //before
+        User owner = new User();
+        owner.setNick("MilenaOwner5");
+        owner.setPassword("password1234");
+        owner = userRepository.save(owner);
+
+        User removingUser = new User();
+        removingUser.setNick("IgorChannelTest");
+        removingUser.setPassword("somePassword");
+        removingUser = userRepository.save(removingUser);
+
+        // given
+        UserDtoShort userDtoShort = new UserDtoShort();
+        userDtoShort.setIdUser(owner.getIdUser());
+        userDtoShort.setNick(owner.getNick());
+
+        String channelName = "task force";
+        ChannelDto channelDto = new ChannelDto();
+        channelDto.setName(channelName);
+        channelDto.setChannelOwner(userDtoShort);
+        ChannelDto savedChannel = channelFacade.addChannel(channelDto);
+        Long idChannel = savedChannel.getIdChannel();
+        channelFacade.addUserToChannel(removingUser.getIdUser(), idChannel);
+
+        //when
+        channelFacade.removeUserFromChannel(removingUser.getIdUser(), idChannel);
+
+        //then
+        Set<User> usersInChannel = channelRepository.getOne(idChannel).getUsersInChannel();
+
+        Assert.assertTrue(usersInChannel.isEmpty());
+
+    }
+
+    @Test
+    @Transactional
     public void shouldReturnShortListOfChannelsOnlyWithNameAndId() {
         //given
         logger.info("Running test >> shouldReturnShortListOfChannelsOnlyWithNameAndId");

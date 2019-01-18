@@ -46,6 +46,13 @@ public class ChannelFacade {
         ChannelDto resposne = channelService.toDto(channel);
         return resposne;
     }
+    public ChannelDto removeUserFromChannel(Long userId, Long  channelId){
+
+        Channel channel = channelRepository.getOne(channelId);
+        User user = userRepository.getOne(userId);
+        channel.getUsersInChannel().remove(user);
+        return channelService.toDto(channel);
+    }
 
     // TODO: 19.12.2018 have to write tests
     public List<ChannelDto> getChannels(){
@@ -73,4 +80,5 @@ public class ChannelFacade {
         Channel channel = channelRepository.getOne(id);
         return channelService.toDto(channel);
     }
+
 }
