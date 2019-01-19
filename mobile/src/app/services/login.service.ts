@@ -2,10 +2,12 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {UserRepositoryService} from '../repository/user/user-repository.service';
 import {UserDto} from '../repository/user/userDto';
 import {UserPassDto} from '../repository/user/userPassDto';
+import {Router} from '@angular/router';
 @Injectable({
     providedIn: 'root'
 })
 export class LoginService {
+
 
     constructor( private router: Router,
                  private userRepository: UserRepositoryService) {
@@ -28,4 +30,4 @@ export class LoginService {
 
 }
 
-import {Router} from '@angular/router';
+

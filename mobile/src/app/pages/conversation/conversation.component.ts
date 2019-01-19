@@ -12,7 +12,7 @@ import {UserProfileService} from '../../services/user-profile.service';
 export class ConversationComponent implements OnInit {
 
     messageOwnerName: string;
-    interlocutorName: string;
+    interlocutorName: Observable<string>;
     idSender: number;
     messagesDTOs = [
         {
@@ -101,8 +101,8 @@ export class ConversationComponent implements OnInit {
     ngOnInit() {
         this.idSender = this.userProfile.getUser().idUser;
         console.log(this.idSender, "my id")
-        this.messageOwnerName = 'Paweł Jastrzębski';
-        this.interlocutorName = 'Igor Sowiński';
+        this.messageOwnerName = this.userProfile.getUser().nick;
+        this.interlocutorName = this.conversationService.getInterlocutorName();
         this.conversation = this.conversationService.getConversation();
 
     }

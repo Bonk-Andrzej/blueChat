@@ -7,6 +7,7 @@ import {FriendRepositoryService} from '../repository/friend/friend-repository.se
 import {BehaviorSubject} from 'rxjs';
 import {ChannelDtoShort} from '../repository/channel/channelDtoShort';
 import {ChannelRepositoryService} from '../repository/channel/channel-repository.service';
+import {Router} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -20,14 +21,36 @@ export class UserProfileService {
     constructor(private userRepository: UserRepositoryService,
                 private friendsRepository: FriendRepositoryService,
                 private channelsRespository: ChannelRepositoryService,
-                private loginService: LoginService) {
+                private loginService: LoginService,
+                private router: Router) {
 
-        this.loginService.onLogin.subscribe((user) => {
-            this.userDto = user;
-            this.fetchFriends().catch();
-            this.fetchChannels().catch();
+        this.loginService.onLogin.subscribe((user: UserDto) => {
+            // this.userDto = user;
+            //             // this.fetchFriends().catch();
+            //             // this.fetchChannels().catch();
+            this.initialize(user);
+            localStorage.setItem('userId', user.idUser + '');
         });
+        this.reTriveStatusAplication();
+
         console.log('UserProfileService -- subscribe');
+    }
+
+    private async reTriveStatusAplication() {
+        const id: string = localStorage.getItem('userId');
+        if (id != null) {
+            const user = await this.userRepository.getUserById(parseInt(id));
+            this.initialize(user);
+            this.router.navigateByUrl('/main-login').catch();
+        } else {
+            this.router.navigateByUrl('/').catch();
+        }
+    }
+
+    private initialize(user: UserDto) {
+        this.userDto = user;
+        this.fetchFriends().catch();
+        this.fetchChannels().catch();
     }
 
     private async fetchFriends() {
@@ -45,7 +68,7 @@ export class UserProfileService {
 
     private async fetchChannels() {
         const result = await this.channelsRespository.getShortList();
-        console.warn(result)
+        console.warn(result);
         this.channals.next(result);
     }
 

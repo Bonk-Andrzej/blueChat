@@ -20,7 +20,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.userDto.name = 'Paweł Jastrzębski';
+        this.userDto.nick = 'Paweł Jastrzębski';
         this.userDto.description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eveniet neque veritatis nihil recusandae, omnis velit, expedita non, dolore maiores tempore debitis consequuntur doloribus pariatur esse incidunt.';
         this.userDto = this.userProfileService.getUser();
         console.log(this.userProfileService);

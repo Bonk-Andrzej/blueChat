@@ -3,7 +3,7 @@
     <div id="title" valueContent="" app-title ></div>
     <div id="right-button"></div>
 
-    <div id="box-profile" [content]='this.userDto.description' [title]='this.userDto.name' app-box-profiles=""></div>
+    <div id="box-profile" [content]='this.userDto.description' [title]="this.userDto.nick" app-box-profiles=""></div>
     <div id="button-wrapper">
         <div (click)="onAddFriend()" id="add-friend" class="button"></div>
         <div (click)="onFriends()" id="friends" class="button" ></div>

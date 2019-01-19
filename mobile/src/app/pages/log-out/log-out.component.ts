@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 export class LogOutComponent implements OnInit {
 
     constructor(private router: Router,
-                private location: Location) {
+                private location: Location,) {
     }
 
     ngOnInit() {
@@ -21,6 +21,7 @@ export class LogOutComponent implements OnInit {
     }
 
     confirmHandler() {
+        localStorage.removeItem("userId");
         this.router.navigateByUrl("/").catch();
     }
 
