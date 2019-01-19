@@ -1,19 +1,20 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing/app-routing.module';
-import {BackgroundWrapperComponent} from './components/background-wrapper/background-wrapper.component';
-import {HamburgerMenuComponent} from './components/hamburger-menu/hamburger-menu.component';
-import {BigLogoComponent} from './components/big-logo/big-logo.component';
-import {InputWithTitleComponent} from './components/input-with-title/input-with-title.component';
-import {FormsModule} from '@angular/forms';
-import {ButtonWideComponent} from './components/button-wide/button-wide.component';
-import {HomeMenuComponent} from './pages/home-menu/home-menu.component';
-import {ResetPasswordComponent} from './pages/reset-password/reset-password.component';
-import {InformationSupportComponent} from './components/information-support/information-support.component';
-import {InputWithButtonComponent} from './components/input-with-button/input-with-button.component';
-import {RegisterComponent} from './pages/register/register.component';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { BackgroundWrapperComponent } from './components/background-wrapper/background-wrapper.component';
+import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
+import { BigLogoComponent } from './components/big-logo/big-logo.component';
+import { InputWithTitleComponent } from './components/input-with-title/input-with-title.component';
+import { FormsModule } from '@angular/forms';
+import { ButtonWideComponent } from './components/button-wide/button-wide.component';
+import { HomeMenuComponent } from './pages/home-menu/home-menu.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { InformationSupportComponent } from './components/information-support/information-support.component';
+import { InputWithButtonComponent } from './components/input-with-button/input-with-button.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { TitleComponent } from './components/title/title.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -25,7 +26,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
 import { ListUsersWithTitleComponent } from './components/list-users-with-title/list-users-with-title.component';
 import { ConversationComponent } from './pages/conversation/conversation.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserWithMessageComponent } from './components/user-with-message/user-with-message.component';
 import { CreateGroupComponent } from './pages/create-group/create-group.component';
 import { TextareaWithTitleComponent } from './components/textarea-with-title/textarea-with-title.component';
@@ -92,7 +93,8 @@ import { FriendsComponent } from './pages/friends/friends.component';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
