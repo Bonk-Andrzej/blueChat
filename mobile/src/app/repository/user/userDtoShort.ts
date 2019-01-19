@@ -1,6 +1,6 @@
 export class UserDtoShort {
-    private idUser: number;
-    private name: string;
+    public idUser: number;
+    public nick: string;
 
     constructor() {
     }

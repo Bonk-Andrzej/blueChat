@@ -15,7 +15,7 @@ export class ChannelRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = 'http://192.168.99.100:90/channel';
+        this.host = 'http://localhost:8080/channel';
         this.headers = this.getHeaders();
     }
 
@@ -27,13 +27,13 @@ export class ChannelRepositoryService {
         return headers;
     }
 
-    public getShortList(): Observable<Array<ChannelDtoShort>> {
-        return this.http.get<Array<ChannelDtoShort>>(this.host);
+    public getShortList(): Promise<Array<ChannelDtoShort>> {
+        return this.http.get<Array<ChannelDtoShort>>(this.host).toPromise();
     }
 
     public getById(id: number): Observable<ChannelDto> {
         // return this.http.get<ChannelDtoShort>(this.host + idUser);
-        return this.http.get<ChannelDto>(this.host + id);
+        return this.http.get<ChannelDto>(this.host + '/' + id);
     }
 
     public addChannel(channelDto: ChannelDto): Observable<ChannelDto> {

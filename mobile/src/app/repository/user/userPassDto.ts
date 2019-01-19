@@ -1,8 +1,8 @@
 export class UserPassDto {
     public idUser: number;
-    public name: string;
+    public nick: string;
     public email: string;
-    public pass: string;
+    public password: string;
 
     //
     // constructor(idUser: number = 0, name: string = "", pass: string = "") {

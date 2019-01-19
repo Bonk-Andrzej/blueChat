@@ -30,16 +30,14 @@ export class HomeComponent implements OnInit {
     public logIn() {
 
 
-        try {
-            this.loginService.Login(this.user);
-            this.router.navigateByUrl('/main-login');
+        this.loginService.Login(this.user).catch(()=> {
+                alert('INVALID EMAIL OR PASS');
+            }
+        );
 
-        } catch (e) {
-            alert('INVALID PASS');
-        }
     }
 
-    public openGithub(){
+    public openGithub() {
         window.open('https://github.com/newBlueChat/blueChat', '_blank');
     }
 

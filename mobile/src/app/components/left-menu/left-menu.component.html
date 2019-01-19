@@ -7,16 +7,16 @@
     <div [backgroundColor]="backgroundColorList" id="groups" title="GROUP CONVERSATION"
          [titleStyle]="titleStyle" [listStyle]="listStyle" app-list-users-with-title="">
 
-        <ng-container *ngFor="let group of groups">
-            <div [messageCounter]="group.noReadMessages" [objectName]="group.name" app-object-with-status=""></div>
+        <ng-container *ngFor="let channel of channels | async">
+            <div [messageCounter]="1" [objectName]="channel.name" app-object-with-status=""></div>
         </ng-container>
 
     </div>
     <div [backgroundColor]="backgroundColorList" id="friends" title="FRIENDS"
          [titleStyle]="titleStyle" [listStyle]="listStyle"  app-list-users-with-title>
 
-        <ng-container *ngFor="let user of users">
-            <div (click)="showConversation()" [messageCounter]="user.noReadMessages" [objectName]="user.nick" app-object-with-status=""></div>
+        <ng-container *ngFor="let friend of friends | async">
+            <div (click)="showConversation()" [messageCounter]="1" [objectName]="friend.friend.nick" app-object-with-status=""></div>
         </ng-container>
 
     </div>

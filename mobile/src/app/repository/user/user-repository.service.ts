@@ -4,7 +4,6 @@ import {UserPassDto} from './userPassDto';
 import {UserDto} from './userDto';
 import {Observable} from 'rxjs';
 import {UserDtoShort} from './userDtoShort';
-import {async} from 'q';
 
 @Injectable({
     providedIn: 'root'
@@ -58,15 +57,6 @@ export class UserRepositoryService {
     }
 
     public logInUser(userPassDto: UserPassDto): Promise<UserDto> {
-
-        return new Promise<UserDto>((resolve, reject) => {
-                this.http.post<UserDto>(this.host + '/rpc/login', userPassDto, {headers: this.headers})
-                    .subscribe((user)=>{
-                        resolve(user)
-                    },error => {
-                        reject(error)
-                    })
-            })
-
+        return this.http.post<UserDto>(this.host + '/rpc/login', userPassDto, {headers: this.headers}).toPromise();
     }
 }
