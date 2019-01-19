@@ -33,7 +33,7 @@ public class UserFacade {
                 .map(user -> userService.toDto(user))
                 .map(userDto -> {
                     if (authorizatedSessionsIdentificators.contains(userDto.getIdUser())) {
-                        userDto.setActive(true);
+//                        userDto.setActive(true);
                     }
                     return userDto;
                 })
@@ -61,5 +61,13 @@ public class UserFacade {
         UserDto responseDto = userService.toDto(onlineUser);
         log.info("Method loginUser ", responseDto.toString());
         return responseDto;
+    }
+
+    public UserDto getById(Long idUser) {
+        User one = userRep.getOne(idUser);
+
+        UserDto userDto = userService.toDto(one);
+
+        return userDto;
     }
 }

@@ -11,5 +11,7 @@ import lombok.*;
 public class UserDtoShort {
     private Long idUser ;
     private String nick;
+    private boolean isActive;
+
 
 }

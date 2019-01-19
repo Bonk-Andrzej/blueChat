@@ -60,4 +60,11 @@ public class UserController {
             return new ResponseEntity(headers,HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    @CrossOrigin
+    @GetMapping("{idUser}")
+    public ResponseEntity getById(@PathVariable Long idUser) {
+        return new ResponseEntity(userFacade.getById(idUser), HttpStatus.OK);
+    }
 }

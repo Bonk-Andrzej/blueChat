@@ -13,16 +13,10 @@ public class UserDto {
 
     private Long idUser;
     private String nick;
-    private boolean isActive;
-//    private List<ChannelDto> channelsStaffed;
+    private String email;
+    private String description;
+    private PhotoDto photoDto;
 
 
-    @Override
-    public String toString() {
-        return "UserDto{" +
-                "idUser=" + idUser +
-                ", nick='" + nick + '\'' +
-                ", isActive=" + isActive +
-                '}';
-    }
+
 }

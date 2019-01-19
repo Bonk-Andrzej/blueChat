@@ -35,6 +35,11 @@ public class UserService {
             userDto.setIdUser(user.getIdUser());
         }
         userDto.setNick(user.getNick());
+        userDto.setDescription(user.getDescription());
+        userDto.setEmail(user.getEmail());
+//        Photo profilePhoto = user.getProfilePhoto();
+//
+//        userDto.setPhotoDto();
         return userDto;
     }
 

@@ -29,8 +29,6 @@ public class FriendsController {
     @GetMapping
     public ResponseEntity getFriendshipList(@RequestParam String idUser) {
         Long value = Long.valueOf(idUser);
-        log.info(value + " <<<<<<<<<<<<<<<<<<<<<<<<<");
-
         List<FriendsDto> userContainFriend = userContainFriendFacade.getUserContainFriend(value);
         return new ResponseEntity(userContainFriend, HttpStatus.OK);
     }
