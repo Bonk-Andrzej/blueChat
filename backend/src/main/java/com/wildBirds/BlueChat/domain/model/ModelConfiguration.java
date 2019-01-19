@@ -28,8 +28,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    UserFacade userFacade(UserRepository userRepository, MessageControllerWSR messageControllerWSR) {
-        return new UserFacade(userRepository, userService(), messageControllerWSR);
+    UserFacade userFacade(UserRepository userRepository,UserService userService, MessageControllerWSR messageControllerWSR) {
+        return new UserFacade(userRepository,userService, messageControllerWSR);
     }
 
     @Bean
@@ -62,14 +62,14 @@ class ModelConfiguration {
     }
 
     @Bean
-    public UserService userService() {
-        return new UserService();
+    public UserService userService(PhotoService photoService) {
+        return new UserService(photoService);
     }
 
-//    @Bean
-//    public MessageRepositoryImpl messageRepositoryImpl(){
-//        return new MessageRepositoryImpl();
-//    }
+    @Bean
+    public PhotoService photoService(){
+        return new PhotoService();
+    }
 
     @Bean
     public UserContainFriendService userContainFriendService(){

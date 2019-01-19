@@ -20,6 +20,7 @@ class User extends BaseEntity{
         this.password = password;
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;

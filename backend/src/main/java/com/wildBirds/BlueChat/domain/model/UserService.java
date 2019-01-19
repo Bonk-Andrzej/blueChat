@@ -4,20 +4,28 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+
+
+    private PhotoService photoService;
+
+    public UserService(PhotoService photoService) {
+        this.photoService = photoService;
+    }
 
     public User toEntity(UserDto userDto) {
         User user = new User();
         if (userDto.getIdUser() != null) {
             user.setIdUser(userDto.getIdUser());
-            user = userRepository.getOne(userDto.getIdUser());
+        }
+        if (userDto.getPhotoDto() != null) {
+            user.setProfilePhoto(photoService.toEntity(userDto.getPhotoDto()));
         }
         user.setNick(userDto.getNick());
+        user.setDescription(userDto.getDescription());
+        user.setEmail(userDto.getEmail());
         return user;
     }
 
@@ -34,12 +42,13 @@ public class UserService {
         if (user.getIdUser() != null) {
             userDto.setIdUser(user.getIdUser());
         }
+        if (user.getProfilePhoto() != null) {
+            userDto.setPhotoDto(photoService.toDto(user.getProfilePhoto()));
+        }
+
         userDto.setNick(user.getNick());
         userDto.setDescription(user.getDescription());
         userDto.setEmail(user.getEmail());
-//        Photo profilePhoto = user.getProfilePhoto();
-//
-//        userDto.setPhotoDto();
         return userDto;
     }
 
