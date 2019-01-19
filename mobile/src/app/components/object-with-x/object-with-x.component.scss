@@ -1,45 +1,44 @@
-#box-object-x{
-  height: 40px;
-  width: calc(100% - 15px);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  align-items: center;
-  justify-items: center;
-  display: flex;
+@import "~src/stylesAssets";
 
-  #wrapper-photo {
-    width: 25%;
-    #photo {
-      height: 20px;
-      width: 20px;
-      margin: 3px;
-      float: left;
-      border-radius: 50%;
-      display: inline-block;
-    }
+#object {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 0;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+  #photo {
+    float: left;
+    height: 35px;
+    width: 35px;
+    margin: 0 10px;
+    background-color: green;
+    border-radius: 50%;
+
+    @extend %rocket-icon;
   }
-  #object-name {
-    width: 60%;
-    height: fit-content;
-    align-items: center;
-    justify-items: center;
-    vertical-align: middle;
+
+  #name {
+    line-height: 35px;
+  }
+  .text {
+    float: left;
+    width: calc(100% - 95px);
     text-align: left;
     font-family: var(--font-Kanit);
     font-style: normal;
-    font-weight: bold;
-    font-size: 1.16em;
+    font-weight: normal;
+    font-size: 12px;
     text-indent: 5px;
-    color: var(--black);
+    color: var(--black-light);
   }
+
   #icon{
-    width: 15%;
-    align-items: center;
-    justify-items: center;
-    background: url("../../../assets/colose-icon.svg") no-repeat center;
-    height: 20px;
-    background-size: 20%;
+    float: left;
+    height: 23px;
+    width: 23px;
+    margin: 6px;
+    background: url('~src/assets/colose-icon.svg') no-repeat center;
   }
+
 }

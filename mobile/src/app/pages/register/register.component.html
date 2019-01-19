@@ -1,18 +1,24 @@
-<div id="head">
-    <div id="ham-menu" app-hamburger-menu=""></div>
-    <div id="title" valueContent="HOME" app-title-page=""></div>
-    <div id="right-button"></div>
-</div>
-<div id="main">
-    <div id="space"></div>
-    <div app-big-logo></div>
+<div class="grid">
 
-    <div id="email-input" type="text" [(value)]="form.email" title="EMAIL" titleInside=""
-         app-input-with-title=""></div>
-    <div class="password" type="password" [(value)]="form.password" title="PASSWORD" (inputChange)="onChange($event)" titleInside=""
-         app-input-with-title=""></div>
-    <div class="password" type="password" [(value)]="form.repeatPassword" title="REPEAT PASSWORD" (inputChange)="onChange($event)"
-         titleInside="" app-input-with-title=""></div>
-    <div id="sing-button" [colorTextOnButton]="colorTextOnButton" [colorButton]='buttonColor' buttonTitle="SIGN UP" app-button-wide></div>
+    <div id="left-button" app-hamburger-menu></div>
+    <div id="title" valueContent="HOME" app-title></div>
+    <div id="right-button"></div>
+    <div routerLink="/" id="logo" app-big-logo></div>
+
+    <div id="form">
+        <div id="inputs">
+            <div id="email-input" type="text" [(value)]="form.email" title="EMAIL" titleInside=""
+            app-input-with-title=""></div>
+            <div class="password" type="password" [(value)]="form.password" title="PASSWORD" (inputChange)="onChange($event)" titleInside=""
+            app-input-with-title=""></div>
+            <div class="password" type="password" [(value)]="form.repeatPassword" title="CONFIRM PASSWORD" (inputChange)="onChange($event)"
+            titleInside="" app-input-with-title=""></div>
+            <div id="sing-button" [colorTextOnButton]="colorTextOnButton" [colorButton]='buttonColor' buttonTitle="SIGN UP" app-button-wide></div>
+        </div>
+        <div routerLink="/home" textAlign='left' fontSize='10px' id="reset-password" valueContent="Log in" app-title></div>
+    </div>
+
+
+    <div id="github" (click)='openGithub()' fontSize='10px' valueContent="Github" app-title></div>
 
 </div>

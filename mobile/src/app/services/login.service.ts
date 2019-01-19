@@ -15,14 +15,11 @@ export class LoginService {
 
 
         console.log(userPassDto);
-
         let user = await this.userRepository.logInUser(userPassDto).catch(reason => {
             throw(reason);
         });
         this.onLogin.emit(user);
         console.log(user);
-
-
     }
 
     // Events
