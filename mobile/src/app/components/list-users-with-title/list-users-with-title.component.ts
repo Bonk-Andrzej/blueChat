@@ -9,10 +9,14 @@ export class ListUsersWithTitleComponent implements OnInit {
 
     @Input() title: string;
     @Input() backgroundColor: string;
+    @Input() titleStyle: object;
+    @Input() listStyle: object;
     constructor() {
     }
 
     ngOnInit() {
+        this.titleStyle = this.titleStyle || {};
+        this.listStyle = this.listStyle || {};
     }
 
 }

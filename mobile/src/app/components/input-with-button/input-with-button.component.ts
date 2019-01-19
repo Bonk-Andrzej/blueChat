@@ -10,21 +10,15 @@ export class InputWithButtonComponent implements OnInit {
     @Input() title: string;
     @Input() value: string;
     @Input() buttonTitle: string;
+    @Input() texArea: boolean;
+    @Input() textAlign: string
 
-    textAreaStyleTextAlign = "center"
     constructor() {
     }
 
     ngOnInit() {
-    }
-
-    keyPressHandler(e) {
-        console.log("press")
-        if(e.target.value.length > 0){
-            this.textAreaStyleTextAlign = "left"
-        }else {
-            this.textAreaStyleTextAlign = "center"
-        }
+        this.texArea = this.texArea || false;
+        this.textAlign = this.textAlign || "center";
     }
 
 

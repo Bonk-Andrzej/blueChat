@@ -17,7 +17,7 @@ export class LoginService {
         if (userPassDto.name === 'test' && userPassDto.pass === 'test') {
             const userDto = new UserDto();
             userDto.name = userPassDto.name;
-            userDto.description ='JAKIS SUPER NOWY OPIS !!!! :)';
+            userDto.description ='    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eveniet neque veritatis nihil recusandae, omnis velit, expedita non, dolore maiores tempore debitis consequuntur doloribus pariatur esse incidunt.';
             console.log('LoginService -- emit');
             this.onLogin.emit(userDto);
         }else {

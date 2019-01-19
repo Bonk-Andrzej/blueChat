@@ -20,9 +20,9 @@ export class ObjectWithStatusComponent implements OnInit {
     }
 
     randomColorTrigger() {
-
-        this.randomColor = ('rgb(' + Math.floor(Math.random() * 255)
-            + ',' + Math.floor(Math.random() * 255) + ','
-            + Math.floor(Math.random() * 255) + ')');
+        this.randomColor = "#888888"
+        // this.randomColor = ('rgb(' + Math.floor(Math.random() * 255)
+        //     + ',' + Math.floor(Math.random() * 255) + ','
+        //     + Math.floor(Math.random() * 255) + ')');
     }
 }

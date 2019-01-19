@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
@@ -14,11 +14,11 @@ import {ResetPasswordComponent} from './pages/reset-password/reset-password.comp
 import {InformationSupportComponent} from './components/information-support/information-support.component';
 import {InputWithButtonComponent} from './components/input-with-button/input-with-button.component';
 import {RegisterComponent} from './pages/register/register.component';
-import { TitlePageComponent } from './components/title-page/title-page.component';
+import { TitleComponent } from './components/title/title.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LogOutComponent } from './pages/log-out/log-out.component';
-import { BoxLogOutComponent } from './components/box-log-out/box-log-out.component';
+import { ConfirmBoxComponent } from './components/confirm-box/confirm-box.component';
 import { MenuBottomComponent } from './components/menu-bottom/menu-bottom.component';
 import { MainLoginComponent } from './pages/main-login/main-login.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
@@ -43,11 +43,8 @@ import { BoxProfilesComponent } from './components/box-profiles/box-profiles.com
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { ButtonAddFriendComponent } from './components/button-add-friend/button-add-friend.component';
-import {UserProfileService} from './services/user-profile.service';
+import { FriendsComponent } from './pages/friends/friends.component';
 
-export function init_app(userProfileService: UserProfileService) {
-    return () => userProfileService.ngOnInit();
-}
 @NgModule({
     declarations: [
         AppComponent,
@@ -61,11 +58,11 @@ export function init_app(userProfileService: UserProfileService) {
         ResetPasswordComponent,
         InformationSupportComponent,
         InputWithButtonComponent,
-        TitlePageComponent,
+        TitleComponent,
         HomeComponent,
         ContactComponent,
         LogOutComponent,
-        BoxLogOutComponent,
+        ConfirmBoxComponent,
         MenuBottomComponent,
         MainLoginComponent,
         InputSearchComponent,
@@ -89,6 +86,7 @@ export function init_app(userProfileService: UserProfileService) {
         ProfileComponent,
         UserProfileComponent,
         ButtonAddFriendComponent,
+        FriendsComponent,
     ],
     imports: [
         BrowserModule,
@@ -96,9 +94,7 @@ export function init_app(userProfileService: UserProfileService) {
         FormsModule,
         BrowserAnimationsModule
     ],
-    providers: [UserProfileService,
-        // { provide: APP_INITIALIZER, useFactory: init_app, deps: [UserProfileService], multi: true }
-        ],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {

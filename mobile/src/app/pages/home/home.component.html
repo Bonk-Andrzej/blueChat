@@ -1,13 +1,22 @@
-<div id="head">
-    <div id="ham-menu" app-hamburger-menu=""></div>
-    <div id="title" valueContent="HOME" app-title-page=""></div>
+<div class="grid">
+
+    <div id="left-button" app-hamburger-menu></div>
+    <div id="title" valueContent="HOME" app-title></div>
     <div id="right-button"></div>
+    <div routerLink="/" id="logo" app-big-logo></div>
+
+    <div id="form">
+        <div id="inputs">
+            <div [(value)]='this.user.name' id="email" title="EMAIL" titleInside="" app-input-with-title></div>
+            <div [(value)]='this.user.pass' id="password" title="PASSWORD" type="password" titleInside="" app-input-with-title></div>
+            <div (click)='logIn()' [colorButton]='colorButton' [colorTextOnButton]="colorTextOnButton" buttonTitle="LOG IN" app-button-wide></div>
+        </div>
+        <div routerLink="/reset-pass" textAlign='left' fontSize='10px' id="reset-password" valueContent="Forget password" app-title></div>
+        <div routerLink="/register" textAlign='right' fontSize='10px' id="register" valueContent="Sing up" app-title></div>
+    </div>
+
+
+    <div id="github" (click)='openGithub()' fontSize='10px' valueContent="Github" app-title></div>
+
 </div>
-<div id="main">
-    <div id="space"></div>
-    <div id="logo" app-big-logo=""></div>
-    <div [(value)]='this.user.name' id="email" title="EMAIL" titleInside="" app-input-with-title=""></div>
-    <div [(value)]='this.user.pass' id="password" title="PASSWORD" titleInside="" app-input-with-title=""></div>
-    <div (click)='logIn()'  [colorButton]='colorButton' [colorTextOnButton]="colorTextOnButton" id="log-in"
-         buttonTitle="LOG IN" app-button-wide=""></div>
-</div>
+

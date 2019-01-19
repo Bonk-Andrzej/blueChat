@@ -1,30 +1,29 @@
 
-
 #wrapper{
   width: 100%;
   height: 120px;
   background-color: var(--white-light);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  color: var(--black-light);
+  padding: 0px 0;
   #head{
     padding-top: 10px;
-    padding-bottom: 5px;
     text-align: center;
-    font-size: 14px;
+    font-size: 1.4em;
     font-family: var(--font-Wallpoet);
     font-weight: 400;
+    color: var(--black-dark);
   }
   .content{
     padding-bottom: 10px;
-    .support{
+    .header{
       font-family: var(--font-Kanit);
       font-style: normal;
       font-weight: bold;
       padding-left: 20px;
       line-height: normal;
-      font-size: 14px;
-      color: #323232;
-      /* color / black 0 */
+      font-size: 1.3em;
       opacity: 0.9;
 
     }
@@ -34,9 +33,8 @@
       font-weight: 300;
       padding-left: 20px;
       line-height: normal;
-      font-size: 10px;
-      color: #323232;
-      /* color / black 0 */
+      font-size: 1.2em;
+      color: var(--black-light);
       opacity: 0.9;
 
     }

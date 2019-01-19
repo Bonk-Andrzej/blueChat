@@ -39,4 +39,8 @@ export class HomeComponent implements OnInit {
         }
     }
 
+    public openGithub(){
+        window.open('https://github.com/newBlueChat/blueChat', '_blank');
+    }
+
 }

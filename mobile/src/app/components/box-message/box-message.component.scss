@@ -1,32 +1,45 @@
+@import "~src/stylesAssets";
+
+%details{
+  padding: 5px 0 2px;
+  box-sizing: border-box;
+  float: left;
+  font-size: 1.2em;
+}
+
 #box-message {
   box-sizing: border-box;
   width: 100%;
-  height: min(52px);
-  border-radius: 0px 10px;
+  height: fit-content;
+  border-radius: 0 10px;
+  color: var(--white-light);
+  font-family: var(--font-Kanit);
+  font-weight: 300;
+
   #messageOwner {
-    float: left;
-    width: 50%;
+    @extend %details;
     text-align: left;
-    background: none;
-    box-sizing: border-box;
-    display: inline;
+    width: 50%;
   }
   #date {
+    @extend %details;
     text-align: right;
-    float: left;
+    padding-right: 8px;
     width: 50%;
 
-    box-sizing: border-box;
-    display: inline;
-    padding-right: 5px;
   }
   #content {
     float: left;
     height: 50%;
     width: 100%;
-    background: var(--white);
+    background: var(--white-light);
+
     box-sizing: border-box;
-    padding-left: 5px;
+    padding: 10px 10px 15px;
+
+    border-radius: 0 10px;
+    font-size: 1.3em;
+    color: var(--black);
 
   }
 }

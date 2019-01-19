@@ -1,6 +1,6 @@
-<div class="box-user-listA">
-  <div id="title">{{title}}</div>
-    <div [style.backgroundColor]="backgroundColor" class="list">
-      <ng-content></ng-content>
+<div class="box-user-list">
+    <div [ngStyle]="titleStyle" id="title">{{title}}</div>
+    <div [ngStyle]="listStyle" [style.backgroundColor]="backgroundColor" class="list">
+        <ng-content></ng-content>
     </div>
 </div>

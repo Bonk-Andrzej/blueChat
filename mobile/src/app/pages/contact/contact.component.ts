@@ -16,4 +16,8 @@ export class ContactComponent implements OnInit {
     hamMenu() {
         this.router.navigateByUrl('/home-menu');
     }
+
+    public openGithub(){
+        window.open('https://github.com/newBlueChat/blueChat', '_blank');
+    }
 }

@@ -1,32 +1,40 @@
 #wrapper {
-  //background: var(--dev-color1);
-  border: none;
-  outline: none;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
   #first-line {
     width: 100%;
-    height: 100%;
+    height: 140px;
     display: flex;
-    border: none;
-    outline: none;
-    #box-left {
-      margin-top: 70px;
-      width: calc(50% - 70px);
-      height: 70px;
+    float: left;
 
-      border: none;
-      outline: none;
-
-      background: var(--white-light);
-    }
-    #bow {
-      border: none;
-      outline: none;
+    .box {
+      flex-grow: 1;
+      height: 100%;
+      box-sizing: border-box;
       display: flex;
-      height: 140px;
+      align-items: flex-end;
+
+      > div {
+        height: 50%;
+        width: 100%;
+        background: var(--white-light);
+      }
+
+      .right-box {
+        border-radius: 0 10px 0 0;
+      }
+    }
+
+    #bow {
+      pointer-events: all;
+      display: flex;
+      height: 100%;
       width: 140px;
       //background: var(--dev-color2);
-      background: var(--white-light);
-      background: url("../../../assets/subtract.svg") no-repeat center bottom;
+      background: url("../../../assets/subtract.svg") no-repeat bottom;
+      background-size: 100%;
       align-items: center;
       justify-items: center;
       #photo {
@@ -40,31 +48,22 @@
       }
 
     }
-    #box-right {
-      margin-top: 70px;
-      width: calc(50% - 70px);
-      height: 70px;
-
-      border: none;
-      outline: none;
-      background: var(--dev-color4);
-      background: var(--white-light);
-      border-top-right-radius: 10px;
-    }
   }
   #bottom {
-    border: none;
-    outline: none;
+    pointer-events: all;
     width: 100%;
-    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: calc(100% - 140px);
+    float: left;
     background: var(--dev-color5);
     background: var(--white-light);
     border-bottom-left-radius: 10px;
+
     #title {
       width: 100%;
-      min-height: 20px;
-      height: content-box;
-      font-size: 1.41em;
+      float: left;
+      font-size: 1.5em;
       text-align: center;
 
       font-family: var(--font-Kanit);
@@ -76,16 +75,16 @@
     }
     #content {
       width: 100%;
-      height: 100%;
-      min-height: 101px;
+      float: left;
       font-family: var(--font-Kanit);
       font-style: normal;
       font-weight: 300;
       line-height: normal;
-      font-size: 11px;
+      text-indent: 10px;
+      text-indent: 10px;
+      font-size: 1.4em;
       text-align: justify;
-      padding-left: 9px;
-      padding-right: 9px;
+      padding: 0 10px 10px;
       box-sizing: border-box;
     }
   }

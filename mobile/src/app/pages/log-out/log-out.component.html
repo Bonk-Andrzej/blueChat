@@ -1,13 +1,7 @@
-
-<div id="head">
-    <div id="ham-menu" app-hamburger-menu=""></div>
-    <div id="title" valueContent="HOME" app-title-page=""></div>
+<div class="grid">
+    <div id="left-button" app-hamburger-menu=""></div>
+    <div id="title" app-title ></div>
     <div id="right-button"></div>
-</div>
-<div id="main">
-
-    <div id="space"></div>
-    <div class="log-out-frame" app-log-out-box=""></div>
-
+    <div class="confirm-box" (onCancel)="cancelHandler()" (onConfirm)="confirmHandler()" confirmButtonLabel="Logout" confirm-box ></div>
 </div>
 <div id="menu-bottom" app-menu-bottom=""></div>

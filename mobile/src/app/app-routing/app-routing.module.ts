@@ -12,6 +12,7 @@ import {CreateGroupComponent} from '../pages/create-group/create-group.component
 import {GroupsComponent} from '../pages/groups/groups.component';
 import {HelperComponent} from '../pages/helper/helper.component';
 import {UserProfileComponent} from '../pages/user-profile/user-profile.component';
+import {FriendsComponent} from "../pages/friends/friends.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
     {path: 'conversation', component: ConversationComponent},
     {path: 'create-group', component: CreateGroupComponent},
     {path: 'groups', component: GroupsComponent},
+    {path: 'friends', component: FriendsComponent},
     {path: 'help', component: HelperComponent},
     {path: 'user-profile', component: UserProfileComponent},
     // {path: '', component: UserProfileComponent},
