@@ -1,10 +1,10 @@
 import {UserDtoShort} from '../user/userDtoShort';
 
 export class MessageDto {
-    private idMessage: number;
-    private content: string;
-    private sentDate: string;
-    private isRead: boolean;
-    private sender: UserDtoShort;
-    private receiver: UserDtoShort;
+    public idMessage: number;
+    public content: string;
+    public sentDate: string;
+    public isRead: boolean;
+    public senderId: number;
+    public idReceiver: number;
 }

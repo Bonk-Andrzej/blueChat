@@ -104,8 +104,14 @@ export class LeftMenuComponent implements OnInit {
 
 
 
-    startConversation(interlocutor :UserDtoShort | ChannelDtoShort ) {
-        this.conversationService.startConversationWith(interlocutor)
+    startConversationWithUser(interlocutor :UserDtoShort  ) {
+        this.conversationService.startConversationWithUser(interlocutor)
+        this.leftMenuService.toggle();
+        this.router.navigateByUrl('/conversation');
+    }
+
+    startConversationWithChannel(interlocutor: ChannelDtoShort ) {
+        this.conversationService.startConversationWithChannel(interlocutor).catch()
         this.leftMenuService.toggle();
         this.router.navigateByUrl('/conversation');
     }

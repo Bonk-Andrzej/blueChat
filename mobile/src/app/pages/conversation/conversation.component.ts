@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {ConversationService} from '../../services/conversation.service';
+import {Observable} from 'rxjs';
+import {MessageDto} from '../../repository/message/messageDto';
+import {UserProfileService} from '../../services/user-profile.service';
 
 @Component({
     selector: 'app-conversation',
@@ -9,7 +13,7 @@ export class ConversationComponent implements OnInit {
 
     messageOwnerName: string;
     interlocutorName: string;
-    idSender: string;
+    idSender: number;
     messagesDTOs = [
         {
             'idSender': '1',
@@ -88,13 +92,19 @@ export class ConversationComponent implements OnInit {
 
     ];
 
-    constructor() {
-        this.idSender = '1';
+    conversation: Observable<Array<MessageDto>>;
+
+    constructor(private conversationService : ConversationService,
+                private userProfile: UserProfileService) {
     }
 
     ngOnInit() {
+        this.idSender = this.userProfile.getUser().idUser;
+        console.log(this.idSender, "my id")
         this.messageOwnerName = 'Paweł Jastrzębski';
         this.interlocutorName = 'Igor Sowiński';
+        this.conversation = this.conversationService.getConversation();
+
     }
 
 }

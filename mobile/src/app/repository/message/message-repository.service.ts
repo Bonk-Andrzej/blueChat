@@ -13,7 +13,7 @@ export class MessageRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = 'http://192.168.99.100:90/messages';
+        this.host = 'http://localhost:8080/messages/conversation';
         this.headers = this.getHeaders();
     }
 
@@ -25,14 +25,14 @@ export class MessageRepositoryService {
         return headers;
     }
 
-    private getConversation(idSender: number, idReceiver: number, limit: number, toBound: number) {
+    public getConversation(idSender: number, idReceiver: number, limit: number, toBound: number) :Promise<Array<MessageDto>> {
         const params = new HttpParams()
             .set('idSender', idSender.toString())
             .set('idReceiver', idReceiver.toString())
             .set('limit', limit.toString())
             .set('toBound', toBound.toString());
 
-        return this.http.get<Array<MessageDto>>(this.host, {params: params, headers: this.headers})
+        return this.http.get<Array<MessageDto>>(this.host, {params: params, headers: this.headers}).toPromise()
 
     }
 

@@ -5,17 +5,18 @@
     <div id="right-button"></div>
 
     <div id="conversation-wrapper">
-        <ng-container class="conversation" *ngFor="let message of messagesDTOs">
+        <ng-container class="conversation" *ngFor="let message of conversation | async">
             <ng-container
-                    *ngIf="(message.idSender === idSender); then messageOvner else sessageInterlocutor"></ng-container>
+                    *ngIf="(message.senderId == idSender); then messageOvner; else sessageInterlocutor">
+            </ng-container>
 
             <ng-template #messageOvner>
-                <div class="message" id="sender" [messageOwner]="messageOwnerName" [date]="message.date"
+                <div class="message" id="sender" [messageOwner]="messageOwnerName" [date]="message.sentDate"
                      [content]="message.content" app-box-message=""></div>
             </ng-template>
 
             <ng-template #sessageInterlocutor>
-                <div class="message" id="interlocutor" [messageOwner]="interlocutorName" [date]="message.date"
+                <div class="message" id="interlocutor" [messageOwner]="interlocutorName" [date]="message.sentDate"
                      [content]="message.content" app-box-message=""></div>
             </ng-template>
 
