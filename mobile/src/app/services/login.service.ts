@@ -11,18 +11,18 @@ export class LoginService {
     constructor(private userRepository: UserRepositoryService) {
     }
 
-    public Login(userPassDto: UserPassDto) {
+    public async Login(userPassDto: UserPassDto) {
+
 
         console.log(userPassDto);
-        if (userPassDto.name === 'test' && userPassDto.pass === 'test') {
-            const userDto = new UserDto();
-            userDto.name = userPassDto.name;
-            userDto.description ='JAKIS SUPER NOWY OPIS !!!! :)';
-            console.log('LoginService -- emit');
-            this.onLogin.emit(userDto);
-        }else {
-            throw("error");
-        }
+
+        let user = await this.userRepository.logInUser(userPassDto).catch(reason => {
+            throw(reason);
+        });
+        this.onLogin.emit(user);
+        console.log(user);
+
+
     }
 
     // Events

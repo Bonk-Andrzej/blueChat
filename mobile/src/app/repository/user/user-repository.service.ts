@@ -4,6 +4,7 @@ import {UserPassDto} from './userPassDto';
 import {UserDto} from './userDto';
 import {Observable} from 'rxjs';
 import {UserDtoShort} from './userDtoShort';
+import {async} from 'q';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = 'http://192.168.99.100:90';
+        this.host = 'http://localhost:8080';
         this.headers == this.getHeaders();
 
     }
@@ -56,7 +57,16 @@ export class UserRepositoryService {
         return this.http.get<UserDto>(this.host + '/users' + id);
     }
 
-    public logInUser(userPassDto: UserPassDto): Observable<UserDto> {
-        return this.http.post<UserDto>(this.host + '/rpc/login', userPassDto, {headers: this.headers});
+    public logInUser(userPassDto: UserPassDto): Promise<UserDto> {
+
+        return new Promise<UserDto>((resolve, reject) => {
+                this.http.post<UserDto>(this.host + '/rpc/login', userPassDto, {headers: this.headers})
+                    .subscribe((user)=>{
+                        resolve(user)
+                    },error => {
+                        reject(error)
+                    })
+            })
+
     }
 }
