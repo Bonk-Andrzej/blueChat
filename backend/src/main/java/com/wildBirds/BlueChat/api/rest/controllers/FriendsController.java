@@ -18,14 +18,20 @@ public class FriendsController {
     private UserContainFriendFacade userContainFriendFacade;
     private Logger log = LoggerFactory.getLogger(FriendsController.class);
 
+    public FriendsController(UserContainFriendFacade userContainFriendFacade ) {
+        this.userContainFriendFacade = userContainFriendFacade;
+    }
+
     // TODO: 17.01.2019 SHOULD TESTING
     // TODO: 17.01.2019 SHOULD HANDLE EXCEPTIONS
 
     @CrossOrigin
     @GetMapping
     public ResponseEntity getFriendshipList(@RequestParam String idUser) {
+        Long value = Long.valueOf(idUser);
+        log.info(value + " <<<<<<<<<<<<<<<<<<<<<<<<<");
 
-        List<FriendsDto> userContainFriend = userContainFriendFacade.getUserContainFriend(Long.valueOf(idUser));
+        List<FriendsDto> userContainFriend = userContainFriendFacade.getUserContainFriend(value);
         return new ResponseEntity(userContainFriend, HttpStatus.OK);
     }
 

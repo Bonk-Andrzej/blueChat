@@ -36,3 +36,6 @@ INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('so s
 INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('Bye bye..', DATE_ADD(NOW(), INTERVAL 16 MINUTE ), false, 1 , 2)
 INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('bye ..', DATE_ADD(NOW(), INTERVAL 17 MINUTE ), false, 2 , 2)
 
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 1 DAY ), 4 , 1)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 2 DAY ), 4 , 2)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 3 DAY ), 4 , 3)
