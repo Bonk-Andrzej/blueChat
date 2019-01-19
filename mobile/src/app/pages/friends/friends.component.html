@@ -1,14 +1,14 @@
 <div class="grid">
 
   <div id="left-button" app-button-back=""></div>
-  <div id="title" valueContent="GROUPS" app-title=""></div>
+  <div id="title" valueContent="FRIENDS" app-title=""></div>
   <div id="right-button" (click)="createGroup()"  app-button-plus=""></div>
 
 
   <div id="input-search" app-input-search=""></div>
   <div id="group-list" title="MY FRIENDS" app-list-users-with-title="">
-    <ng-container *ngFor="let friend of friends">
-      <div [objectName]=friend.name app-object-with-x=""></div>
+    <ng-container *ngFor="let friend of friends | async">
+      <div [objectName]="friend.friend.nick" app-object-with-x=""></div>
     </ng-container>
   </div>
 </div>
