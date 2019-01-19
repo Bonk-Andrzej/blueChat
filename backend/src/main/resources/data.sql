@@ -1,11 +1,21 @@
 
-INSERT INTO user(nick, password, email, description ) VALUES ('Igor', 'igorpass', 'igorsowa@wp.pl', 'I am a very clever guy')
-INSERT INTO user(nick, password, email, description ) VALUES ('Paweł', 'pawelpass', 'paweljastrzebski96@gmail.com', 'I am a very clever guy')
-INSERT INTO user(nick, password, email, description ) VALUES ('Milena', 'milenapass', 'milena@wp.pl', 'I am a very clever guy')
-INSERT INTO user(nick, password, email, description ) VALUES ('test', 'test', 'test@wp.pl', 'some testing value description')
 
-INSERT INTO channel(name, is_public, channel_owner) VALUE ('SmallTalk', true , 1)
-INSERT INTO channel(name, is_public, channel_owner) VALUE ('general', true , 2)
+INSERT INTO photo(photo) VALUES ('rgb(88,218,71)')
+INSERT INTO photo(photo) VALUES ('rgb(0,140,178)')
+INSERT INTO photo(photo) VALUES ('rgb(218,132,160)')
+INSERT INTO photo(photo) VALUES ('rgb(10,28,66)')
+
+INSERT INTO photo(photo) VALUES ('rgb(23,151,11)')
+INSERT INTO photo(photo) VALUES ('rgb(33,27,29)')
+
+
+INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Igor', 'igorpass', 'igorsowa@wp.pl', 'I am a very clever guy', 1)
+INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Paweł', 'pawelpass', 'paweljastrzebski96@gmail.com', 'I am a very clever guy', 2)
+INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Milena', 'milenapass', 'milena@wp.pl', 'I am a very clever guy', 3)
+INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('test', 'test', 'test@wp.pl', 'some testing value description', 4)
+
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('SmallTalk', true , 1, 5)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('general', true , 2, 6)
 
 
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 1)

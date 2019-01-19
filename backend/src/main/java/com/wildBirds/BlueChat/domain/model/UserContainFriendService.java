@@ -6,9 +6,12 @@ import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 
 class UserContainFriendService {
 
-    private UserContainFriendRepository repository;
-    private UserRepository userRepository;
 
+    private PhotoService photoService;
+
+    public UserContainFriendService(PhotoService photoService) {
+        this.photoService = photoService;
+    }
 
     public UserContainFriend toEntity(Long idLoggedUser, FriendsDto friendsDto) {
         UserContainFriend userContainFriend = new UserContainFriend();
@@ -52,9 +55,11 @@ class UserContainFriendService {
 
             friend.setIdUser(userContainFriend.getUser1().getIdUser());
             friend.setNick(userContainFriend.getUser1().getNick());
+            friend.setPhotoDto(photoService.toDto(userContainFriend.getUser1().getProfilePhoto()));
         }else {
             friend.setIdUser(userContainFriend.getUser2().getIdUser());
             friend.setNick(userContainFriend.getUser2().getNick());
+            friend.setPhotoDto(photoService.toDto(userContainFriend.getUser2().getProfilePhoto()));
         }
     }
 

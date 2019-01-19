@@ -72,7 +72,7 @@ class ModelConfiguration {
     }
 
     @Bean
-    public UserContainFriendService userContainFriendService(){
-        return new UserContainFriendService();
+    public UserContainFriendService userContainFriendService(PhotoService photoService){
+        return new UserContainFriendService(photoService);
     }
 }
