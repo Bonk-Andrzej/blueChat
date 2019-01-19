@@ -28,7 +28,7 @@ export class ChannelRepositoryService {
     }
 
     public getShortList(): Promise<Array<ChannelDtoShort>> {
-        return this.http.get<Array<ChannelDtoShort>>(this.host).toPromise();
+        return this.http.get<Array<ChannelDtoShort>>(this.host + '/shorts').toPromise();
     }
 
     public getById(id: number): Observable<ChannelDto> {

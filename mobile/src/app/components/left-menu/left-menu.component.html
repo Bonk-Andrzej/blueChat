@@ -8,15 +8,15 @@
          [titleStyle]="titleStyle" [listStyle]="listStyle" app-list-users-with-title="">
 
         <ng-container *ngFor="let channel of channels | async">
-            <div [messageCounter]="1" [objectName]="channel.name" app-object-with-status=""></div>
+            <div (click)="startConversation(channel)" [messageCounter]="1" [objectName]="channel.name" app-object-with-status=""></div>
         </ng-container>
 
     </div>
     <div [backgroundColor]="backgroundColorList" id="friends" title="FRIENDS"
          [titleStyle]="titleStyle" [listStyle]="listStyle"  app-list-users-with-title>
 
-        <ng-container *ngFor="let friend of friends | async">
-            <div (click)="showConversation()" [messageCounter]="1" [objectName]="friend.friend.nick" app-object-with-status=""></div>
+        <ng-container *ngFor="let friendDto of friendDtoList | async">
+            <div (click)="startConversation(friendDto.friend)" [messageCounter]="1" [objectName]="friendDto.friend.nick" app-object-with-status=""></div>
         </ng-container>
 
     </div>

@@ -8,6 +8,8 @@ import {UserProfileService} from '../../services/user-profile.service';
 import {FriendsDto} from '../../repository/friend/friendsDto';
 import {Observable} from 'rxjs';
 import {ChannelDtoShort} from '../../repository/channel/channelDtoShort';
+import {ConversationService} from '../../services/conversation.service';
+import {UserDtoShort} from '../../repository/user/userDtoShort';
 
 @Component({
     selector: 'app-left-menu',
@@ -71,20 +73,21 @@ export class LeftMenuComponent implements OnInit {
     backgroundAnimationStatus = 'hide';
     backgroundColorList: string;
 
-    friends: Observable<Array<FriendsDto>>;
+    friendDtoList: Observable<Array<FriendsDto>>;
     channels: Observable<Array<ChannelDtoShort>>;
 
     constructor(public leftMenuService: LeftMenuServiceService,
                 private colorService: ColorsService,
                 private router: Router,
-                private userProfileService: UserProfileService) {
+                private userProfileService: UserProfileService,
+                private conversationService : ConversationService) {
     }
 
     ngOnInit() {
         this.backgroundAnimationStatus = 'hide';
         this.leftMenuService.onToggle(this.onToggleHandler.bind(this));
         this.backgroundColorList = this.colorService.getColor('--black');
-        this.friends = this.userProfileService.getFriends();
+        this.friendDtoList = this.userProfileService.getFriends();
         this.channels = this.userProfileService.getChannels();
     }
 
@@ -98,10 +101,12 @@ export class LeftMenuComponent implements OnInit {
 
     }
 
-    showConversation() {
+
+
+
+    startConversation(interlocutor :UserDtoShort | ChannelDtoShort ) {
+        this.conversationService.startConversationWith(interlocutor)
         this.leftMenuService.toggle();
         this.router.navigateByUrl('/conversation');
     }
-
-
 }

@@ -27,7 +27,7 @@ const routes: Routes = [
     {path: 'conversation', component: ConversationComponent},
     {path: 'create-group', component: CreateGroupComponent},
     {path: 'groups', component: GroupsComponent},
-    {path: 'friends', component: FriendsComponent},
+    {path: 'friendDtoList', component: FriendsComponent},
     {path: 'help', component: HelperComponent},
     {path: 'user-profile', component: UserProfileComponent},
     // {path: '', component: UserProfileComponent},

@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     onFriends() {
-        this.router.navigateByUrl('/friends');
+        this.router.navigateByUrl('/friendDtoList');
     }
 
     onAddFriend() {
