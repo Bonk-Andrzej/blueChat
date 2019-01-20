@@ -89,6 +89,10 @@ export class LeftMenuComponent implements OnInit {
         this.backgroundColorList = this.colorService.getColor('--black');
         this.friendDtoList = this.userProfileService.getFriends();
         this.channels = this.userProfileService.getChannels();
+
+        this.friendDtoList.subscribe(value => {
+            console.warn(value, "firends data ")
+        })
     }
 
     private onToggleHandler(isDisplay: boolean) {

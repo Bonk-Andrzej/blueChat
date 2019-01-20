@@ -1,3 +1,5 @@
+@import "~src/stylesAssets";
+
 #box-object-status {
   height: 40px;
   width: 100%;
@@ -8,6 +10,8 @@
     width: 30px;
     margin: 5px;
     border-radius: 50%;
+
+    @extend %rocket-icon;
   }
   #object-name {
     box-sizing: border-box;

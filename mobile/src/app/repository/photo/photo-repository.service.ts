@@ -8,7 +8,7 @@ export class PhotoRepositoryService {
 
     private photo: PhotoDto = new PhotoDto();
 
-    // randomColor: string;
+    // color: string;
 
     ngOnInit() {
         // this.randomColorTrigger();

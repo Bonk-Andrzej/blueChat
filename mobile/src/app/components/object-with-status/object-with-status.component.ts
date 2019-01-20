@@ -9,20 +9,20 @@ export class ObjectWithStatusComponent implements OnInit {
 
     @Input() messageCounter: string;
     @Input() objectName: string;
-    @Input() randomColor: string;
+    @Input() color: string;
 
     constructor() {
 
     }
 
     ngOnInit() {
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> COLOR', this.randomColor);
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>> COLOR', this.color);
         // this.randomColorTrigger();
     }
 
     randomColorTrigger() {
-        // this.randomColor = "#888888"
-        // this.randomColor = ('rgb(' + Math.floor(Math.random() * 255)
+        // this.color = "#888888"
+        // this.color = ('rgb(' + Math.floor(Math.random() * 255)
         //     + ',' + Math.floor(Math.random() * 255) + ','
         //     + Math.floor(Math.random() * 255) + ')');
     }
