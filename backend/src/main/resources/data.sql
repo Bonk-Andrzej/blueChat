@@ -14,16 +14,22 @@ INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Paweł'
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Milena', 'milenapass', 'milena@wp.pl', 'I am a very clever guy', 3)
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('test', 'test', 'test@wp.pl', 'some testing value description', 4)
 
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('SmallTalk', true , 1, 5)
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('general', true , 2, 6)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 1 DAY ), 4 , 1)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 2 DAY ), 1 , 3)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 3 DAY ), 1 , 2)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 4 DAY ), 4 , 2)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 5 DAY ), 4 , 3)
 
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('general', true , 1, 6)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('SmallTalk', true , 2, 5)
 
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 1)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 2)
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 3)
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 4)
 
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 1)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 2)
-INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 3)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 4)
 
 INSERT INTO channels_message(content, sent_date, channel_id, sender) VALUES ('Welcome All', DATE_ADD(NOW(), INTERVAL 5 MINUTE ), 1 , 1)
@@ -46,7 +52,3 @@ INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('so s
 INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('Bye bye..', DATE_ADD(NOW(), INTERVAL 16 MINUTE ), false, 1 , 2)
 INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('bye ..', DATE_ADD(NOW(), INTERVAL 17 MINUTE ), false, 2 , 2)
 
-INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 1 DAY ), 4 , 1)
-INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 1 DAY ), 1 , 2)
-INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 2 DAY ), 4 , 2)
-INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 3 DAY ), 4 , 3)

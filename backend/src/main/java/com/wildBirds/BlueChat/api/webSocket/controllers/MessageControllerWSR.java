@@ -3,25 +3,29 @@ package com.wildBirds.BlueChat.api.webSocket.controllers;
 
 import com.wildBirds.BlueChat.api.rest.controllers.ChannelsMessageController;
 import com.wildBirds.BlueChat.api.rest.dto.ChannelsMessageDto;
+import com.wildBirds.BlueChat.api.rest.dto.FriendsDto;
 import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
-import com.wildBirds.BlueChat.api.webSocket.dto.AuthSessionDTO;
+import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.webSocket.dto.ErrorDTO;
 import com.wildBirds.BlueChat.api.webSocket.dto.MessageDTO;
 import com.wildBirds.BlueChat.api.webSocket.types.LocalProcedure;
 import com.wildBirds.BlueChat.api.webSocket.types.RemoteProcedure;
 import com.wildBirds.BlueChat.domain.model.ChannelsMessageFacade;
 import com.wildBirds.BlueChat.domain.model.MessageFacade;
+import com.wildBirds.BlueChat.domain.model.UserContainFriendFacade;
 import com.wildBirds.WebSocketRpc.api.Session;
 import com.wildBirds.WebSocketRpc.api.WSR;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class MessageControllerWSR implements InitializingBean {
@@ -29,13 +33,15 @@ public class MessageControllerWSR implements InitializingBean {
     private WSR<LocalProcedure, RemoteProcedure, Long> wsr;
     private MessageFacade messageFacade;
     private ChannelsMessageFacade channelsMessageFacade;
+    private UserContainFriendFacade userContainFriendFacade;
     private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
 
     @Autowired
-    public MessageControllerWSR(WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade, ChannelsMessageFacade channelsMessageFacade) {
+    public MessageControllerWSR(@Lazy UserContainFriendFacade userContainFriendFacade, WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade, ChannelsMessageFacade channelsMessageFacade) {
         this.wsr = wsr;
         this.messageFacade = messageFacade;
         this.channelsMessageFacade = channelsMessageFacade;
+        this.userContainFriendFacade = userContainFriendFacade;
     }
 
     @Override
@@ -51,7 +57,6 @@ public class MessageControllerWSR implements InitializingBean {
                 message.setReceiverId(data.getReceiverId());
                 message.setSenderId(session.getId());
                 message.setSentDate(Instant.now());
-
 
                 data.setSentDate(Timestamp.from(message.getSentDate()));
 
@@ -74,16 +79,32 @@ public class MessageControllerWSR implements InitializingBean {
 
 
         });
-        wsr.addProcedure(LocalProcedure.AUTHSESSION, AuthSessionDTO.class, (data, session) -> {
+        wsr.addProcedure(LocalProcedure.AUTHSESSION, UserDto.class, (data, session) -> {
 
-            Long userId = data.getUserId();
+            Long userId = data.getIdUser();
             session.setId(userId);
 
-            log.info("Authorized User by id: " + data.getUserId());
+            log.info("Authorized User by id: " + data.getIdUser());
             final ErrorDTO errorDTO = new ErrorDTO();
             errorDTO.setMessage("Authorized succeed");
             errorDTO.setStatus("OK");
             session.executeRemoteProcedure(RemoteProcedure.ERROR, ErrorDTO.class, errorDTO);
+
+
+            Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> authorizedSessionsIdentifications
+                    = this.getAuthorizedSessionsIdentifications();
+
+            List<FriendsDto> userContainFriend = this.userContainFriendFacade.getUserContainFriend(userId);
+
+            userContainFriend.forEach(friendsDto -> {
+                Long friendId = friendsDto.getFriend().getIdUser();
+                if(authorizedSessionsIdentifications.containsKey(friendId)){
+                    com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long> friendSession =
+                            authorizedSessionsIdentifications.get(friendId);
+
+                    friendSession.executeRemoteProcedure(RemoteProcedure.NEWACTIVEFRIEND, UserDto.class,data);
+                }
+            });
 
         });
         wsr.addProcedure(LocalProcedure.FORWARDCHANNELSMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
@@ -106,7 +127,7 @@ public class MessageControllerWSR implements InitializingBean {
 
     }
 
-    public List<Long> getAuthorizatedSessionsIdentificators(){
-        return this.wsr.getAuthorizatedSessionsIdentificators();
+    public Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> getAuthorizedSessionsIdentifications(){
+        return this.wsr.getAuthorizedSessionsIdentifications();
     }
 }

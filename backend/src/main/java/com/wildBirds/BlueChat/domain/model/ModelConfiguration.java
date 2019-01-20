@@ -33,8 +33,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    UserContainFriendFacade userContainFriendFacade(UserContainFriendService userContainFriendService, UserContainFriendRepository userContainFriendRepository){
-        return new UserContainFriendFacade(userContainFriendService, userContainFriendRepository);
+    UserContainFriendFacade userContainFriendFacade(MessageControllerWSR wsr,UserContainFriendService userContainFriendService, UserContainFriendRepository userContainFriendRepository){
+        return new UserContainFriendFacade(wsr,userContainFriendService, userContainFriendRepository);
     }
 
 

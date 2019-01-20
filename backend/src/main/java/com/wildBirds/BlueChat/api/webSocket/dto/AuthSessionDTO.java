@@ -1,16 +1,16 @@
 package com.wildBirds.BlueChat.api.webSocket.dto;
 
 public class AuthSessionDTO {
-    private Long userId;
+    private Long idUser;
 
     public AuthSessionDTO() {
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 }

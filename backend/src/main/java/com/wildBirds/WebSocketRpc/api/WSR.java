@@ -10,8 +10,8 @@ import com.wildBirds.WebSocketRpc.infrastructure.ProcedureRepositoryInMemory;
 import com.wildBirds.WebSocketRpc.infrastructure.SessionRepositoryInMemory;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -61,8 +61,8 @@ public class WSR<LT extends Enum<LT>,RT extends Enum<RT>,I extends Comparable<I>
         return this.textWebSocketHandler;
     }
 
-    public List<I> getAuthorizatedSessionsIdentificators(){
-        return new ArrayList<>(this.sessionRepository.getAuthorizedSessionMap().keySet());
+    public Map<I, com.wildBirds.WebSocketRpc.domain.model.Session<RT, I>> getAuthorizedSessionsIdentifications(){
+        return this.sessionRepository.getAuthorizedSessionMap();
     }
     public List<Session<RT,I>> getAllAuthorizedSession(){
         return (List<Session<RT, I>>) this.sessionRepository.getAuthorizedSessionMap();

@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -44,22 +42,23 @@ public class UserController {
             return new ResponseEntity(headers,HttpStatus.BAD_REQUEST);
         }
     }
-    @GetMapping
-    @CrossOrigin
-    public ResponseEntity getAll(){
-        try {
-            List<UserDto> userDtoList = userFacade.getUsers();
 
-            userDtoList.stream().forEach(userDto -> System.out.println(userDto));
-            return new ResponseEntity(userDtoList, HttpStatus.OK);
-        } catch (Exception e) {
-
-            logger.debug("INVALID GETALL", e.fillInStackTrace());
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Error","Bad request");
-            return new ResponseEntity(headers,HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @GetMapping
+//    @CrossOrigin
+//    public ResponseEntity getAll(){
+//        try {
+//            List<UserDto> userDtoList = userFacade.getUsers();
+//
+//            userDtoList.stream().forEach(userDto -> System.out.println(userDto));
+//            return new ResponseEntity(userDtoList, HttpStatus.OK);
+//        } catch (Exception e) {
+//
+//            logger.debug("INVALID GETALL", e.fillInStackTrace());
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.add("Error","Bad request");
+//            return new ResponseEntity(headers,HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 
     @CrossOrigin

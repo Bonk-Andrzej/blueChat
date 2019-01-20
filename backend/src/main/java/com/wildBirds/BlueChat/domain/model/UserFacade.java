@@ -8,9 +8,6 @@ import com.wildBirds.BlueChat.domain.model.exceptions.UserNotExistExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 
 public class UserFacade {
 
@@ -26,21 +23,21 @@ public class UserFacade {
     }
 
 
-    public List<UserDto> getUsers() {
-        List<User> getUsers = userRep.findAll();
-        List<Long> authorizatedSessionsIdentificators = wsr.getAuthorizatedSessionsIdentificators();
-        List<UserDto> userDtoList = getUsers.stream()
-                .map(user -> userService.toDto(user))
-                .map(userDto -> {
-                    if (authorizatedSessionsIdentificators.contains(userDto.getIdUser())) {
-//                        userDto.setActive(true);
-                    }
-                    return userDto;
-                })
-                .collect(Collectors.toList());
-        log.info("Method getUsers ", userDtoList.toString());
-        return userDtoList;
-    }
+//    public List<UserDto> getUsers() {
+//        List<User> getUsers = userRep.findAll();
+//        List<Long> authorizedSessionsIdentifications = wsr.getAuthorizedSessionsIdentifications();
+//        List<UserDto> userDtoList = getUsers.stream()
+//                .map(user -> userService.toDto(user))
+//                .map(userDto -> {
+//                    if (authorizedSessionsIdentifications.contains(userDto.getIdUser())) {
+////                        userDto.setActive(true);
+//                    }
+//                    return userDto;
+//                })
+//                .collect(Collectors.toList());
+//        log.info("Method getUsers ", userDtoList.toString());
+//        return userDtoList;
+//    }
 
     public UserDto registerNewUser(UserDtoPass userDtoPass){
         User mappedUser = userService.toEntity(userDtoPass);

@@ -1,7 +1,7 @@
 package com.wildBirds.BlueChat.api.webSocket.types;
 
 public enum RemoteProcedure{
-    ADDMESSAGE, ERROR, ADDMYMESSAGE, ADDMYCHANNELMESSAGE, REFRESHCHANNELMESSAGES;
+    ADDMESSAGE, ERROR, ADDMYMESSAGE, ADDMYCHANNELMESSAGE, REFRESHCHANNELMESSAGES, NEWACTIVEFRIEND;
 
     @Override
     public String toString() {
