@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {WSRConnector} from "./WSRClient/api/WSRConnector";
-import {WSRClient} from "./WSRClient/api/WSRClient";
+import {WSRConnector} from "./wsrModule/api/WSRConnector";
+import {WSRClient} from "./wsrModule/api/WSRClient";
 import {ErrorDTO} from "./dto/ErrorDTO";
 import {LocalType} from "./types/LocalType";
 import {RemoteType} from "./types/RemoteType";
@@ -11,7 +11,7 @@ import {RemoteType} from "./types/RemoteType";
 })
 export class WSRClientService {
 
-  private wsrClient: WSRClient<LocalType,RemoteType>;
+  private readonly wsrClient: WSRClient<LocalType,RemoteType>;
 
   constructor() {
 
@@ -22,8 +22,6 @@ export class WSRClientService {
     this.wsrClient.addProcedure(LocalType.ERROR, new ErrorDTO(),data => {
         console.error(data,"Error");
     })
-
-
   }
 
   public get WRSClient(): WSRClient<LocalType,RemoteType>{

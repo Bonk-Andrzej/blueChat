@@ -21,8 +21,7 @@ export class WebSocketHandler<LT extends string, RT extends string> {
         this.jsonParser = new JsonParser();
 
         this.webSocket.onopen = (e) => {
-            console.log("on open")
-
+            console.log("WEBSOCKET OPEN CONNECTION")
             this.onOpenEvent.emit(e)
         };
         this.webSocket.onmessage = (e) => this.onMessage(e);
@@ -38,9 +37,9 @@ export class WebSocketHandler<LT extends string, RT extends string> {
         console.log(event.data)
         // try {
 
-        const procedureDTO1: NewProcedureDTO = this.jsonParser.parse(event.data, new NewProcedureDTO());
-        const nameOfProcedure: String = procedureDTO1.getNameOfProcedure();
-        const dataJson = procedureDTO1.getDataJson();
+        const procedureDTO: NewProcedureDTO = this.jsonParser.parse(event.data, new NewProcedureDTO());
+        const nameOfProcedure: String = procedureDTO.getNameOfProcedure();
+        const dataJson = procedureDTO.getDataJson();
 
         const procedure = this.procedureRepository.getProcedure(<LT>nameOfProcedure);
         const data = this.jsonParser.parse(dataJson, procedure.getDataObject());
@@ -54,13 +53,12 @@ export class WebSocketHandler<LT extends string, RT extends string> {
 
     public sendData(procedureDTO: ProcedureDTO<RT, any>): void {
 
-
         const newProcedureDTO = new NewProcedureDTO();
         newProcedureDTO.setDataJson(JSON.stringify(procedureDTO.getData()));
         newProcedureDTO.setNameOfProcedure(procedureDTO.getType())
 
         const newProcedureDTOJson = JSON.stringify(newProcedureDTO);
-        console.log("to send ", newProcedureDTOJson, procedureDTO);
+        console.log("PROCEDURE SEND TO BACKEND", newProcedureDTOJson, procedureDTO);
         this.webSocket.send(newProcedureDTOJson);
     }
 
