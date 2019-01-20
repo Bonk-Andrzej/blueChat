@@ -4,6 +4,7 @@ export class UserDtoShort {
     public idUser: number;
     public nick: string;
     public photoDto: PhotoDto;
+    public active: boolean;
 
     constructor() {
     }

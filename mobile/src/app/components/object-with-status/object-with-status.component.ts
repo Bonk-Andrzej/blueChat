@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ColorsService} from '../../services/colors.service';
 
 @Component({
     selector: '[app-object-with-status]',
@@ -10,14 +11,19 @@ export class ObjectWithStatusComponent implements OnInit {
     @Input() messageCounter: string;
     @Input() objectName: string;
     @Input() color: string;
+    @Input() isActive: boolean;
 
-    constructor() {
+    public statusColor;
 
-    }
+    constructor(private colorsService: ColorsService) {}
 
     ngOnInit() {
         console.log('>>>>>>>>>>>>>>>>>>>>>>>> COLOR', this.color);
-        // this.randomColorTrigger();
+       if(this.isActive){
+           this.statusColor = this.colorsService.getColor('--green-dark');
+       }else {
+           this.statusColor = this.colorsService.getColor('--red-dark');
+       }
     }
 
     randomColorTrigger() {
