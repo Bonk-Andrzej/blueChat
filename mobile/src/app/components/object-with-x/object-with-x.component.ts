@@ -9,21 +9,21 @@ export class ObjectWithXComponent implements OnInit {
 
 
     @Input() objectName: string;
-    randomColor: string;
+    @Input() statusColor: string;
 
     constructor() {
 
     }
 
     ngOnInit() {
-        this.randomColorTrigger();
+        // this.randomColorTrigger();
     }
 
     randomColorTrigger() {
 
-        this.randomColor = ('rgb(' + Math.floor(Math.random() * 255)
-            + ',' + Math.floor(Math.random() * 255) + ','
-            + Math.floor(Math.random() * 255) + ')');
+        // this.randomColor = ('rgb(' + Math.floor(Math.random() * 255)
+        //     + ',' + Math.floor(Math.random() * 255) + ','
+        //     + Math.floor(Math.random() * 255) + ')');
     }
 
 
