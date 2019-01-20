@@ -13,6 +13,7 @@ export class FriendRepositoryService {
     constructor(http: HttpClient) {
         this.http = http;
         this.host = 'http://localhost:8080/friends';
+        this.host = 'http://192.168.99.100:200/friends';
         this.headers = this.getHeaders();
     }
 

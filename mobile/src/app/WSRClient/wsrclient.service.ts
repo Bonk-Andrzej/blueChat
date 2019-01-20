@@ -19,7 +19,8 @@ export class WSRClientService {
     constructor() {
 
         let wsrConnector = new WSRConnector<LocalType, RemoteType>();
-        this.wsrClient = wsrConnector.connect('ws://localhost:8080/socket');
+        // this.wsrClient = wsrConnector.connect('ws://localhost:8080/socket');
+        this.wsrClient = wsrConnector.connect('ws://192.168.99.100:200/socket');
 
         this.wsrClient.onClose().subscribe(() => {
             this.isConnected.next(false);

@@ -15,7 +15,8 @@ export class ChannelRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = 'http://localhost:8080/channel';
+        // this.host = 'http://localhost:8080/channel';
+        this.host = 'http://192.168.99.100:200/channel';
         this.headers = this.getHeaders();
     }
 
