@@ -10,6 +10,7 @@ import {ChannelRepositoryService} from '../repository/channel/channel-repository
 import {RetrieveStateApplicationService} from './retrieve-state-application.service';
 import {WSRClientService} from '../WSRClient/wsrclient.service';
 import {RemoteType} from '../WSRClient/types/RemoteType';
+import {ChangeService} from './change.service';
 
 @Injectable({
     providedIn: 'root'
@@ -26,8 +27,27 @@ export class UserProfileService {
                 private channelsRepository: ChannelRepositoryService,
                 private retrieveStateApplicationService: RetrieveStateApplicationService,
                 private loginService: LoginService,
-                private wsrClientService:WSRClientService) {
+                private wsrClientService:WSRClientService,
+                private changeService: ChangeService) {
 
+        this.changeService.onNewAcitveFriend.subscribe((user: UserDto) =>{
+
+            console.log("new user",user)
+            const friendsDtos = this.friends.getValue();
+
+            friendsDtos.forEach((friend)=>{
+                if(friend.friend.idUser == user.idUser){
+                    friend.friend.active = true;
+                    console.log("find")
+                }
+            });
+            console.log("update")
+            this.friends.next([]);
+            setTimeout(()=>{
+                this.friends.next(friendsDtos)
+            },0)
+
+        })
 
         console.log('UserProfileService -- subscribe');
         this.loginService.onLogin.subscribe((user: UserDto) => {

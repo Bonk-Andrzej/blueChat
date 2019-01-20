@@ -13,7 +13,7 @@ export class WebSocketHandler<LT extends string, RT extends string> {
     private onOpenEvent: EventEmitter<Event> = new EventEmitter();
     private onCloseEvent: EventEmitter<CloseEvent> = new EventEmitter();
     private onErrorEvent: EventEmitter<Event> = new EventEmitter();
-    
+
     private readonly serverUrl: string;
 
     constructor(url: string, procedureRepository: ProcedureRepository<LT>) {
@@ -41,7 +41,7 @@ export class WebSocketHandler<LT extends string, RT extends string> {
         newProcedureDTO.setNameOfProcedure(procedureDTO.getType());
 
         const newProcedureDTOJson = JSON.stringify(newProcedureDTO);
-        console.log('PROCEDURE SEND TO BACKEND', newProcedureDTOJson, procedureDTO);
+        // console.log('PROCEDURE SEND TO BACKEND', newProcedureDTOJson, procedureDTO);
         this.webSocket.send(newProcedureDTOJson);
     }
 
@@ -52,7 +52,7 @@ export class WebSocketHandler<LT extends string, RT extends string> {
     }
     private onMessageHandler(event: MessageEvent): void {
 
-        console.log(event.data);
+        // console.log(event.data);
         // try {
 
         const procedureDTO: NewProcedureDTO = this.jsonParser.parse(event.data, new NewProcedureDTO());

@@ -18,12 +18,14 @@ export class ObjectWithStatusComponent implements OnInit {
     constructor(private colorsService: ColorsService) {}
 
     ngOnInit() {
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> COLOR', this.color);
+
        if(this.isActive){
            this.statusColor = this.colorsService.getColor('--green-dark');
        }else {
            this.statusColor = this.colorsService.getColor('--red-dark');
        }
+
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>> COLOR', this.statusColor);
     }
 
     randomColorTrigger() {
