@@ -13,6 +13,7 @@ export class RetrieveStateApplicationService {
               private webSocketService : WSRClientService,
               private router: Router) {
 
+    console.log("start: RetrieveStateApplicationService")
     this.retrieveStatusApplication().catch();
   }
 

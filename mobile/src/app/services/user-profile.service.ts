@@ -4,37 +4,54 @@ import {LoginService} from './login.service';
 import {UserDto} from '../repository/user/userDto';
 import {FriendsDto} from '../repository/friend/friendsDto';
 import {FriendRepositoryService} from '../repository/friend/friend-repository.service';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {ChannelDtoShort} from '../repository/channel/channelDtoShort';
 import {ChannelRepositoryService} from '../repository/channel/channel-repository.service';
 import {RetrieveStateApplicationService} from './retrieve-state-application.service';
+import {WSRClientService} from '../WSRClient/wsrclient.service';
+import {RemoteType} from '../WSRClient/types/RemoteType';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserProfileService {
 
-    public userDto: UserDto;
+    public userDto: UserDto = null;
     public friends: BehaviorSubject<Array<FriendsDto>> = new BehaviorSubject([]);
     public channals: BehaviorSubject<Array<ChannelDtoShort>> = new BehaviorSubject([]);
+    private wsrIsConnected : boolean;
 
     constructor(private userRepository: UserRepositoryService,
                 private friendsRepository: FriendRepositoryService,
                 private channelsRepository: ChannelRepositoryService,
                 private retrieveStateApplicationService: RetrieveStateApplicationService,
-                private loginService: LoginService) {
+                private loginService: LoginService,
+                private wsrClientService:WSRClientService) {
 
 
         console.log('UserProfileService -- subscribe');
         this.loginService.onLogin.subscribe((user: UserDto) => {
             this.initializeUser(user);
+            this.authorizeSocketConnection();
             this.retrieveStateApplicationService.saveUserId(user);
         });
-
+        console.log('onRetrieveApplicationState -- subscribe');
         this.retrieveStateApplicationService.onRetrieveApplicationState.subscribe((user)=>{
             this.initializeUser(user);
+            this.authorizeSocketConnection();
         })
 
+        this.wsrClientService.isConnected.subscribe((status)=>{
+            this.wsrIsConnected = status;
+            this.authorizeSocketConnection();
+        })
+
+    }
+
+    private authorizeSocketConnection(){
+        if(this.wsrIsConnected && (this.userDto != null)){
+            this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.AUTHSESSION,this.userDto)
+        }
     }
 
     private initializeUser(user: UserDto) {

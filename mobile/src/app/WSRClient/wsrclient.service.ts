@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {WSRConnector} from "./wsrModule/api/WSRConnector";
-import {WSRClient} from "./wsrModule/api/WSRClient";
-import {ErrorDTO} from "./dto/ErrorDTO";
-import {LocalType} from "./types/LocalType";
-import {RemoteType} from "./types/RemoteType";
+import {WSRConnector} from './wsrModule/api/WSRConnector';
+import {WSRClient} from './wsrModule/api/WSRClient';
+import {ErrorDTO} from './dto/ErrorDTO';
+import {LocalType} from './types/LocalType';
+import {RemoteType} from './types/RemoteType';
+import {BehaviorSubject} from 'rxjs';
 
 
 @Injectable({
@@ -11,20 +12,29 @@ import {RemoteType} from "./types/RemoteType";
 })
 export class WSRClientService {
 
-  private readonly wsrClient: WSRClient<LocalType,RemoteType>;
+    public isConnected = new BehaviorSubject(false);
 
-  constructor() {
+    private readonly wsrClient: WSRClient<LocalType, RemoteType>;
 
-    let wsrConnector = new WSRConnector<LocalType,RemoteType>();
-    this.wsrClient = wsrConnector.connect("ws://localhost:8080/socket");
+    constructor() {
 
+        let wsrConnector = new WSRConnector<LocalType, RemoteType>();
+        this.wsrClient = wsrConnector.connect('ws://localhost:8080/socket');
 
-    this.wsrClient.addProcedure(LocalType.ERROR, new ErrorDTO(),data => {
-        console.error(data,"Error");
-    })
-  }
+        this.wsrClient.onClose().subscribe(() => {
+            this.isConnected.next(false);
 
-  public get WRSClient(): WSRClient<LocalType,RemoteType>{
-    return this.wsrClient;
-  }
+        });
+        this.wsrClient.onOpen().subscribe(() => {
+            this.isConnected.next(true);
+        });
+
+        this.wsrClient.addProcedure(LocalType.ERROR, new ErrorDTO(), data => {
+            console.error(data, 'Error');
+        });
+    }
+
+    public get WRSClient(): WSRClient<LocalType, RemoteType> {
+        return this.wsrClient;
+    }
 }
