@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserProfileService} from './services/user-profile.service';
+import {WSRClientService} from './WSRClient/wsrclient.service';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +9,8 @@ import {UserProfileService} from './services/user-profile.service';
 })
 export class AppComponent {
 
-    constructor(private userProfileService: UserProfileService) {
+    constructor(private userProfileService: UserProfileService,
+                private webSocket : WSRClientService) {
 
     }
 

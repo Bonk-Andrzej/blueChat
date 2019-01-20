@@ -7,7 +7,7 @@ import {FriendRepositoryService} from '../repository/friend/friend-repository.se
 import {BehaviorSubject} from 'rxjs';
 import {ChannelDtoShort} from '../repository/channel/channelDtoShort';
 import {ChannelRepositoryService} from '../repository/channel/channel-repository.service';
-import {Router} from '@angular/router';
+import {RetrieveStateApplicationService} from './retrieve-state-application.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,34 +20,24 @@ export class UserProfileService {
 
     constructor(private userRepository: UserRepositoryService,
                 private friendsRepository: FriendRepositoryService,
-                private channelsRespository: ChannelRepositoryService,
-                private loginService: LoginService,
-                private router: Router) {
+                private channelsRepository: ChannelRepositoryService,
+                private retrieveStateApplicationService: RetrieveStateApplicationService,
+                private loginService: LoginService) {
 
-        this.loginService.onLogin.subscribe((user: UserDto) => {
-            // this.userDto = user;
-            //             // this.fetchFriends().catch();
-            //             // this.fetchChannels().catch();
-            this.initialize(user);
-            localStorage.setItem('userId', user.idUser + '');
-        });
-        this.reTriveStatusAplication();
 
         console.log('UserProfileService -- subscribe');
+        this.loginService.onLogin.subscribe((user: UserDto) => {
+            this.initializeUser(user);
+            this.retrieveStateApplicationService.saveUserId(user);
+        });
+
+        this.retrieveStateApplicationService.onRetrieveApplicationState.subscribe((user)=>{
+            this.initializeUser(user);
+        })
+
     }
 
-    private async reTriveStatusAplication() {
-        const id: string = localStorage.getItem('userId');
-        if (id != null) {
-            const user = await this.userRepository.getUserById(parseInt(id));
-            this.initialize(user);
-            this.router.navigateByUrl('/main-login').catch();
-        } else {
-            this.router.navigateByUrl('/').catch();
-        }
-    }
-
-    private initialize(user: UserDto) {
+    private initializeUser(user: UserDto) {
         this.userDto = user;
         this.fetchFriends().catch();
         this.fetchChannels().catch();
@@ -67,7 +57,7 @@ export class UserProfileService {
     }
 
     private async fetchChannels() {
-        const result = await this.channelsRespository.getShortList();
+        const result = await this.channelsRepository.getShortList();
         console.warn(result);
         this.channals.next(result);
     }
