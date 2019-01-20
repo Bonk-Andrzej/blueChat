@@ -6,7 +6,7 @@ import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ChannelsMessageService {
+class ChannelsMessageService {
     private ChannelService channelService;
     private UserService userService;
     private Logger log = LoggerFactory.getLogger(ChannelsMessageService.class);

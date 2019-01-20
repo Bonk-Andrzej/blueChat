@@ -12,4 +12,5 @@ import lombok.Setter;
 public class ChannelDtoShort {
     private Long idChannel;
     private String name;
+    private PhotoDto photoDto;
 }

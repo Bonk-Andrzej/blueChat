@@ -6,7 +6,7 @@ import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 
 
-public class UserService {
+class UserService {
 
 
     private PhotoService photoService;

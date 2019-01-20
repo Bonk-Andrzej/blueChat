@@ -4,7 +4,7 @@ package com.wildBirds.BlueChat.domain.model;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public class UserRepositoryImpl implements UserRepositoryCustom{
+class UserRepositoryImpl implements UserRepositoryCustom{
 
     @PersistenceContext
     EntityManager entityManager;

@@ -3,7 +3,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.PhotoDto;
 
-public class PhotoService {
+class PhotoService {
 
     public PhotoDto toDto(Photo photo) {
         PhotoDto photoDto = new PhotoDto();
