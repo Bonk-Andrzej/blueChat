@@ -7,7 +7,7 @@
     <div id="conversation-wrapper">
         <ng-container class="conversation" *ngFor="let message of conversation | async">
             <ng-container
-                    *ngIf="(message.senderId == idSender); then messageOvner; else sessageInterlocutor">
+                    *ngIf="(message.senderId == idSender); then sessageInterlocutor; else  messageOvner">
             </ng-container>
 
             <ng-template #messageOvner>
