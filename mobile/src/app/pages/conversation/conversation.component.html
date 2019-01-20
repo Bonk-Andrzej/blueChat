@@ -22,5 +22,5 @@
 
         </ng-container>
     </div>
-    <div id="button-sending" app-button-sending></div>
+    <div (onButtonClick)="sendMessage()" [(value)]="messageContent" id="button-sending" app-button-sending></div>
 </div>

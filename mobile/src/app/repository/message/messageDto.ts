@@ -6,5 +6,5 @@ export class MessageDto {
     public sentDate: string;
     public isRead: boolean;
     public senderId: number;
-    public idReceiver: number;
+    public receiverId: number;
 }

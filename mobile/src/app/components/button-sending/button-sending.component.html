@@ -1,4 +1,4 @@
 <div id="wrapper-button">
-    <textarea id="text-content"></textarea>
-    <div id="red-button"></div>
+    <textarea (keyup)="textUpdate()" [(ngModel)]="value" id="text-content"></textarea>
+    <div (click)="buttonClickHandler($event)" id="red-button"></div>
 </div>

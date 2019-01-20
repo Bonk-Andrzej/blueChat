@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: '[app-button-sending]',
-  templateUrl: './button-sending.component.html',
-  styleUrls: ['./button-sending.component.scss']
+    selector: '[app-button-sending]',
+    templateUrl: './button-sending.component.html',
+    styleUrls: ['./button-sending.component.scss']
 })
 export class ButtonSendingComponent implements OnInit {
 
-  constructor() { }
+    @Input() value: string;
+    @Output() valueChange = new EventEmitter<string>();
+    @Output() onButtonClick = new EventEmitter<Event>();
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
+
+    buttonClickHandler(e: Event){
+        this.onButtonClick.emit(e)
+    }
+
+    public textUpdate(){
+        this.valueChange.emit(this.value);
+    }
 
 }
