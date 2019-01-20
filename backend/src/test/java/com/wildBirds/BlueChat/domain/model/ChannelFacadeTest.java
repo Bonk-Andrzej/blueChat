@@ -174,7 +174,7 @@ public class ChannelFacadeTest extends ConfigurationTest{
         //given
         logger.info("Running test >> shouldReturnShortListOfChannelsOnlyWithNameAndId");
         User user = new User();
-        user.setNick("MilenaChannel33");
+        user.setNick("MilenaChannel33335");
         user.setPassword("password");
 
         user = userRepository.save(user);
