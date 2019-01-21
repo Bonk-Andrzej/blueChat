@@ -40,7 +40,7 @@ export class ConversationService {
     public async startConversationWithUser(interlocutor: UserDtoShort) {
 
         const user = this.userProfileService.getUser();
-        const conversation = await this.messageRepository.getConversation(user.idUser, interlocutor.idUser, 10, 0);
+        const conversation = await this.messageRepository.getConversation(user.idUser, interlocutor.idUser, 100, 0);
         this.conversation.next(conversation);
         this.interlocutorName.next(interlocutor.nick);
         this.interlocutorId = interlocutor.idUser;

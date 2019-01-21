@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ConversationService} from '../../services/conversation.service';
 import {Observable} from 'rxjs';
 import {MessageDto} from '../../repository/message/messageDto';
@@ -10,12 +10,15 @@ import {UserProfileService} from '../../services/user-profile.service';
     styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent implements OnInit {
-
     messageOwnerName: string;
+
     interlocutorName: Observable<string>;
     idSender: number;
     messageContent: string;
     conversation: Observable<Array<MessageDto>>;
+
+    @ViewChild('conversationListRef')
+    private conversationListRef: ElementRef<HTMLDivElement>;
 
     constructor(private conversationService : ConversationService,
                 private userProfile: UserProfileService) {
@@ -27,6 +30,18 @@ export class ConversationComponent implements OnInit {
         this.messageOwnerName = this.userProfile.getUser().nick;
         this.interlocutorName = this.conversationService.getInterlocutorName();
         this.conversation = this.conversationService.getConversation();
+        this.conversation.subscribe(() => {
+
+            console.log("update")
+            if (this.conversationListRef) {
+
+                const nativeElement = this.conversationListRef.nativeElement;
+                setTimeout(() => {
+                    console.log(nativeElement.scrollHeight)
+                    nativeElement.scrollTop = nativeElement.scrollHeight;
+                }, 0)
+            }
+        })
 
     }
 

@@ -28,10 +28,11 @@
     overflow-x: hidden;
 
     #sender {
-      float: left;
+      float: right;
     }
     #interlocutor {
-      float: right;
+
+      float: left;
     }
     .message {
       width: 70%;
