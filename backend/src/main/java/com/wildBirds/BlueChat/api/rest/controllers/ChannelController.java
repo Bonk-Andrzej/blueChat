@@ -6,6 +6,7 @@ import com.wildBirds.BlueChat.domain.model.ChannelFacade;
 import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,43 +25,65 @@ public class ChannelController {
         this.channelFacade = channelFacade;
     }
 
-    // TODO: 17.12.2018 have to finish impl , add handling exceptions and logger
-
-    // TODO: 16.01.2019 HAVE TO TESTING
-
-    // TODO: 16.01.2019 add handling exception
-
-    /**
-     * } catch (DataIntegrityViolationException e) {
-     * e.printStackTrace();
-     * throw new DataIntegrityViolationException(e.getMessage());
-     * }
-     */
-
     @CrossOrigin
     @GetMapping("shorts")
     public ResponseEntity getShortList() {
+        try {
 
-        List<ChannelDtoShort> channelsShort = channelFacade.getChannelsShort();
-
-        return new ResponseEntity(channelsShort, HttpStatus.OK);
+            List<ChannelDtoShort> response = channelFacade.getChannelsShort();
+            log.info("Method getShortList", response.toString());
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (ChannelServiceExceptions e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method getShortList ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method getShortList ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @CrossOrigin
     @GetMapping
     public ResponseEntity getChannels() {
-        List<ChannelDto> channels = channelFacade.getChannels();
-
-        return new ResponseEntity(channels, HttpStatus.OK);
-
+        try {
+            List<ChannelDto> response = channelFacade.getChannels();
+            log.info("Method getChannels", response.toString());
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (ChannelServiceExceptions e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method getChannels ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method getChannels ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @CrossOrigin
     @GetMapping({"idChannel"})
     public ResponseEntity getById(Long idChannel) {
-        ChannelDto channelDto = channelFacade.getById(idChannel);
-
-        return new ResponseEntity(channelDto, HttpStatus.OK);
+        try {
+            ChannelDto channelDto = channelFacade.getById(idChannel);
+            log.info("Method getById", channelDto.toString());
+            return new ResponseEntity(channelDto, HttpStatus.OK);
+        } catch (ChannelServiceExceptions e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method getById ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method getById ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @CrossOrigin
@@ -71,8 +94,12 @@ public class ChannelController {
             ChannelDto response = channelFacade.addChannel(channelDto);
             log.info("Method addChannel", response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
-
         } catch (ChannelServiceExceptions e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method addChannel ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());
             log.error("Method addChannel ", e.getMessage());
@@ -87,6 +114,13 @@ public class ChannelController {
             channelFacade.removeChannel(channelDto);
             log.info("Method deleteChannel ", channelDto.toString());
             return new ResponseEntity(HttpStatus.OK);
+
+        } catch (DataIntegrityViolationException e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method deleteChannel ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+
         } catch (Exception e) {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());
@@ -113,7 +147,14 @@ public class ChannelController {
             headers.add("Error", e.getMessage());
             log.error("Method addUser", e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+
         } catch (ChannelServiceExceptions e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method addUser ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+
+        } catch (Exception e) {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());
             log.error("Method addUser ", e.getMessage());
@@ -125,23 +166,29 @@ public class ChannelController {
     @PatchMapping("removeUser")
     public ResponseEntity removeUserFromChannel(@RequestParam String idUser,
                                                 @RequestParam String idChannel) {
-        Long useId = Long.valueOf(idUser);
-        Long chanId = Long.valueOf(idChannel);
+        try {
+            Long useId = Long.valueOf(idUser);
+            Long chanId = Long.valueOf(idChannel);
+            ChannelDto response = channelFacade.removeUserFromChannel(useId, chanId);
+            log.info("Method removeUser ", response.toString());
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (ChannelServiceExceptions e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method removeUser ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
 
-        ChannelDto response = channelFacade.removeUserFromChannel(useId, chanId);
+        } catch (DataIntegrityViolationException e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method removeUser ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity(response,HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method removeUser ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
     }
-
-//    @ExceptionHandler(ChannelServiceExceptions.class)
-//    public ResponseEntity channelException(ChannelServiceExceptions e){
-//
-//    }
-//
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity channelException(){
-//
-//    }
-
-
 }

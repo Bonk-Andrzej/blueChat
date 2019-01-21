@@ -2,3 +2,22 @@
 -- INSERT INTO user(nick, password, email, description ) VALUES ('test', 'test', 'test@wp.pl', 'some spacial description')
 -- INSERT INTO channel(is_public, name, channel_owner) VALUES (true , 'JAVA POZ 9', 1)
 -- insert INTO channels_message(content,sent_date, channel_id, sende) VALUES
+
+
+/**
+     * } catch (DataIntegrityViolationException e) {
+     * e.printStackTrace();
+     * throw new DataIntegrityViolationException(e.getMessage());
+     * }
+     */
+
+
+//    @ExceptionHandler(ChannelServiceExceptions.class)
+//    public ResponseEntity channelException(ChannelServiceExceptions e){
+//
+//    }
+//
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity channelException(){
+//
+//    }

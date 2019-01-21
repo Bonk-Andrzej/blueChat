@@ -58,6 +58,14 @@ public class ConfigurationTest {
     protected UserFacade userFacade;
 
 
+    @Autowired
+    protected ChannelService channelService;
+
+    @Autowired
+    protected UserService userService;
+
+
+
     @Test
     public void contextLoads() {
         logger.info("Tests start ...");
