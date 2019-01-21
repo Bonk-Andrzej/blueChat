@@ -36,7 +36,6 @@ public class ChannelsMessageController {
             Long idChannelLong = Long.valueOf(channelId);
             Integer limitInt = Integer.valueOf(limit);
             Integer toBoundInt = Integer.valueOf(toBound);
-
             List<ChannelsMessageDto> conversation = channelsMessageFacade.getConversation(idChannelLong, limitInt, toBoundInt);
             log.info("Method getConversation ", conversation.toString());
             return new ResponseEntity(conversation, HttpStatus.OK);

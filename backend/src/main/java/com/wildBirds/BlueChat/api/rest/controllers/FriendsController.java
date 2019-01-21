@@ -4,6 +4,7 @@ import com.wildBirds.BlueChat.api.rest.dto.FriendsDto;
 import com.wildBirds.BlueChat.domain.model.UserContainFriendFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,26 +29,49 @@ public class FriendsController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity getFriendshipList(@RequestParam String idUser) {
-        Long value = Long.valueOf(idUser);
-        List<FriendsDto> userContainFriend = userContainFriendFacade.getUserContainFriend(value);
-        return new ResponseEntity(userContainFriend, HttpStatus.OK);
+        try {
+            Long value = Long.valueOf(idUser);
+            List<FriendsDto> response = userContainFriendFacade.getUserContainFriend(value);
+            log.info("Method getFriendshipList ", response.toString());
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method getFriendshipList ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @CrossOrigin
     @PostMapping
     public ResponseEntity removeFriendship(@RequestBody FriendsDto friendsDto){
-        userContainFriendFacade.remove(friendsDto);
-
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            userContainFriendFacade.remove(friendsDto);
+            log.info("Method removeFriendship ", friendsDto.toString());
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method removeFriendship ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @CrossOrigin
     @DeleteMapping
     public ResponseEntity addFriendship(@RequestBody FriendsDto friendsDto,
                                         @RequestParam String idUser){
-        FriendsDto response = userContainFriendFacade.addFriendship(Long.valueOf(idUser), friendsDto);
 
+        try {
+            FriendsDto response = userContainFriendFacade.addFriendship(Long.valueOf(idUser), friendsDto);
+            log.info("Method addFriendship ", response.toString());
 
-        return new ResponseEntity(response, HttpStatus.OK);
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Error", e.getMessage());
+            log.error("Method addFriendship ", e.getMessage());
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
     }
 }

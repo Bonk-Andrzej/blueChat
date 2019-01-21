@@ -43,6 +43,20 @@ public class UserController {
         }
     }
 
+    @CrossOrigin
+    @GetMapping("{idUser}")
+    public ResponseEntity getById(@PathVariable Long idUser) {
+        try {
+            UserDto response = userFacade.getById(idUser);
+            logger.info("REGISTERED USER >> ", response.toString());
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            logger.debug("INVALID REGISTER", e.fillInStackTrace());
+            headers.add("Error", "Bad request");
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
+    }
 //    @GetMapping
 //    @CrossOrigin
 //    public ResponseEntity getAll(){
@@ -58,12 +72,7 @@ public class UserController {
 //            headers.add("Error","Bad request");
 //            return new ResponseEntity(headers,HttpStatus.BAD_REQUEST);
 //        }
+
 //    }
 
-
-    @CrossOrigin
-    @GetMapping("{idUser}")
-    public ResponseEntity getById(@PathVariable Long idUser) {
-        return new ResponseEntity(userFacade.getById(idUser), HttpStatus.OK);
-    }
 }
