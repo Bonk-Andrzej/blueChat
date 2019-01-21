@@ -6,6 +6,10 @@ import com.wildBirds.BlueChat.api.rest.dto.PhotoDto;
 class PhotoService {
 
     public PhotoDto toDto(Photo photo) {
+        if (photo == null) {
+            PhotoDto photoDto = new PhotoDto();
+        return photoDto;
+        }
         PhotoDto photoDto = new PhotoDto();
         if (photo.getIdPhoto() != null) {
             photoDto.setIdPhoto(photo.getIdPhoto());
