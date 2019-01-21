@@ -45,8 +45,9 @@ class Channel {
     public Channel() {
     }
 
-    public Channel(Long idChannel, String name) {
+    public Channel(Long idChannel, String name, Photo profilePhoto) {
         this.idChannel = idChannel;
+        this.profilePhoto = profilePhoto;
         this.name = name;
     }
 

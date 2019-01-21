@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class ChannelRepositoryTest extends ConfigurationTest {
@@ -64,7 +65,8 @@ public class ChannelRepositoryTest extends ConfigurationTest {
     }
 
     @Test
-    public void shouldReturnShortListOfChannelsOnlyWithNameAndId() {
+    @Transactional
+    public void shouldReturnShortListOfChannelsOnlyWithNameAndIdAndPhoto() {
         //given
         logger.info("Running test >> shouldReturnShortListOfChannelsOnlyWithNameAndId");
         User user = new User();
@@ -73,13 +75,25 @@ public class ChannelRepositoryTest extends ConfigurationTest {
 
         user = userRepository.save(user);
 
+        Photo photo = new Photo();
+        photo.setPhoto("rgb(23,151,11)");
+
+        photo = photoRepository.save(photo);
+
         Channel channel = new Channel();
         channel.setName("general33");
         channel.setChannelOwner(user);
+        channel.setProfilePhoto(photo);
 
+
+        Photo photo2 = new Photo();
+        photo2.setPhoto("rgb(33,27,29)");
+
+        photo2 = photoRepository.save(photo2);
         Channel channel2 = new Channel();
         channel2.setName("general34");
         channel2.setChannelOwner(user);
+        channel2.setProfilePhoto(photo2);
 
         channelRepository.saveMessage(channel);
         channelRepository.saveMessage(channel2);
@@ -87,13 +101,12 @@ public class ChannelRepositoryTest extends ConfigurationTest {
         //when
         List<Channel> listNameAndId = channelRepository.getListNameAndId();
 
-        // TODO: 18.01.2019 WHO WROTE TEST - result expect
         Channel channel1 = listNameAndId.get(0);
 
         //then
         Assert.assertNull(channel1.getChannelOwner());
         Assert.assertFalse(channel1.getIsPublic());
-        Assert.assertNull(channel1.getProfilePhoto());
+        Assert.assertNotNull(channel1.getProfilePhoto());
         Assert.assertNotNull(channel1.getName());
         Assert.assertNotNull(channel1.getIdChannel());
 

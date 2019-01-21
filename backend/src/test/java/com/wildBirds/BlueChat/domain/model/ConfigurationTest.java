@@ -17,10 +17,14 @@ public class ConfigurationTest {
     private Logger logger = LoggerFactory.getLogger(ConfigurationTest.class);
 
     @Autowired
+    protected ChannelFacade channelFacade;
+
+    @Autowired
     protected ChannelRepository channelRepository;
 
     @Autowired
-    protected ChannelFacade channelFacade;
+    protected ChannelService channelService;
+
 
 
     @Autowired
@@ -52,14 +56,16 @@ public class ConfigurationTest {
 
 
     @Autowired
+    protected PhotoRepository photoRepository;
+
+
+    @Autowired
     protected UserRepository userRepository;
 
     @Autowired
     protected UserFacade userFacade;
 
 
-    @Autowired
-    protected ChannelService channelService;
 
     @Autowired
     protected UserService userService;

@@ -24,7 +24,11 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
         Long idChannel = channel.getIdChannel();
         String name = channel.getName();
         boolean isPublic = channel.getIsPublic();
-        Photo profilePhoto = getPhoto(channel);
+        Photo profilePhoto = null;
+        if (channel.getProfilePhoto() != null) {
+            profilePhoto = channel.getProfilePhoto();
+        }
+
         User channelOwner = channel.getChannelOwner();
         User userJpa = getUser(channelOwner);
         Set<User> usersInChannel = getUsers(channel);
@@ -52,7 +56,8 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
 
     @Override
     public List<Channel> getListNameAndId() {
-        String query ="SELECT new " + Channel.class.getName() + "(channel.idChannel, channel.name) FROM Channel channel";
+        String query = "SELECT new " + Channel.class.getName() + "(channel.idChannel, channel.name, photo)  FROM Channel channel " +
+                "JOIN channel.profilePhoto photo";
 
 
         return entityManager.createQuery(query)
@@ -63,13 +68,6 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
         return entityManager.find(User.class, channelOwner.getIdUser());
     }
 
-    private Photo getPhoto(Channel channel) {
-        Photo profilePhoto = null;
-        if (channel.getProfilePhoto() != null) {
-            profilePhoto = entityManager.find(Photo.class, profilePhoto.getPhoto());
-        }
-        return profilePhoto;
-    }
 
     private Set<User> getUsers(Channel channel) {
         Set<User> usersInChannel = null;
