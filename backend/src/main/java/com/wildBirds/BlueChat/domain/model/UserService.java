@@ -52,6 +52,17 @@ class UserService {
         return userDto;
     }
 
+    public UserDtoShort toDtoShort(User user){
+        UserDtoShort userDtoShort = new UserDtoShort();
+
+        userDtoShort.setIdUser(user.getIdUser());
+        userDtoShort.setNick(user.getNick());
+        userDtoShort.setPhotoDto(photoService.toDto(user.getProfilePhoto()));
+
+        return userDtoShort;
+
+    }
+
     public UserDtoShort toEntity(User user){
         UserDtoShort userDtoShort = new UserDtoShort();
 

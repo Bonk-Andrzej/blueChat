@@ -3,10 +3,14 @@ package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import com.wildBirds.BlueChat.domain.model.exceptions.UserNotExistExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class UserFacade {
@@ -66,5 +70,16 @@ public class UserFacade {
         UserDto userDto = userService.toDto(one);
 
         return userDto;
+    }
+
+    public List<UserDtoShort> nickContainPhrase(String phrase) {
+
+        List<User> users = userRep.nickContainPhrase(phrase);
+
+        List<UserDtoShort> userDtoShortList = users.stream()
+                .map(user -> userService.toDtoShort(user))
+                .collect(Collectors.toList());
+        return userDtoShortList;
+
     }
 }

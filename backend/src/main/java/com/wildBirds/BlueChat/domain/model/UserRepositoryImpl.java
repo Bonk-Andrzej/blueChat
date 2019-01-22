@@ -3,6 +3,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 class UserRepositoryImpl implements UserRepositoryCustom{
 
@@ -10,14 +11,19 @@ class UserRepositoryImpl implements UserRepositoryCustom{
     EntityManager entityManager;
     @Override
     public User saveUser(User user) {
-//        User toSave = new User();
-//
-//        toSave.setIdUser(user.getIdUser());
-//        toSave.setNick(user.getNick());
-//        toSave.setNick();
-
-
-
         return null;
+    }
+
+    @Override
+    public List<User> nickContainPhrase(String phrase) {
+
+        String query = "SELECT user FROM User user " +
+                "WHERE user.nick LIKE :phrase";
+
+        return entityManager.createQuery(query)
+                .setParameter("phrase", "%"+phrase+"%")
+                .setMaxResults(10)
+                .getResultList();
+
     }
 }
