@@ -19,7 +19,7 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
 
     @Override
     @Transactional
-    public Channel saveMessage(Channel channel) {
+    public Channel saveChannel(Channel channel) {
 
         Long idChannel = channel.getIdChannel();
         String name = channel.getName();
@@ -55,12 +55,26 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
     }
 
     @Override
-    public List<Channel> getListNameAndId() {
+    public List<Channel> getListNameIdPhoto() {
         String query = "SELECT new " + Channel.class.getName() + "(channel.idChannel, channel.name, photo)  FROM Channel channel " +
                 "JOIN channel.profilePhoto photo";
 
 
         return entityManager.createQuery(query)
+                .getResultList();
+    }
+
+    @Override
+    public List<Channel> getChannels(Long idUser) {
+
+        String query = "SELECT channel FROM Channel channel " +
+                "JOIN channel.usersInChannel users " +
+                "WHERE users.idUser =: idUser OR " +
+                "channel.isPublic =: isPublic";
+
+        return entityManager.createQuery(query)
+                .setParameter("idUser", idUser)
+                .setParameter("isPublic", true)
                 .getResultList();
     }
 
@@ -70,15 +84,16 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
 
 
     private Set<User> getUsers(Channel channel) {
-        Set<User> usersInChannel = null;
         if (!channel.getUsersInChannel().isEmpty()) {
+            Set<User> usersInChannel = channel.getUsersInChannel();
             usersInChannel = usersInChannel.stream()
                     .map(user -> entityManager.find(User.class, user.getIdUser()))
                     .collect(Collectors.toSet());
+            return usersInChannel;
         }else {
-            usersInChannel = new HashSet<>();
+            Set<User> usersInChannel = new HashSet<>();
+            return usersInChannel;
         }
-        return usersInChannel;
     }
 
     private List<ChannelsMessage> getChannelsMessages(Channel channel) {

@@ -19,7 +19,7 @@ public class ChannelFacade {
     public ChannelDto addChannel(ChannelDto channelDto){
         Channel channel = channelService.toEntity(channelDto);
 
-        Channel addedChannel = channelRepository.saveMessage(channel);
+        Channel addedChannel = channelRepository.saveChannel(channel);
 
         ChannelDto response = channelService.toDto(addedChannel);
 
@@ -67,7 +67,7 @@ public class ChannelFacade {
     }
 
     public List<ChannelDtoShort> getChannelsShort() {
-        List<Channel> channelList = channelRepository.getListNameAndId();
+        List<Channel> channelList = channelRepository.getListNameIdPhoto();
         List<ChannelDtoShort> channelDtoShortList = channelList.stream()
                 .map(channel -> channelService.toDtoShort(channel))
                 .collect(Collectors.toList());
@@ -79,6 +79,15 @@ public class ChannelFacade {
     public  ChannelDto getById(Long id){
         Channel channel = channelRepository.getOne(id);
         return channelService.toDto(channel);
+    }
+
+    public List<ChannelDtoShort> getChannelsShort(Long idUser){
+        List<Channel> channels = channelRepository.getChannels(idUser);
+
+        List<ChannelDtoShort> result = channels.stream()
+                .map(channel -> channelService.toDtoShort(channel))
+                .collect(Collectors.toList());
+        return result;
     }
 
 }

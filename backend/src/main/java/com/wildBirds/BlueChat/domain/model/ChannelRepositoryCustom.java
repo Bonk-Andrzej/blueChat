@@ -4,7 +4,8 @@ import java.util.List;
 
 interface ChannelRepositoryCustom {
 
-    Channel saveMessage(Channel channel);
-    List<Channel> getListNameAndId();
+    Channel saveChannel(Channel channel);
+    List<Channel> getListNameIdPhoto();
+    List<Channel> getChannels(Long idUser);
 
 }

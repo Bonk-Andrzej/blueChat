@@ -18,9 +18,11 @@ class ChannelService {
 
     private Logger log = LoggerFactory.getLogger(MessageService.class);
     private UserService userService;
+    private PhotoService photoService;
 
-    public ChannelService(UserService userService) {
+    public ChannelService(UserService userService, PhotoService photoService) {
         this.userService = userService;
+        this.photoService = photoService;
     }
 
     protected Channel toEntity(ChannelDto channelDto){
@@ -92,6 +94,7 @@ class ChannelService {
 
         channelDtoShort.setIdChannel(channel.getIdChannel());
         channelDtoShort.setName(channel.getName());
+        channelDtoShort.setPhotoDto(photoService.toDto(channel.getProfilePhoto()));
 
         return channelDtoShort;
     }

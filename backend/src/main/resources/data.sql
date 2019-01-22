@@ -20,17 +20,26 @@ INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 4 DAY ), 4 , 2)
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 5 DAY ), 4 , 3)
 
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('general', true , 1, 6)
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('SmallTalk', true , 2, 5)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('general-public', true , 1, 6)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('onlyTest-public', true , 2, 6)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('Developers-private', false , 2, 5)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('Home-private', false , 2, 5)
+
 
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 1)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 2)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 3)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 4)
 
-INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 1)
-INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 2)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 4)
+
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (3, 1)
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (3, 2)
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (3, 4)
+
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (4, 1)
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (4, 3)
+
 
 INSERT INTO channels_message(content, sent_date, channel_id, sender) VALUES ('Welcome All', DATE_ADD(NOW(), INTERVAL 5 MINUTE ), 1 , 1)
 INSERT INTO channels_message(content, sent_date, channel_id, sender) VALUES ('I thing that uor application is grate :)', DATE_ADD(NOW(), INTERVAL 6 MINUTE ), 1 , 1)

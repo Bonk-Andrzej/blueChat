@@ -45,6 +45,17 @@ public class ChannelController {
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
+//
+//
+    @CrossOrigin
+    @GetMapping("/shorts/{idUser}")
+    public ResponseEntity getShortList(@PathVariable String idUser){
+
+        List<ChannelDtoShort> result = channelFacade.getChannelsShort(Long.valueOf(idUser));
+
+        return new ResponseEntity(result, HttpStatus.OK);
+
+    }
 
     @CrossOrigin
     @GetMapping
@@ -68,9 +79,9 @@ public class ChannelController {
 
     @CrossOrigin
     @GetMapping({"idChannel"})
-    public ResponseEntity getById(Long idChannel) {
+    public ResponseEntity getById(@PathVariable String idChannel) {
         try {
-            ChannelDto channelDto = channelFacade.getById(idChannel);
+            ChannelDto channelDto = channelFacade.getById(Long.valueOf(idChannel));
             log.info("Method getById", channelDto.toString());
             return new ResponseEntity(channelDto, HttpStatus.OK);
         } catch (ChannelServiceExceptions e) {
