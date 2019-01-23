@@ -17,7 +17,7 @@
 
         <ng-container *ngFor="let friend of friendDtoList | async">
             <div (click)="startConversationWithUser(friend.getFriend())" [messageCounter]="1" [objectName]="friend.getFriend().getNick()"
-                 [color]="friend.getFriend().getPhoto().photo" [isActive]="friend.getFriend().getActiveObs() | async" app-object-with-status=""></div>
+                 [color]="friend.getFriend().getPhoto().photo" [isActive]="friend.getFriend().getActiveObs()" app-object-with-status=""></div>
         </ng-container>
 
     </div>

@@ -37,15 +37,10 @@ export class UserProfileService {
             const friendsDtos = this.friends.getValue();
 
             friendsDtos.forEach((friend) => {
-                if (friend.getFriend().getIdUser()== user.idUser) {
+                if (friend.getFriend().getIdUser() == user.idUser) {
                     friend.getFriend().setActive(true);
                 }
             });
-            this.friends.next([]);
-            setTimeout(() => {
-                this.friends.next(friendsDtos)
-            }, 0)
-
         });
 
         this.changeService.onFriendLeave.subscribe((user: UserDto) => {
@@ -54,15 +49,10 @@ export class UserProfileService {
             const friendsDtos = this.friends.getValue();
 
             friendsDtos.forEach((friend) => {
-                if (friend.getFriend().getIdUser()== user.idUser) {
+                if (friend.getFriend().getIdUser() == user.idUser) {
                     friend.getFriend().setActive(false);
                 }
             });
-            this.friends.next([]);
-            setTimeout(() => {
-                this.friends.next(friendsDtos)
-            }, 0)
-
         });
 
         this.loginService.onLogin.subscribe((user: UserDto) => {
@@ -74,7 +64,7 @@ export class UserProfileService {
             this.initializeUser(user);
             this.authorizeSocketConnection();
         })
-        this.retrieveStateApplicationService.onRemoveUserId.subscribe(()=>{
+        this.retrieveStateApplicationService.onRemoveUserId.subscribe(() => {
             this.eraseData()
         })
         this.wsrClientService.isConnected.subscribe((status) => {
