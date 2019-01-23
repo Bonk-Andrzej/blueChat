@@ -182,7 +182,7 @@ public class ChannelRepositoryTest extends ConfigurationTest {
 
         //then
 
-        Assert.assertEquals(3, user1Channels.size());
-        Assert.assertEquals(3, user2Channels.size());
+        Assert.assertEquals(1, user1Channels.size());
+        Assert.assertEquals(2, user2Channels.size());
     }
 }

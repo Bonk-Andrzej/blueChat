@@ -221,5 +221,72 @@ public class ChannelFacadeTest extends ConfigurationTest{
 
     }
 
+    @Test
+    @Transactional
+    public void shouldReturnOnlyPublicAndChannelsThatUserAssigned(){
+        //given
+        logger.info("Running test >> shouldReturnOnlyPublicAndChannelsThatUserAssigned");
+        User user = new User();
+        user.setNick("MilenaChannel3344");
+        user.setPassword("password");
+
+        user = userRepository.save(user);
+
+
+        User user2 = new User();
+        user2.setNick("IgorChannel3344");
+        user2.setPassword("password");
+
+        user2 = userRepository.save(user2);
+
+        User user3 = new User();
+        user3.setNick("PabloChannel3344");
+        user3.setPassword("password");
+
+        user3 = userRepository.save(user3);
+
+
+        Channel channel = new Channel();
+        channel.setName("private3344");
+        channel.setIsPublic(false);
+        channel.setChannelOwner(user);
+        channel.getUsersInChannel().add(user);
+
+
+        Channel channel2 = new Channel();
+        channel2.setName("private33445");
+        channel2.setIsPublic(false);
+        channel2.setChannelOwner(user2);
+        channel2.getUsersInChannel().add(user2);
+
+
+        Channel channel3 = new Channel();
+        channel3.setIsPublic(true);
+        channel3.setName("general3344");
+        channel3.setChannelOwner(user2);
+        channel3.getUsersInChannel().add(user2);
+
+        Channel channel4 = new Channel();
+        channel4.setIsPublic(true);
+        channel4.setName("general33445");
+        channel4.setChannelOwner(user3);
+        channel4.getUsersInChannel().add(user3);
+
+        channelRepository.saveChannel(channel);
+        channelRepository.saveChannel(channel2);
+        channelRepository.saveChannel(channel3);
+        channelRepository.saveChannel(channel4);
+
+        //when
+
+        List<ChannelDtoShort> user1Channels = channelFacade.getChannelsShort(user.getIdUser());
+        List<ChannelDtoShort> user2Channels = channelFacade.getChannelsShort(user2.getIdUser());
+
+        //then
+
+        Assert.assertEquals(1, user1Channels.size());
+        Assert.assertEquals(2, user2Channels.size());
+    }
+
 
 }
