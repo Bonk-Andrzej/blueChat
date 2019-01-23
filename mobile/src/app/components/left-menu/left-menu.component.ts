@@ -10,6 +10,8 @@ import {Observable} from 'rxjs';
 import {ChannelDtoShort} from '../../repository/channel/channelDtoShort';
 import {ConversationService} from '../../services/conversation.service';
 import {UserDtoShort} from '../../repository/user/userDtoShort';
+import {FriendsObs} from "../../services/model/friendsObs";
+import {UserShortObs} from "../../services/model/userShortObs";
 
 @Component({
     selector: 'app-left-menu',
@@ -32,37 +34,6 @@ import {UserDtoShort} from '../../repository/user/userDtoShort';
 })
 
 export class LeftMenuComponent implements OnInit {
-    // groups = [
-    //     {
-    //         'name': 'Java Poz 9',
-    //         'noReadMessages': '5'
-    //     },
-    //     {
-    //         'name': 'random',
-    //         'noReadMessages': '3'
-    //     },
-    //     {
-    //         'name': 'off topic',
-    //         'noReadMessages': '1'
-    //     }
-    // ];
-    //
-    // users = [
-    //     {
-    //         'nick': 'Paweł Jastrzębski',
-    //         'noReadMessages': '2'
-    //     },
-    //     {
-    //         'nick': 'Igor Sowiński',
-    //         'noReadMessages': '11'
-    //     },
-    //     {
-    //         'nick': 'Marian Kowalski',
-    //         'noReadMessages': '1'
-    //     }
-    // ];
-
-
     titleStyle = {
         paddingLeft: '10px'
     };
@@ -73,7 +44,7 @@ export class LeftMenuComponent implements OnInit {
     backgroundAnimationStatus = 'hide';
     backgroundColorList: string;
 
-    friendDtoList: Observable<Array<FriendsDto>>;
+    friendDtoList: Observable<Array<FriendsObs>>;
     channels: Observable<Array<ChannelDtoShort>>;
 
     constructor(public leftMenuService: LeftMenuServiceService,
@@ -85,14 +56,12 @@ export class LeftMenuComponent implements OnInit {
 
     ngOnInit() {
         this.backgroundAnimationStatus = 'hide';
-        this.leftMenuService.onToggle(this.onToggleHandler.bind(this));
+        this.leftMenuService.onToggle.subscribe((isDisplay)=>{
+            this.onToggleHandler(isDisplay);
+        });
         this.backgroundColorList = this.colorService.getColor('--black');
         this.friendDtoList = this.userProfileService.getFriends();
         this.channels = this.userProfileService.getChannels();
-
-        this.friendDtoList.subscribe(value => {
-            console.warn(value, "firends data ")
-        })
     }
 
     private onToggleHandler(isDisplay: boolean) {
@@ -108,7 +77,7 @@ export class LeftMenuComponent implements OnInit {
 
 
 
-    startConversationWithUser(interlocutor :UserDtoShort  ) {
+    startConversationWithUser(interlocutor :UserShortObs  ) {
         this.conversationService.startConversationWithUser(interlocutor)
         this.leftMenuService.toggle();
         this.router.navigateByUrl('/conversation');

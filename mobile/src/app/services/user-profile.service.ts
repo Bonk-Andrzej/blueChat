@@ -11,6 +11,7 @@ import {RetrieveStateApplicationService} from './retrieve-state-application.serv
 import {WSRClientService} from '../WSRClient/wsrclient.service';
 import {RemoteType} from '../WSRClient/types/RemoteType';
 import {ChangeService} from './change.service';
+import {FriendsObs} from "./model/friendsObs";
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,7 @@ import {ChangeService} from './change.service';
 export class UserProfileService {
 
     public userDto: UserDto = null;
-    public friends: BehaviorSubject<Array<FriendsDto>> = new BehaviorSubject([]);
+    public friends: BehaviorSubject<Array<FriendsObs>> = new BehaviorSubject([]);
     public channals: BehaviorSubject<Array<ChannelDtoShort>> = new BehaviorSubject([]);
     private wsrIsConnected: boolean;
 
@@ -36,15 +37,10 @@ export class UserProfileService {
             const friendsDtos = this.friends.getValue();
 
             friendsDtos.forEach((friend) => {
-                if (friend.friend.idUser == user.idUser) {
-                    friend.friend.active = true;
+                if (friend.getFriend().getIdUser() == user.idUser) {
+                    friend.getFriend().setActive(true);
                 }
             });
-            this.friends.next([]);
-            setTimeout(() => {
-                this.friends.next(friendsDtos)
-            }, 0)
-
         });
 
         this.changeService.onFriendLeave.subscribe((user: UserDto) => {
@@ -53,15 +49,10 @@ export class UserProfileService {
             const friendsDtos = this.friends.getValue();
 
             friendsDtos.forEach((friend) => {
-                if (friend.friend.idUser == user.idUser) {
-                    friend.friend.active = false;
+                if (friend.getFriend().getIdUser() == user.idUser) {
+                    friend.getFriend().setActive(false);
                 }
             });
-            this.friends.next([]);
-            setTimeout(() => {
-                this.friends.next(friendsDtos)
-            }, 0)
-
         });
 
         this.loginService.onLogin.subscribe((user: UserDto) => {
@@ -73,14 +64,13 @@ export class UserProfileService {
             this.initializeUser(user);
             this.authorizeSocketConnection();
         })
-        this.retrieveStateApplicationService.onRemoveUserId.subscribe(()=>{
-            this.ereaseData()
+        this.retrieveStateApplicationService.onRemoveUserId.subscribe(() => {
+            this.eraseData()
         })
         this.wsrClientService.isConnected.subscribe((status) => {
             this.wsrIsConnected = status;
             this.authorizeSocketConnection();
         })
-
 
     }
 
@@ -98,14 +88,18 @@ export class UserProfileService {
 
     private async fetchFriends() {
         const result = await this.friendsRepository.getFriendshipsList(this.userDto.idUser);
-        this.friends.next(result);
+        const friends = [];
+        for (let friendsDto of result) {
+            friends.push(FriendsObs.create(friendsDto));
+        }
+        this.friends.next(friends);
     }
 
     public getUser(): UserDto {
         return this.userDto;
     }
 
-    public getFriends() {
+    public getFriends(): Observable<Array<FriendsObs>> {
         return this.friends.asObservable();
     }
 
@@ -115,11 +109,11 @@ export class UserProfileService {
         this.channals.next(result);
     }
 
-    public getChannels() {
+    public getChannels(): Observable<Array<ChannelDtoShort>> {
         return this.channals.asObservable();
     }
 
-    public ereaseData() {
+    public eraseData() {
         this.userDto = null;
         this.friends.next([]);
         this.channals.next([]);

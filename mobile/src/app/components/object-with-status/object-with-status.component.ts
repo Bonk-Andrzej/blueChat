@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ColorsService} from '../../services/colors.service';
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Component({
     selector: '[app-object-with-status]',
@@ -11,27 +12,25 @@ export class ObjectWithStatusComponent implements OnInit {
     @Input() messageCounter: string;
     @Input() objectName: string;
     @Input() color: string;
-    @Input() isActive: boolean;
+    @Input() isActive: Observable<boolean>;
 
     public statusColor;
 
-    constructor(private colorsService: ColorsService) {}
+    constructor(private colorsService: ColorsService) {
+    }
 
     ngOnInit() {
 
-       if(this.isActive){
-           this.statusColor = this.colorsService.getColor('--green-dark');
-       }else {
-           this.statusColor = this.colorsService.getColor('--red-dark');
-       }
+        if (this.isActive != null) {
 
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> COLOR', this.statusColor);
-    }
+            this.isActive.subscribe(value => {
+                if (value) {
+                    this.statusColor = this.colorsService.getColor('--green-dark');
+                } else {
+                    this.statusColor = this.colorsService.getColor('--red-dark');
+                }
+            })
+        }
 
-    randomColorTrigger() {
-        // this.color = "#888888"
-        // this.color = ('rgb(' + Math.floor(Math.random() * 255)
-        //     + ',' + Math.floor(Math.random() * 255) + ','
-        //     + Math.floor(Math.random() * 255) + ')');
     }
 }

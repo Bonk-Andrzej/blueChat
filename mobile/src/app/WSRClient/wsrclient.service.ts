@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {WSRConnector} from './wsrModule/api/WSRConnector';
 import {WSRClient} from './wsrModule/api/WSRClient';
-import {ErrorDTO} from './dto/ErrorDTO';
+import {InfoWebSocket} from './dto/InfoWebSocket';
 import {LocalType} from './types/LocalType';
 import {RemoteType} from './types/RemoteType';
 import {BehaviorSubject} from 'rxjs';
@@ -18,7 +18,6 @@ export class WSRClientService {
     private readonly wsrClient: WSRClient<LocalType, RemoteType>;
 
     constructor() {
-
         let wsrConnector = new WSRConnector<LocalType, RemoteType>();
         this.wsrClient = wsrConnector.connect(environment.socketHost + '/socket');
 
@@ -29,9 +28,8 @@ export class WSRClientService {
         this.wsrClient.onOpen().subscribe(() => {
             this.isConnected.next(true);
         });
-
-        this.wsrClient.addProcedure(LocalType.ERROR, new ErrorDTO(), data => {
-            console.error(data, 'Error');
+        this.wsrClient.addProcedure(LocalType.ERROR, new InfoWebSocket(), data => {
+            console.info(data, 'Error');
         });
     }
 

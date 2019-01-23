@@ -12,16 +12,16 @@ export class InputWithTitleComponent implements OnInit {
     @Input() value: string;
     @Input() titleInside: string;
     @Output() valueChange = new EventEmitter<string>();
-    @Output() inputChange = new EventEmitter<Event>();
 
     constructor() {
     }
 
     ngOnInit() {
+        this.value = this.value || "";
+        this.titleInside = this.titleInside || "";
     }
 
-    onChangeHandler(event: Event) {
+    keyUpHandler() {
         this.valueChange.emit(this.value)
-        this.inputChange.emit(event)
     }
 }

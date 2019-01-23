@@ -8,6 +8,8 @@ import {MessageDto} from '../repository/message/messageDto';
 import {WSRClientService} from '../WSRClient/wsrclient.service';
 import {LocalType} from '../WSRClient/types/LocalType';
 import {RemoteType} from '../WSRClient/types/RemoteType';
+import {FriendsObs} from "./model/friendsObs";
+import {UserShortObs} from "./model/userShortObs";
 
 @Injectable({
     providedIn: 'root'
@@ -41,13 +43,13 @@ export class ConversationService {
         });
     }
 
-    public async startConversationWithUser(interlocutor: UserDtoShort) {
+    public async startConversationWithUser(interlocutor: UserShortObs) {
 
         const user = this.userProfileService.getUser();
-        const conversation = await this.messageRepository.getConversation(user.idUser, interlocutor.idUser, 100, 0);
+        const conversation = await this.messageRepository.getConversation(user.idUser, interlocutor.getIdUser(), 100, 0);
         this.conversation.next(conversation);
-        this.interlocutorName.next(interlocutor.nick);
-        this.interlocutorId = interlocutor.idUser;
+        this.interlocutorName.next(interlocutor.getNick());
+        this.interlocutorId = interlocutor.getIdUser();
         console.log(conversation, ' <<<<<< fetched data');
     }
 

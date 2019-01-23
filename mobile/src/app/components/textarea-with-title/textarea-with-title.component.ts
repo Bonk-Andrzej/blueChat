@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: '[app-textarea-with-title]',
@@ -8,12 +8,18 @@ import {Component, Input, OnInit} from '@angular/core';
 export class TextareaWithTitleComponent implements OnInit {
 
     @Input() title: string;
-    @Input() textInside: string;
+    @Input() textareaValue: string;
+    @Output()textareaValueChange = new EventEmitter<string>();
 
     constructor() {
     }
 
     ngOnInit() {
+        this.textareaValue = this.textareaValue || "";
+    }
+
+    public onKeyUp(){
+        this.textareaValueChange.emit(this.textareaValue);
     }
 
 }

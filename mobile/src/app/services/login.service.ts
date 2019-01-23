@@ -14,13 +14,8 @@ export class LoginService {
     }
 
     public async Login(userPassDto: UserPassDto) {
-        console.log(userPassDto);
-        let user = await this.userRepository.logInUser(userPassDto)
-            .catch(reason => {throw(reason);});
-
+        let user = await this.userRepository.logInUser(userPassDto).catch(reason => {throw(reason);});
         this.onLogin.emit(user);
-        console.log(user);
-
         this.router.navigateByUrl('/main-login');
     }
 

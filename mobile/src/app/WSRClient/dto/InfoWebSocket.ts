@@ -1,4 +1,4 @@
-export class ErrorDTO {
+export class InfoWebSocket {
     private message: string;
     private status: string;
 

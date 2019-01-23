@@ -12,6 +12,7 @@ export class HomeMenuComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     logIn() {
