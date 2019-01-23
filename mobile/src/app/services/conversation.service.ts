@@ -24,16 +24,20 @@ export class ConversationService {
     ) {
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMESSAGE, new MessageDto(), message => {
+            if(message.receiverId == this.userProfileService.getUser().idUser && message.senderId == this.interlocutorId){
             const conversation = this.conversation.getValue();
             conversation.push(message);
             this.conversation.next(conversation);
+            }
 
         });
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYMESSAGE, new MessageDto(), message => {
-            const conversation = this.conversation.getValue();
-            conversation.push(message);
-            this.conversation.next(conversation);
+            if(message.receiverId == this.interlocutorId && message.senderId == this.userProfileService.getUser().idUser ){
+                const conversation = this.conversation.getValue();
+                conversation.push(message);
+                this.conversation.next(conversation);
+            }
         });
     }
 
