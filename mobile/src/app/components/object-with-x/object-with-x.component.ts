@@ -9,7 +9,7 @@ export class ObjectWithXComponent implements OnInit {
 
 
     @Input() objectName: string;
-    @Input() statusColor: string;
+    @Input() photoColor: string;
 
     constructor() {
 

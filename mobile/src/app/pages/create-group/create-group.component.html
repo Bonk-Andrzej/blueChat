@@ -9,8 +9,8 @@
     <div id="descreption" [(textareaValue)]="form.description"  title="DESCREPTION" app-textarea-with-title ></div>
     <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title>
 
-        <ng-container *ngFor="let user of friends | async">
-            <div [objectName]="user.getFriend().getNick()" app-object-with-checkbox ></div>
+        <ng-container *ngFor="let friend of friends | async">
+            <div [photoColor]="friend.getFriend().getPhoto().photo"  [objectName]="friend.getFriend().getNick()" app-object-with-x ></div>
         </ng-container>
     </div>
 
