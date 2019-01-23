@@ -6,6 +6,7 @@ export class FriendsObs {
     private idFriendship: number;
     private friend: UserShortObs;
     private dateFriendship: string;
+    private noReadMessage: number;
 
     constructor() {
     }
@@ -16,6 +17,7 @@ export class FriendsObs {
         friend.dateFriendship = friendsDto.dateFriendship;
         friend.friend = UserShortObs.create(friendsDto.friend);
         friend.dateFriendship = friendsDto.dateFriendship;
+        friend.noReadMessage = friendsDto.noReadMessage;
         return friend;
     }
 
@@ -29,6 +31,9 @@ export class FriendsObs {
 
     public getDateFriendship(): string {
         return this.dateFriendship;
+    }
+    public getNoReadMessage(): number {
+        return this.noReadMessage;
     }
 
 

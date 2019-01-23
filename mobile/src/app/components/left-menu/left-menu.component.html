@@ -16,7 +16,7 @@
          [titleStyle]="titleStyle" [listStyle]="listStyle"  app-list-users-with-title>
 
         <ng-container *ngFor="let friend of friendDtoList | async">
-            <div (click)="startConversationWithUser(friend.getFriend())" [messageCounter]="1" [objectName]="friend.getFriend().getNick()"
+            <div (click)="startConversationWithUser(friend.getFriend())" [messageCounter]="friend.getNoReadMessage()" [objectName]="friend.getFriend().getNick()"
                  [color]="friend.getFriend().getPhoto().photo" [isActive]="friend.getFriend().getActiveObs()" app-object-with-status=""></div>
         </ng-container>
 

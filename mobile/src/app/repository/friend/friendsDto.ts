@@ -4,5 +4,6 @@ export class FriendsDto {
     public idFriendship: number;
     public friend: UserDtoShort;
     public dateFriendship : string;
+    public noReadMessage: number;
 
 }
