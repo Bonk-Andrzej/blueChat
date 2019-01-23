@@ -1,4 +1,4 @@
 <div class="box-text-area">
     <h5>{{title}}</h5>
-    <textarea [placeholder]='textInside'></textarea>
+    <textarea (keyup)="onKeyUp()" [(ngModel)]="textareaValue" [placeholder]="textareaValue"></textarea>
 </div>

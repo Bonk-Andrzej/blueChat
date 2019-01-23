@@ -1,19 +1,19 @@
 <div class="grid">
 
     <div id="left-button" app-button-back></div>
-    <div id="title" valueContent="CREATE GROUP" app-title=""></div>
+    <div id="title" valueContent="CREATE GROUP" app-title ></div>
     <div id="right-button"></div>
 
 
-    <div id="input" title="GROUP NAME" app-input-with-title=""></div>
-    <div id="descreption" title="DESCREPTION" app-textarea-with-title=""></div>
-    <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title="">
+    <div id="input" [(value)]="form.groupName" title="GROUP NAME" app-input-with-title ></div>
+    <div id="descreption" [(textareaValue)]="form.description"  title="DESCREPTION" app-textarea-with-title ></div>
+    <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title>
 
-        <ng-container *ngFor="let user of users">
-            <div [objectName]="user.name" app-object-with-checkbox=""></div>
+        <ng-container *ngFor="let user of friends | async">
+            <div [objectName]="user.getFriend().getNick()" app-object-with-checkbox ></div>
         </ng-container>
     </div>
 
     <div id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
-         app-button-wide=""></div>
+         app-button-wide ></div>
 </div>

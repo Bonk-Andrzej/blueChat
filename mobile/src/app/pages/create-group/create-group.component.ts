@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ColorsService} from '../../services/colors.service';
+import {UserProfileService} from "../../services/user-profile.service";
+import {Observable} from "rxjs";
+import {FriendsObs} from "../../services/model/friendsObs";
 
 @Component({
     selector: 'app-create-group',
@@ -8,53 +11,27 @@ import {ColorsService} from '../../services/colors.service';
 })
 export class CreateGroupComponent implements OnInit {
 
-    groupName: string;
     colorButton: string;
     colorTextOnButton: string;
-    users = [
-        {
-            'name': 'Adam Kowalski',
-        },
-        {
-            'name': 'Paweł Jastrzębski',
-        },
-        {
-            'name': 'Marian Kowalski'
-        },
-        {
-            'name': 'Marek Nowak'
-        },
-        {
-            'name': 'Łukasz Paprotka'
-        },
-        {
-            'name': 'Tomek Malinowski'
-        },
-        {
-            'name': 'Paweł Janas'
-        },
-        {
-            'name': 'Marek Nowak'
-        },
-        {
-            'name': 'Łukasz Paprotka'
-        },
-        {
-            'name': 'Tomek Malinowski'
-        },
-        {
-            'name': 'Paweł Janas'
-        }
-    ];
+    public form = {
+        groupName: "",
+        description: ""
 
-    constructor(private colorService: ColorsService) {
+    };
 
+    public friends: Observable<Array<FriendsObs>>;
+
+    constructor(private colorService: ColorsService,
+                private userProfileService: UserProfileService) {
+        this.friends = new Observable<Array<FriendsObs>>();
 
     }
 
     ngOnInit() {
         this.colorButton = this.colorService.getColor('--orange');
         this.colorTextOnButton = this.colorService.getColor('--white-light');
+        this.friends = this.userProfileService.getFriends()
+
     }
 
 }

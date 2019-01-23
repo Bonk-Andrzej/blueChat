@@ -99,7 +99,7 @@ export class UserProfileService {
         return this.userDto;
     }
 
-    public getFriends() {
+    public getFriends(): Observable<Array<FriendsObs>> {
         return this.friends.asObservable();
     }
 
@@ -109,7 +109,7 @@ export class UserProfileService {
         this.channals.next(result);
     }
 
-    public getChannels() {
+    public getChannels(): Observable<Array<ChannelDtoShort>> {
         return this.channals.asObservable();
     }
 
