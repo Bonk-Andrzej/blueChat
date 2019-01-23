@@ -13,18 +13,6 @@ import {UserProfileService} from '../../services/user-profile.service';
 })
 export class GroupsComponent implements OnInit {
 
-    // groups = [
-    //     {
-    //         'name': 'Java Poz 9',
-    //     },
-    //     {
-    //         'name': 'random',
-    //     },
-    //     {
-    //         'name': 'off topic',
-    //     }
-    // ];
-
     groups : Observable<Array<ChannelDtoShort>>;
 
     constructor(private router: Router,
@@ -40,5 +28,6 @@ export class GroupsComponent implements OnInit {
     createGroup() {
         this.router.navigateByUrl('/create-group');
     }
+
 }
 

@@ -24,8 +24,4 @@ export class FriendsComponent implements OnInit {
 
 
     }
-
-    createGroup() {
-        this.router.navigateByUrl('/create-group');
-    }
 }
