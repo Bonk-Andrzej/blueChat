@@ -92,7 +92,6 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
         return entityManager.find(User.class, channelOwner.getIdUser());
     }
 
-
     private Set<User> getUsers(Channel channel) {
         if (!channel.getUsersInChannel().isEmpty()) {
             Set<User> usersInChannel = channel.getUsersInChannel();

@@ -6,4 +6,7 @@ interface MessageRepositoryCustom {
     public List<Message> getConversation(Long sender, Long receiver, Integer limit, Integer toBound);
 
     public Message saveMessage(Message message);
+
+    List<Object> lastMessages (Long idUser);
+    List<Message> getNoReadMessages(Long idUser);
 }

@@ -4,10 +4,14 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.rest.dto.FriendsDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class UserContainFriendService {
 
 
     private PhotoService photoService;
+    private UserService userService;
 
     public UserContainFriendService(PhotoService photoService) {
         this.photoService = photoService;
@@ -41,16 +45,38 @@ class UserContainFriendService {
 
         friendsDto.setDateFriendShip(userContainFriend.getDateFriendShip());
 
-        UserDtoShort friend = new UserDtoShort();
-
-        checkWhoIsFriend(idUser, userContainFriend, friend);
-
-        friendsDto.setFriend(friend);
+        friendsDto.setFriend(checkWhoIsFriend(idUser, userContainFriend));
 
         return friendsDto;
     }
 
-    private void checkWhoIsFriend(Long idUser, UserContainFriend userContainFriend, UserDtoShort friend) {
+    public List<FriendsDto> toDtoWithStatusMessage(Long idUser, List<UserContainFriend> friendship, List<Message> messageList) {
+
+        List<FriendsDto> result = new ArrayList<>();
+
+        for (UserContainFriend userContainFriend : friendship) {
+            FriendsDto friendsDto = new FriendsDto();
+            Long noReadMsg = 0L;
+            friendsDto.setIdFriendship(userContainFriend.getIdUserContainFriend());
+            friendsDto.setDateFriendShip(userContainFriend.getDateFriendShip());
+
+            friendsDto.setFriend(checkWhoIsFriend(idUser, userContainFriend));
+
+            for (Message message : messageList) {
+                Long sender = message.getSender().getIdUser();
+                if ((sender.equals(userContainFriend.getUser1().getIdUser())) || (sender.equals(userContainFriend.getUser2().getIdUser()))) {
+                    noReadMsg = noReadMsg + 1;
+                }
+            }
+            friendsDto.setNoReadMessage(noReadMsg);
+            result.add(friendsDto);
+        }
+        return result;
+    }
+
+    private UserDtoShort checkWhoIsFriend(Long idUser, UserContainFriend userContainFriend) {
+
+        UserDtoShort friend = new UserDtoShort();
         if(!userContainFriend.getUser1().getIdUser().equals(idUser)){
 
             friend.setIdUser(userContainFriend.getUser1().getIdUser());
@@ -61,6 +87,7 @@ class UserContainFriendService {
             friend.setNick(userContainFriend.getUser2().getNick());
             friend.setPhotoDto(photoService.toDto(userContainFriend.getUser2().getProfilePhoto()));
         }
+        return friend;
     }
 
     private void setId(UserContainFriend userContainFriend, FriendsDto friendsDto) {

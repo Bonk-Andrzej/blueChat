@@ -34,4 +34,12 @@ public class MessageFacade {
 
         return conversationDto;
     }
+
+    public List<MessageDto> getNoReadMessages(Long idUser){
+        List<Message> noReadMessages = messageRepository.getNoReadMessages(idUser);
+
+        return noReadMessages.stream()
+                .map(message -> messageService.toDto(message))
+                .collect(Collectors.toList());
+    }
 }

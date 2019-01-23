@@ -19,4 +19,6 @@ public class FriendsDto {
 
     private Instant dateFriendShip;
 
+    private Long noReadMessage;
+
 }

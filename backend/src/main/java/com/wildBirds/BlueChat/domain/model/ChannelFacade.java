@@ -25,12 +25,14 @@ public class ChannelFacade {
 
         return response;
     }
+
     public void removeChannel(ChannelDto channelDto){
 
         Channel channel = channelService.toEntity(channelDto);
         channelRepository.delete(channel);
 
     }
+
     public ChannelDto addUserToChannel(Long userId, Long  channelId) {
 
         Channel channel = channelRepository.getOne(channelId);
@@ -46,6 +48,7 @@ public class ChannelFacade {
         ChannelDto resposne = channelService.toDto(channel);
         return resposne;
     }
+
     public ChannelDto removeUserFromChannel(Long userId, Long  channelId){
 
         Channel channel = channelRepository.getOne(channelId);
@@ -54,20 +57,8 @@ public class ChannelFacade {
         return channelService.toDto(channel);
     }
 
-    // TODO: 19.12.2018 have to write tests
-    public List<ChannelDto> getChannels(){
-
-        List<Channel> channels = channelRepository.findAll();
-
-        List<ChannelDto> channelDtoList = channels.stream()
-                .map(channel -> channelService.toDto(channel))
-                .collect(Collectors.toList());
-
-        return channelDtoList;
-    }
-
     public List<ChannelDtoShort> getChannelsShort() {
-        List<Channel> channelList = channelRepository.getListNameIdPhoto();
+        List<Channel> channelList = channelRepository.getPublicChannels();
         List<ChannelDtoShort> channelDtoShortList = channelList.stream()
                 .map(channel -> channelService.toDtoShort(channel))
                 .collect(Collectors.toList());

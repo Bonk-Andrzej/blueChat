@@ -14,9 +14,11 @@ public class UserContainFriendFacade {
 
     private UserContainFriendService service;
     private UserContainFriendRepository repository;
+    private MessageRepository messageRepository;
     private MessageControllerWSR wsr;
 
-    public UserContainFriendFacade( MessageControllerWSR wsr ,UserContainFriendService userContainFriendService, UserContainFriendRepository repository) {
+    public UserContainFriendFacade( MessageControllerWSR wsr ,UserContainFriendService userContainFriendService, UserContainFriendRepository repository, MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
         this.service = userContainFriendService;
         this.repository = repository;
         this.wsr = wsr;
@@ -52,6 +54,15 @@ public class UserContainFriendFacade {
 
     public void remove(FriendsDto friendsDto){
         repository.deleteByIdUserContainFriend(friendsDto.getIdFriendship());
+    }
+
+    public List<FriendsDto> getFriendsWithNoReadMessage(Long idUser) {
+
+        List<Message> noReadMessages = messageRepository.getNoReadMessages(idUser);
+
+        List<UserContainFriend> userFriendship = repository.getUserFriendship(idUser);
+
+        return service.toDtoWithStatusMessage(idUser,userFriendship, noReadMessages);
     }
 
 }

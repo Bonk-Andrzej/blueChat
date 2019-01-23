@@ -30,4 +30,11 @@ class Message {
     @JoinColumn(name = "receiver")
     private User receiver;
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "idMessage=" + idMessage +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

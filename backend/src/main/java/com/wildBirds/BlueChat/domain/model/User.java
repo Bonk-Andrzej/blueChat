@@ -57,4 +57,12 @@ class User extends BaseEntity{
 
     @ManyToMany(mappedBy = "usersChannelsMessages")
     private Set<ChannelsMessage> readChannelsMessage;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", nick='" + nick + '\'' +
+                '}';
+    }
 }
