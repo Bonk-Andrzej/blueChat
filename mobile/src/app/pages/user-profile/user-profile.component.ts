@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserDto} from '../../repository/user/userDto';
 import {UserProfileService} from '../../services/user-profile.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserRepositoryService} from "../../repository/user/user-repository.service";
 
 @Component({
     selector: 'app-user-profile',
@@ -14,13 +15,20 @@ export class UserProfileComponent implements OnInit {
     public userDto: UserDto = new UserDto();
 
     constructor(private router: Router,
+                private activeRout: ActivatedRoute,
                 private userProfileService: UserProfileService,
+                private userRepositoryService: UserRepositoryService
     ) {
     }
 
-    ngOnInit() {
-        this.userDto = this.userProfileService.getUser();
-        console.log(this.userProfileService);
+    async ngOnInit() {
+        const paramId = this.activeRout.snapshot.params["id"];
+        if(paramId != null){
+            this.userDto = await this.userRepositoryService.getUserById(paramId);
+        }else {
+            this.userDto = this.userProfileService.getUser();
+        }
+
     }
 
     onGroups() {

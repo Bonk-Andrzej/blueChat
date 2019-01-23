@@ -29,7 +29,7 @@ const routes: Routes = [
     {path: 'groups', component: GroupsComponent},
     {path: 'friendDtoList', component: FriendsComponent},
     {path: 'help', component: HelperComponent},
-    {path: 'user-profile', component: UserProfileComponent},
+    {path: 'user-profile/:id', component: UserProfileComponent},
     // {path: '', component: UserProfileComponent},
     // {path: '', component: ConversationComponent},
 
