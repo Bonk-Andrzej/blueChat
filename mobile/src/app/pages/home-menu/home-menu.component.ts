@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Location} from "@angular/common";
 
 @Component({
     selector: 'app-home-menu',
@@ -9,8 +8,7 @@ import {Location} from "@angular/common";
 })
 export class HomeMenuComponent implements OnInit {
 
-    constructor(private router: Router,
-                public location : Location) {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
