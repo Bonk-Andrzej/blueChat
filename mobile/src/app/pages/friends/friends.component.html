@@ -8,7 +8,7 @@
   <div id="input-search" app-input-search=""></div>
   <div id="group-list" title="MY FRIENDS" app-list-users-with-title="">
     <ng-container *ngFor="let friend of friends | async">
-      <div (click)="showProfile(friend.getFriend().getIdUser())" ) [objectName]="friend.getFriend().getNick()" [photoColor]="friend.getFriend().getPhoto().photo"
+      <div (click)="showProfile(friend.getFriend().getIdUser())" [objectName]="friend.getFriend().getNick()" [photoColor]="friend.getFriend().getPhoto().photo"
            app-object-with-x=""></div>
     </ng-container>
   </div>

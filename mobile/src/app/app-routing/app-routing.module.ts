@@ -30,6 +30,7 @@ const routes: Routes = [
     {path: 'friendDtoList', component: FriendsComponent},
     {path: 'help', component: HelperComponent},
     {path: 'user-profile/:id', component: UserProfileComponent},
+    {path: 'user-profile', component: UserProfileComponent},
     // {path: '', component: UserProfileComponent},
     // {path: '', component: ConversationComponent},
 

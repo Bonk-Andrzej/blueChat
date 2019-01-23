@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {UserProfileService} from '../../services/user-profile.service';
 import {Observable} from 'rxjs';
-import {FriendsDto} from '../../repository/friend/friendsDto'
 import {FriendsObs} from "../../services/model/friendsObs";
 
 @Component({
@@ -26,6 +25,6 @@ export class FriendsComponent implements OnInit {
     }
 
     public showProfile(idUser: number){
-        this.router.navigateByUrl("/user-profile/" + idUser)
+        this.router.navigateByUrl("/user-profile/" + idUser).catch();
     }
 }
