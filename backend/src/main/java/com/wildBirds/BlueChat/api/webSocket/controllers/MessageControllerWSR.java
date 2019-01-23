@@ -13,6 +13,7 @@ import com.wildBirds.BlueChat.api.webSocket.types.RemoteProcedure;
 import com.wildBirds.BlueChat.domain.model.ChannelsMessageFacade;
 import com.wildBirds.BlueChat.domain.model.MessageFacade;
 import com.wildBirds.BlueChat.domain.model.UserContainFriendFacade;
+import com.wildBirds.BlueChat.domain.model.UserFacade;
 import com.wildBirds.WebSocketRpc.api.Session;
 import com.wildBirds.WebSocketRpc.api.WSR;
 import org.slf4j.Logger;
@@ -35,13 +36,15 @@ public class MessageControllerWSR implements InitializingBean {
     private ChannelsMessageFacade channelsMessageFacade;
     private UserContainFriendFacade userContainFriendFacade;
     private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
+    private UserFacade userFacade;
 
     @Autowired
-    public MessageControllerWSR(@Lazy UserContainFriendFacade userContainFriendFacade, WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade, ChannelsMessageFacade channelsMessageFacade) {
+    public MessageControllerWSR(@Lazy UserFacade userFacade, @Lazy UserContainFriendFacade userContainFriendFacade, WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade, ChannelsMessageFacade channelsMessageFacade) {
         this.wsr = wsr;
         this.messageFacade = messageFacade;
         this.channelsMessageFacade = channelsMessageFacade;
         this.userContainFriendFacade = userContainFriendFacade;
+        this.userFacade = userFacade;
     }
 
     @Override
@@ -95,16 +98,17 @@ public class MessageControllerWSR implements InitializingBean {
                     = this.getAuthorizedSessionsIdentifications();
 
             List<FriendsDto> userContainFriend = this.userContainFriendFacade.getUserContainFriend(userId);
+            for (FriendsDto friendsDto : userContainFriend) {
 
-            userContainFriend.forEach(friendsDto -> {
                 Long friendId = friendsDto.getFriend().getIdUser();
-                if(authorizedSessionsIdentifications.containsKey(friendId)){
+                if (authorizedSessionsIdentifications.containsKey(friendId)) {
                     com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long> friendSession =
                             authorizedSessionsIdentifications.get(friendId);
 
-                    friendSession.executeRemoteProcedure(RemoteProcedure.NEWACTIVEFRIEND, UserDto.class,data);
+                    friendSession.executeRemoteProcedure(RemoteProcedure.FRIENDJOIN, UserDto.class, data);
                 }
-            });
+            }
+
 
         });
         wsr.addProcedure(LocalProcedure.FORWARDCHANNELSMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
@@ -125,9 +129,36 @@ public class MessageControllerWSR implements InitializingBean {
 
         }));
 
+
+        wsr.onCloseConnection.subscribe((session) -> {
+
+            if (session.hasId()) {
+                UserDto user = this.userFacade.getById(session.getId());
+
+                Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> authSessionId
+                        = this.getAuthorizedSessionsIdentifications();
+
+                List<FriendsDto> userContainFriend = this.userContainFriendFacade.getUserContainFriend(user.getIdUser());
+
+                for (FriendsDto friendsDto : userContainFriend) {
+                    Long friendId = friendsDto.getFriend().getIdUser();
+                    if (authSessionId.containsKey(friendId)) {
+
+                        com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long> friendSession =
+                                authSessionId.get(friendId);
+                        friendSession.executeRemoteProcedure(RemoteProcedure.FRIENDLEAVE, UserDto.class, user);
+                    }
+                }
+
+
+            }
+
+
+        });
+
     }
 
-    public Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> getAuthorizedSessionsIdentifications(){
+    public Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> getAuthorizedSessionsIdentifications() {
         return this.wsr.getAuthorizedSessionsIdentifications();
     }
 }

@@ -3,6 +3,7 @@ package com.wildBirds.WebSocketRpc.api;
 import com.wildBirds.WebSocketRpc.application.services.ProcedureDTOConverter;
 import com.wildBirds.WebSocketRpc.application.services.ProcedureExecutor;
 import com.wildBirds.WebSocketRpc.application.services.WSRWebSocketHandler;
+import com.wildBirds.WebSocketRpc.application.services.eventEmmiter.EventEmitter;
 import com.wildBirds.WebSocketRpc.domain.model.Procedure;
 import com.wildBirds.WebSocketRpc.domain.ports.ProcedureRepository;
 import com.wildBirds.WebSocketRpc.domain.ports.SessionRepository;
@@ -21,12 +22,15 @@ import java.util.Map;
  */
 public class WSR<LT extends Enum<LT>,RT extends Enum<RT>,I extends Comparable<I>> {
 
-    private TextWebSocketHandler textWebSocketHandler;
+    private WSRWebSocketHandler wsrWebSocketHandler;
     private ProcedureRepository<LT> procedureRepository;
     private SessionRepository<RT,I> sessionRepository;
 
     private ProcedureDTOConverter<LT> procedureDTOConverter;
     private ProcedureExecutor<LT, RT> procedureExecutor;
+
+
+    public final EventEmitter<Session<RT,I>> onCloseConnection;
 
 
     public WSR(Class<LT> localType, Class<RT> remoteType) {
@@ -36,7 +40,8 @@ public class WSR<LT extends Enum<LT>,RT extends Enum<RT>,I extends Comparable<I>
         this.sessionRepository = new SessionRepositoryInMemory<>();
         this.procedureDTOConverter = new ProcedureDTOConverter<>(procedureRepository,localType);
         this.procedureExecutor = ProcedureExecutor.configure(procedureRepository);
-        this.textWebSocketHandler = WSRWebSocketHandler.configure(sessionRepository,procedureDTOConverter,procedureExecutor);
+        this.wsrWebSocketHandler = WSRWebSocketHandler.configure(sessionRepository,procedureDTOConverter,procedureExecutor);
+        this.onCloseConnection =  this.wsrWebSocketHandler.getOnClose();
     }
     /**
      *
@@ -58,7 +63,7 @@ public class WSR<LT extends Enum<LT>,RT extends Enum<RT>,I extends Comparable<I>
     }
 
     public TextWebSocketHandler getHandler(){
-        return this.textWebSocketHandler;
+        return this.wsrWebSocketHandler;
     }
 
     public Map<I, com.wildBirds.WebSocketRpc.domain.model.Session<RT, I>> getAuthorizedSessionsIdentifications(){
@@ -67,24 +72,5 @@ public class WSR<LT extends Enum<LT>,RT extends Enum<RT>,I extends Comparable<I>
     public List<Session<RT,I>> getAllAuthorizedSession(){
         return (List<Session<RT, I>>) this.sessionRepository.getAuthorizedSessionMap();
     }
-//    public static void main(String[] args) {
-//
-//
-//        final WSR<WSR.LT, WSR.RT, String> WSR = new WSR<>(com.WebSocketRpc.api.WSR.LT.class, com.WebSocketRpc.api.WSR.RT.class);
-//
-//        WSR.addProcedure(com.WebSocketRpc.api.WSR.LT.AUTHORIZED,String.class,(data, session) -> {
-//
-//        });
-//
-//
-//    }
-//
-//    public enum LT{
-//        AUTHORIZED, FOWARDMESSAGE
-//    }
-//
-//    public enum RT{
-//        ADDMESSAGE, ERROR
-//    }
 
 }

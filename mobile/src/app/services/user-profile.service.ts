@@ -20,57 +20,73 @@ export class UserProfileService {
     public userDto: UserDto = null;
     public friends: BehaviorSubject<Array<FriendsDto>> = new BehaviorSubject([]);
     public channals: BehaviorSubject<Array<ChannelDtoShort>> = new BehaviorSubject([]);
-    private wsrIsConnected : boolean;
+    private wsrIsConnected: boolean;
 
     constructor(private userRepository: UserRepositoryService,
                 private friendsRepository: FriendRepositoryService,
                 private channelsRepository: ChannelRepositoryService,
                 private retrieveStateApplicationService: RetrieveStateApplicationService,
                 private loginService: LoginService,
-                private wsrClientService:WSRClientService,
+                private wsrClientService: WSRClientService,
                 private changeService: ChangeService) {
 
-        this.changeService.onNewAcitveFriend.subscribe((user: UserDto) =>{
+        this.changeService.onFriendJoin.subscribe((user: UserDto) => {
 
-            console.log("new user",user)
+            console.log("new user", user)
             const friendsDtos = this.friends.getValue();
 
-            friendsDtos.forEach((friend)=>{
-                if(friend.friend.idUser == user.idUser){
+            friendsDtos.forEach((friend) => {
+                if (friend.friend.idUser == user.idUser) {
                     friend.friend.active = true;
-                    console.log("find")
                 }
             });
-            console.log("update")
             this.friends.next([]);
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.friends.next(friendsDtos)
-            },0)
+            }, 0)
 
-        })
+        });
 
-        console.log('UserProfileService -- subscribe');
+        this.changeService.onFriendLeave.subscribe((user: UserDto) => {
+
+            console.log("new user", user)
+            const friendsDtos = this.friends.getValue();
+
+            friendsDtos.forEach((friend) => {
+                if (friend.friend.idUser == user.idUser) {
+                    friend.friend.active = false;
+                }
+            });
+            this.friends.next([]);
+            setTimeout(() => {
+                this.friends.next(friendsDtos)
+            }, 0)
+
+        });
+
         this.loginService.onLogin.subscribe((user: UserDto) => {
             this.initializeUser(user);
             this.authorizeSocketConnection();
             this.retrieveStateApplicationService.saveUserId(user);
         });
-        console.log('onRetrieveApplicationState -- subscribe');
-        this.retrieveStateApplicationService.onRetrieveApplicationState.subscribe((user)=>{
+        this.retrieveStateApplicationService.onRetrieveApplicationState.subscribe((user) => {
             this.initializeUser(user);
             this.authorizeSocketConnection();
         })
-
-        this.wsrClientService.isConnected.subscribe((status)=>{
+        this.retrieveStateApplicationService.onRemoveUserId.subscribe(()=>{
+            this.ereaseData()
+        })
+        this.wsrClientService.isConnected.subscribe((status) => {
             this.wsrIsConnected = status;
             this.authorizeSocketConnection();
         })
 
+
     }
 
-    private authorizeSocketConnection(){
-        if(this.wsrIsConnected && (this.userDto != null)){
-            this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.AUTHSESSION,this.userDto)
+    private authorizeSocketConnection() {
+        if (this.wsrIsConnected && (this.userDto != null)) {
+            this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.AUTHSESSION, this.userDto)
         }
     }
 
@@ -102,5 +118,13 @@ export class UserProfileService {
     public getChannels() {
         return this.channals.asObservable();
     }
+
+    public ereaseData() {
+        this.userDto = null;
+        this.friends.next([]);
+        this.channals.next([]);
+        this.wsrIsConnected = false;
+    }
+
 
 }

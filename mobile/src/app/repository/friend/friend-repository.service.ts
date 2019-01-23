@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {FriendsDto} from './friendsDto';
+import {environment} from "../../environment";
 
 @Injectable({
     providedIn: 'root'
@@ -12,9 +13,7 @@ export class FriendRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        // this.host = 'http://localhost:8080/friends';
-        // this.host = 'http://192.168.99.100:200/friends';
-        this.host = 'http://51.38.133.76:200/friends';
+        this.host = environment.host +'/friends';
         this.headers = this.getHeaders();
     }
 

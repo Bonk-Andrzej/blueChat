@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {ContactMessageDto} from './contactMessageDto';
+import {environment} from "../../environment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,7 @@ export class ContactMessageService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        // this.host = 'http://localhost:8080//contact';
-        // this.host = 'http://192.168.99.100:200/contact';
-        this.host = 'http://51.38.133.76:200/contact';
+        this.host = environment.host + '/contact';
         this.headers = this.getHeaders();
     }
 

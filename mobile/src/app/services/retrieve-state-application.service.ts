@@ -5,17 +5,17 @@ import {Router} from '@angular/router';
 import {UserDto} from '../repository/user/userDto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class RetrieveStateApplicationService {
 
-  constructor(private userRepository: UserRepositoryService,
-              private webSocketService : WSRClientService,
-              private router: Router) {
+    constructor(private userRepository: UserRepositoryService,
+                private webSocketService: WSRClientService,
+                private router: Router) {
 
-    console.log("start: RetrieveStateApplicationService")
-    this.retrieveStatusApplication().catch();
-  }
+        console.log("start: RetrieveStateApplicationService")
+        this.retrieveStatusApplication().catch();
+    }
 
     private async retrieveStatusApplication() {
 
@@ -29,13 +29,16 @@ export class RetrieveStateApplicationService {
         }
     }
 
-    public saveUserId(user : UserDto){
+    public saveUserId(user: UserDto) {
         // localStorage.setItem('userId', user.idUser + '');
     }
 
-    public removeUserId(){
+    public removeUserId() {
+        this.onRemoveUserId.emit();
         localStorage.removeItem("userId");
+        this.webSocketService.WRSClient.resetConnection();
     }
 
     public onRetrieveApplicationState = new EventEmitter<UserDto>();
+    public onRemoveUserId = new EventEmitter<null>();
 }

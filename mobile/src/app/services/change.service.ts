@@ -4,19 +4,26 @@ import {LocalType} from '../WSRClient/types/LocalType';
 import {UserDto} from '../repository/user/userDto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ChangeService {
 
-  constructor(private wsrClientService : WSRClientService) {
+    constructor(private wsrClientService: WSRClientService) {
 
 
-    wsrClientService.WRSClient.addProcedure(LocalType.NEWACTIVEFRIEND, new UserDto(),(user)=>{
-      console.log("user logged: "+ user.nick);
-      this.onNewAcitveFriend.emit(user);
-    })
+        wsrClientService.WRSClient.addProcedure(LocalType.FRIENDJOIN, new UserDto(), (user) => {
+            console.log("user logged: " + user.nick);
+            this.onFriendJoin.emit(user);
+        })
 
-  }
-    public onNewAcitveFriend = new EventEmitter<UserDto>();
+        wsrClientService.WRSClient.addProcedure(LocalType.FRIENDLEAVE, new UserDto(), (user) => {
+            console.log("user logged out: " + user.nick);
+            this.onFriendLeave.emit(user);
+        })
+
+    }
+
+    public onFriendJoin = new EventEmitter<UserDto>();
+    public onFriendLeave = new EventEmitter<UserDto>();
 
 }

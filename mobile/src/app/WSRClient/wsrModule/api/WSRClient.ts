@@ -47,5 +47,9 @@ export class WSRClient<LT extends string, RT extends string> {
         return this.webSocketHandler.onError();
     }
 
+    public resetConnection(){
+        this.webSocketHandler.resetConnection();
+    }
+
 
 }

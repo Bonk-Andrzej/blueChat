@@ -94,4 +94,9 @@ export class WebSocketHandler<LT extends string, RT extends string> {
     public onError(): EventEmitter<Event> {
         return this.onErrorEvent;
     }
+
+    public resetConnection(){
+        console.warn("RESET CONNECTION")
+        this.webSocket.close(3000,"intend close")
+    }
 }

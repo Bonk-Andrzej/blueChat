@@ -8,6 +8,8 @@ import com.wildBirds.BlueChat.domain.model.exceptions.UserNotExistExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.transaction.Transactional;
+
 
 public class UserFacade {
 
@@ -60,6 +62,7 @@ public class UserFacade {
         return responseDto;
     }
 
+    @Transactional
     public UserDto getById(Long idUser) {
         User one = userRep.getOne(idUser);
 

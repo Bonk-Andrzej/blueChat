@@ -1,6 +1,7 @@
 package com.wildBirds.WebSocketRpc.application.services;
 
 import com.wildBirds.WebSocketRpc.api.ProcedureDTO;
+import com.wildBirds.WebSocketRpc.application.services.eventEmmiter.EventEmitter;
 import com.wildBirds.WebSocketRpc.domain.model.Session;
 import com.wildBirds.WebSocketRpc.domain.ports.SessionRepository;
 import org.springframework.web.socket.CloseStatus;
@@ -19,6 +20,9 @@ public class WSRWebSocketHandler<LT extends Enum<LT>, RT extends Enum<RT>, I ext
     private SessionRepository<RT, I> sessionRepository;
     private ProcedureExecutor<LT, RT> procedureExecutor;
     private ProcedureDTOConverter<LT> procedureDTOConverter;
+
+
+    private EventEmitter<Session<RT,I>> onClose = new EventEmitter<>();
 
     private WSRWebSocketHandler(SessionRepository sessionRepository, ProcedureExecutor procedureExecutor, ProcedureDTOConverter procedureDTOConverter) {
         this.sessionRepository = sessionRepository;
@@ -47,6 +51,7 @@ public class WSRWebSocketHandler<LT extends Enum<LT>, RT extends Enum<RT>, I ext
 
     @Override
     public void afterConnectionClosed(WebSocketSession webSocketSession, CloseStatus status) throws Exception {
+        this.onClose.emit(sessionRepository.getSession(webSocketSession));
         sessionRepository.removeSession(webSocketSession);
     }
 
@@ -55,5 +60,7 @@ public class WSRWebSocketHandler<LT extends Enum<LT>, RT extends Enum<RT>, I ext
         // TODO: 21.10.2018 not implemented
     }
 
-
+    public EventEmitter<Session<RT, I>> getOnClose() {
+        return onClose;
+    }
 }
