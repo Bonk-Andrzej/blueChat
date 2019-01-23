@@ -7,5 +7,6 @@ interface ChannelRepositoryCustom {
     Channel saveChannel(Channel channel);
     List<Channel> getListNameIdPhoto();
     List<Channel> getChannels(Long idUser);
+    List<Channel> getPublicChannels();
 
 }

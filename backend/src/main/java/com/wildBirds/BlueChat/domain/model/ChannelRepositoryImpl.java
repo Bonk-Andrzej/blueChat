@@ -69,12 +69,22 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
 
         String query = "SELECT channel FROM Channel channel " +
                 "JOIN channel.usersInChannel users " +
-                "WHERE users.idUser =: idUser OR " +
-                "channel.isPublic =: isPublic";
+                "WHERE users.idUser =: idUser";
 
         return entityManager.createQuery(query)
                 .setParameter("idUser", idUser)
+                .getResultList();
+    }
+
+    @Override
+    public List<Channel> getPublicChannels() {
+
+        String query = "SELECT channel FROM Channel channel " +
+                "WHERE channel.isPublic =: isPublic";
+
+        return entityManager.createQuery(query)
                 .setParameter("isPublic", true)
+                .setMaxResults(10)
                 .getResultList();
     }
 
