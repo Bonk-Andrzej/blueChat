@@ -1,3 +1,5 @@
+@import "~src/stylesAssets";
+
 #wrapper {
   width: 100%;
   height: 100%;
@@ -43,8 +45,9 @@
         border: 3px solid var(--red);
         margin: auto auto;
         border-radius: 50%;
-        background: var(--dev-color3);
-        background: grey;
+        //background: var(--dev-color3);
+        //background: grey;
+        @extend %rocket-icon;
       }
 
     }

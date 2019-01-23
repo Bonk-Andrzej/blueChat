@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     async ngOnInit() {
+        console.log('>>>> USER PROFILE SHOW COLOR ' +this.userDto + '<<< NULL ????')
         const paramId = this.activeRout.snapshot.params["id"];
         if(paramId != null){
             this.userDto = await this.userRepositoryService.getUserById(paramId);
