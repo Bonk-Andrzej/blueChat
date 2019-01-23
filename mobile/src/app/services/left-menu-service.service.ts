@@ -6,17 +6,14 @@ import {EventEmitter, Injectable} from '@angular/core';
 export class LeftMenuServiceService {
 
     private isDisplay: boolean = false;
-    private onToggleEvent = new EventEmitter<boolean>();
+    public onToggle = new EventEmitter<boolean>();
 
     constructor() {
     }
 
     public toggle() {
         this.isDisplay = !this.isDisplay;
-        this.onToggleEvent.emit(this.isDisplay);
+        this.onToggle.emit(this.isDisplay);
     }
 
-    public onToggle(func: (isDisplay: boolean) => void) {
-        this.onToggleEvent.subscribe(func);
-    }
 }
