@@ -73,4 +73,8 @@ public class MessageController {
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
+
+    private MessageDto checkIsRead(){
+        return null;
+    }
 }

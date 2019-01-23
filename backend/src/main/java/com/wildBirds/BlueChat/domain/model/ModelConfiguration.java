@@ -26,10 +26,14 @@ class ModelConfiguration {
     MessageFacade messageFacade(MessageRepository messageRepository) {
         return new MessageFacade(messageRepository,messageService());
     }
+    @Bean
+    PhotoFacade photoFacade(PhotoRepository photoRepository, PhotoService photoService){
+        return new PhotoFacade(photoRepository,photoService);
+    }
 
     @Bean
-    UserFacade userFacade(UserRepository userRepository,UserService userService, MessageControllerWSR messageControllerWSR) {
-        return new UserFacade(userRepository,userService, messageControllerWSR);
+    UserFacade userFacade(UserRepository userRepository,UserService userService,ChannelFacade channelFacade, PhotoFacade photoFacade, MessageControllerWSR messageControllerWSR) {
+        return new UserFacade(userRepository,userService, channelFacade, photoFacade, messageControllerWSR);
     }
 
     @Bean

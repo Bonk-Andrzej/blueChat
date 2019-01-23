@@ -9,7 +9,7 @@ INSERT INTO photo(photo) VALUES ('rgb(23,151,11)')
 INSERT INTO photo(photo) VALUES ('rgb(33,27,29)')
 
 
-INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Igor', 'igorpass', 'igorsowa@wp.pl', 'I am a very clever guy', 1)
+INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Igor', 'igorpass', 'igorsowa@wp.pl', 'Dociekliwy programista z umiejętnością abstrakcyjnego myślenia. Z nową pasją i zamiłowaniem do kodowania, niebojący się nowych wyzwań.', 1)
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Paweł', 'pawelpass', 'paweljastrzebski96@gmail.com', 'I am a very clever guy', 2)
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Milena', 'milenapass', 'milena@wp.pl', 'I am a very clever guy', 3)
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('test', 'test', 'test@wp.pl', 'some testing value description', 4)
