@@ -18,7 +18,6 @@ export class WSRClientService {
     private readonly wsrClient: WSRClient<LocalType, RemoteType>;
 
     constructor() {
-
         let wsrConnector = new WSRConnector<LocalType, RemoteType>();
         this.wsrClient = wsrConnector.connect(environment.socketHost + '/socket');
 
@@ -29,7 +28,6 @@ export class WSRClientService {
         this.wsrClient.onOpen().subscribe(() => {
             this.isConnected.next(true);
         });
-
         this.wsrClient.addProcedure(LocalType.ERROR, new InfoWebSocket(), data => {
             console.info(data, 'Error');
         });

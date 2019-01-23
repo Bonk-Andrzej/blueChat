@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {ChannelDtoShort} from '../../repository/channel/channelDtoShort';
 import {ConversationService} from '../../services/conversation.service';
 import {UserDtoShort} from '../../repository/user/userDtoShort';
+import {FriendsObs} from "../../services/model/friendsObs";
 
 @Component({
     selector: 'app-left-menu',
@@ -42,7 +43,7 @@ export class LeftMenuComponent implements OnInit {
     backgroundAnimationStatus = 'hide';
     backgroundColorList: string;
 
-    friendDtoList: Observable<Array<FriendsDto>>;
+    friendDtoList: Observable<Array<FriendsObs>>;
     channels: Observable<Array<ChannelDtoShort>>;
 
     constructor(public leftMenuService: LeftMenuServiceService,
@@ -75,8 +76,8 @@ export class LeftMenuComponent implements OnInit {
 
 
 
-    startConversationWithUser(interlocutor :UserDtoShort  ) {
-        this.conversationService.startConversationWithUser(interlocutor)
+    startConversationWithUser(interlocutor :FriendsObs  ) {
+        this.conversationService.startConversationWithUser(interlocutor.getFriend())
         this.leftMenuService.toggle();
         this.router.navigateByUrl('/conversation');
     }

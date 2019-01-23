@@ -15,9 +15,9 @@
     <div [backgroundColor]="backgroundColorList" id="friends" title="FRIENDS"
          [titleStyle]="titleStyle" [listStyle]="listStyle"  app-list-users-with-title>
 
-        <ng-container *ngFor="let friendDto of friendDtoList | async">
-            <div (click)="startConversationWithUser(friendDto.friend)" [messageCounter]="1" [objectName]="friendDto.friend.nick"
-                 [color]="friendDto.friend.photoDto.photo" [isActive]="friendDto.friend.active" app-object-with-status=""></div>
+        <ng-container *ngFor="let friend of friendDtoList | async">
+            <div (click)="startConversationWithUser(friend.getFriend())" [messageCounter]="1" [objectName]="friend.getFriend().getNick()"
+                 [color]="friend.getFriend().getPhoto().photo" [isActive]="friend.getFriend().getActiveObs() | async" app-object-with-status=""></div>
         </ng-container>
 
     </div>
