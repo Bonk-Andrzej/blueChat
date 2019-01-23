@@ -8,7 +8,8 @@
          [titleStyle]="titleStyle" [listStyle]="listStyle" app-list-users-with-title="">
 
         <ng-container *ngFor="let channel of channels | async">
-            <div (click)="startConversationWithChannel(channel)" [messageCounter]="1" [objectName]="channel.name"  app-object-with-status=""></div>
+            <div (click)="startConversationWithChannel(channel)" [messageCounter]="1" [objectName]="channel.name"
+                 [color]="channel.photoDto.photo" app-object-with-status=""></div>
         </ng-container>
 
     </div>
