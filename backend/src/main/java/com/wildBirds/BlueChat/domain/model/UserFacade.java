@@ -3,12 +3,14 @@ package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import com.wildBirds.BlueChat.domain.model.exceptions.UserNotExistExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class UserFacade {
@@ -41,7 +43,7 @@ public class UserFacade {
 //        return userDtoList;
 //    }
 
-    public UserDto registerNewUser(UserDtoPass userDtoPass){
+    public UserDto registerNewUser(UserDtoPass userDtoPass) {
         User mappedUser = userService.toEntity(userDtoPass);
         User registeredUser = userRep.save(mappedUser);
 
@@ -49,12 +51,12 @@ public class UserFacade {
         return response;
     }
 
-    public UserDto loginUser(UserDtoPass userDtoPass){
+    public UserDto loginUser(UserDtoPass userDtoPass) {
 
         User onlineUser = userRep.getUserByNickAndPassword(userDtoPass.getNick(), userDtoPass.getPassword());
         if (onlineUser == null) {
             log.error("Method loginUser ", "User not exist or invalid login or password");
-           throw new  UserNotExistExceptions("User not exist or invalid login or password");
+            throw new UserNotExistExceptions("User not exist or invalid login or password");
         }
 
         UserDto responseDto = userService.toDto(onlineUser);
@@ -69,5 +71,16 @@ public class UserFacade {
         UserDto userDto = userService.toDto(one);
 
         return userDto;
+    }
+
+    public List<UserDtoShort> nickContainPhrase(String phrase) {
+
+        List<User> users = userRep.nickContainPhrase(phrase);
+
+        List<UserDtoShort> userDtoShortList = users.stream()
+                .map(user -> userService.toDtoShort(user))
+                .collect(Collectors.toList());
+        return userDtoShortList;
+
     }
 }

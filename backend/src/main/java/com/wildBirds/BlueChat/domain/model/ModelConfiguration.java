@@ -47,8 +47,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    public ChannelService channelService(UserService userService) {
-        return new ChannelService(userService);
+    public ChannelService channelService(UserService userService, PhotoService photoService) {
+        return new ChannelService(userService, photoService);
     }
 
     @Bean

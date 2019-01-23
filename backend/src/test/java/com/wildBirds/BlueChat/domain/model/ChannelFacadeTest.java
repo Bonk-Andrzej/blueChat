@@ -174,37 +174,52 @@ public class ChannelFacadeTest extends ConfigurationTest{
         //given
         logger.info("Running test >> shouldReturnShortListOfChannelsOnlyWithNameAndId");
         User user = new User();
-        user.setNick("MilenaChannel33335");
+        user.setNick("MilenaChannel33");
         user.setPassword("password");
 
         user = userRepository.save(user);
 
+        Photo photo = new Photo();
+        photo.setPhoto("rgb(23,151,11)");
+
+        photo = photoRepository.save(photo);
+
         Channel channel = new Channel();
         channel.setName("general33");
         channel.setChannelOwner(user);
+        channel.setProfilePhoto(photo);
 
+
+        Photo photo2 = new Photo();
+        photo2.setPhoto("rgb(33,27,29)");
+
+        photo2 = photoRepository.save(photo2);
         Channel channel2 = new Channel();
         channel2.setName("general34");
         channel2.setChannelOwner(user);
+        channel2.setProfilePhoto(photo2);
 
-        channelRepository.saveMessage(channel);
-        channelRepository.saveMessage(channel2);
+        channelRepository.saveChannel(channel);
+        channelRepository.saveChannel(channel2);
 
         //when
-        List<ChannelDtoShort> channelsShort = channelFacade.getChannelsShort();
-        ChannelDtoShort channelDtoShort = channelsShort.get(0);
+        List<ChannelDtoShort> listNameAndId = channelFacade.getChannelsShort();
 
-//        then
+        ChannelDtoShort channel1 = listNameAndId.get(0);
 
-        Assert.assertNotNull(channelDtoShort.getName());
-        Assert.assertNotNull(channelDtoShort.getIdChannel());
+        //then
+        Assert.assertNotNull(channel1.getPhotoDto());
+        Assert.assertNotNull(channel1.getName());
+        Assert.assertNotNull(channel1.getIdChannel());
 
-        if (channelsShort.size() >= 2){
+        if (listNameAndId.size() >= 2) {
             Assert.assertTrue(true);
-        }else {
+        } else {
             Assert.assertTrue(false);
         }
 
 
     }
+
+
 }

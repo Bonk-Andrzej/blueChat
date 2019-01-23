@@ -3,6 +3,7 @@ package com.wildBirds.BlueChat.api.rest.controllers;
 
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import com.wildBirds.BlueChat.domain.model.UserFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -75,4 +78,19 @@ public class UserController {
 
 //    }
 
+    @CrossOrigin
+    @GetMapping("/short/{phrase}")
+    public ResponseEntity getShortListByPhrase(@PathVariable String phrase) {
+
+        try {
+            List<UserDtoShort> response = userFacade.nickContainPhrase(phrase);
+            logger.info("GET USER LIST BY PHRASE  >> ", response.toString());
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            logger.debug("ERROR GET USER LIST BY PHRASE  >>", e.fillInStackTrace());
+            headers.add("Error", "Bad request");
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
