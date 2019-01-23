@@ -11,6 +11,7 @@ import {ChannelDtoShort} from '../../repository/channel/channelDtoShort';
 import {ConversationService} from '../../services/conversation.service';
 import {UserDtoShort} from '../../repository/user/userDtoShort';
 import {FriendsObs} from "../../services/model/friendsObs";
+import {UserShortObs} from "../../services/model/userShortObs";
 
 @Component({
     selector: 'app-left-menu',
@@ -76,8 +77,8 @@ export class LeftMenuComponent implements OnInit {
 
 
 
-    startConversationWithUser(interlocutor :FriendsObs  ) {
-        this.conversationService.startConversationWithUser(interlocutor.getFriend())
+    startConversationWithUser(interlocutor :UserShortObs  ) {
+        this.conversationService.startConversationWithUser(interlocutor)
         this.leftMenuService.toggle();
         this.router.navigateByUrl('/conversation');
     }
