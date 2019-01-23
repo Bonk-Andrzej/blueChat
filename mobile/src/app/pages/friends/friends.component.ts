@@ -24,4 +24,8 @@ export class FriendsComponent implements OnInit {
 
 
     }
+
+    public showProfile(idUser: number){
+        this.router.navigateByUrl("/user-profile/" + idUser)
+    }
 }
