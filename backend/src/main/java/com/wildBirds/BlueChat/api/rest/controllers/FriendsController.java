@@ -31,7 +31,8 @@ public class FriendsController {
     public ResponseEntity getFriendshipList(@RequestParam String idUser) {
         try {
             Long value = Long.valueOf(idUser);
-            List<FriendsDto> response = userContainFriendFacade.getUserContainFriend(value);
+//            List<FriendsDto> response = userContainFriendFacade.getUserContainFriend(value);
+            List<FriendsDto> response = userContainFriendFacade.getFriendsWithNoReadMessage(value);
             log.info("Method getFriendshipList ", response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
         } catch (Exception e) {

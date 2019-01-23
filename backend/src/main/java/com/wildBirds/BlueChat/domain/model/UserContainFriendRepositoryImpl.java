@@ -20,7 +20,7 @@ class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
                 "OR user2.idUser =: idUser";
 
 
-       return entityManager.createQuery(query)
+        return entityManager.createQuery(query)
                 .setParameter("idUser", idUser)
                 .getResultList();
     }
@@ -32,7 +32,7 @@ class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
         User user1 = entityManager.find(User.class, userContainFriend.getUser1().getIdUser());
         User user2 = entityManager.find(User.class, userContainFriend.getUser2().getIdUser());
 
-        if (userContainFriend.getIdUserContainFriend() != null){
+        if (userContainFriend.getIdUserContainFriend() != null) {
             toSave.setIdUserContainFriend(userContainFriend.getIdUserContainFriend());
         }
 
@@ -44,4 +44,6 @@ class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
 
         return toSave;
     }
+
+
 }

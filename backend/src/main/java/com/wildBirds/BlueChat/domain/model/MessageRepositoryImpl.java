@@ -54,4 +54,39 @@ class MessageRepositoryImpl implements MessageRepositoryCustom {
 
         return msgToSave;
     }
+
+    @Override
+    public List<Object> lastMessages(Long idUser) {
+        String query = "SELECT COUNT(DISTINCT sender), COUNT(DISTINCT receiver) , message, message.sentDate FROM Message message " +
+                "JOIN message.sender sender " +
+                "JOIN message.receiver receiver " +
+                "WHERE receiver.idUser =: idUser OR " +
+                "sender.idUser =: idUser " +
+                "GROUP BY message.sender , message.idMessage " +
+                "ORDER BY message.sentDate ASC ";
+
+//count(distinct(r.user))
+        return entityManager.createQuery(query)
+                .setMaxResults(10)
+                .setParameter("idUser", idUser)
+                .getResultList();
+
+    }
+
+
+    @Override
+    public List<Message> getNoReadMessages(Long idUser) {
+
+        String query = "SELECT message FROM  Message message " +
+                "JOIN message.receiver receiver " +
+                "WHERE receiver.idUser =: idUser " +
+                "AND message.isRead =: isRead";
+
+        return entityManager.createQuery(query)
+                .setParameter("idUser", idUser)
+                .setParameter("isRead", false)
+                .getResultList();
+
+    }
+
 }

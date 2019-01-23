@@ -170,7 +170,7 @@ public class ChannelFacadeTest extends ConfigurationTest{
 
     @Test
     @Transactional
-    public void shouldReturnShortListOfChannelsOnlyWithNameAndId() {
+    public void shouldReturnShortListOfChannelsOnlyPublic() {
         //given
         logger.info("Running test >> shouldReturnShortListOfChannelsOnlyWithNameAndId");
         User user = new User();
@@ -187,7 +187,9 @@ public class ChannelFacadeTest extends ConfigurationTest{
         Channel channel = new Channel();
         channel.setName("general33");
         channel.setChannelOwner(user);
+        channel.getUsersInChannel().add(user);
         channel.setProfilePhoto(photo);
+        channel.setIsPublic(true);
 
 
         Photo photo2 = new Photo();
@@ -197,7 +199,9 @@ public class ChannelFacadeTest extends ConfigurationTest{
         Channel channel2 = new Channel();
         channel2.setName("general34");
         channel2.setChannelOwner(user);
+        channel2.getUsersInChannel().add(user);
         channel2.setProfilePhoto(photo2);
+        channel2.setIsPublic(true);
 
         channelRepository.saveChannel(channel);
         channelRepository.saveChannel(channel2);

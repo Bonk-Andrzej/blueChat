@@ -29,7 +29,6 @@ public class ChannelController {
     @GetMapping("shorts")
     public ResponseEntity getShortList() {
         try {
-
             List<ChannelDtoShort> response = channelFacade.getChannelsShort();
             log.info("Method getShortList", response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
@@ -45,36 +44,26 @@ public class ChannelController {
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
-//
-//
+
     @CrossOrigin
     @GetMapping("/shorts/{idUser}")
     public ResponseEntity getShortList(@PathVariable String idUser){
-
-        List<ChannelDtoShort> result = channelFacade.getChannelsShort(Long.valueOf(idUser));
-
-        return new ResponseEntity(result, HttpStatus.OK);
-
-    }
-
-    @CrossOrigin
-    @GetMapping
-    public ResponseEntity getChannels() {
         try {
-            List<ChannelDto> response = channelFacade.getChannels();
-            log.info("Method getChannels", response.toString());
+        List<ChannelDtoShort> response = channelFacade.getChannelsShort(Long.valueOf(idUser));
+            log.info("Method getShortList by user " + idUser, response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
         } catch (ChannelServiceExceptions e) {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());
-            log.error("Method getChannels ", e.getMessage());
+            log.error("Method getShortList by user " + idUser, e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Error", e.getMessage());
-            log.error("Method getChannels ", e.getMessage());
+            log.error("Method getShortList by user " + idUser, e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
+
     }
 
     @CrossOrigin
