@@ -25,14 +25,13 @@ export class ConversationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.idSender = this.userProfile.getUser().idUser;
-        console.log(this.idSender, "my id")
-        this.messageOwnerName = this.userProfile.getUser().nick;
+
+        this.idSender = this.userProfile.getUser().getIdUser()
+        this.messageOwnerName = this.userProfile.getUser().getNick()
         this.interlocutorName = this.conversationService.getInterlocutorName();
         this.conversation = this.conversationService.getConversation();
         this.conversation.subscribe(() => {
 
-            console.log("update")
             if (this.conversationListRef) {
 
                 const nativeElement = this.conversationListRef.nativeElement;
@@ -48,7 +47,7 @@ export class ConversationComponent implements OnInit {
     public sendMessage(){
         let messageDto = new MessageDto();
         messageDto.content = this.messageContent;
-        messageDto.senderId = this.userProfile.getUser().idUser;
+        messageDto.senderId = this.userProfile.getUser().getIdUser()
         messageDto.receiverId = this.conversationService.getInterlocutorId();
         this.conversationService.sendMessage(messageDto);
 

@@ -5,14 +5,14 @@ export class UserDto {
     public nick: string;
     public email: string;
     public description: string;
-    public photo : PhotoDto;
+    public photoDto : PhotoDto;
 
     constructor(id: number = 0, name: string = "", email: string = "", description: string = "", photo: PhotoDto = null) {
         this.idUser = id;
         this.nick = name;
         this.email = email;
         this.description = description;
-        this.photo = photo;
+        this.photoDto = photo;
     }
 
 }

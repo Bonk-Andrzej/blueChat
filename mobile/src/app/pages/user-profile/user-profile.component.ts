@@ -3,6 +3,8 @@ import {UserDto} from '../../repository/user/userDto';
 import {UserProfileService} from '../../services/user-profile.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserRepositoryService} from "../../repository/user/user-repository.service";
+import {BehaviorSubject, Observable} from "rxjs";
+import {UserObs} from "../../services/model/userObs";
 
 @Component({
     selector: 'app-user-profile',
@@ -12,7 +14,7 @@ import {UserRepositoryService} from "../../repository/user/user-repository.servi
 export class UserProfileComponent implements OnInit {
 
 
-    public userDto: UserDto = new UserDto();
+    private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
 
     constructor(private router: Router,
                 private activeRout: ActivatedRoute,
@@ -22,16 +24,23 @@ export class UserProfileComponent implements OnInit {
     }
 
     async ngOnInit() {
-        console.log('>>>> USER PROFILE SHOW COLOR ' +this.userDto + '<<< NULL ????')
+
         const paramId = this.activeRout.snapshot.params["id"];
         if(paramId != null){
-            this.userDto = await this.userRepositoryService.getUserById(paramId);
+            const userDto = await this.userRepositoryService.getUserById(paramId)
+            this.userBeh.next(UserObs.create(userDto));
         }else {
-            this.userDto = this.userProfileService.getUser();
+            this.userBeh.next(this.userProfileService.getUser());
         }
 
     }
 
+    public getUserObs(): Observable<UserObs>{
+        return this.userBeh.asObservable();
+    }
+
+
+    // Click events
     onGroups() {
         this.router.navigateByUrl('/groups');
     }

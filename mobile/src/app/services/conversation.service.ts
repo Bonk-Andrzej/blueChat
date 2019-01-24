@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {UserProfileService} from './user-profile.service';
 import {MessageRepositoryService} from '../repository/message/message-repository.service';
-import {UserDtoShort} from '../repository/user/userDtoShort';
 import {ChannelDtoShort} from '../repository/channel/channelDtoShort';
 import {BehaviorSubject} from 'rxjs';
 import {MessageDto} from '../repository/message/messageDto';
 import {WSRClientService} from '../WSRClient/wsrclient.service';
 import {LocalType} from '../WSRClient/types/LocalType';
 import {RemoteType} from '../WSRClient/types/RemoteType';
-import {FriendsObs} from "./model/friendsObs";
 import {UserShortObs} from "./model/userShortObs";
 
 @Injectable({
@@ -26,7 +24,7 @@ export class ConversationService {
     ) {
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMESSAGE, new MessageDto(), message => {
-            if(message.receiverId == this.userProfileService.getUser().idUser && message.senderId == this.interlocutorId){
+            if(message.receiverId == this.userProfileService.getUser().getIdUser() && message.senderId == this.interlocutorId){
             const conversation = this.conversation.getValue();
             conversation.push(message);
             this.conversation.next(conversation);
@@ -35,7 +33,7 @@ export class ConversationService {
         });
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYMESSAGE, new MessageDto(), message => {
-            if(message.receiverId == this.interlocutorId && message.senderId == this.userProfileService.getUser().idUser ){
+            if(message.receiverId == this.interlocutorId && message.senderId == this.userProfileService.getUser().getIdUser() ){
                 const conversation = this.conversation.getValue();
                 conversation.push(message);
                 this.conversation.next(conversation);
@@ -46,7 +44,7 @@ export class ConversationService {
     public async startConversationWithUser(interlocutor: UserShortObs) {
 
         const user = this.userProfileService.getUser();
-        const conversation = await this.messageRepository.getConversation(user.idUser, interlocutor.getIdUser(), 100, 0);
+        const conversation = await this.messageRepository.getConversation(user.getIdUser(), interlocutor.getIdUser(), 100, 0);
         this.conversation.next(conversation);
         this.interlocutorName.next(interlocutor.getNick());
         this.interlocutorId = interlocutor.getIdUser();
