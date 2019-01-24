@@ -63,7 +63,7 @@ public class SessionRepositoryInMemory<RT extends Enum<RT>, I extends Comparable
         Session<RT, I> session = allSessionMap.get(webSocketSession.getId());
         if (session != null && session.hasId()) {
             authorizedSessionMap.remove(session.getId());
-        } else if (session != null) {
+        } else {
             allSessionMap.remove(webSocketSession.getId());
         }
     }
