@@ -23,7 +23,6 @@ public class SessionRepositoryInMemory<RT extends Enum<RT>, I extends Comparable
     }
 
 
-
     public Map<String, Session<RT, I>> getAllSessionMap() {
         return allSessionMap;
     }
@@ -62,9 +61,10 @@ public class SessionRepositoryInMemory<RT extends Enum<RT>, I extends Comparable
     @Override
     public void removeSession(WebSocketSession webSocketSession) {
         Session<RT, I> session = allSessionMap.get(webSocketSession.getId());
-        if (session.hasId()) {
+        if (session != null && session.hasId()) {
             authorizedSessionMap.remove(session.getId());
+        } else if (session != null) {
+            allSessionMap.remove(webSocketSession.getId());
         }
-        allSessionMap.remove(webSocketSession.getId());
     }
 }

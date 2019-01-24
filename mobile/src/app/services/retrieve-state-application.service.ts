@@ -26,11 +26,12 @@ export class RetrieveStateApplicationService {
             this.router.navigateByUrl('/main-login').catch();
         } else {
             this.router.navigateByUrl('/').catch();
+
         }
     }
 
     public saveUserId(user: UserDto) {
-        localStorage.setItem('userId', user.idUser + '');
+        // localStorage.setItem('userId', user.idUser + '');
     }
 
     public removeUserId() {

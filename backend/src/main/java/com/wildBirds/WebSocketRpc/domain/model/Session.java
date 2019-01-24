@@ -51,7 +51,11 @@ public class Session<RT extends Enum<RT>, I> implements com.wildBirds.WebSocketR
         try {
             String jsonString = procedureDTOConverter.toJsonString(procedureDTO);
             TextMessage textMessage = new TextMessage(jsonString.getBytes(Charset.forName("UTF-8")));
-            webSocketSession.sendMessage(textMessage);
+            if (webSocketSession.isOpen()) {
+                webSocketSession.sendMessage(textMessage);
+            } else {
+                sessionRepository.removeSession(webSocketSession);
+            }
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
