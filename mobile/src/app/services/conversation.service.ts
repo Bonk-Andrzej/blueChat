@@ -8,13 +8,14 @@ import {WSRClientService} from '../WSRClient/wsrclient.service';
 import {LocalType} from '../WSRClient/types/LocalType';
 import {RemoteType} from '../WSRClient/types/RemoteType';
 import {UserShortObs} from "./model/userShortObs";
+import {MessageObs} from "./model/messageObs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ConversationService {
 
-    conversation = new BehaviorSubject<Array<MessageDto>>([]);
+    conversation = new BehaviorSubject<Array<MessageObs>>([]);
     interlocutorName = new BehaviorSubject('');
     interlocutorId: number = null;
     isChannelConversation = false;
@@ -25,18 +26,18 @@ export class ConversationService {
     ) {
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMESSAGE, new MessageDto(), message => {
-            if(message.receiverId == this.userProfileService.getUser().getIdUser() && message.senderId == this.interlocutorId){
-            const conversation = this.conversation.getValue();
-            conversation.push(message);
-            this.conversation.next(conversation);
+            if (message.receiverId == this.userProfileService.getUser().getIdUser() && message.senderId == this.interlocutorId) {
+                const conversation = this.conversation.getValue();
+                conversation.push(MessageObs.createFromMessage(message, this.userProfileService));
+                this.conversation.next(conversation);
             }
 
         });
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYMESSAGE, new MessageDto(), message => {
-            if(message.receiverId == this.interlocutorId && message.senderId == this.userProfileService.getUser().getIdUser() ){
+            if (message.receiverId == this.interlocutorId && message.senderId == this.userProfileService.getUser().getIdUser()) {
                 const conversation = this.conversation.getValue();
-                conversation.push(message);
+                conversation.push(MessageObs.createFromMessage(message, this.userProfileService));
                 this.conversation.next(conversation);
             }
         });
@@ -46,11 +47,16 @@ export class ConversationService {
 
         this.isChannelConversation = false;
         const user = this.userProfileService.getUser();
+        const newConversation = [];
         const conversation = await this.messageRepository.getConversation(user.getIdUser(), interlocutor.getIdUser(), 100, 0);
-        this.conversation.next(conversation);
+
+        for (let messageDto of conversation) {
+            newConversation.push(MessageObs.createFromMessage(messageDto, this.userProfileService))
+        }
+
+        this.conversation.next(newConversation);
         this.interlocutorName.next(interlocutor.getNick());
         this.interlocutorId = interlocutor.getIdUser();
-        console.log(conversation, ' <<<<<< fetched data');
     }
 
     public async startConversationWithChannel(interlocutor: ChannelDtoShort) {
