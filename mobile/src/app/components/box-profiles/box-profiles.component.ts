@@ -9,6 +9,7 @@ export class BoxProfilesComponent implements OnInit {
 
     @Input() title: string;
     @Input() content: string;
+    @Input() color: string;
 
     constructor() {
     }

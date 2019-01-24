@@ -104,7 +104,7 @@ export class UserProfileService {
     }
 
     private async fetchChannels() {
-        const result = await this.channelsRepository.getShortList();
+        const result = await this.channelsRepository.getShortList(this.userDto.idUser);
         console.warn(result);
         this.channals.next(result);
     }

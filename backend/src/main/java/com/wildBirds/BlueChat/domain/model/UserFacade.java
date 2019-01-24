@@ -8,6 +8,7 @@ import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import com.wildBirds.BlueChat.domain.model.exceptions.UserNotExistExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,12 +18,16 @@ public class UserFacade {
 
     private UserRepository userRep;
     private UserService userService;
+    private ChannelFacade channelFacade;
+    private PhotoFacade photoFacade;
     private MessageControllerWSR wsr;
     private Logger log = LoggerFactory.getLogger(UserFacade.class);
 
-    public UserFacade(UserRepository userRep, UserService userService, MessageControllerWSR wsr) {
+    public UserFacade(UserRepository userRep, UserService userService, ChannelFacade channelFacade, PhotoFacade photoFacade, MessageControllerWSR wsr) {
         this.userRep = userRep;
         this.userService = userService;
+        this.channelFacade = channelFacade;
+        this.photoFacade = photoFacade;
         this.wsr = wsr;
     }
 
@@ -45,10 +50,24 @@ public class UserFacade {
 
     public UserDto registerNewUser(UserDtoPass userDtoPass) {
         User mappedUser = userService.toEntity(userDtoPass);
+
         User registeredUser = userRep.save(mappedUser);
+
+        addBasicSettings(registeredUser);
 
         UserDto response = userService.toDto(registeredUser);
         return response;
+    }
+
+    private User addBasicSettings(User registeredUser) {
+
+        Long generalChannel = 1L;
+        channelFacade.addUserToChannel(registeredUser.getIdUser(), generalChannel);
+
+        registeredUser.setDescription("I am really enjoy to join in new communicator ;)");
+        registeredUser.setProfilePhoto(photoFacade.generatePhoto());
+        registeredUser = userRep.save(registeredUser);
+        return registeredUser;
     }
 
     public UserDto loginUser(UserDtoPass userDtoPass) {
