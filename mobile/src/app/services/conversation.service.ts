@@ -17,6 +17,7 @@ export class ConversationService {
     conversation = new BehaviorSubject<Array<MessageDto>>([]);
     interlocutorName = new BehaviorSubject('');
     interlocutorId: number = null;
+    isChannelConversation = false;
 
     constructor(private userProfileService: UserProfileService,
                 private messageRepository: MessageRepositoryService,
@@ -43,6 +44,7 @@ export class ConversationService {
 
     public async startConversationWithUser(interlocutor: UserShortObs) {
 
+        this.isChannelConversation = false;
         const user = this.userProfileService.getUser();
         const conversation = await this.messageRepository.getConversation(user.getIdUser(), interlocutor.getIdUser(), 100, 0);
         this.conversation.next(conversation);
@@ -52,6 +54,7 @@ export class ConversationService {
     }
 
     public async startConversationWithChannel(interlocutor: ChannelDtoShort) {
+        this.isChannelConversation = true;
 
     }
 
