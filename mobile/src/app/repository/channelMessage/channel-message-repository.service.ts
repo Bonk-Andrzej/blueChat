@@ -30,10 +30,10 @@ export class ChannelMessageRepositoryService {
     public getConversation(idChannel: number, limit: number, toBound: number): Promise<Array<ChannelMessageDto>>{
 
       const params = new HttpParams()
-          .set('idChannel', idChannel.toString())
+          .set('channelId', idChannel.toString())
           .set('limit', limit.toString())
           .set('toBound', toBound.toString());
-      return this.http.get<Array<ChannelMessageDto>>(this.host + '/conversation/', {headers: this.headers, params: params}).toPromise()
+      return this.http.get<Array<ChannelMessageDto>>(this.host, {headers: this.headers, params: params}).toPromise()
 
     }
 

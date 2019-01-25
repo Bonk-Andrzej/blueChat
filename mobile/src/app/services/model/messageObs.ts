@@ -38,8 +38,8 @@ export class MessageObs {
 
         messageObs.messageId = message.idChannelsMessageDto;
         messageObs.content = message.content;
-        messageObs.senderId = message.sender.idUser;
-        messageObs.interlocutorId = message.channel.idChannel;
+        messageObs.senderId = message.senderId
+        messageObs.interlocutorId = message.channelId;
         messageObs.sentDate = message.sentDate;
         messageObs.setReadBy_Channel(message,messageObs,loggedUser);
         messageObs.setSandedByMe_Channel(loggedUser, message, messageObs);
@@ -54,7 +54,7 @@ export class MessageObs {
         }
     }
     private setSandedByMe_Channel(loggedUser: UserObs, message: ChannelMessageDto, messageObs: MessageObs) {
-        if (loggedUser.getIdUser() == message.sender.idUser) {
+        if (loggedUser.getIdUser() == message.senderId) {
             messageObs.senderByMe = true;
         }
     }
