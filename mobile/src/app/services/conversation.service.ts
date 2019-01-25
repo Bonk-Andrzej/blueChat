@@ -68,9 +68,15 @@ export class ConversationService {
         const newConversation = [];
         const conversation = await this.channelMessageRepositoryService.getConversation( interlocutor.idChannel, 100, 0);
 
+        console.log(conversation, "fetched data")
+
         for (let ChannelMessageDto of conversation) {
             newConversation.push(MessageObs.createFromChannel(ChannelMessageDto, this.userProfileService))
         }
+
+        this.conversation.next(newConversation);
+        this.interlocutorName.next(interlocutor.name);
+        this.interlocutorId = interlocutor.idChannel;
 
     }
 
