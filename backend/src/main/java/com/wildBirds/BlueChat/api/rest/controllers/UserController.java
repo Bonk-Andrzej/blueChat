@@ -4,7 +4,9 @@ package com.wildBirds.BlueChat.api.rest.controllers;
 import com.wildBirds.BlueChat.api.rest.dto.UserDto;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoPass;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoWithLastMessage;
 import com.wildBirds.BlueChat.domain.model.UserFacade;
+import com.wildBirds.BlueChat.domain.model.UserWithLasMessageFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -20,10 +22,12 @@ import java.util.List;
 public class UserController {
 
     private UserFacade userFacade;
+    private UserWithLasMessageFacade userWithLasMessageFacade;
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(UserFacade userFacade) {
+    public UserController(UserFacade userFacade, UserWithLasMessageFacade userWithLasMessageFacade) {
         this.userFacade = userFacade;
+        this.userWithLasMessageFacade = userWithLasMessageFacade;
     }
 
     @PostMapping
@@ -92,5 +96,14 @@ public class UserController {
             headers.add("Error", "Bad request");
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
+    }
+    @CrossOrigin
+    @GetMapping("/noRead/{idUser}")
+    public ResponseEntity getFirstNoReadMessages(@PathVariable String idUser){
+
+
+        List<UserDtoWithLastMessage> response = userWithLasMessageFacade.getFirstNoReadMessages(Long.valueOf(idUser));
+
+        return new ResponseEntity(response, HttpStatus.OK);
     }
 }

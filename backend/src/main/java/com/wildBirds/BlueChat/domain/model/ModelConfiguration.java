@@ -40,6 +40,10 @@ class ModelConfiguration {
     UserContainFriendFacade userContainFriendFacade(MessageControllerWSR wsr,UserContainFriendService userContainFriendService, UserContainFriendRepository userContainFriendRepository, MessageRepository messageRepository){
         return new UserContainFriendFacade(wsr,userContainFriendService, userContainFriendRepository,messageRepository );
     }
+    @Bean
+    UserWithLasMessageFacade userWithLasMessageFacade(MessageService messageService,MessageFacade messageFacade, PhotoService photoService){
+        return new UserWithLasMessageFacade(messageService, messageFacade, photoService);
+    }
 
 
 

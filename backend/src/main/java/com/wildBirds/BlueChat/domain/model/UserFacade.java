@@ -23,7 +23,11 @@ public class UserFacade {
     private MessageControllerWSR wsr;
     private Logger log = LoggerFactory.getLogger(UserFacade.class);
 
-    public UserFacade(UserRepository userRep, UserService userService, ChannelFacade channelFacade, PhotoFacade photoFacade, MessageControllerWSR wsr) {
+    public UserFacade(UserRepository userRep,
+                      UserService userService,
+                      ChannelFacade channelFacade,
+                      PhotoFacade photoFacade,
+                      MessageControllerWSR wsr) {
         this.userRep = userRep;
         this.userService = userService;
         this.channelFacade = channelFacade;
@@ -48,6 +52,8 @@ public class UserFacade {
 //        return userDtoList;
 //    }
 
+
+
     public UserDto registerNewUser(UserDtoPass userDtoPass) {
         User mappedUser = userService.toEntity(userDtoPass);
 
@@ -57,17 +63,6 @@ public class UserFacade {
 
         UserDto response = userService.toDto(registeredUser);
         return response;
-    }
-
-    private User addBasicSettings(User registeredUser) {
-
-        Long generalChannel = 1L;
-        channelFacade.addUserToChannel(registeredUser.getIdUser(), generalChannel);
-
-        registeredUser.setDescription("I am really enjoy to join in new communicator ;)");
-        registeredUser.setProfilePhoto(photoFacade.generatePhoto());
-        registeredUser = userRep.save(registeredUser);
-        return registeredUser;
     }
 
     public UserDto loginUser(UserDtoPass userDtoPass) {
@@ -101,5 +96,16 @@ public class UserFacade {
                 .collect(Collectors.toList());
         return userDtoShortList;
 
+    }
+
+    private User addBasicSettings(User registeredUser) {
+
+        Long generalChannel = 1L;
+        channelFacade.addUserToChannel(registeredUser.getIdUser(), generalChannel);
+
+        registeredUser.setDescription("I am really enjoy to join in new communicator ;)");
+        registeredUser.setProfilePhoto(photoFacade.generatePhoto());
+        registeredUser = userRep.save(registeredUser);
+        return registeredUser;
     }
 }

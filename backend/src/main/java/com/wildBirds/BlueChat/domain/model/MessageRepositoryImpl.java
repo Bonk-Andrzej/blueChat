@@ -90,7 +90,8 @@ class MessageRepositoryImpl implements MessageRepositoryCustom {
         String query = "SELECT message FROM  Message message " +
                 "JOIN message.receiver receiver " +
                 "WHERE receiver.idUser =: idUser " +
-                "AND message.isRead =: isRead";
+                "AND message.isRead =: isRead " +
+                "ORDER BY message.sentDate DESC ";
 
         return entityManager.createQuery(query)
                 .setParameter("idUser", idUser)

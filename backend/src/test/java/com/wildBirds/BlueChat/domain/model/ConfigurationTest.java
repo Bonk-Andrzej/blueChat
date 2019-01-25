@@ -54,6 +54,9 @@ public class ConfigurationTest {
     @Autowired
     protected MessageRepository messageRepository;
 
+    @Autowired
+    protected MessageService messageService;
+
 
     @Autowired
     protected PhotoRepository photoRepository;
@@ -65,11 +68,12 @@ public class ConfigurationTest {
     @Autowired
     protected UserFacade userFacade;
 
-
-
     @Autowired
     protected UserService userService;
 
+
+    @Autowired
+    protected UserWithLasMessageFacade userWithLasMessageFacade;
 
 
     @Test
