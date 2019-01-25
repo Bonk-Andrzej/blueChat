@@ -9,6 +9,8 @@ import {LocalType} from '../WSRClient/types/LocalType';
 import {RemoteType} from '../WSRClient/types/RemoteType';
 import {UserShortObs} from "./model/userShortObs";
 import {MessageObs} from "./model/messageObs";
+import {ChannelMessageRepositoryService} from "../repository/channelMessage/channel-message-repository.service";
+import {ChannelMessageDto} from "../repository/channelMessage/channelMessageDto";
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +24,8 @@ export class ConversationService {
 
     constructor(private userProfileService: UserProfileService,
                 private messageRepository: MessageRepositoryService,
-                private wsrClientService: WSRClientService
+                private wsrClientService: WSRClientService,
+                private channelMessageRepositoryService: ChannelMessageRepositoryService
     ) {
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMESSAGE, new MessageDto(), message => {
@@ -60,7 +63,14 @@ export class ConversationService {
     }
 
     public async startConversationWithChannel(interlocutor: ChannelDtoShort) {
+
         this.isChannelConversation = true;
+        const newConversation = [];
+        const conversation = await this.channelMessageRepositoryService.getConversation( interlocutor.idChannel, 100, 0);
+
+        for (let ChannelMessageDto of conversation) {
+            newConversation.push(MessageObs.createFromChannel(ChannelMessageDto, this.userProfileService))
+        }
 
     }
 

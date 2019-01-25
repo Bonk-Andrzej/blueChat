@@ -27,13 +27,13 @@ export class ChannelMessageRepositoryService {
         return headers;
     }
 
-    public getConversation(idChannel: number, limit: number, toBound: number): Observable<Array<ChannelMessageDto>>{
+    public getConversation(idChannel: number, limit: number, toBound: number): Promise<Array<ChannelMessageDto>>{
 
       const params = new HttpParams()
           .set('idChannel', idChannel.toString())
           .set('limit', limit.toString())
           .set('toBound', toBound.toString());
-      return this.http.get<Array<ChannelMessageDto>>(this.http + '/conversation/', {headers: this.headers, params: params});
+      return this.http.get<Array<ChannelMessageDto>>(this.host + '/conversation/', {headers: this.headers, params: params}).toPromise()
 
     }
 
