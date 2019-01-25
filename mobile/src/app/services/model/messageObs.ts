@@ -5,8 +5,7 @@ import {ChannelMessageDto} from "../../repository/channelMessage/channelMessageD
 
 export class MessageObs {
 
-
-    private sandedByMe: boolean;
+    private senderByMe: boolean;
     private messageId: number
     private content: string;
     private readBy: Array<number>;
@@ -14,10 +13,9 @@ export class MessageObs {
     private interlocutorId: number;
     private sentDate: string;
 
-
     constructor() {
         this.readBy = [];
-        this.sandedByMe = false;
+        this.senderByMe = false;
     }
 
     public static createFromMessage(message: MessageDto, userProfileService: UserProfileService): MessageObs{
@@ -52,12 +50,12 @@ export class MessageObs {
     // Utils methods
     private setSandedByMe_Message(loggedUser: UserObs, message: MessageDto, messageObs: MessageObs) {
         if (loggedUser.getIdUser() == message.senderId) {
-            messageObs.sandedByMe = true;
+            messageObs.senderByMe = true;
         }
     }
     private setSandedByMe_Channel(loggedUser: UserObs, message: ChannelMessageDto, messageObs: MessageObs) {
         if (loggedUser.getIdUser() == message.sender.idUser) {
-            messageObs.sandedByMe = true;
+            messageObs.senderByMe = true;
         }
     }
     private setReadBy_Channel(message: ChannelMessageDto, messageObs: MessageObs, loggedUser: UserObs){
@@ -66,11 +64,27 @@ export class MessageObs {
     }
     private setReadBy_Message(message: MessageDto, messageObs: MessageObs, loggedUser: UserObs){
 
-        if(message.isRead && messageObs.sandedByMe){
+        if(message.isRead && messageObs.senderByMe){
             messageObs.readBy.push(loggedUser.getIdUser());
         }else if(message.isRead){
             messageObs.readBy.push(messageObs.senderId)
         }
+    }
+
+    public getSendedByMe():boolean{
+        return this.senderByMe
+    }
+
+    public getMessageId(): number{
+        return this.messageId;
+    }
+
+    public getContent():string{
+        return this.content;
+    }
+
+    public getSentDate():string{
+        return this.sentDate;
     }
 
 

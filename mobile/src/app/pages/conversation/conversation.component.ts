@@ -3,6 +3,7 @@ import {ConversationService} from '../../services/conversation.service';
 import {Observable} from 'rxjs';
 import {MessageDto} from '../../repository/message/messageDto';
 import {UserProfileService} from '../../services/user-profile.service';
+import {MessageObs} from "../../services/model/messageObs";
 
 @Component({
     selector: 'app-conversation',
@@ -15,7 +16,7 @@ export class ConversationComponent implements OnInit {
     interlocutorName: Observable<string>;
     idSender: number;
     messageContent: string;
-    conversation: Observable<Array<MessageDto>>;
+    conversation: Observable<Array<MessageObs>>;
 
     @ViewChild('conversationListRef')
     private conversationListRef: ElementRef<HTMLDivElement>;
