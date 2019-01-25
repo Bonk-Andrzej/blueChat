@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {UserProfileService} from '../../services/user-profile.service';
+import {UserWithMessageComponent} from '../../components/user-with-message/user-with-message.component';
+import {UserDtoWithMessage} from '../../repository/user/userDtoWithMessage';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-main-login',
@@ -110,11 +114,14 @@ export class MainLoginComponent implements OnInit {
 
     ];
 
+    usersWithNewMessage : Observable<Array<UserDtoWithMessage>>;
 
-    constructor() {
+    constructor(private useService: UserProfileService ) {
     }
 
     ngOnInit() {
+        this.usersWithNewMessage = this.useService.getUsersWuthMsg();
+        console.log(">>>>>>>>>>>>>>>>>>>>" + this.usersWithNewMessage)
     }
 
 }

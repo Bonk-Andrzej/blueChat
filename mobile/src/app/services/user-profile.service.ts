@@ -12,6 +12,7 @@ import {RemoteType} from '../WSRClient/types/RemoteType';
 import {ChangeService} from './change.service';
 import {FriendsObs} from "./model/friendsObs";
 import {UserObs} from "./model/userObs";
+import {UserDtoWithMessage} from '../repository/user/userDtoWithMessage';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +22,7 @@ export class UserProfileService {
     public userBeh: BehaviorSubject<UserObs> = new BehaviorSubject(null);
     public friends: BehaviorSubject<Array<FriendsObs>> = new BehaviorSubject([]);
     public channels: BehaviorSubject<Array<ChannelDtoShort>> = new BehaviorSubject([]);
+    public usersWithNewMessage: BehaviorSubject<Array<UserDtoWithMessage>> = new BehaviorSubject([]);
     private wsrIsConnected: boolean;
 
     constructor(private userRepository: UserRepositoryService,
@@ -81,6 +83,7 @@ export class UserProfileService {
         this.userBeh.next(UserObs.create(user))
         this.fetchFriends().catch();
         this.fetchChannels().catch();
+        this.fetchUsersWithMsg().catch();
     }
     private async fetchFriends() {
         const result = await this.friendsRepository.getFriendshipsList(this.userBeh.getValue().getIdUser());
@@ -112,6 +115,15 @@ export class UserProfileService {
         this.friends.next([]);
         this.channels.next([]);
         this.wsrIsConnected = false;
+    }
+
+    private async fetchUsersWithMsg(){
+        const result = await this.userRepository.gerUserWithMessage(this.userBeh.getValue().getIdUser());
+        this.usersWithNewMessage.next(result)
+    }
+
+    public getUsersWuthMsg(){
+        return this.usersWithNewMessage.asObservable()
     }
 
 
