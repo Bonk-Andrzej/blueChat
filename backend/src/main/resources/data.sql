@@ -4,6 +4,7 @@ INSERT INTO photo(photo) VALUES ('rgb(88,218,71)')
 INSERT INTO photo(photo) VALUES ('rgb(0,140,178)')
 INSERT INTO photo(photo) VALUES ('rgb(218,132,160)')
 INSERT INTO photo(photo) VALUES ('rgb(10,28,66)')
+INSERT INTO photo(photo) VALUES ('rgb(219,194,34)')
 
 INSERT INTO photo(photo) VALUES ('rgb(23,151,11)')
 INSERT INTO photo(photo) VALUES ('rgb(33,27,29)')
@@ -13,7 +14,7 @@ INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Igor', 
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Paweł', 'pawelpass', 'paweljastrzebski96@gmail.com', 'Project Manager :)', 2)
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Milena', 'milenapass', 'milena@wp.pl', 'I am very good promising pharmacist ', 3)
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('test', 'test', 'test@wp.pl', 'some testing value description', 4)
-INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Mateusz', 'abc', 'henicz19@gmail.com', 'Programista NODE Js - dzwoń teraz :D', 4)
+INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Mateusz', 'abc', 'henicz19@gmail.com', 'Programista NODE Js - dzwoń teraz :D', 5)
 
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 1 DAY ), 4 , 1)
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 2 DAY ), 1 , 3)
@@ -21,16 +22,21 @@ INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 4 DAY ), 4 , 2)
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 5 DAY ), 4 , 3)
 
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('general-public', true , 1, 6)
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('onlyTest-public', true , 2, 6)
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('Developers-private', false , 2, 5)
-INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('Home-private', false , 2, 5)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 5 DAY ), 5 , 1)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 5 DAY ), 5 , 2)
+INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 5 DAY ), 5 , 4)
+
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('general-public', true , 1, 7)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('onlyTest-public', true , 2, 7)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('Developers-private', false , 2, 6)
+INSERT INTO channel(name, is_public, channel_owner, id_photo ) VALUE ('Home-private', false , 2, 6)
 
 
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 1)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 2)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 3)
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 4)
+INSERT INTO channel_contain_users(id_channel, id_user) VALUE (1, 5)
 
 INSERT INTO channel_contain_users(id_channel, id_user) VALUE (2, 4)
 
