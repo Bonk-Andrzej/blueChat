@@ -63,15 +63,29 @@ public class MessageRepositoryTest extends ConfigurationTest {
         receiver.setPassword("password");
         receiver = userRepository.save(receiver);
 
-        String content1 = "some message11111111111111";
+        String content1 = "some message13333333333333";
         Instant sentDate1 = Instant.now().plus(3, ChronoUnit.DAYS);
 
-        String content2 = "some message222222222222";
+        String content2 = "some message11111111111111111";
         Instant sentDate2 = Instant.now().plus(1, ChronoUnit.DAYS);
 
-        String content3 = "some message22222222222222";
+        String content3 = "some message2222222222222";
         Instant sentDate3 = Instant.now().plus(2, ChronoUnit.DAYS);
 
+
+        String content4 = "some message66666666666666";
+        Instant sentDate4 = Instant.now().plus(6, ChronoUnit.DAYS);
+
+
+        String content5 = "some message4444444444444";
+        Instant sentDate5 = Instant.now().plus(4, ChronoUnit.DAYS);
+
+
+        String content6 = "some message77777777777777";
+        Instant sentDate6 = Instant.now().plus(7, ChronoUnit.DAYS);
+
+        String content7 = "some message5555555555555557";
+        Instant sentDate7 = Instant.now().plus(5, ChronoUnit.DAYS);
 
         Message message1 = new Message();
         message1.setContent(content1);
@@ -85,7 +99,6 @@ public class MessageRepositoryTest extends ConfigurationTest {
         message2.setSentDate(sentDate2);
         message2.setSender(sender);
         message2.setReceiver(receiver);
-
         messageRepository.save(message2);
 
 //
@@ -94,17 +107,45 @@ public class MessageRepositoryTest extends ConfigurationTest {
         message3.setSentDate(sentDate3);
         message3.setSender(sender);
         message3.setReceiver(receiver);
-
         messageRepository.save(message3);
+
+        Message message4 = new Message();
+        message4.setContent(content4);
+        message4.setSentDate(sentDate4);
+        message4.setSender(sender);
+        message4.setReceiver(receiver);
+        messageRepository.save(message4);
+
+
+        Message message5 = new Message();
+        message5.setContent(content5);
+        message5.setSentDate(sentDate5);
+        message5.setSender(sender);
+        message5.setReceiver(receiver);
+        messageRepository.save(message5);
+
+
+        Message message6 = new Message();
+        message6.setContent(content6);
+        message6.setSentDate(sentDate6);
+        message6.setSender(receiver);
+        message6.setReceiver(sender);
+        messageRepository.save(message6);
+
+
+        Message message7 = new Message();
+        message7.setContent(content7);
+        message7.setSentDate(sentDate7);
+        message7.setSender(sender);
+        message7.setReceiver(receiver);
+        messageRepository.save(message7);
         //when
 
-        List<MessageDto> conversation = messageFacade.getConversation(sender.getIdUser(), receiver.getIdUser(), 100, 0);
-
-
-        conversation.stream()
-                .forEach(messageDto -> System.out.println(messageDto));
+        List<MessageDto> conversation = messageFacade.getConversation(sender.getIdUser(), receiver.getIdUser(), 5, 0);
 
         //then
+
+        Assert.assertEquals(content6, conversation.get(4).getContent());
 
 
     }

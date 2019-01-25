@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class ChannelsMessageRepositoryImpl implements ChannelsMessageRepositoryCustom {
 
@@ -20,16 +22,18 @@ class ChannelsMessageRepositoryImpl implements ChannelsMessageRepositoryCustom {
         String query ="SELECT chanMesg FROM ChannelsMessage chanMesg " +
                 "JOIN chanMesg.channel channel " +
                 "WHERE channel.idChannel =: idChannel " +
-                "ORDER BY chanMesg.sentDate ASC";
+                "ORDER BY chanMesg.sentDate DESC ";
 
 
-
-        return entityManager.createQuery(query)
+        List<ChannelsMessage> resultList = entityManager.createQuery(query)
                 .setParameter("idChannel", idChannel)
                 .setMaxResults(limit)
                 .setFirstResult(toBound)
                 .getResultList();
 
+        return resultList.stream()
+                .sorted(Comparator.comparing(ChannelsMessage::getSentDate))
+                .collect(Collectors.toList());
     }
 
     @Override

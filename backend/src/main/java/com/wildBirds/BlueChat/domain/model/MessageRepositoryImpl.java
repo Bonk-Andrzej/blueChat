@@ -4,7 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 class MessageRepositoryImpl implements MessageRepositoryCustom {
@@ -22,14 +24,22 @@ class MessageRepositoryImpl implements MessageRepositoryCustom {
                 "AND sender.idUser =: idSender OR " +
                 "receiver.idUser =: idSender AND " +
                 "sender.idUser =: idReceiver " +
-                "ORDER BY messages.sentDate ASC";
+                "ORDER BY messages.sentDate DESC ";
 
-        return entityManager.createQuery(query)
+        List<Message> resultList = entityManager.createQuery(query)
                 .setParameter("idSender", idSender)
                 .setParameter("idReceiver", idReceiver)
                 .setMaxResults(limit)
                 .setFirstResult(toBound)
                 .getResultList();
+
+//        testList.stream()
+//                .sorted(Comparator.comparing(ClassName::getFieldName)
+//                        .reversed()).collect(Collectors.toList());
+        return resultList.stream()
+                .sorted(Comparator.comparing(Message::getSentDate))
+                .collect(Collectors.toList());
+
     }
 
     @Override
