@@ -7,13 +7,13 @@
 
     <div id="input-search" app-input-search=""></div>
 
-    <div title="NEW MESSAGES" class="new-message" app-list-users-with-title="">
+    <div title="INVITATION" class="last-conversation" app-list-users-with-title="">
         <div *ngFor="let messageDTO of newMessageDTOs"
              class="element" [userNick]=messageDTO.userNick message={{messageDTO.content}}
              app-user-with-message=""></div>
     </div>
 
-    <div title="LAST CONVERSATION" class="last-conversation" app-list-users-with-title="">
+    <div title="NEW MESSAGES" class="new-message"  app-list-users-with-title="">
         <div *ngFor="let userWithMessage of usersWithNewMessage | async"
              class="element" [userNick]=userWithMessage.nick [message]=userWithMessage.lastMessage.content [color]="userWithMessage.photoDto.photo"  app-user-with-message=""></div>
     </div>
