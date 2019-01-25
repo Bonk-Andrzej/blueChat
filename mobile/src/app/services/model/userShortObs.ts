@@ -1,6 +1,7 @@
 import {PhotoDto} from "../../repository/photo/photoDto";
 import {UserDtoShort} from "../../repository/user/userDtoShort";
 import {BehaviorSubject, Observable} from "rxjs";
+import {p} from '@angular/core/src/render3';
 
 export class UserShortObs {
     private idUser: number;
@@ -45,6 +46,18 @@ export class UserShortObs {
 
     public setActive(isActive: boolean){
         this.active.next(isActive);
+    }
+
+    public setIdUser(idUser : number){
+        this.idUser = idUser;
+    }
+
+    public setNick(nick: string)  {
+        this.nick = nick;
+    }
+
+    public setPhoto(photoDto: PhotoDto){
+         this.photoDto = photoDto;
     }
 
 }

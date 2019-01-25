@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {UserProfileService} from '../../services/user-profile.service';
-import {UserWithMessageComponent} from '../../components/user-with-message/user-with-message.component';
 import {UserDtoWithMessage} from '../../repository/user/userDtoWithMessage';
 import {Observable} from 'rxjs';
+import {ConversationService} from '../../services/conversation.service';
+import {UserShortObs} from '../../services/model/userShortObs';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-main-login',
@@ -114,14 +116,28 @@ export class MainLoginComponent implements OnInit {
 
     ];
 
-    usersWithNewMessage : Observable<Array<UserDtoWithMessage>>;
+    usersWithNewMessage: Observable<Array<UserDtoWithMessage>>;
 
-    constructor(private useService: UserProfileService ) {
+    constructor(private router: Router,
+                private useService: UserProfileService,
+                private conversationService: ConversationService) {
     }
 
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
-        console.log(">>>>>>>>>>>>>>>>>>>>" + this.usersWithNewMessage)
+        console.log(this.usersWithNewMessage);
     }
 
+    getInvitation() {
+        alert('Working at this... Here you will get a invitations to friends');
+    }
+
+    startConversation(usersWithNewMessage: UserDtoWithMessage) {
+        let user: UserShortObs = new UserShortObs();
+        user.setIdUser(usersWithNewMessage.idUser);
+        user.setNick(usersWithNewMessage.nick);
+        user.setPhoto(usersWithNewMessage.photoDto);
+        this.conversationService.startConversationWithUser(user);
+        this.router.navigateByUrl('/conversation')
+    }
 }
