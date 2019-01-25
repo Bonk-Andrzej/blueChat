@@ -4,6 +4,8 @@ import {UserPassDto} from './userPassDto';
 import {UserDto} from './userDto';
 import {Observable} from 'rxjs';
 import {UserDtoShort} from './userDtoShort';
+import {UserDtoWithMessage} from './userDtoWithMessage';
+import {environment} from '../../environment';
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +18,7 @@ export class UserRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        // this.host = 'http://localhost:8080';
-        // this.host = 'http://192.168.99.100:200';
-        this.host = 'http://51.38.133.76:200';
+        this.host = environment.host;
         this.headers == this.getHeaders();
 
     }
@@ -31,7 +31,7 @@ export class UserRepositoryService {
         return headers;
     }
 
-    public getUserDtoList(): Promise<Array<UserDto>>  {
+    public getUserDtoList(): Promise<Array<UserDto>> {
         return this.http.get<Array<UserDto>>(this.host + '/users').toPromise();
     }
 
@@ -50,8 +50,9 @@ export class UserRepositoryService {
     public resetPass(email: string) {
         return this.http.patch(this.host + '/users/pass', email, {headers: this.headers});
     }
-    public updateUser(userDto: UserDto) : Observable<UserDto>{
-        return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers})
+
+    public updateUser(userDto: UserDto): Observable<UserDto> {
+        return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers});
     }
 
     public getUserById(id: number): Promise<UserDto> {
@@ -60,5 +61,9 @@ export class UserRepositoryService {
 
     public logInUser(userPassDto: UserPassDto): Promise<UserDto> {
         return this.http.post<UserDto>(this.host + '/rpc/login', userPassDto, {headers: this.headers}).toPromise();
+    }
+
+    public gerUserWithMessage(id: number): Promise<Array<UserDtoWithMessage>> {
+        return this.http.get<Array<UserDtoWithMessage>>(this.host + '/users/noRead/' + id, {headers: this.headers}).toPromise();
     }
 }

@@ -9,7 +9,7 @@ export class UserWithMessageComponent implements OnInit {
 
     @Input() userNick: string;
     @Input() message: string;
-    randomColor: string;
+    @Input() color: string;
 
     constructor() {
 
@@ -20,9 +20,9 @@ export class UserWithMessageComponent implements OnInit {
     }
 
     randomColorTrigger() {
-        this.randomColor = "#cfcfcf"
-        // this.color = ('rgb(' + Math.floor(Math.random() * 255)
-        //     + ',' + Math.floor(Math.random() * 255) + ','
-        //     + Math.floor(Math.random() * 255) + ')');
+        // this.randomColor = "#cfcfcf"
+        // // this.color = ('rgb(' + Math.floor(Math.random() * 255)
+        // //     + ',' + Math.floor(Math.random() * 255) + ','
+        // //     + Math.floor(Math.random() * 255) + ')');
     }
 }
