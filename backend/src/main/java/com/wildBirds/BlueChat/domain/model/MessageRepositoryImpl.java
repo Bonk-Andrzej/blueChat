@@ -33,9 +33,6 @@ class MessageRepositoryImpl implements MessageRepositoryCustom {
                 .setFirstResult(toBound)
                 .getResultList();
 
-//        testList.stream()
-//                .sorted(Comparator.comparing(ClassName::getFieldName)
-//                        .reversed()).collect(Collectors.toList());
         return resultList.stream()
                 .sorted(Comparator.comparing(Message::getSentDate))
                 .collect(Collectors.toList());

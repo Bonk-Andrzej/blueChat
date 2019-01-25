@@ -27,7 +27,6 @@ public class ChannelsMessageController {
 
     @CrossOrigin
     @GetMapping
-    @RequestMapping
     public ResponseEntity getConversation(@RequestParam("channelId") String channelId,
                                           @RequestParam("limit") String limit,
                                           @RequestParam("toBound") String toBound) {
