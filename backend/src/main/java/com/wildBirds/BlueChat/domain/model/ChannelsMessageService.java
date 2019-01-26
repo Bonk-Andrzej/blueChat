@@ -25,13 +25,13 @@ class ChannelsMessageService {
         try {
             channelsMessage.setSentDate(channelsMessageDto.getSentDate());
             User senderDto = new User();
-            senderDto.setIdUser(channelsMessageDto.getSenderId());
+            senderDto.setIdUser(channelsMessageDto.getSender().getIdUser());
 
             channelsMessage.setSender(senderDto);
             channelsMessage.setContent(channelsMessageDto.getContent());
 
             Channel channelDto = new Channel();
-            channelDto.setIdChannel(channelsMessageDto.getChannelId());
+            channelDto.setIdChannel(channelsMessageDto.getChannel().getIdChannel());
             channelsMessage.setChannel(channelDto);
 
         } catch (NullPointerException e) {
@@ -52,8 +52,8 @@ class ChannelsMessageService {
 
         try {
             channelsMessageDto.setIdChannelsMessageDto(channelsMessage.getIdChannelsMessage());
-            channelsMessageDto.setChannelId(channelsMessage.getChannel().getIdChannel());
-            channelsMessageDto.setSenderId(channelsMessage.getSender().getIdUser());
+            channelsMessageDto.setChannel(channelService.toDtoShort(channelsMessage.getChannel()));
+            channelsMessageDto.setSender(userService.toDtoShort(channelsMessage.getSender()));
             channelsMessageDto.setContent(channelsMessage.getContent());
             channelsMessageDto.setSentDate(channelsMessage.getSentDate());
         } catch (NullPointerException e) {

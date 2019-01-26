@@ -1,5 +1,6 @@
 package com.wildBirds.WebSocketRpc.application.services;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.wildBirds.WebSocketRpc.api.NewProcedureDTO;
 import com.wildBirds.WebSocketRpc.api.ProcedureDTO;
 import com.wildBirds.WebSocketRpc.domain.model.Procedure;
@@ -20,7 +21,10 @@ public class ProcedureDTOConverter<LT extends Enum<LT>> {
     public ProcedureDTOConverter(ProcedureRepository<LT> procedureRepository, Class<LT> localType) {
         this.localType = localType;
         this.procedureRepository = procedureRepository;
+
+        JavaTimeModule moduleToObjectMapper = new JavaTimeModule();
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(moduleToObjectMapper);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.configure(MapperFeature.DEFAULT_VIEW_INCLUSION, true);
         this.mapper = mapper;

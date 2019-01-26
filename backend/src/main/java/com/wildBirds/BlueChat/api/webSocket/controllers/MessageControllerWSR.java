@@ -4,7 +4,6 @@ package com.wildBirds.BlueChat.api.webSocket.controllers;
 import com.wildBirds.BlueChat.api.rest.controllers.ChannelsMessageController;
 import com.wildBirds.BlueChat.api.rest.dto.*;
 import com.wildBirds.BlueChat.api.webSocket.dto.ErrorDTO;
-import com.wildBirds.BlueChat.api.webSocket.dto.MessageDTO;
 import com.wildBirds.BlueChat.api.webSocket.types.LocalProcedure;
 import com.wildBirds.BlueChat.api.webSocket.types.RemoteProcedure;
 import com.wildBirds.BlueChat.domain.model.ChannelsMessageFacade;
@@ -48,24 +47,17 @@ public class MessageControllerWSR implements InitializingBean {
     public void afterPropertiesSet() {
 
         log.info(" WSR Message controller start");
-        
-        wsr.addProcedure(LocalProcedure.FORWARDMESSAGE, MessageDTO.class, (data, session) -> {
+
+        wsr.addProcedure(LocalProcedure.FORWARDMESSAGE, MessageDto.class, (data, session) -> {
 
             if (session.hasId()) {
 
-                MessageDto message = new MessageDto();
-                message.setContent(data.getContent());
-                message.setReceiverId(data.getReceiverId());
-                message.setSenderId(session.getId());
-                message.setSentDate(Instant.now());
-
-                data.setSentDate(Timestamp.from(message.getSentDate()));
-
-                messageFacade.saveMessage(message);
-                session.executeRemoteProcedure(RemoteProcedure.ADDMYMESSAGE, MessageDTO.class, data);
+                data.setSentDate(Instant.now());
+                MessageDto messageDto = messageFacade.saveMessage(data);
+                session.executeRemoteProcedure(RemoteProcedure.ADDMYMESSAGE, MessageDto.class, messageDto);
                 try {
-                    Session<RemoteProcedure, Long> receiverSession = wsr.findSession(data.getReceiverId());
-                    receiverSession.executeRemoteProcedure(RemoteProcedure.ADDMESSAGE, MessageDTO.class, data);
+                    Session<RemoteProcedure, Long> receiverSession = wsr.findSession(data.getReceiver().getIdUser());
+                    receiverSession.executeRemoteProcedure(RemoteProcedure.ADDMESSAGE, MessageDto.class, data);
                 } catch (Exception e) {
                 }
 
@@ -108,8 +100,8 @@ public class MessageControllerWSR implements InitializingBean {
         wsr.addProcedure(LocalProcedure.FORWARDCHANNELSMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
             ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
 
-            channelsMessageDto.setSenderId(data.getSenderId());
-            channelsMessageDto.setChannelId(data.getChannelId());
+            channelsMessageDto.setSender(data.getSender());
+            channelsMessageDto.setChannel(data.getChannel());
             channelsMessageDto.setSentDate(Instant.now());
             channelsMessageDto.setContent(data.getContent());
 

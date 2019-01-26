@@ -14,6 +14,6 @@ public class ChannelsMessageDto {
     private Long idChannelsMessageDto;
     private String content;
     private Instant sentDate;
-    private Long senderId;
-    private Long channelId;
+    private UserDtoShort sender;
+    private ChannelDtoShort channel;
 }

@@ -11,6 +11,12 @@ class MessageService {
 
     private Logger log = LoggerFactory.getLogger(MessageService.class);
 
+    private UserService userService;
+
+    public MessageService(UserService userService) {
+        this.userService = userService;
+    }
+
     public Message toEntity(MessageDto messageDto) {
         Message message = null;
         try {
@@ -21,10 +27,10 @@ class MessageService {
             }
 
             User sender = new User();
-            sender.setIdUser(messageDto.getSenderId());
+            sender.setIdUser(messageDto.getSender().getIdUser());
 
             User receiver = new User();
-            receiver.setIdUser(messageDto.getReceiverId());
+            receiver.setIdUser(messageDto.getReceiver().getIdUser());
 
             message.setContent(messageDto.getContent());
             message.setReceiver(receiver);
@@ -52,9 +58,9 @@ class MessageService {
 
             messageDto.setContent(message.getContent());
 
-            messageDto.setSenderId(message.getSender().getIdUser());
+            messageDto.setSender(userService.toDtoShort(message.getSender()));
 
-            messageDto.setReceiverId(message.getReceiver().getIdUser());
+            messageDto.setReceiver(userService.toDtoShort(message.getReceiver()));
 
             messageDto.setSentDate(message.getSentDate());
         } catch (NullPointerException e) {
