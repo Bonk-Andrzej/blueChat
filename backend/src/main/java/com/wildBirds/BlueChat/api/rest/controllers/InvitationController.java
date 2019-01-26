@@ -43,11 +43,10 @@ public class InvitationController {
     }
 
     @CrossOrigin
-    @GetMapping({"{idInvitation}"})
-    public ResponseEntity getInvitations(@PathVariable String idInvitation){
+    @GetMapping({"{idUser}"})
+    public ResponseEntity getInvitations(@PathVariable String idUser){
 
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAA");
-        List<InvitationDto> response = invitationFacade.getUserInvitation(Long.valueOf(idInvitation));
+        List<InvitationDto> response = invitationFacade.getUserInvitation(Long.valueOf(idUser));
 
 
     return new ResponseEntity(response, HttpStatus.OK);
