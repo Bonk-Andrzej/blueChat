@@ -35,7 +35,7 @@ public class InvitationController {
     @CrossOrigin
     @PostMapping("/accept")
     public ResponseEntity acceptInvitation(@RequestBody InvitationDto invitationDto){
-
+        System.out.println("AAAAAAAAAAAAAAAAAA");
 
         FriendsDto friendsDto = invitationFacade.acceptInvitation(invitationDto);
 

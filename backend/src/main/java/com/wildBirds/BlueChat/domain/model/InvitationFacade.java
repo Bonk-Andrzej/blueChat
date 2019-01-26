@@ -36,11 +36,12 @@ public class InvitationFacade {
     }
 
     public FriendsDto acceptInvitation(InvitationDto invitationDto) {
-        Long idUser = invitationDto.getSenderInvitation().getIdUser();
+        Long idUser = invitationDto.getReceiverInvitation().getIdUser();
         Long idFriend = invitationDto.getSenderInvitation().getIdUser();
         FriendsDto friendsDto = friendFacade.addFriendship(idUser, idFriend);
-        Invitation invitation = service.toEntity(invitationDto);
-        repository.delete(invitation);
+//        Invitation invitation = service.toEntity(invitationDto);
+        Invitation toRemove = repository.getOne(invitationDto.getIdInvitation());
+        repository.delete(toRemove);
 
         return friendsDto;
     }

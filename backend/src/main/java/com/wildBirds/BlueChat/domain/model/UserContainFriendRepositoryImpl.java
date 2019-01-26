@@ -2,6 +2,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.List;
 
@@ -27,6 +28,7 @@ class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
     }
 
     @Override
+    @Transactional
     public UserContainFriend saveUserContainFriends(Long idUser, Long idFriend) {
         UserContainFriend toSave = new UserContainFriend();
 
