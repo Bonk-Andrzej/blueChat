@@ -12,6 +12,7 @@ import {UserObs} from '../../services/model/userObs';
     styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent implements OnInit {
+
     conversationHeader: Observable<string>;
     messageContent: string;
     conversation: Observable<Array<MessageObs>>;
@@ -19,8 +20,7 @@ export class ConversationComponent implements OnInit {
     @ViewChild('conversationListRef')
     private conversationListRef: ElementRef<HTMLDivElement>;
 
-    constructor(private conversationService : ConversationService,
-                private userProfile: UserProfileService) {
+    constructor(private conversationService : ConversationService) {
     }
 
     ngOnInit() {
@@ -28,7 +28,6 @@ export class ConversationComponent implements OnInit {
         this.conversationHeader = this.conversationService.getConversationHeaderObs();
         this.conversation = this.conversationService.getConversationObs();
         this.conversation.subscribe(() => {
-
             if (this.conversationListRef) {
                 const nativeElement = this.conversationListRef.nativeElement;
                 setTimeout(() => {
@@ -40,12 +39,7 @@ export class ConversationComponent implements OnInit {
     }
 
     public sendMessage(){
-        let messageDto = new MessageDto();
-        messageDto.content = this.messageContent;
-        messageDto.sender = this.userProfile.getUser().toUserDtoShort()
-        messageDto.receiver = this.conversationService.getUserInterlocutor().toUserDtoShort();
-        this.conversationService.sendMessage(messageDto);
-
+        this.conversationService.sendMessage(this.messageContent);
         this.cleanMessageInput();
     }
 

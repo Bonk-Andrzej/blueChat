@@ -10,6 +10,7 @@ import {RemoteType} from '../WSRClient/types/RemoteType';
 import {UserShortObs} from './model/userShortObs';
 import {MessageObs} from './model/messageObs';
 import {ChannelMessageRepositoryService} from '../repository/channelMessage/channel-message-repository.service';
+import {ChannelMessageDto} from "../repository/channelMessage/channelMessageDto";
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,7 @@ export class ConversationService {
 
     isChannelConversation = false;
     private userInterlocutor: UserShortObs;
+    private channelInterlocutor: ChannelDtoShort;
 
     conversationHeader = new BehaviorSubject('');
     conversation = new BehaviorSubject<Array<MessageObs>>([]);
@@ -42,6 +44,20 @@ export class ConversationService {
                 this.conversation.next(conversation);
             }
         });
+        this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYCHANNELMESSAGE, new ChannelMessageDto(),channelMessage => {
+            if(channelMessage.channel.idChannel == this.channelInterlocutor.idChannel){
+                const conversation = this.conversation.getValue();
+                conversation.push(MessageObs.createFromChannel(channelMessage, this.userProfileService));
+                this.conversation.next(conversation);
+            }
+        });
+        this.wsrClientService.WRSClient.addProcedure(LocalType.ADDCHANNELMESSAGE, new ChannelMessageDto(),channelMessage => {
+            if(channelMessage.channel.idChannel == this.channelInterlocutor.idChannel){
+                const conversation = this.conversation.getValue();
+                conversation.push(MessageObs.createFromChannel(channelMessage, this.userProfileService));
+                this.conversation.next(conversation);
+            }
+        })
     }
 
     public async startConversationWithUser(interlocutor: UserShortObs) {
@@ -49,6 +65,7 @@ export class ConversationService {
         this.isChannelConversation = false;
         this.userInterlocutor = interlocutor;
         const user = this.userProfileService.getUser();
+
         const newConversation = [];
         const conversation = await this.messageRepository.getConversation(user.getIdUser(), interlocutor.getIdUser(), 100, 0);
         for (let messageDto of conversation) {
@@ -60,8 +77,10 @@ export class ConversationService {
 
     public async startConversationWithChannel(interlocutor: ChannelDtoShort) {
         this.isChannelConversation = true;
+        this.channelInterlocutor = interlocutor;
+
         const newConversation = [];
-        const conversation = await this.channelMessageRepositoryService.getConversation( interlocutor.idChannel, 100, 0);
+        const conversation = await this.channelMessageRepositoryService.getConversation(interlocutor.idChannel, 100, 0);
         for (let ChannelMessageDto of conversation) {
             newConversation.push(MessageObs.createFromChannel(ChannelMessageDto, this.userProfileService))
         }
@@ -78,12 +97,29 @@ export class ConversationService {
         return this.conversationHeader.asObservable();
     }
 
-    public sendMessage(messageDto: MessageDto) {
-        this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.FORWARDMESSAGE, messageDto);
+    public sendMessage(messageContent: string) {
+
+        if(this.isChannelConversation){
+            let channelMessageDto = new ChannelMessageDto();
+            channelMessageDto.content = messageContent;
+            channelMessageDto.sender = this.userProfileService.getUser().toUserDtoShort();
+            channelMessageDto.channel = this.getChanelInterlocutor();
+            this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.FORWARDCHANNELMESSAGE, channelMessageDto);
+        }else {
+            let messageDto = new MessageDto();
+            messageDto.content = messageContent;
+            messageDto.sender = this.userProfileService.getUser().toUserDtoShort();
+            messageDto.receiver = this.getUserInterlocutor().toUserDtoShort();
+            this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.FORWARDMESSAGE, messageDto);
+        }
     }
 
-    public getUserInterlocutor(): UserShortObs{
+    public getUserInterlocutor(): UserShortObs {
         return this.userInterlocutor;
+    }
+
+    public getChanelInterlocutor(): ChannelDtoShort{
+        return this.channelInterlocutor;
     }
 
 }
