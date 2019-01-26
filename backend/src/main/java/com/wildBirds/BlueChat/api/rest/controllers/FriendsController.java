@@ -31,8 +31,7 @@ public class FriendsController {
     public ResponseEntity getFriendshipList(@RequestParam String idUser) {
         try {
             Long value = Long.valueOf(idUser);
-//            List<FriendsDto> response = userContainFriendFacade.getUserContainFriend(value);
-            List<FriendsDto> response = userContainFriendFacade.getFriendsWithNoReadMessage(value);
+            List<FriendsDto> response = userContainFriendFacade.getUserContainFriend(value);
             log.info("Method getFriendshipList ", response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
         } catch (Exception e) {
@@ -44,7 +43,7 @@ public class FriendsController {
     }
 
     @CrossOrigin
-    @PostMapping
+    @DeleteMapping
     public ResponseEntity removeFriendship(@RequestBody FriendsDto friendsDto){
         try {
             userContainFriendFacade.remove(friendsDto);
@@ -59,7 +58,7 @@ public class FriendsController {
     }
 
     @CrossOrigin
-    @DeleteMapping
+    @PostMapping
     public ResponseEntity addFriendship(@RequestBody FriendsDto friendsDto,
                                         @RequestParam String idUser){
 

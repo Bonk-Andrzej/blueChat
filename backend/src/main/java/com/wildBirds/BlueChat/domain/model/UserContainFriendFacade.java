@@ -2,6 +2,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 
 import com.wildBirds.BlueChat.api.rest.dto.FriendsDto;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import com.wildBirds.BlueChat.api.webSocket.types.RemoteProcedure;
 import com.wildBirds.WebSocketRpc.domain.model.Session;
@@ -17,7 +18,7 @@ public class UserContainFriendFacade {
     private MessageRepository messageRepository;
     private MessageControllerWSR wsr;
 
-    public UserContainFriendFacade( MessageControllerWSR wsr ,UserContainFriendService userContainFriendService, UserContainFriendRepository repository, MessageRepository messageRepository) {
+    public UserContainFriendFacade(MessageControllerWSR wsr, UserContainFriendService userContainFriendService, UserContainFriendRepository repository, MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
         this.service = userContainFriendService;
         this.repository = repository;
@@ -27,13 +28,11 @@ public class UserContainFriendFacade {
     public List<FriendsDto> getUserContainFriend(Long idUser) {
 
 
-        Map<Long, Session<RemoteProcedure, Long>> authorizedSessionsIdentifications = wsr.getAuthorizedSessionsIdentifications();
-
-        List<UserContainFriend> userFriendship = repository.getUserFriendship(idUser);
+        Map<Long, Session<RemoteProcedure, Long>> authSessionIds = wsr.getAuthorizedSessionsIdentifications();
+        List<FriendsDto> userFriendship = this.getFriendsWithNoReadMessage(idUser);
         List<FriendsDto> friendsDtoList = userFriendship.stream()
-                .map(userContainFriend -> service.toDto(idUser, userContainFriend))
                 .map(userDto -> {
-                    if (authorizedSessionsIdentifications.containsKey(userDto.getFriend().getIdUser())) {
+                    if (authSessionIds.containsKey(userDto.getFriend().getIdUser())) {
                         userDto.getFriend().setActive(true);
                     }
                     return userDto;
@@ -41,6 +40,16 @@ public class UserContainFriendFacade {
                 .collect(Collectors.toList());
 
         return friendsDtoList;
+    }
+
+    public List<UserDtoShort> getUsersFriends(Long idUser) {
+        List<UserContainFriend> userFriendship = repository.getUserFriendship(idUser);
+
+        return userFriendship.stream().map(userContainFriend ->
+                service.toDto(idUser, userContainFriend)
+        ).map(friendsDto ->
+                friendsDto.getFriend()
+        ).collect(Collectors.toList());
     }
 
     public FriendsDto addFriendship(Long idUser, FriendsDto friendsDto) {
@@ -52,17 +61,17 @@ public class UserContainFriendFacade {
 
     }
 
-    public void remove(FriendsDto friendsDto){
+    public void remove(FriendsDto friendsDto) {
         repository.deleteByIdUserContainFriend(friendsDto.getIdFriendship());
     }
 
-    public List<FriendsDto> getFriendsWithNoReadMessage(Long idUser) {
+    private List<FriendsDto> getFriendsWithNoReadMessage(Long idUser) {
 
         List<Message> noReadMessages = messageRepository.getNoReadMessages(idUser);
 
         List<UserContainFriend> userFriendship = repository.getUserFriendship(idUser);
 
-        return service.toDtoWithStatusMessage(idUser,userFriendship, noReadMessages);
+        return service.toDtoWithStatusMessage(idUser, userFriendship, noReadMessages);
     }
 
 }

@@ -2,10 +2,7 @@ package com.wildBirds.BlueChat.api.webSocket.controllers;
 
 
 import com.wildBirds.BlueChat.api.rest.controllers.ChannelsMessageController;
-import com.wildBirds.BlueChat.api.rest.dto.ChannelsMessageDto;
-import com.wildBirds.BlueChat.api.rest.dto.FriendsDto;
-import com.wildBirds.BlueChat.api.rest.dto.MessageDto;
-import com.wildBirds.BlueChat.api.rest.dto.UserDto;
+import com.wildBirds.BlueChat.api.rest.dto.*;
 import com.wildBirds.BlueChat.api.webSocket.dto.ErrorDTO;
 import com.wildBirds.BlueChat.api.webSocket.dto.MessageDTO;
 import com.wildBirds.BlueChat.api.webSocket.types.LocalProcedure;
@@ -51,6 +48,7 @@ public class MessageControllerWSR implements InitializingBean {
     public void afterPropertiesSet() {
 
         log.info(" WSR Message controller start");
+        
         wsr.addProcedure(LocalProcedure.FORWARDMESSAGE, MessageDTO.class, (data, session) -> {
 
             if (session.hasId()) {
@@ -69,8 +67,6 @@ public class MessageControllerWSR implements InitializingBean {
                     Session<RemoteProcedure, Long> receiverSession = wsr.findSession(data.getReceiverId());
                     receiverSession.executeRemoteProcedure(RemoteProcedure.ADDMESSAGE, MessageDTO.class, data);
                 } catch (Exception e) {
-
-
                 }
 
             } else {
@@ -82,6 +78,7 @@ public class MessageControllerWSR implements InitializingBean {
 
 
         });
+
         wsr.addProcedure(LocalProcedure.AUTHSESSION, UserDto.class, (data, session) -> {
 
             Long userId = data.getIdUser();
@@ -97,20 +94,17 @@ public class MessageControllerWSR implements InitializingBean {
             Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> authorizedSessionsIdentifications
                     = this.getAuthorizedSessionsIdentifications();
 
-            List<FriendsDto> userContainFriend = this.userContainFriendFacade.getUserContainFriend(userId);
-            for (FriendsDto friendsDto : userContainFriend) {
-
-                Long friendId = friendsDto.getFriend().getIdUser();
+            List<UserDtoShort> usersFriends = this.userContainFriendFacade.getUsersFriends(userId);
+            usersFriends.forEach(userFriends -> {
+                Long friendId = userFriends.getIdUser();
                 if (authorizedSessionsIdentifications.containsKey(friendId)) {
                     com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long> friendSession =
                             authorizedSessionsIdentifications.get(friendId);
-
                     friendSession.executeRemoteProcedure(RemoteProcedure.FRIENDJOIN, UserDto.class, data);
                 }
-            }
-
-
+            });
         });
+
         wsr.addProcedure(LocalProcedure.FORWARDCHANNELSMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
             ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
 
@@ -129,31 +123,25 @@ public class MessageControllerWSR implements InitializingBean {
 
         }));
 
-
         wsr.onCloseConnection.subscribe((session) -> {
 
             if (session.hasId()) {
-                UserDto user = this.userFacade.getById(session.getId());
 
+                UserDto user = this.userFacade.getById(session.getId());
                 Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> authSessionId
                         = this.getAuthorizedSessionsIdentifications();
+                List<UserDtoShort> usersFriends = this.userContainFriendFacade.getUsersFriends(user.getIdUser());
 
-                List<FriendsDto> userContainFriend = this.userContainFriendFacade.getUserContainFriend(user.getIdUser());
-
-                for (FriendsDto friendsDto : userContainFriend) {
-                    Long friendId = friendsDto.getFriend().getIdUser();
+                usersFriends.forEach(userFriend -> {
+                    Long friendId = userFriend.getIdUser();
                     if (authSessionId.containsKey(friendId)) {
 
                         com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long> friendSession =
                                 authSessionId.get(friendId);
                         friendSession.executeRemoteProcedure(RemoteProcedure.FRIENDLEAVE, UserDto.class, user);
                     }
-                }
-
-
+                });
             }
-
-
         });
 
     }

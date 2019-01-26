@@ -226,7 +226,7 @@ public class ContactMessageFacadeTest extends ConfigurationTest {
 
         //when
 
-        List<FriendsDto> friendsWithNoReadMessage = userContainFriendFacade.getFriendsWithNoReadMessage(loggedUser.getIdUser());
+        List<FriendsDto> friendsWithNoReadMessage = userContainFriendFacade.getUserContainFriend(loggedUser.getIdUser());
 
         System.out.println(friendsWithNoReadMessage);
 
