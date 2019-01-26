@@ -15,7 +15,6 @@ export class UserProfileComponent implements OnInit {
 
 
     private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
-    private stateFriendshipButton
     constructor(private router: Router,
                 private activeRout: ActivatedRoute,
                 private userProfileService: UserProfileService,

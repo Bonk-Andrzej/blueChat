@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {ConversationService} from '../../services/conversation.service';
 import {UserShortObs} from '../../services/model/userShortObs';
 import {Router} from '@angular/router';
+import {FriendProfileService} from '../../services/friend-profile.service';
+import {InvitationDto} from '../../repository/invitation/invitationDto';
 
 @Component({
     selector: 'app-main-login',
@@ -13,43 +15,18 @@ import {Router} from '@angular/router';
 })
 export class MainLoginComponent implements OnInit {
 
-    newMessageDTOs = [
-        {
-            'idMessage': 1,
-            'content': 'Thanks',
-            'userNick': 'Marian Nowak',
-        },
-        {
-            'idMessage': 2,
-            'content': 'What are you doing today at the morning ?.',
-            'userNick': 'Ola Taraska',
-        },
-        {
-            'idMessage': 3,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 3,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 3,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-
-    ];
     usersWithNewMessage: Observable<Array<UserDtoWithMessage>>;
+    invitations: Observable<Array<InvitationDto>>;
 
     constructor(private router: Router,
                 private useService: UserProfileService,
-                private conversationService: ConversationService) {
+                private conversationService: ConversationService,
+                private friendsService: FriendProfileService) {
     }
 
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
+        this.invitations = this.friendsService.getInvitations();
     }
 
     getInvitation() {

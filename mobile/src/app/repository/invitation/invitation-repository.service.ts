@@ -35,7 +35,7 @@ export class InvitationRepositoryService {
     }
 
     public getInvitations(idUser: number): Promise<Array<InvitationDto>>{
-      return this.http.get<Array<InvitationDto>>(this.host + idUser, {headers: this.headers}).toPromise();
+      return this.http.get<Array<InvitationDto>>(this.host + '/' +idUser, {headers: this.headers}).toPromise();
     }
 
 }
