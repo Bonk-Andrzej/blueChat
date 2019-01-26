@@ -42,6 +42,16 @@ public class ConfigurationTest {
 
 
     @Autowired
+    protected InvitationRepository invitationRepository;
+
+    @Autowired
+    protected InvitationService invitationService;
+
+    @Autowired
+    protected InvitationFacade invitationFacade;
+
+
+    @Autowired
     protected UserContainFriendRepository userContainFriendRepository;
 
     @Autowired

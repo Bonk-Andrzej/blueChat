@@ -36,6 +36,13 @@ class UserService {
 
         return user;
     }
+    public User toEntity(UserDtoShort userDtoShort){
+        User user = new User();
+        user.setIdUser(userDtoShort.getIdUser());
+        user.setNick(userDtoShort.getNick());
+        user.setProfilePhoto(photoService.toEntity(userDtoShort.getPhotoDto()));
+        return user;
+    }
 
     public UserDto toDto(User user) {
         UserDto userDto = new UserDto();

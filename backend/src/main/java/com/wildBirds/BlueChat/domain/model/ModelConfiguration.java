@@ -23,6 +23,11 @@ class ModelConfiguration {
     }
 
     @Bean
+    InvitationFacade invitationFacade(InvitationRepository invitationRepository, InvitationService invitationService, UserContainFriendFacade friendFacade){
+        return new InvitationFacade(invitationRepository, invitationService, friendFacade);
+    }
+
+    @Bean
     MessageFacade messageFacade(MessageRepository messageRepository) {
         return new MessageFacade(messageRepository,messageService());
     }
@@ -62,6 +67,11 @@ class ModelConfiguration {
     @Bean
     public ChannelsMessageService channelsMessageService(ChannelService channelService, UserService userService) {
         return new ChannelsMessageService(channelService, userService);
+    }
+
+    @Bean
+    public InvitationService invitationService(UserService userService){
+        return new InvitationService(userService);
     }
 
     @Bean
