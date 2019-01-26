@@ -1,31 +1,31 @@
 version: "3.3"
 
 services:
-#    mysqlChat:
- #       image: mysql:8.0.11
-  #      container_name: mysqlChat
-   #     ports:
-   #     - "3306:3306"
-   #     environment:
-   #         MYSQL_ROOT_PASSWORD: interlocutor500
-   #         MYSQL_DATABASE: chatdb
-   #         MYSQL_USER: backend
-   #         MYSQL_PASSWORD: interlocutor500
-   #     networks:
-   #         - lan
-    
-    backend:
-        build: ./backend
-        container_name: backend
+    mysqlChat:
+        image: mysql:8.0.11
+        container_name: mysqlChat
         ports:
-            - "200:8080"
-   #     depends_on:
-    #        - mysqlChat
+        - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: interlocutor500
+            MYSQL_DATABASE: chatdb
+            MYSQL_USER: backend
+            MYSQL_PASSWORD: interlocutor500
         networks:
             - lan
-        volumes:      
-        - ./backend/target:/home/chat/backend
-        command: java -jar -Dspring.profiles.active=remote BlueChat-2-SNAPSHOT.jar
+    
+ #   backend:
+  #      build: ./backend
+    #    container_name: backend
+   #     ports:
+  #          - "200:8080"
+   #     depends_on:
+    #        - mysqlChat
+  #      networks:
+   #         - lan
+    #    volumes:      
+     #   - ./backend/target:/home/chat/backend
+      #  command: java -jar -Dspring.profiles.active=remote BlueChat-2-SNAPSHOT.jar
     
 #    web:
  #       build: ./web

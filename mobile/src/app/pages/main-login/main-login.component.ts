@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {ConversationService} from '../../services/conversation.service';
 import {UserShortObs} from '../../services/model/userShortObs';
 import {Router} from '@angular/router';
+import {InvitationService} from '../../services/invitation.service';
+import {InvitationDto} from '../../repository/invitation/invitationDto';
 
 @Component({
     selector: 'app-main-login',
@@ -13,47 +15,22 @@ import {Router} from '@angular/router';
 })
 export class MainLoginComponent implements OnInit {
 
-    newMessageDTOs = [
-        {
-            'idMessage': 1,
-            'content': 'Thanks',
-            'userNick': 'Marian Nowak',
-        },
-        {
-            'idMessage': 2,
-            'content': 'What are you doing today at the morning ?.',
-            'userNick': 'Ola Taraska',
-        },
-        {
-            'idMessage': 3,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 3,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 3,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-
-    ];
     usersWithNewMessage: Observable<Array<UserDtoWithMessage>>;
+    invitations: Observable<Array<InvitationDto>>;
 
     constructor(private router: Router,
                 private useService: UserProfileService,
-                private conversationService: ConversationService) {
+                private conversationService: ConversationService,
+                private invitationService: InvitationService) {
     }
 
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
+        this.invitations = this.invitationService.getInvitations();
     }
 
-    getInvitation() {
-        alert('Working at this... Here you will get a invitations to friends');
+    acceptInvitation(invitationDto : InvitationDto) {
+        this.invitationService.acceptInvitation(invitationDto)
     }
 
     startConversation(usersWithNewMessage: UserDtoWithMessage) {

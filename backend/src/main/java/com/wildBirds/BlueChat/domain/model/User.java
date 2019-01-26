@@ -49,6 +49,12 @@ class User extends BaseEntity{
     @OneToMany(mappedBy = "sender")
     private List<ChannelsMessage> channelsMessages;
 
+    @OneToMany(mappedBy = "senderInvitation")
+    private List<Invitation> userInvite;
+
+    @OneToMany(mappedBy = "receiverInvitation")
+    private List<Invitation> invitedBy;
+
     @ManyToMany(mappedBy = "usersInChannel")
     private Set<Channel> channelsStaffed;
 

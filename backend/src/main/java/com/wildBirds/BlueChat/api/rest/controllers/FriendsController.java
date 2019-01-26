@@ -57,21 +57,4 @@ public class FriendsController {
         }
     }
 
-    @CrossOrigin
-    @PostMapping
-    public ResponseEntity addFriendship(@RequestBody FriendsDto friendsDto,
-                                        @RequestParam String idUser){
-
-        try {
-            FriendsDto response = userContainFriendFacade.addFriendship(Long.valueOf(idUser), friendsDto);
-            log.info("Method addFriendship ", response.toString());
-
-            return new ResponseEntity(response, HttpStatus.OK);
-        } catch (Exception e) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Error", e.getMessage());
-            log.error("Method addFriendship ", e.getMessage());
-            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
-        }
-    }
 }

@@ -15,13 +15,12 @@ export class UserProfileComponent implements OnInit {
 
 
     private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
-
     constructor(private router: Router,
                 private activeRout: ActivatedRoute,
                 private userProfileService: UserProfileService,
                 private userRepositoryService: UserRepositoryService
     ) {
-    }
+}
 
     async ngOnInit() {
 

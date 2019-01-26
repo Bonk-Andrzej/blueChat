@@ -8,7 +8,7 @@ import java.time.Instant;
 @Getter
 @Setter
 
-public class LastMessageAggregate {
+class LastMessageAggregate {
 
     private Long id;
     private User sender;  //this 1 that 2

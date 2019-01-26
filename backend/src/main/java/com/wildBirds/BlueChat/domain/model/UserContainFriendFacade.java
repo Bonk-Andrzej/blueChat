@@ -42,6 +42,7 @@ public class UserContainFriendFacade {
         return friendsDtoList;
     }
 
+
     public List<UserDtoShort> getUsersFriends(Long idUser) {
         List<UserContainFriend> userFriendship = repository.getUserFriendship(idUser);
 
@@ -52,11 +53,9 @@ public class UserContainFriendFacade {
         ).collect(Collectors.toList());
     }
 
-    public FriendsDto addFriendship(Long idUser, FriendsDto friendsDto) {
-        UserContainFriend userContainFriend = service.toEntity(idUser, friendsDto);
+    public FriendsDto addFriendship(Long idUser, Long idFriend) {
 
-        UserContainFriend saveEntity = repository.saveUserContainFriends(userContainFriend);
-
+        UserContainFriend saveEntity = repository.saveUserContainFriends(idUser,idFriend);
         return service.toDto(idUser, saveEntity);
 
     }

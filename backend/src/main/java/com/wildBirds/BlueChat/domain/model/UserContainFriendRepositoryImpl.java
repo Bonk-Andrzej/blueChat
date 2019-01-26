@@ -2,6 +2,8 @@ package com.wildBirds.BlueChat.domain.model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.time.Instant;
 import java.util.List;
 
 class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
@@ -26,24 +28,39 @@ class UserContainFriendRepositoryImpl implements UserContainFriendCustom {
     }
 
     @Override
-    public UserContainFriend saveUserContainFriends(UserContainFriend userContainFriend) {
+    @Transactional
+    public UserContainFriend saveUserContainFriends(Long idUser, Long idFriend) {
         UserContainFriend toSave = new UserContainFriend();
 
-        User user1 = entityManager.find(User.class, userContainFriend.getUser1().getIdUser());
-        User user2 = entityManager.find(User.class, userContainFriend.getUser2().getIdUser());
-
-        if (userContainFriend.getIdUserContainFriend() != null) {
-            toSave.setIdUserContainFriend(userContainFriend.getIdUserContainFriend());
-        }
+        User user1 = entityManager.find(User.class, idUser);
+        User user2 = entityManager.find(User.class, idFriend);
 
         toSave.setUser1(user1);
         toSave.setUser2(user2);
-        toSave.setDateFriendShip(userContainFriend.getDateFriendShip());
+        toSave.setDateFriendShip(Instant.now());
         entityManager.persist(toSave);
 
 
         return toSave;
     }
+
+//    @Override
+//    public UserContainFriend createFriendship(Long idSender, Long idReceiver) {
+//
+//        UserContainFriend userContainFriend = new UserContainFriend();
+//
+//        User sender = entityManager.find(User.class, idSender);
+//        User receiver = entityManager.find(User.class, idReceiver);
+//
+//        userContainFriend.setDateFriendShip(Instant.now());
+//        userContainFriend.setUser1(sender);
+//        userContainFriend.setUser2(receiver);
+//
+//
+//        entityManager.persist(userContainFriend);
+//
+//        return userContainFriend;
+//    }
 
 
 }

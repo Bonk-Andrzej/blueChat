@@ -9,49 +9,55 @@ import org.springframework.context.annotation.Configuration;
 class ModelConfiguration {
 
     @Bean
-    ChannelFacade channelFacade(UserService userService ,ChannelRepository channelRepository, ChannelService channelService, UserRepository userRepository) {
+    ChannelFacade channelFacade(UserService userService, ChannelRepository channelRepository, ChannelService channelService, UserRepository userRepository) {
         return new ChannelFacade(channelRepository, channelService, userRepository, userService);
     }
 
     @Bean
     ChannelsMessageFacade channelsMessageFacade(ChannelsMessageRepository channelsMessageRepository, ChannelsMessageService channelsMessageService) {
-        return new ChannelsMessageFacade(channelsMessageRepository,channelsMessageService );
+        return new ChannelsMessageFacade(channelsMessageRepository, channelsMessageService);
     }
 
     @Bean
-    ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService){
+    ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService) {
         return new ContactMessageFacade(contactMessageRepository, contactMessageService);
     }
 
     @Bean
+    InvitationFacade invitationFacade(InvitationRepository invitationRepository, InvitationService invitationService, UserContainFriendFacade friendFacade) {
+        return new InvitationFacade(invitationRepository, invitationService, friendFacade);
+    }
+
+    @Bean
     MessageFacade messageFacade(MessageRepository messageRepository, MessageService messageService) {
-        return new MessageFacade(messageRepository,messageService);
-    }
-    @Bean
-    PhotoFacade photoFacade(PhotoRepository photoRepository, PhotoService photoService){
-        return new PhotoFacade(photoRepository,photoService);
+        return new MessageFacade(messageRepository, messageService);
     }
 
     @Bean
-    UserFacade userFacade(UserRepository userRepository,UserService userService,ChannelFacade channelFacade, PhotoFacade photoFacade, MessageControllerWSR messageControllerWSR) {
-        return new UserFacade(userRepository,userService, channelFacade, photoFacade, messageControllerWSR);
+    PhotoFacade photoFacade(PhotoRepository photoRepository, PhotoService photoService) {
+        return new PhotoFacade(photoRepository, photoService);
     }
 
     @Bean
-    UserContainFriendFacade userContainFriendFacade(MessageControllerWSR wsr,UserContainFriendService userContainFriendService, UserContainFriendRepository userContainFriendRepository, MessageRepository messageRepository){
-        return new UserContainFriendFacade(wsr,userContainFriendService, userContainFriendRepository,messageRepository );
+    UserFacade userFacade(UserRepository userRepository, UserService userService, ChannelFacade channelFacade, PhotoFacade photoFacade, MessageControllerWSR messageControllerWSR) {
+        return new UserFacade(userRepository, userService, channelFacade, photoFacade, messageControllerWSR);
     }
+
     @Bean
-    UserWithLasMessageFacade userWithLasMessageFacade(MessageService messageService,MessageFacade messageFacade, PhotoService photoService){
+    UserContainFriendFacade userContainFriendFacade(MessageControllerWSR wsr, UserContainFriendService userContainFriendService, UserContainFriendRepository userContainFriendRepository, MessageRepository messageRepository) {
+        return new UserContainFriendFacade(wsr, userContainFriendService, userContainFriendRepository, messageRepository);
+    }
+
+    @Bean
+    UserWithLasMessageFacade userWithLasMessageFacade(MessageService messageService, MessageFacade messageFacade, PhotoService photoService) {
         return new UserWithLasMessageFacade(messageService, messageFacade, photoService);
     }
-
 
 
     //services
 
     @Bean
-    public ContactMessageService contactMessageService(){
+    public ContactMessageService contactMessageService() {
         return new ContactMessageService();
     }
 
@@ -66,9 +72,16 @@ class ModelConfiguration {
     }
 
     @Bean
+
     public MessageService messageService(UserService userService) {
         return new MessageService(userService);
     }
+
+    @Bean
+    public InvitationService invitationService(UserService userService) {
+        return new InvitationService(userService);
+    }
+
 
     @Bean
     public UserService userService(PhotoService photoService) {
@@ -76,12 +89,12 @@ class ModelConfiguration {
     }
 
     @Bean
-    public PhotoService photoService(){
+    public PhotoService photoService() {
         return new PhotoService();
     }
 
     @Bean
-    public UserContainFriendService userContainFriendService(PhotoService photoService){
+    public UserContainFriendService userContainFriendService(PhotoService photoService) {
         return new UserContainFriendService(photoService);
     }
 }

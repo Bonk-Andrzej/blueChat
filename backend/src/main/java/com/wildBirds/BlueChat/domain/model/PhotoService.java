@@ -23,10 +23,11 @@ class PhotoService {
     public Photo toEntity(PhotoDto photoDto){
         Photo photo = new Photo();
 
-        if (photoDto.getIdPhoto() != null){
+
+        if (photoDto !=null && photoDto.getIdPhoto() != null){
             photo.setIdPhoto(photoDto.getIdPhoto());
         }
-        if (photoDto.getPhoto() != null){
+        if (photoDto !=null && photoDto.getPhoto() != null){
             photo.setPhoto(photoDto.getPhoto());
         }
         return photo;
