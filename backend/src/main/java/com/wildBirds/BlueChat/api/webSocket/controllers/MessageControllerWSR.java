@@ -6,10 +6,7 @@ import com.wildBirds.BlueChat.api.rest.dto.*;
 import com.wildBirds.BlueChat.api.webSocket.dto.ErrorDTO;
 import com.wildBirds.BlueChat.api.webSocket.types.LocalProcedure;
 import com.wildBirds.BlueChat.api.webSocket.types.RemoteProcedure;
-import com.wildBirds.BlueChat.domain.model.ChannelsMessageFacade;
-import com.wildBirds.BlueChat.domain.model.MessageFacade;
-import com.wildBirds.BlueChat.domain.model.UserContainFriendFacade;
-import com.wildBirds.BlueChat.domain.model.UserFacade;
+import com.wildBirds.BlueChat.domain.model.*;
 import com.wildBirds.WebSocketRpc.api.Session;
 import com.wildBirds.WebSocketRpc.api.WSR;
 import org.slf4j.Logger;
@@ -19,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
@@ -31,16 +27,18 @@ public class MessageControllerWSR implements InitializingBean {
     private MessageFacade messageFacade;
     private ChannelsMessageFacade channelsMessageFacade;
     private UserContainFriendFacade userContainFriendFacade;
-    private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
     private UserFacade userFacade;
+    private ChannelFacade channelFacade;
+    private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
 
     @Autowired
-    public MessageControllerWSR(@Lazy UserFacade userFacade, @Lazy UserContainFriendFacade userContainFriendFacade, WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade, ChannelsMessageFacade channelsMessageFacade) {
+    public MessageControllerWSR(ChannelFacade channelFacade, @Lazy UserFacade userFacade, @Lazy UserContainFriendFacade userContainFriendFacade, WSR<LocalProcedure, RemoteProcedure, Long> wsr, MessageFacade messageFacade, ChannelsMessageFacade channelsMessageFacade) {
         this.wsr = wsr;
         this.messageFacade = messageFacade;
         this.channelsMessageFacade = channelsMessageFacade;
         this.userContainFriendFacade = userContainFriendFacade;
         this.userFacade = userFacade;
+        this.channelFacade = channelFacade;
     }
 
     @Override
@@ -83,35 +81,35 @@ public class MessageControllerWSR implements InitializingBean {
             session.executeRemoteProcedure(RemoteProcedure.ERROR, ErrorDTO.class, errorDTO);
 
 
-            Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> authorizedSessionsIdentifications
+            Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> authSessionIds
                     = this.getAuthorizedSessionsIdentifications();
 
             List<UserDtoShort> usersFriends = this.userContainFriendFacade.getUsersFriends(userId);
             usersFriends.forEach(userFriends -> {
                 Long friendId = userFriends.getIdUser();
-                if (authorizedSessionsIdentifications.containsKey(friendId)) {
+                if (authSessionIds.containsKey(friendId)) {
                     com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long> friendSession =
-                            authorizedSessionsIdentifications.get(friendId);
+                            authSessionIds.get(friendId);
                     friendSession.executeRemoteProcedure(RemoteProcedure.FRIENDJOIN, UserDto.class, data);
                 }
             });
         });
 
-        wsr.addProcedure(LocalProcedure.FORWARDCHANNELSMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
-            ChannelsMessageDto channelsMessageDto = new ChannelsMessageDto();
+        wsr.addProcedure(LocalProcedure.FORWARDCHANNELMESSAGE, ChannelsMessageDto.class, ((data, session) -> {
 
-            channelsMessageDto.setSender(data.getSender());
-            channelsMessageDto.setChannel(data.getChannel());
-            channelsMessageDto.setSentDate(Instant.now());
-            channelsMessageDto.setContent(data.getContent());
+            data.setSentDate(Instant.now());
+            ChannelsMessageDto channelsMessageDto = channelsMessageFacade.saveMessage(data);
 
-            channelsMessageFacade.saveMessage(channelsMessageDto);
+            session.executeRemoteProcedure(RemoteProcedure.ADDMYCHANNELMESSAGE,ChannelsMessageDto.class,channelsMessageDto);
 
-            session.executeRemoteProcedure(RemoteProcedure.ADDMYCHANNELMESSAGE, ChannelsMessageDto.class, channelsMessageDto);
-
-//            List<Session<RemoteProcedure, Long>> allAuthorizedSession = wsr.getAllAuthorizedSession();
-//            allAuthorizedSession.forEach(session.executeRemoteProcedure
-//                    (RemoteProcedure.REFRESHCHANNELMESSAGES, ChannelsMessageDto.class, channelsMessageDto));
+            Map<Long, com.wildBirds.WebSocketRpc.domain.model.Session<RemoteProcedure, Long>> authSessionIds
+                    = this.getAuthorizedSessionsIdentifications();
+            channelFacade.getChannelsMembers(data.getChannel().getIdChannel()).stream()
+                    .forEach(userDtoShort -> {
+                        if(authSessionIds.containsKey(userDtoShort.getIdUser()) && userDtoShort.getIdUser() != data.getSender().getIdUser()){
+                            authSessionIds.get(userDtoShort.getIdUser()).executeRemoteProcedure(RemoteProcedure.ADDCHANNELMESSAGE,ChannelsMessageDto.class,channelsMessageDto);
+                        }
+                    });
 
         }));
 

@@ -3,6 +3,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
+import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class ChannelFacade {
     private ChannelRepository channelRepository;
     private ChannelService channelService;
     private UserRepository userRepository;
+    private UserService userService;
 
     public ChannelDto addChannel(ChannelDto channelDto){
         Channel channel = channelService.toEntity(channelDto);
@@ -79,6 +81,12 @@ public class ChannelFacade {
                 .map(channel -> channelService.toDtoShort(channel))
                 .collect(Collectors.toList());
         return result;
+    }
+
+    public List<UserDtoShort> getChannelsMembers(Long channelId){
+        return channelRepository.getChannelMembers(channelId).stream()
+                .map(user -> userService.toDtoShort(user))
+                .collect(Collectors.toList());
     }
 
 }

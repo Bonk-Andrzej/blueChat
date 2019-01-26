@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 class ModelConfiguration {
 
     @Bean
-    ChannelFacade channelFacade(ChannelRepository channelRepository, ChannelService channelService, UserRepository userRepository) {
-        return new ChannelFacade(channelRepository, channelService, userRepository);
+    ChannelFacade channelFacade(UserService userService ,ChannelRepository channelRepository, ChannelService channelService, UserRepository userRepository) {
+        return new ChannelFacade(channelRepository, channelService, userRepository, userService);
     }
 
     @Bean
