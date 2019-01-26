@@ -21,16 +21,16 @@ export class MainLoginComponent implements OnInit {
     constructor(private router: Router,
                 private useService: UserProfileService,
                 private conversationService: ConversationService,
-                private friendsService: InvitationService) {
+                private invitationService: InvitationService) {
     }
 
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
-        this.invitations = this.friendsService.getInvitations();
+        this.invitations = this.invitationService.getInvitations();
     }
 
-    getInvitation() {
-        alert('Working at this... Here you will get a invitations to friends');
+    acceptInvitation(invitationDto : InvitationDto) {
+        this.invitationService.acceptInvitation(invitationDto)
     }
 
     startConversation(usersWithNewMessage: UserDtoWithMessage) {

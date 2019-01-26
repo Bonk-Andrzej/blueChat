@@ -9,7 +9,7 @@
 
     <div title="INVITATION" class="last-conversation" app-list-users-with-title="">
         <div *ngFor="let invitation of invitations |async"
-             class="element" (click)="getInvitation()" [userNick]=invitation.senderInvitation.nick
+             class="element" (click)="acceptInvitation(invitation)" [userNick]=invitation.senderInvitation.nick
              [message]="invitation.dateInvitation"
              app-user-with-message=""></div>
     </div>

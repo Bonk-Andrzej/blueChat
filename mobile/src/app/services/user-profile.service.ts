@@ -13,6 +13,8 @@ import {ChangeService} from './change.service';
 import {FriendsObs} from "./model/friendsObs";
 import {UserObs} from "./model/userObs";
 import {UserDtoWithMessage} from '../repository/user/userDtoWithMessage';
+import {InvitationService} from './invitation.service';
+import {FriendsDto} from '../repository/friend/friendsDto';
 
 @Injectable({
     providedIn: 'root'
@@ -72,6 +74,7 @@ export class UserProfileService {
             this.authorizeSocketConnection();
         })
 
+
     }
 
     private authorizeSocketConnection() {
@@ -124,6 +127,12 @@ export class UserProfileService {
 
     public getUsersWuthMsg(){
         return this.usersWithNewMessage.asObservable()
+    }
+
+    public addFrendDtoToFriend(friendsDto: FriendsDto){
+        let friendsList = this.friends.getValue();
+        friendsList.push(FriendsObs.create(friendsDto))
+        this.friends.next(friendsList);
     }
 
 

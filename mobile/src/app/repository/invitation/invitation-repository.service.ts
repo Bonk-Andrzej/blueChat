@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environment';
 import {InvitationDto} from './invitationDto';
+import {FriendsDto} from '../friend/friendsDto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,9 @@ export class InvitationRepositoryService {
 
       return this.http.post<InvitationDto>(this.host + '/invite', invitationDto, {headers: this.headers}).toPromise();
     }
-    public accept(invitationDto: InvitationDto) : Promise<InvitationDto>{
+    public accept(invitationDto: InvitationDto) : Promise<FriendsDto>{
 
-        return this.http.post<InvitationDto>(this.host + '/accept', invitationDto, {headers: this.headers}).toPromise();
+        return this.http.post<FriendsDto>(this.host + '/accept', invitationDto, {headers: this.headers}).toPromise();
     }
 
     public getInvitations(idUser: number): Promise<Array<InvitationDto>>{
