@@ -16,6 +16,17 @@ INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Milena'
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('test', 'test', 'test@wp.pl', 'some testing value description', 4)
 INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('Mateusz', 'abc', 'henicz19@gmail.com', 'Programista NODE Js - dzwoń teraz :D', 5)
 
+INSERT INTO user(nick, password, email, description, id_photo ) VALUES ('test2', 'abc', 'test2@gmail.com', 'testing invitation', 5)
+
+INSERT INTO invitation(date_invitation, receiver_invitation, sender_invitation) VALUES (DATE_ADD(NOW(), INTERVAL 1 DAY ), 1, 6)
+INSERT INTO invitation(date_invitation, receiver_invitation, sender_invitation) VALUES (DATE_ADD(NOW(), INTERVAL 1 DAY ), 2, 6)
+INSERT INTO invitation(date_invitation, receiver_invitation, sender_invitation) VALUES (DATE_ADD(NOW(), INTERVAL 1 DAY ), 3, 6)
+INSERT INTO invitation(date_invitation, receiver_invitation, sender_invitation) VALUES (DATE_ADD(NOW(), INTERVAL 1 DAY ), 4, 6)
+INSERT INTO invitation(date_invitation, receiver_invitation, sender_invitation) VALUES (DATE_ADD(NOW(), INTERVAL 1 DAY ), 5, 6)
+
+
+
+
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 1 DAY ), 4 , 1)
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 2 DAY ), 1 , 3)
 INSERT INTO user_contain_friend(date_friend_ship, user1, user2) values (DATE_ADD(NOW(), INTERVAL 3 DAY ), 1 , 2)
@@ -66,5 +77,5 @@ INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('Unti
 INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('I hope too ;)', DATE_ADD(NOW(), INTERVAL 14 MINUTE ), false, 2 , 1)
 INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('so see you nex time :)', DATE_ADD(NOW(), INTERVAL 15 MINUTE ), false, 1 , 2)
 INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('Bye bye..', DATE_ADD(NOW(), INTERVAL 16 MINUTE ), false, 1 , 2)
-INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('bye ..', DATE_ADD(NOW(), INTERVAL 17 MINUTE ), false, 2 , 2)
+INSERT INTO message(content, sent_date, is_read, receiver, sender) VALUES ('bye ..', DATE_ADD(NOW(), INTERVAL 17 MINUTE ), false, 2 , 1)
 
