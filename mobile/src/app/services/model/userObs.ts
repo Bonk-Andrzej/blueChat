@@ -1,5 +1,6 @@
 import {PhotoDto} from "../../repository/photo/photoDto";
 import {UserDto} from "../../repository/user/userDto";
+import {UserDtoShort} from '../../repository/user/userDtoShort';
 
 export class UserObs {
     private idUser : number = 0;
@@ -32,6 +33,15 @@ export class UserObs {
         dto.photoDto = this.photo
 
         return dto;
+    }
+
+    public toUserDtoShort() : UserDtoShort{
+        const user = new UserDtoShort();
+        user.idUser = this.idUser;
+        user.nick = this.nick;
+        user.active = false;
+        user.photoDto = this.photo;
+        return user;
     }
 
     public getIdUser(): number{

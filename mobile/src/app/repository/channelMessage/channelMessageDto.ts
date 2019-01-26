@@ -6,7 +6,7 @@ export class ChannelMessageDto {
     public content: string;
     public sentDate: string;
     public readBy: Array<number>;
-    public senderId: number
-    public channelId: number;
+    public sender: UserDtoShort
+    public channel: ChannelDtoShort;
 
 }

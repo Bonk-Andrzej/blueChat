@@ -1,6 +1,6 @@
-import {PhotoDto} from "../../repository/photo/photoDto";
-import {UserDtoShort} from "../../repository/user/userDtoShort";
-import {BehaviorSubject, Observable} from "rxjs";
+import {PhotoDto} from '../../repository/photo/photoDto';
+import {UserDtoShort} from '../../repository/user/userDtoShort';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 export class UserShortObs {
     private idUser: number;
@@ -23,6 +23,15 @@ export class UserShortObs {
 
     }
 
+    public toUserDtoShort(): UserDtoShort {
+        const user = new UserDtoShort();
+        user.idUser = this.idUser;
+        user.nick = this.nick;
+        user.active = this.active.getValue();
+        user.photoDto = this.photoDto;
+        return user;
+    }
+
     public getIdUser(): number {
         return this.idUser;
     }
@@ -36,27 +45,27 @@ export class UserShortObs {
     }
 
     public getActive(): boolean {
-        return this.active.getValue()
+        return this.active.getValue();
     }
 
-    public getActiveObs(): Observable<boolean>{
-       return this.active.asObservable();
+    public getActiveObs(): Observable<boolean> {
+        return this.active.asObservable();
     }
 
-    public setActive(isActive: boolean){
+    public setActive(isActive: boolean) {
         this.active.next(isActive);
     }
 
-    public setIdUser(idUser : number){
+    public setIdUser(idUser: number) {
         this.idUser = idUser;
     }
 
-    public setNick(nick: string)  {
+    public setNick(nick: string) {
         this.nick = nick;
     }
 
-    public setPhoto(photoDto: PhotoDto){
-         this.photoDto = photoDto;
+    public setPhoto(photoDto: PhotoDto) {
+        this.photoDto = photoDto;
     }
 
 }

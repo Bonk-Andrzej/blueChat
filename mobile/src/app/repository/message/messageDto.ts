@@ -5,6 +5,6 @@ export class MessageDto {
     public content: string;
     public sentDate: string;
     public isRead: boolean;
-    public senderId: number;
-    public receiverId: number;
+    public sender: UserDtoShort;
+    public receiver: UserDtoShort;
 }

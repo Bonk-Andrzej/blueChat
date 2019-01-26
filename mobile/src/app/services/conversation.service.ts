@@ -7,20 +7,20 @@ import {MessageDto} from '../repository/message/messageDto';
 import {WSRClientService} from '../WSRClient/wsrclient.service';
 import {LocalType} from '../WSRClient/types/LocalType';
 import {RemoteType} from '../WSRClient/types/RemoteType';
-import {UserShortObs} from "./model/userShortObs";
-import {MessageObs} from "./model/messageObs";
-import {ChannelMessageRepositoryService} from "../repository/channelMessage/channel-message-repository.service";
-import {ChannelMessageDto} from "../repository/channelMessage/channelMessageDto";
+import {UserShortObs} from './model/userShortObs';
+import {MessageObs} from './model/messageObs';
+import {ChannelMessageRepositoryService} from '../repository/channelMessage/channel-message-repository.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ConversationService {
 
-    conversation = new BehaviorSubject<Array<MessageObs>>([]);
-    interlocutorName = new BehaviorSubject('');
-    interlocutorId: number = null;
     isChannelConversation = false;
+    private userInterlocutor: UserShortObs;
+
+    conversationHeader = new BehaviorSubject('');
+    conversation = new BehaviorSubject<Array<MessageObs>>([]);
 
     constructor(private userProfileService: UserProfileService,
                 private messageRepository: MessageRepositoryService,
@@ -29,16 +29,14 @@ export class ConversationService {
     ) {
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMESSAGE, new MessageDto(), message => {
-            if (message.receiverId == this.userProfileService.getUser().getIdUser() && message.senderId == this.interlocutorId) {
+            if (message.receiver.idUser == this.userProfileService.getUser().getIdUser() && message.sender.idUser == this.userInterlocutor.getIdUser()) {
                 const conversation = this.conversation.getValue();
                 conversation.push(MessageObs.createFromMessage(message, this.userProfileService));
                 this.conversation.next(conversation);
             }
-
         });
-
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYMESSAGE, new MessageDto(), message => {
-            if (message.receiverId == this.interlocutorId && message.senderId == this.userProfileService.getUser().getIdUser()) {
+            if (message.receiver.idUser == this.userInterlocutor.getIdUser() && message.sender.idUser == this.userProfileService.getUser().getIdUser()) {
                 const conversation = this.conversation.getValue();
                 conversation.push(MessageObs.createFromMessage(message, this.userProfileService));
                 this.conversation.next(conversation);
@@ -49,51 +47,43 @@ export class ConversationService {
     public async startConversationWithUser(interlocutor: UserShortObs) {
 
         this.isChannelConversation = false;
+        this.userInterlocutor = interlocutor;
         const user = this.userProfileService.getUser();
         const newConversation = [];
         const conversation = await this.messageRepository.getConversation(user.getIdUser(), interlocutor.getIdUser(), 100, 0);
-
         for (let messageDto of conversation) {
             newConversation.push(MessageObs.createFromMessage(messageDto, this.userProfileService))
         }
-
         this.conversation.next(newConversation);
-        this.interlocutorName.next(interlocutor.getNick());
-        this.interlocutorId = interlocutor.getIdUser();
+        this.conversationHeader.next(interlocutor.getNick());
     }
 
     public async startConversationWithChannel(interlocutor: ChannelDtoShort) {
-
         this.isChannelConversation = true;
         const newConversation = [];
         const conversation = await this.channelMessageRepositoryService.getConversation( interlocutor.idChannel, 100, 0);
-
-        console.log(conversation, "fetched data")
-
         for (let ChannelMessageDto of conversation) {
             newConversation.push(MessageObs.createFromChannel(ChannelMessageDto, this.userProfileService))
         }
-
         this.conversation.next(newConversation);
-        this.interlocutorName.next(interlocutor.name);
-        this.interlocutorId = interlocutor.idChannel;
+        this.conversationHeader.next(interlocutor.name);
 
     }
 
-    public getConversation() {
+    public getConversationObs() {
         return this.conversation.asObservable();
     }
 
-    public getInterlocutorName() {
-        return this.interlocutorName.asObservable();
-    }
-
-    public getInterlocutorId() {
-        return this.interlocutorId;
+    public getConversationHeaderObs() {
+        return this.conversationHeader.asObservable();
     }
 
     public sendMessage(messageDto: MessageDto) {
         this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.FORWARDMESSAGE, messageDto);
+    }
+
+    public getUserInterlocutor(): UserShortObs{
+        return this.userInterlocutor;
     }
 
 }

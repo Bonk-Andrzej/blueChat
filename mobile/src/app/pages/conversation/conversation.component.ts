@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {MessageDto} from '../../repository/message/messageDto';
 import {UserProfileService} from '../../services/user-profile.service';
 import {MessageObs} from "../../services/model/messageObs";
+import {UserObs} from '../../services/model/userObs';
 
 @Component({
     selector: 'app-conversation',
@@ -11,10 +12,7 @@ import {MessageObs} from "../../services/model/messageObs";
     styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent implements OnInit {
-    messageOwnerName: string;
-
-    interlocutorName: Observable<string>;
-    idSender: number;
+    conversationHeader: Observable<string>;
     messageContent: string;
     conversation: Observable<Array<MessageObs>>;
 
@@ -27,17 +25,13 @@ export class ConversationComponent implements OnInit {
 
     ngOnInit() {
 
-        this.idSender = this.userProfile.getUser().getIdUser()
-        this.messageOwnerName = this.userProfile.getUser().getNick()
-        this.interlocutorName = this.conversationService.getInterlocutorName();
-        this.conversation = this.conversationService.getConversation();
+        this.conversationHeader = this.conversationService.getConversationHeaderObs();
+        this.conversation = this.conversationService.getConversationObs();
         this.conversation.subscribe(() => {
 
             if (this.conversationListRef) {
-
                 const nativeElement = this.conversationListRef.nativeElement;
                 setTimeout(() => {
-                    console.log(nativeElement.scrollHeight)
                     nativeElement.scrollTop = nativeElement.scrollHeight;
                 }, 0)
             }
@@ -48,11 +42,14 @@ export class ConversationComponent implements OnInit {
     public sendMessage(){
         let messageDto = new MessageDto();
         messageDto.content = this.messageContent;
-        messageDto.senderId = this.userProfile.getUser().getIdUser()
-        messageDto.receiverId = this.conversationService.getInterlocutorId();
+        messageDto.sender = this.userProfile.getUser().toUserDtoShort()
+        messageDto.receiver = this.conversationService.getUserInterlocutor().toUserDtoShort();
         this.conversationService.sendMessage(messageDto);
 
-        this.messageContent = "";
+        this.cleanMessageInput();
     }
 
+    private cleanMessageInput() {
+        this.messageContent = '';
+    }
 }

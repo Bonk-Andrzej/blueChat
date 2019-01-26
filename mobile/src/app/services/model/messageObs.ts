@@ -10,7 +10,7 @@ export class MessageObs {
     private content: string;
     private readBy: Array<number>;
     private senderId: number;
-    private interlocutorId: number;
+    private interlocutorDisplayName: string;
     private sentDate: string;
 
     constructor() {
@@ -24,8 +24,8 @@ export class MessageObs {
 
         messageObs.messageId = message.idMessage;
         messageObs.content = message.content;
-        messageObs.senderId = message.senderId;
-        messageObs.interlocutorId = message.receiverId;
+        messageObs.senderId = message.sender.idUser;
+        messageObs.interlocutorDisplayName = message.sender.nick;
         messageObs.sentDate = message.sentDate;
         messageObs.setReadBy_Message(message,messageObs,loggedUser);
         messageObs.setSandedByMe_Message(loggedUser, message, messageObs);
@@ -38,8 +38,8 @@ export class MessageObs {
 
         messageObs.messageId = message.idChannelsMessageDto;
         messageObs.content = message.content;
-        messageObs.senderId = message.senderId
-        messageObs.interlocutorId = message.channelId;
+        messageObs.senderId= message.sender.idUser
+        messageObs.interlocutorDisplayName = message.sender.nick;
         messageObs.sentDate = message.sentDate;
         messageObs.setReadBy_Channel(message,messageObs,loggedUser);
         messageObs.setSandedByMe_Channel(loggedUser, message, messageObs);
@@ -49,12 +49,12 @@ export class MessageObs {
 
     // Utils methods
     private setSandedByMe_Message(loggedUser: UserObs, message: MessageDto, messageObs: MessageObs) {
-        if (loggedUser.getIdUser() == message.senderId) {
+        if (loggedUser.getIdUser() == message.sender.idUser) {
             messageObs.senderByMe = true;
         }
     }
     private setSandedByMe_Channel(loggedUser: UserObs, message: ChannelMessageDto, messageObs: MessageObs) {
-        if (loggedUser.getIdUser() == message.senderId) {
+        if (loggedUser.getIdUser() == message.sender.idUser) {
             messageObs.senderByMe = true;
         }
     }
@@ -85,6 +85,10 @@ export class MessageObs {
 
     public getSentDate():string{
         return this.sentDate;
+    }
+
+    public getInterlocutorDisplayName():string{
+        return this.interlocutorDisplayName;
     }
 
 
