@@ -44,7 +44,7 @@ public class FriendsController {
     }
 
     @CrossOrigin
-    @PostMapping
+    @DeleteMapping
     public ResponseEntity removeFriendship(@RequestBody FriendsDto friendsDto){
         try {
             userContainFriendFacade.remove(friendsDto);
@@ -58,21 +58,21 @@ public class FriendsController {
         }
     }
 
-    @CrossOrigin
-    @DeleteMapping
-    public ResponseEntity addFriendship(@RequestBody FriendsDto friendsDto,
-                                        @RequestParam String idUser){
-
-        try {
-            FriendsDto response = userContainFriendFacade.addFriendship(Long.valueOf(idUser), friendsDto);
-            log.info("Method addFriendship ", response.toString());
-
-            return new ResponseEntity(response, HttpStatus.OK);
-        } catch (Exception e) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Error", e.getMessage());
-            log.error("Method addFriendship ", e.getMessage());
-            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @CrossOrigin
+//    @PostMapping
+//    public ResponseEntity addFriendship(@RequestBody FriendsDto friendsDto,
+//                                        @RequestParam String idUser){
+//
+//        try {
+//            FriendsDto response = userContainFriendFacade.addFriendship(Long.valueOf(idUser), friendsDto);
+//            log.info("Method addFriendship ", response.toString());
+//
+//            return new ResponseEntity(response, HttpStatus.OK);
+//        } catch (Exception e) {
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.add("Error", e.getMessage());
+//            log.error("Method addFriendship ", e.getMessage());
+//            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+//        }
+//    }
 }

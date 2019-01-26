@@ -4,7 +4,6 @@ import java.util.List;
 
 interface UserContainFriendCustom {
     List<UserContainFriend> getUserFriendship(Long idUser);
-    UserContainFriend saveUserContainFriends(UserContainFriend userContainFriend);
-
+    UserContainFriend saveUserContainFriends(Long idUser, Long idFriend);
 
 }

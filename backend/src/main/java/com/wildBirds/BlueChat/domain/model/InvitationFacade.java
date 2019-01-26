@@ -1,6 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
 
+import com.wildBirds.BlueChat.api.rest.dto.FriendsDto;
 import com.wildBirds.BlueChat.api.rest.dto.InvitationDto;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class InvitationFacade {
     public InvitationDto saveInvitation(InvitationDto invitationDto) {
 
         Invitation invitation = service.toEntity(invitationDto);
-        Invitation save = repository.save(invitation);
+        Invitation save = repository.saveInvitation(invitation);
         return service.toDto(save);
 
     }
@@ -34,9 +35,14 @@ public class InvitationFacade {
 
     }
 
-    public void removeInvitarion(InvitationDto invitationDto) {
+    public FriendsDto acceptInvitation(InvitationDto invitationDto) {
+        Long idUser = invitationDto.getSenderInvitation().getIdUser();
+        Long idFriend = invitationDto.getSenderInvitation().getIdUser();
+        FriendsDto friendsDto = friendFacade.addFriendship(idUser, idFriend);
         Invitation invitation = service.toEntity(invitationDto);
         repository.delete(invitation);
+
+        return friendsDto;
     }
 
 }
