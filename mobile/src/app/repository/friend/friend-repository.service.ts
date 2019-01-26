@@ -34,8 +34,4 @@ export class FriendRepositoryService {
     public removeFriendship(friendsDto: FriendsDto) {
 
     }
-
-    public addFriendship(idUser: number, friendsDto: FriendsDto) {
-
-    }
 }
