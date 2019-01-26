@@ -8,7 +8,7 @@ import {UserProfileService} from './user-profile.service';
 @Injectable({
     providedIn: 'root'
 })
-export class FriendProfileService  {
+export class InvitationService  {
 
 
     invitations: BehaviorSubject<Array<InvitationDto>> = new BehaviorSubject([]);

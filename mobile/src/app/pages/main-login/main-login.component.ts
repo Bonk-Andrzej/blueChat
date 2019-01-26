@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {ConversationService} from '../../services/conversation.service';
 import {UserShortObs} from '../../services/model/userShortObs';
 import {Router} from '@angular/router';
-import {FriendProfileService} from '../../services/friend-profile.service';
+import {InvitationService} from '../../services/invitation.service';
 import {InvitationDto} from '../../repository/invitation/invitationDto';
 
 @Component({
@@ -21,7 +21,7 @@ export class MainLoginComponent implements OnInit {
     constructor(private router: Router,
                 private useService: UserProfileService,
                 private conversationService: ConversationService,
-                private friendsService: FriendProfileService) {
+                private friendsService: InvitationService) {
     }
 
     ngOnInit() {
