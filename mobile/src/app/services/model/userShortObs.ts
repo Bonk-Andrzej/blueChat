@@ -1,7 +1,6 @@
 import {PhotoDto} from "../../repository/photo/photoDto";
 import {UserDtoShort} from "../../repository/user/userDtoShort";
 import {BehaviorSubject, Observable} from "rxjs";
-import {p} from '@angular/core/src/render3';
 
 export class UserShortObs {
     private idUser: number;

@@ -41,81 +41,6 @@ export class MainLoginComponent implements OnInit {
         },
 
     ];
-    messageDTOs = [
-        {
-            'idMessage': 1,
-            'content': 'It\'s a convenient tool for mock-ups.',
-            'userNick': 'Marian Nowak',
-        },
-        {
-            'idMessage': 2,
-            'content': 'What are you doing today at the morning ?.',
-            'userNick': 'Ola Taraska',
-        },
-        {
-            'idMessage': 3,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 4,
-            'content': 'It\'s a convenient tool for mock-ups.',
-            'userNick': 'Marian Nowak',
-        },
-        {
-            'idMessage': 5,
-            'content': 'What are you doing today at the morning ?.',
-            'userNick': 'Ola Taraska',
-        },
-        {
-            'idMessage': 6,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 5,
-            'content': 'What are you doing today at the morning ?.',
-            'userNick': 'Ola Taraska',
-        },
-        {
-            'idMessage': 6,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-
-        },
-        {
-            'idMessage': 6,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 5,
-            'content': 'What are you doing today at the morning ?.',
-            'userNick': 'Ola Taraska',
-        },
-        {
-            'idMessage': 6,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 6,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-        {
-            'idMessage': 5,
-            'content': 'What are you doing today at the morning ?.',
-            'userNick': 'Ola Taraska',
-        },
-        {
-            'idMessage': 6,
-            'content': 'I\'m fine thank you so much :)',
-            'userNick': 'Anna Ostrowska',
-        },
-
-    ];
-
     usersWithNewMessage: Observable<Array<UserDtoWithMessage>>;
 
     constructor(private router: Router,
@@ -125,7 +50,6 @@ export class MainLoginComponent implements OnInit {
 
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
-        console.log(this.usersWithNewMessage);
     }
 
     getInvitation() {
@@ -134,9 +58,13 @@ export class MainLoginComponent implements OnInit {
 
     startConversation(usersWithNewMessage: UserDtoWithMessage) {
         let user: UserShortObs = new UserShortObs();
+
+        console.log(' >>>>>>>>>> Z LISTY'  +usersWithNewMessage)
         user.setIdUser(usersWithNewMessage.idUser);
         user.setNick(usersWithNewMessage.nick);
-        user.setPhoto(usersWithNewMessage.photoDto);
+
+        console.log('>>>>>>>>>>>>>>>>>>>>'  + user.getNick());
+        // user.setPhoto(usersWithNewMessage.photoDto);
         this.conversationService.startConversationWithUser(user);
         this.router.navigateByUrl('/conversation')
     }
