@@ -1,29 +1,55 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ColorObject} from './colorObject';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ColorService {
 
-  colors : Array<ColorObject>;
-  constructor() {
+    public colors: Array<ColorObject> = [];
+    currentBacground: BehaviorSubject<string> = new BehaviorSubject(null);
 
-      const red = new ColorObject('red', '#ed463b') ;
+    constructor() {
 
-      const green = new ColorObject('green','#89ed3b' );
+        const red = new ColorObject('red', '#ed463b');
+        const green = new ColorObject('green', '#89ed3b');
+        const orange = new ColorObject('orange', '#ed553b');
+        const yellow = new ColorObject('yellow', '#f2b134');
+        const cyan = new ColorObject('cyan', '#068587');
+        const black_light = new ColorObject('black light', '#464646');
+        const black = new ColorObject('black', '#323232');
+        const black_dark = new ColorObject('black_dark', 'rgba(30, 30, 30, 0.95)');
 
-      const orange = new ColorObject('orange','#ed553b' );
+        this.colors.push(red);
+        this.colors.push(green);
+        this.colors.push(orange);
+        this.colors.push(yellow);
+        this.colors.push(cyan);
+        this.colors.push(black_light);
+        this.colors.push(black);
+        this.colors.push(black_dark);
+        this.setDefoultColor(cyan);
+    }
 
-      const yellow = new ColorObject('yellow', '#f2b134';
+    private setDefoultColor(cyan) {
+        let selectedColor = localStorage.getItem('color');
+        if (selectedColor != null) {
+            this.currentBacground.next(selectedColor);
+        } else {
+            this.setCurrentColor(cyan);
+        }
+    }
 
-      const cyan = new ColorObject('cyan', '#068587');
+    public setCurrentColor(bgColor: ColorObject) {
+        this.currentBacground.next(bgColor.color);
+        localStorage.setItem("color",bgColor.color);
 
-      const black_light=  new ColorObject('black light', '#464646');
-      const black = new ColorObject('black', '#323232');
-      const black_dark = new ColorObject('black_dark', 'rgba(30, 30, 30, 0.95)') ;
+    }
 
-  }
+    public getCurrentColor(): Observable<string> {
+       return this.currentBacground.asObservable();
+    }
 
 
 }

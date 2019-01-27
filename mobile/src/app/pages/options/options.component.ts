@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ColorObject} from '../../services/background/colorObject';
+import {ColorService} from '../../services/background/color.service';
 
 @Component({
-  selector: 'app-options',
-  templateUrl: './options.component.html',
-  styleUrls: ['./options.component.scss']
+    selector: 'app-options',
+    templateUrl: './options.component.html',
+    styleUrls: ['./options.component.scss']
 })
 export class OptionsComponent implements OnInit {
 
-  colors : {
+    public colorsList: Array<ColorObject>;
 
-  }
+    constructor(private bgColorService: ColorService) {
+    }
 
-  constructor() { }
+    ngOnInit() {
+        this.colorsList = this.bgColorService.colors;
+    }
 
-  ngOnInit() {
-  }
+    setBackground(color: ColorObject){
+        this.bgColorService.setCurrentColor(color);
+    }
 
 }
