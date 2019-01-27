@@ -31,7 +31,7 @@ export class RetrieveStateApplicationService {
     }
 
     public saveUserId(user: UserDto) {
-        // localStorage.setItem('userId', user.idUser + '');
+        localStorage.setItem('userId', user.idUser + '');
     }
 
     public removeUserId() {

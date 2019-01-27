@@ -15,6 +15,7 @@ import {UserObs} from './model/userObs';
 import {UserDtoWithMessage} from '../repository/user/userDtoWithMessage';
 import {InvitationService} from './invitation.service';
 import {FriendsDto} from '../repository/friend/friendsDto';
+import {UserShortObs} from './model/userShortObs';
 
 @Injectable({
     providedIn: 'root'
@@ -144,6 +145,11 @@ export class UserProfileService {
         let friendsList = this.friends.getValue();
         friendsList.push(FriendsObs.create(friendsDto))
         this.friends.next(friendsList);
+    }
+
+    public findFreind(friendId): UserShortObs{
+        let result = this.friends.getValue().find((user) => (user.getFriend().getIdUser() == friendId));
+        return (result) ? result.getFriend() : null;
     }
 
 

@@ -15,6 +15,10 @@ export class UserProfileComponent implements OnInit {
 
 
     private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
+    public addFriendButtonStyle = {
+        backgroundImage: ""
+    };
+
     constructor(private router: Router,
                 private activeRout: ActivatedRoute,
                 private userProfileService: UserProfileService,
@@ -23,13 +27,27 @@ export class UserProfileComponent implements OnInit {
 }
 
     async ngOnInit() {
-
+        this.setAddButtonIcon();
         const paramId = this.activeRout.snapshot.params["id"];
         if(paramId != null){
             const userDto = await this.userRepositoryService.getUserById(paramId)
             this.userBeh.next(UserObs.create(userDto));
         }else {
             this.userBeh.next(this.userProfileService.getUser());
+        }
+    }
+
+    private setAddButtonIcon(){
+        const paramId = this.activeRout.snapshot.params["id"];
+        if(paramId != null){
+            let user = this.userProfileService.findFreind(paramId);
+            if(user != null){
+                this.addFriendButtonStyle.backgroundImage = "url(/assets/remove.svg)";
+            }else {
+                this.addFriendButtonStyle.backgroundImage = "url(/assets/add-person-icon.svg)";
+            }
+        }else {
+            this.addFriendButtonStyle.backgroundImage = "url(/assets/edit.svg)";
         }
 
     }
