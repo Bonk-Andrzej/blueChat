@@ -13,6 +13,7 @@ import {GroupsComponent} from '../pages/groups/groups.component';
 import {HelperComponent} from '../pages/helper/helper.component';
 import {UserProfileComponent} from '../pages/user-profile/user-profile.component';
 import {FriendsComponent} from "../pages/friends/friends.component";
+import {SearchComponent} from '../pages/search/search.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
     {path: 'help', component: HelperComponent},
     {path: 'user-profile/:id', component: UserProfileComponent},
     {path: 'user-profile', component: UserProfileComponent},
+    {path: 'search', component: SearchComponent},
     // {path: '', component: UserProfileComponent},
     // {path: '', component: ConversationComponent},
 

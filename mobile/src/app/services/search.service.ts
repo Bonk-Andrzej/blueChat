@@ -34,10 +34,9 @@ export class SearchService {
     private async fetchUsers(userName: string) {
         const result = await this.userRepository.findUserByPhrase(userName);
         const users = [];
-        for (let user in result) {
-            users.push(user);
-        }
-        this.users.next(users);
+
+        console.log('>>>>>>>>>> RESULT ', result)
+        this.users.next(result);
     }
 
     // private async fetchChannels(channelName: string) {
