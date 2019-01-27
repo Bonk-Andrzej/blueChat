@@ -31,6 +31,10 @@ export class SearchComponent implements OnInit {
         this.searchService.search(this.searchValue);
     }
 
+    public onBackButtonClick(){
+        this.searchService.deleteResults();
+    }
+
     private showUserProfile(idUser: number) {
         this.router.navigateByUrl('/user-profile/' + idUser).catch();
     }

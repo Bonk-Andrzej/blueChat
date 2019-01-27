@@ -12,6 +12,7 @@ export class SearchService {
 
     private users: BehaviorSubject<Array<UserDtoShort>> = new BehaviorSubject([]);
     private channels: BehaviorSubject<Array<ChannelDtoShort>> = new BehaviorSubject([]);
+    private dellayTimer: any;
 
     constructor(private userRepository: UserRepositoryService,
                 private channelRepository: ChannelRepositoryService) {
@@ -20,8 +21,18 @@ export class SearchService {
     }
 
     public search(phrase: string) {
-        this.fetchUsers(phrase);
-        this.fetchChannels(phrase);
+
+        if(this.dellayTimer != null){
+            clearTimeout(this.dellayTimer);
+        }
+
+        this.dellayTimer = setTimeout(()=>{
+            if (phrase != null && phrase.length > 0) {
+                this.fetchUsers(phrase);
+                this.fetchChannels(phrase);
+            }
+        },500);
+
     }
 
     public getUsers() : Observable<Array<UserDtoShort>> {
@@ -34,16 +45,18 @@ export class SearchService {
 
     private async fetchUsers(userName: string) {
         const result = await this.userRepository.findUserByPhrase(userName);
-        const users = [];
-
-        console.log('>>>>>>>>>> RESULT ', result)
         this.users.next(result);
     }
 
     private async fetchChannels(channelName: string) {
         const result = await this.channelRepository.findUserByPhrase(channelName);
-
         this.channels.next(result);
     }
+
+    public deleteResults(){
+        this.users.next([]);
+        this.channels.next([]);
+    }
+
 
 }
