@@ -14,6 +14,7 @@ import {HelperComponent} from '../pages/helper/helper.component';
 import {UserProfileComponent} from '../pages/user-profile/user-profile.component';
 import {FriendsComponent} from "../pages/friends/friends.component";
 import {SearchComponent} from '../pages/search/search.component';
+import {OptionsComponent} from '../pages/options/options.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     {path: 'user-profile/:id', component: UserProfileComponent},
     {path: 'user-profile', component: UserProfileComponent},
     {path: 'search', component: SearchComponent},
+    {path: 'options', component: OptionsComponent},
     // {path: '', component: UserProfileComponent},
     // {path: '', component: ConversationComponent},
 

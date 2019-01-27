@@ -46,6 +46,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { ButtonAddFriendComponent } from './components/button-add-friend/button-add-friend.component';
 import { FriendsComponent } from './pages/friends/friends.component';
 import { SearchComponent } from './pages/search/search.component';
+import { OptionsComponent } from './pages/options/options.component';
 
 @NgModule({
     declarations: [
@@ -90,6 +91,7 @@ import { SearchComponent } from './pages/search/search.component';
         ButtonAddFriendComponent,
         FriendsComponent,
         SearchComponent,
+        OptionsComponent,
     ],
     imports: [
         BrowserModule,
