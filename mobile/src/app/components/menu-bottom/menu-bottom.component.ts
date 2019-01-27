@@ -25,8 +25,7 @@ export class MenuBottomComponent implements OnInit {
     }
 
     setting() {
-        alert('We are working at this ..');
-        // this.router.navigateByUrl()
+        this.router.navigateByUrl('/options');
     }
 
     logOut() {

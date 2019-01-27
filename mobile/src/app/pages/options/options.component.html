@@ -1,0 +1,16 @@
+<div class="grid">
+
+    <div id="left-button" app-button-back=""></div>
+    <div id="title" valueContent="OPTIONS" app-title=""></div>
+    <div id="right-button"></div>
+
+
+    <div id="options-list" title="OPTIONS" app-list-users-with-title="">
+        <div>
+            <ng-container *ngFor="let color of colorsList">
+                <div (click)="setBackground(color)"  [style.backgroundColor]="color.color" class="colorButton"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<div id="menu-bottom" app-menu-bottom=""></div>
