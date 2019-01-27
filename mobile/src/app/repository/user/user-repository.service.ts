@@ -39,8 +39,8 @@ export class UserRepositoryService {
     //     return this.http.get<Array<UserDtoShort>>(this.host + '/users/short');
     // }
 
-    public findUserByPhrase(phrase: string): Observable<Array<UserDtoShort>> {
-        return this.http.get<Array<UserDtoShort>>(this.host + '/users/short');
+    public findUserByPhrase(phrase: string): Promise<Array<UserDtoShort>> {
+        return this.http.get<Array<UserDtoShort>>(this.host + '/users/short/' + phrase).toPromise()
     }
 
     public postNewUser(userPassDto: UserPassDto): Observable<UserPassDto> {

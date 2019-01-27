@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: '[app-input-search]',
-  templateUrl: './input-search.component.html',
-  styleUrls: ['./input-search.component.scss']
+    selector: '[app-input-search]',
+    templateUrl: './input-search.component.html',
+    styleUrls: ['./input-search.component.scss']
 })
 export class InputSearchComponent implements OnInit {
 
-  constructor() { }
+    @Input() value;
+    @Output() valueChange = new EventEmitter<string>();
 
-  ngOnInit() {
-  }
 
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
+
+    throwValue() {
+        this.valueChange.emit(this.value);
+    }
 }

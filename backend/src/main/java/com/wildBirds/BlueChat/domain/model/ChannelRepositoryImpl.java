@@ -1,6 +1,5 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.persistence.EntityManager;
@@ -97,6 +96,20 @@ class ChannelRepositoryImpl implements ChannelRepositoryCustom {
 
         return entityManager.createQuery(query)
                 .setParameter("idChannel", channelId)
+                .getResultList();
+    }
+
+    @Override
+    public List<Channel> getByPhrase(String phrase) {
+
+        String query = "SELECT channel FROM Channel channel " +
+                "WHERE channel.name like :phrase AND " +
+                "channel.isPublic =: isPublic";
+
+        return entityManager.createQuery(query)
+                .setParameter("phrase", "%" + phrase + "%")
+                .setParameter("isPublic", true)
+                .setMaxResults(10)
                 .getResultList();
     }
 

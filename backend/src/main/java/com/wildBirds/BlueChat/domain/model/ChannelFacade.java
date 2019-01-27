@@ -68,6 +68,14 @@ public class ChannelFacade {
         return channelDtoShortList;
     }
 
+    public List<ChannelDtoShort> getChannelsByPhrase(String phrase){
+        List<Channel> channelList = channelRepository.getByPhrase(phrase);
+
+        return channelList.stream()
+                .map(channel -> channelService.toDtoShort(channel))
+                .collect(Collectors.toList());
+    }
+
     // TODO: 18.01.2019 have to write tests
     public  ChannelDto getById(Long id){
         Channel channel = channelRepository.getOne(id);

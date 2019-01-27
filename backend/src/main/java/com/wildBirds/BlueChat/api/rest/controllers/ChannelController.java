@@ -46,6 +46,15 @@ public class ChannelController {
     }
 
     @CrossOrigin
+    @GetMapping("shorts/phrase/{phrase}")
+    public ResponseEntity getListByPhrase(@PathVariable String phrase){
+
+        List<ChannelDtoShort> channelsByPhrase = channelFacade.getChannelsByPhrase(phrase);
+
+        return new ResponseEntity(channelsByPhrase, HttpStatus.OK);
+    }
+
+    @CrossOrigin
     @GetMapping("/shorts/{idUser}")
     public ResponseEntity getShortList(@PathVariable String idUser){
         try {

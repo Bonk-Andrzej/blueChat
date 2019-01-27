@@ -45,6 +45,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     onSearch() {
+        this.router.navigateByUrl('/search');
 
     }
 
