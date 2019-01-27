@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
 
     ngOnInit() {
         this.users = this.searchService.getUsers()
-        // this.channels = this.searchService.getchannels()
+        this.channels = this.searchService.getchannels()
 
     }
     public search() {

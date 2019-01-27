@@ -64,5 +64,9 @@ export class ChannelRepositoryService {
         this.http.delete(this.host + '/user', {headers: this.headers, params: params});
     }
 
+    public findUserByPhrase(phrase: String): Promise<Array<ChannelDtoShort>> {
+        return this.http.get<Array<ChannelDtoShort>>(this.host + '/shorts/phrase/'+ phrase).toPromise();
+    }
+
 
 }

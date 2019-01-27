@@ -1,7 +1,5 @@
 package com.wildBirds.BlueChat.domain.model;
 
-import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
-
 import java.util.List;
 
 interface ChannelRepositoryCustom {
@@ -11,5 +9,6 @@ interface ChannelRepositoryCustom {
     List<Channel> getChannels(Long idUser);
     List<Channel> getPublicChannels();
     List<User> getChannelMembers(Long ChannelId);
+    List<Channel> getByPhrase(String phrase);
 
 }

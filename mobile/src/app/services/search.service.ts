@@ -21,6 +21,7 @@ export class SearchService {
 
     public search(phrase: string) {
         this.fetchUsers(phrase);
+        this.fetchChannels(phrase);
     }
 
     public getUsers() : Observable<Array<UserDtoShort>> {
@@ -39,13 +40,10 @@ export class SearchService {
         this.users.next(result);
     }
 
-    // private async fetchChannels(channelName: string) {
-    //     const result = await this.channelRepository.findUserByPhrase(channelName);
-    //     const channels = [];
-    //     for (let channel in result) {
-    //         channels.push(channel)
-    //     }
-    //     this.users.next(channels);
-    // }
+    private async fetchChannels(channelName: string) {
+        const result = await this.channelRepository.findUserByPhrase(channelName);
+
+        this.channels.next(result);
+    }
 
 }
