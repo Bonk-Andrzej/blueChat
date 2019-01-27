@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: '[app-button-back]',
@@ -8,13 +9,20 @@ import { Location } from '@angular/common';
 })
 export class ButtonBackComponent implements OnInit {
 
-  constructor(private location : Location) { }
+  constructor(private location : Location,
+              private router: Router) { }
+
+  @Input() navigateToUrl: string;
 
   ngOnInit() {
   }
 
   public previousPage(){
-    this.location.back();
+    if(this.navigateToUrl != null){
+      this.router.navigateByUrl(this.navigateToUrl)
+    }else {
+        this.location.back();
+    }
   }
 
 }

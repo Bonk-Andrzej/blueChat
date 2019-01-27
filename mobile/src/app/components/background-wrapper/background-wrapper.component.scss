@@ -38,12 +38,14 @@
   .mask {
     @extend %full-size;
     background-color: var(--cyan);
+    //background-color: var(--black-dark);
     opacity: 0.9;
   }
 
   .image {
     @extend %full-size;
-    background-image: url("~src/assets/joel-filipe-191372-unsplash.jpg");
+    background-image: url("~src/assets/backgorund-full.jpg");
+    background-position: center;
     background-size: cover;
   }
 
