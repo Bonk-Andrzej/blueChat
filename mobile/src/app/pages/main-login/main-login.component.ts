@@ -44,5 +44,6 @@ export class MainLoginComponent implements OnInit {
         // user.setPhoto(usersWithNewMessage.photoDto);
         this.conversationService.startConversationWithUser(user);
         this.router.navigateByUrl('/conversation')
+        this.useService.removeUserWithMsg(usersWithNewMessage);
     }
 }
