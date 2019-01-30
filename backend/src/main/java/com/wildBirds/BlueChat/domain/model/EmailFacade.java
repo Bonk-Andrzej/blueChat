@@ -1,16 +1,17 @@
 
 package com.wildBirds.BlueChat.domain.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 
 public class EmailFacade {
 
-    @Autowired
     private JavaMailSender javaMailSender;
 
+    public EmailFacade(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     public void sendSampleMessage(String email, String subject, String content){
         SimpleMailMessage message = new SimpleMailMessage();

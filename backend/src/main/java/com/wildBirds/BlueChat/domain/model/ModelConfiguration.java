@@ -3,6 +3,7 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
 
 @Configuration
 class ModelConfiguration {
@@ -52,8 +53,8 @@ class ModelConfiguration {
         return new UserWithLasMessageFacade(messageService, messageFacade, photoService);
     }
     @Bean
-    EmailFacade emailFacade(){
-        return new EmailFacade();
+    EmailFacade emailFacade(JavaMailSender javaMailSender){
+        return new EmailFacade(javaMailSender);
     }
 
 
@@ -64,10 +65,7 @@ class ModelConfiguration {
 //    public EmailService emailService(){
 //        return new EmailService();
 //    }
-//    @Bean
-//    public JavaMailSender javaMailSender(){
-//        return new JavaMailSenderImpl();
-//    }
+
 
     @Bean
     public ContactMessageService contactMessageService() {

@@ -81,6 +81,9 @@ public class ConfigurationTest {
     @Autowired
     protected UserService userService;
 
+    @Autowired
+    protected EmailFacade emailFacade;
+
 
     @Autowired
     protected UserWithLasMessageFacade userWithLasMessageFacade;

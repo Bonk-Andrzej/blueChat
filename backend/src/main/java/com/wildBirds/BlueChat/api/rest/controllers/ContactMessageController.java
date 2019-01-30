@@ -2,7 +2,6 @@ package com.wildBirds.BlueChat.api.rest.controllers;
 
 import com.wildBirds.BlueChat.api.rest.dto.ContactMessageDto;
 import com.wildBirds.BlueChat.domain.model.ContactMessageFacade;
-import com.wildBirds.BlueChat.domain.model.EmailFacade;
 import com.wildBirds.BlueChat.domain.model.exceptions.ContactMessageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ public class ContactMessageController {
     private ContactMessageFacade contactMessageFacade;
     private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
 
-    public ContactMessageController(ContactMessageFacade contactMessageFacade, EmailFacade emailFacade) {
+    public ContactMessageController(ContactMessageFacade contactMessageFacade) {
         this.contactMessageFacade = contactMessageFacade;
     }
 
