@@ -22,6 +22,9 @@ export class ContactComponent implements OnInit {
 
     public send(){
         this.contService.saveMessage(this.email, this.content);
+        this.email = "";
+        this.content= "";
+        alert("Thanks for contact")
     }
 
     public openGithub() {
