@@ -1,23 +1,21 @@
 
 package com.wildBirds.BlueChat.domain.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 
 public class EmailFacade {
 
-    JavaMailSender javaMailSender;
-
-    public EmailFacade(EmailService aEmailService) {
-        this.javaMailSender = aEmailService.getJavaMailSender();
-    }
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     public void sendSampleMessage(){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("igorsowa@wp.pl");
-        message.setSubject("some subject");
-        message.setText("some speciall text");
+        message.setSubject("email by properties");
+        message.setText("some special text from properties");
         javaMailSender.send(message);
     }
 }
