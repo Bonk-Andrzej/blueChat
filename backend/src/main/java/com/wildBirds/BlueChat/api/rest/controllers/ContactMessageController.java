@@ -2,6 +2,7 @@ package com.wildBirds.BlueChat.api.rest.controllers;
 
 import com.wildBirds.BlueChat.api.rest.dto.ContactMessageDto;
 import com.wildBirds.BlueChat.domain.model.ContactMessageFacade;
+import com.wildBirds.BlueChat.domain.model.EmailFacade;
 import com.wildBirds.BlueChat.domain.model.exceptions.ContactMessageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +19,12 @@ public class ContactMessageController {
 
 
     private ContactMessageFacade contactMessageFacade;
+    private EmailFacade emailFacade;
     private Logger log = LoggerFactory.getLogger(ChannelsMessageController.class);
 
-    public ContactMessageController(ContactMessageFacade contactMessageFacade) {
+    public ContactMessageController(ContactMessageFacade contactMessageFacade, EmailFacade emailFacade) {
         this.contactMessageFacade = contactMessageFacade;
+        this.emailFacade = emailFacade;
     }
 
     // TODO: 16.01.2019 SHOULD TESTING !
@@ -32,6 +35,7 @@ public class ContactMessageController {
         try {
             contactMessageDto.setSentDate(Instant.now());
             ContactMessageDto savedMessages = contactMessageFacade.saveMessage(contactMessageDto);
+            emailFacade.sendSampleMessage();
             log.info("Method sendMessage ", savedMessages.toString());
             return new ResponseEntity(HttpStatus.OK);
         } catch (ContactMessageException e) {
