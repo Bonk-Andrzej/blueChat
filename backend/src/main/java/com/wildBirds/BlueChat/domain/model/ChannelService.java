@@ -73,6 +73,7 @@ class ChannelService {
             channelDto.setIdChannel(channel.getIdChannel());
             channelDto.setName(channel.getName());
             channelDto.setIsPublic(channel.getIsPublic());
+            channelDto.setPhotoDto(photoService.toDto(channel.getProfilePhoto()));
             if (channel.getUsersInChannel() != null){
                 List<UserDto> userDtos = channel.getUsersInChannel().stream()
                         .map(user -> userService.toDto(user))

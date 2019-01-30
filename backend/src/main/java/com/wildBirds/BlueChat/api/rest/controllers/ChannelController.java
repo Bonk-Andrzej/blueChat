@@ -76,7 +76,7 @@ public class ChannelController {
     }
 
     @CrossOrigin
-    @GetMapping({"idChannel"})
+    @GetMapping({"{idChannel}"})
     public ResponseEntity getById(@PathVariable String idChannel) {
         try {
             ChannelDto channelDto = channelFacade.getById(Long.valueOf(idChannel));
