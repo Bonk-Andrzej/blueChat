@@ -35,6 +35,9 @@ export class FriendsObs {
     public getNoReadMessage(): number {
         return this.noReadMessage;
     }
+    public setNoReadMessage(value: number){
+        this.noReadMessage = value;
+    }
 
 
 }

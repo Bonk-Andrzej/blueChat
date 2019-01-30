@@ -147,6 +147,8 @@ export class UserProfileService {
         let userDtoWithMessages = this.usersWithNewMessage.getValue().filter(user => !(user.idUser === userDtoWithMsg.idUser));
 
         this.usersWithNewMessage.next(userDtoWithMessages);
+        this.friends.getValue().find(friend => (friend.getFriend().getIdUser() == userDtoWithMsg.idUser))
+            .setNoReadMessage(0);
     }
 
     public addFrendDtoToFriend(friendsDto: FriendsDto){
