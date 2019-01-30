@@ -42,12 +42,12 @@ export class UserProfileComponent implements OnInit {
         if(paramId != null){
             let user = this.userProfileService.findFreind(paramId);
             if(user != null){
-                this.addFriendButtonStyle.backgroundImage = "url(/assets/remove.svg)";
+                this.addFriendButtonStyle.backgroundImage = "url(assets/remove.svg)";
             }else {
-                this.addFriendButtonStyle.backgroundImage = "url(/assets/add-person-icon.svg)";
+                this.addFriendButtonStyle.backgroundImage = "url(assets/add-person-icon.svg)";
             }
         }else {
-            this.addFriendButtonStyle.backgroundImage = "url(/assets/edit.svg)";
+            this.addFriendButtonStyle.backgroundImage = "url(assets/edit.svg)";
         }
 
     }

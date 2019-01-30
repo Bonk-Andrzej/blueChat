@@ -13,7 +13,6 @@ import {ChangeService} from './change.service';
 import {FriendsObs} from './model/friendsObs';
 import {UserObs} from './model/userObs';
 import {UserDtoWithMessage} from '../repository/user/userDtoWithMessage';
-import {InvitationService} from './invitation.service';
 import {FriendsDto} from '../repository/friend/friendsDto';
 import {UserShortObs} from './model/userShortObs';
 
@@ -58,18 +57,17 @@ export class UserProfileService {
                 }
             });
         });
-        this.loginService.onLogin.subscribe((user: UserDto) => {
-            this.initializeUser(user);
-            this.authorizeSocketConnection();
-            this.retrieveStateApplicationService.saveUserId(user);
-        });
-        this.retrieveStateApplicationService.onRetrieveApplicationState.subscribe((user) => {
-            this.initializeUser(user);
-            this.authorizeSocketConnection();
-        });
         this.retrieveStateApplicationService.onRemoveUserId.subscribe(() => {
             this.eraseData();
         });
+
+        this.loginService.onLogin.subscribe((user: UserDto) => {
+            this.initUser(user);
+        });
+        this.retrieveStateApplicationService.onRetrieveApplicationState.subscribe((user) => {
+            this.initUser(user);
+        });
+
         this.wsrClientService.isConnected.subscribe((status) => {
             this.wsrIsConnected = status;
             this.authorizeSocketConnection();
@@ -78,17 +76,21 @@ export class UserProfileService {
 
     }
 
+    private initUser(user: UserDto){
+
+        this.userBeh.next(UserObs.create(user));
+        this.retrieveStateApplicationService.saveUserId(user);
+
+        this.authorizeSocketConnection();
+        this.fetchFriends().catch();
+        this.fetchChannels().catch();
+        this.fetchUsersWithMsg().catch();
+    }
+
     private authorizeSocketConnection() {
         if (this.wsrIsConnected && (this.userBeh.getValue() != null)) {
             this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.AUTHSESSION, this.userBeh.getValue().toUserDto());
         }
-    }
-
-    private initializeUser(user: UserDto) {
-        this.userBeh.next(UserObs.create(user));
-        this.fetchFriends().catch();
-        this.fetchChannels().catch();
-        this.fetchUsersWithMsg().catch();
     }
 
     private async fetchFriends() {
@@ -103,6 +105,17 @@ export class UserProfileService {
         this.friends.next(friends);
     }
 
+    private async fetchChannels() {
+        const result = await this.channelsRepository.getShortList(this.userBeh.getValue().getIdUser());
+        console.warn(result);
+        this.channels.next(result);
+    }
+
+    private async fetchUsersWithMsg() {
+        const result = await this.userRepository.gerUserWithMessage(this.userBeh.getValue().getIdUser());
+        this.usersWithNewMessage.next(result);
+    }
+
     public getUser(): UserObs {
         return this.userBeh.getValue();
     }
@@ -115,12 +128,6 @@ export class UserProfileService {
         return this.friends.asObservable();
     }
 
-    private async fetchChannels() {
-        const result = await this.channelsRepository.getShortList(this.userBeh.getValue().getIdUser());
-        console.warn(result);
-        this.channels.next(result);
-    }
-
     public getChannels(): Observable<Array<ChannelDtoShort>> {
         return this.channels.asObservable();
     }
@@ -130,11 +137,6 @@ export class UserProfileService {
         this.friends.next([]);
         this.channels.next([]);
         this.wsrIsConnected = false;
-    }
-
-    private async fetchUsersWithMsg() {
-        const result = await this.userRepository.gerUserWithMessage(this.userBeh.getValue().getIdUser());
-        this.usersWithNewMessage.next(result);
     }
 
     public getUsersWuthMsg() {
