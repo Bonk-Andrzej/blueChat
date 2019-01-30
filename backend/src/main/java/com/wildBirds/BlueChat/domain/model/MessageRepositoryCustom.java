@@ -9,4 +9,5 @@ interface MessageRepositoryCustom {
 
     List<Object> lastMessages (Long idUser);
     List<Message> getNoReadMessages(Long idUser);
+    void updateMessage(List<Message> messagesToUpdate);
 }

@@ -30,9 +30,25 @@ public class MessageFacade {
         List<MessageDto> conversationDto = conversation.stream()
                 .map(message -> messageService.toDto(message))
                 .collect(Collectors.toList());
-
+        this.setReadMessages(conversation, receiver);
 
         return conversationDto;
+    }
+
+    private void setReadMessages(List<Message> conversation, Long idReceiver) {
+
+        List<Message> collect = conversation.stream()
+                .filter(message -> (!message.isRead()))
+                .map(message -> {
+                    if (message.getSender().getIdUser().equals(idReceiver)) {
+                        message.setRead(true);
+                    }
+                    return message;
+                })
+                .collect(Collectors.toList());
+
+        this.messageRepository.updateMessage(collect);
+
     }
 
     protected List<Message> getNoReadMessages(Long idUser){
