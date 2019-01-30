@@ -32,6 +32,7 @@ public class ContactMessageController {
         try {
             contactMessageDto.setSentDate(Instant.now());
             ContactMessageDto savedMessages = contactMessageFacade.saveMessage(contactMessageDto);
+
             log.info("Method sendMessage ", savedMessages.toString());
             return new ResponseEntity(HttpStatus.OK);
         } catch (ContactMessageException e) {

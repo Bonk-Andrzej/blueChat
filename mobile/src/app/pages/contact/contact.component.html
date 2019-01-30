@@ -4,8 +4,8 @@
         <div id="right-button"></div>
 
         <div id="header">Leave for ous your opinion</div>
-        <div id="email-input" titleInside="Your email" app-input-with-inside-text ></div>
-        <div textAlign="left" id="text-area" title="Type what you think" buttonTitle="Send" [texArea]="true" app-input-with-button ></div>
+        <div id="email-input" titleInside="Your email" [(value)]="email" app-input-with-inside-text ></div>
+        <div (onClickButton)="send()" textAlign="left" [(value)]="content" id="text-area" title="Type what you think" buttonTitle="Send" [texArea]="true" app-input-with-button ></div>
 
         <div id="emails-section" app-information-support></div>
 

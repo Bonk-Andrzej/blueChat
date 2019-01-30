@@ -11,6 +11,7 @@ public class ContactMessageFacade {
 
     private ContactMessageRepository repository;
     private ContactMessageService service;
+    private EmailFacade emailFacade;
 
 
 //    public ContactMessageFacade(ContactMessageRepository repository, ContactMessageService service) {
@@ -19,6 +20,11 @@ public class ContactMessageFacade {
 //    }
 
     public ContactMessageDto saveMessage(ContactMessageDto contactMessageDto) {
+
+        String email = contactMessageDto.getEmail();
+        String subject = "Text JET support - we receive email from you";
+        String content = contactMessageDto.getMessage();
+        emailFacade.sendSampleMessage(email, subject, content);
 
         ContactMessage contactMessage = service.toEntity(contactMessageDto);
 

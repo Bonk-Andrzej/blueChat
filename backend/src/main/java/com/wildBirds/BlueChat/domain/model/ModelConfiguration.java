@@ -1,9 +1,9 @@
 package com.wildBirds.BlueChat.domain.model;
 
 import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
-import org.apache.catalina.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
 
 @Configuration
 class ModelConfiguration {
@@ -19,8 +19,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService) {
-        return new ContactMessageFacade(contactMessageRepository, contactMessageService);
+    ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService, EmailFacade emailFacade) {
+        return new ContactMessageFacade(contactMessageRepository, contactMessageService, emailFacade);
     }
 
     @Bean
@@ -52,9 +52,20 @@ class ModelConfiguration {
     UserWithLasMessageFacade userWithLasMessageFacade(MessageService messageService, MessageFacade messageFacade, PhotoService photoService) {
         return new UserWithLasMessageFacade(messageService, messageFacade, photoService);
     }
+    @Bean
+    EmailFacade emailFacade(JavaMailSender javaMailSender){
+        return new EmailFacade(javaMailSender);
+    }
+
 
 
     //services
+
+//    @Bean
+//    public EmailService emailService(){
+//        return new EmailService();
+//    }
+
 
     @Bean
     public ContactMessageService contactMessageService() {

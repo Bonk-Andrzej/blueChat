@@ -97,4 +97,14 @@ class MessageRepositoryImpl implements MessageRepositoryCustom {
 
     }
 
+    @Override
+    @Transactional
+    public void updateMessage(List<Message> messagesToUpdate){
+
+        for (Message message : messagesToUpdate) {
+
+            entityManager.merge(message);
+        }
+    }
+
 }

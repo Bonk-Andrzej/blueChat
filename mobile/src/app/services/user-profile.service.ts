@@ -142,6 +142,14 @@ export class UserProfileService {
     public getUsersWuthMsg() {
         return this.usersWithNewMessage.asObservable();
     }
+    public removeUserWithMsg(userDtoWithMsg: UserDtoWithMessage)  {
+
+        let userDtoWithMessages = this.usersWithNewMessage.getValue().filter(user => !(user.idUser === userDtoWithMsg.idUser));
+
+        this.usersWithNewMessage.next(userDtoWithMessages);
+        this.friends.getValue().find(friend => (friend.getFriend().getIdUser() == userDtoWithMsg.idUser))
+            .setNoReadMessage(0);
+    }
 
     public addFrendDtoToFriend(friendsDto: FriendsDto){
         let friendsList = this.friends.getValue();

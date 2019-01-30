@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: '[app-input-with-button]',
@@ -8,17 +8,28 @@ import {Component, Input, OnInit} from '@angular/core';
 export class InputWithButtonComponent implements OnInit {
 
     @Input() title: string;
-    @Input() value: string;
     @Input() buttonTitle: string;
     @Input() texArea: boolean;
-    @Input() textAlign: string
+    @Input() textAlign: string;
+
+    @Input() value: string;
+    @Output() valueChange = new EventEmitter<string>();
+    @Output() onClickButton = new EventEmitter<null>();
 
     constructor() {
     }
 
     ngOnInit() {
         this.texArea = this.texArea || false;
-        this.textAlign = this.textAlign || "center";
+        this.textAlign = this.textAlign || 'center';
+    }
+
+    throwValue() {
+        this.valueChange.emit(this.value);
+    }
+
+    public clickButtonHandler() {
+        this.onClickButton.emit();
     }
 
 
