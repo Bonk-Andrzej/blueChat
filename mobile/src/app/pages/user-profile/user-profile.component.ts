@@ -58,7 +58,7 @@ export class UserProfileComponent implements OnInit {
 
 
     // Click events
-    onGroups() {
+    membersButtonHandler() {
         this.router.navigateByUrl('/groups');
     }
 
@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
 
     }
 
-    onFriends() {
+    joinButtonHandler() {
         this.router.navigateByUrl('/friendDtoList');
     }
 

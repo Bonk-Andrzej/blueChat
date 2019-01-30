@@ -17,6 +17,9 @@
 .settings/
 *.sublime-workspace
 
+# Node
+**/package-lock.json
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
@@ -37,3 +40,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+

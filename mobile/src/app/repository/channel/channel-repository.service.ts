@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {ChannelDtoShort} from './channelDtoShort';
 import {ChannelDto} from './channelDto';
 import {environment} from "../../environment";
-import {Params} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -37,9 +36,8 @@ export class ChannelRepositoryService {
         return this.http.get<Array<ChannelDtoShort>>(this.host + '/shorts').toPromise();
     }
 
-    public getById(id: number): Observable<ChannelDto> {
-        // return this.http.get<ChannelDtoShort>(this.host + idUser);
-        return this.http.get<ChannelDto>(this.host + '/' + id);
+    public getById(id: number): Promise<ChannelDto> {
+        return this.http.get<ChannelDto>(this.host + '/' + id,{headers: this.headers}).toPromise()
     }
 
     public addChannel(channelDto: ChannelDto): Observable<ChannelDto> {

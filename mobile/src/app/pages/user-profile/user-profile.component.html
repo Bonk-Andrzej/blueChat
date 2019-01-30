@@ -4,11 +4,10 @@
     <div id="right-button"></div>
 
     <div id="box-profile" [userObservable]="getUserObs()" app-box-profiles=""></div>
-    <!--<div id="box-profile" [color]='this.userObs.photo.photo' [content]='this.userObs.description' [title]="this.userObs.nick" app-box-profiles=""></div>-->
     <div id="button-wrapper">
         <div (click)="onAddFriend()" [ngStyle]="addFriendButtonStyle" id="add-friend" class="button"></div>
-        <div (click)="onFriends()" id="friends" class="button" ></div>
-        <div (click)="onGroups()" id="groups" class="button" ></div>
+        <div (click)="joinButtonHandler()" id="friends" class="button" ></div>
+        <div (click)="membersButtonHandler()" id="groups" class="button" ></div>
         <div (click)="onSearch()" id="search" class="button"></div>
     </div>
 </div>

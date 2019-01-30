@@ -47,6 +47,7 @@ import { ButtonAddFriendComponent } from './components/button-add-friend/button-
 import { FriendsComponent } from './pages/friends/friends.component';
 import { SearchComponent } from './pages/search/search.component';
 import { OptionsComponent } from './pages/options/options.component';
+import { GroupProfileComponent } from './pages/group-profile/group-profile.component';
 
 @NgModule({
     declarations: [
@@ -92,6 +93,7 @@ import { OptionsComponent } from './pages/options/options.component';
         FriendsComponent,
         SearchComponent,
         OptionsComponent,
+        GroupProfileComponent,
     ],
     imports: [
         BrowserModule,

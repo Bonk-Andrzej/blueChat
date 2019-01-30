@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {FriendsDto} from '../../repository/friend/friendsDto';
 import {ChannelDtoShort} from '../../repository/channel/channelDtoShort';
-import {UserProfileComponent} from '../user-profile/user-profile.component';
 import {UserProfileService} from '../../services/user-profile.service';
 
 @Component({
@@ -26,7 +24,11 @@ export class GroupsComponent implements OnInit {
     }
 
     createGroup() {
-        this.router.navigateByUrl('/create-group');
+        this.router.navigateByUrl('/create-group').catch()
+    }
+
+    showGroupProfileHandler(group: ChannelDtoShort){
+        this.router.navigateByUrl("/group-profile/" + group.idChannel).catch()
     }
 
 }
