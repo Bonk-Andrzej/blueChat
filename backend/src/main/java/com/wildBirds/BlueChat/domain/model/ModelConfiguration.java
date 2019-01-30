@@ -3,7 +3,6 @@ package com.wildBirds.BlueChat.domain.model;
 import com.wildBirds.BlueChat.api.webSocket.controllers.MessageControllerWSR;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
 
 @Configuration
 class ModelConfiguration {
@@ -19,8 +18,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService) {
-        return new ContactMessageFacade(contactMessageRepository, contactMessageService);
+    ContactMessageFacade contactMessageFacade(ContactMessageRepository contactMessageRepository, ContactMessageService contactMessageService, EmailFacade emailFacade) {
+        return new ContactMessageFacade(contactMessageRepository, contactMessageService, emailFacade);
     }
 
     @Bean

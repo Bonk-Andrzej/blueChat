@@ -11,11 +11,18 @@ public class EmailFacade {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendSampleMessage(){
+
+    public void sendSampleMessage(String email, String subject, String content){
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("igorsowa@wp.pl");
-        message.setSubject("email by properties");
-        message.setText("some special text from properties");
+        message.setTo(email);
+        message.setSubject(subject);
+        message.setText(content);
         javaMailSender.send(message);
+    }
+
+    public SimpleMailMessage templateSimpleMessage() {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setText("This is the test email template for your email:\n%s\n");
+        return message;
     }
 }
