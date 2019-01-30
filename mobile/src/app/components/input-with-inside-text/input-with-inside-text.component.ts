@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: '[app-input-with-inside-text]',
@@ -10,6 +10,7 @@ export class InputWithInsideTextComponent implements OnInit {
     @Input() type: string;
     @Input() value: string;
     @Input() titleInside: string;
+    @Output() valueChange = new EventEmitter<string>();
 
     constructor() {
     }
@@ -17,10 +18,9 @@ export class InputWithInsideTextComponent implements OnInit {
     ngOnInit() {
     }
 
-    onChangeHandler(event: Event) {
-        // this.valueChange.emit(this.value)
-        // this.inputChange.emit(event)
-        // console.log(this.value)
+    throwValue() {
+        this.valueChange.emit(this.value)
+        console.log('>>>>> INPUT WITH EMAIL' , this.value)
     }
 
 }

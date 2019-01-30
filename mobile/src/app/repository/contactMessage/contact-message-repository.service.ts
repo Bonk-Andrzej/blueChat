@@ -6,7 +6,7 @@ import {environment} from "../../environment";
 @Injectable({
   providedIn: 'root'
 })
-export class ContactMessageService {
+export class ContactMessageRepositoryService {
     private http: HttpClient;
     private headers: HttpHeaders;
     private readonly host: string;
@@ -26,6 +26,7 @@ export class ContactMessageService {
     }
 
     public sendMessage(contactMessageDto: ContactMessageDto){
+        console.log('REPOSITORY >>>>',contactMessageDto)
         return this.http.post<ContactMessageDto>(this.host, contactMessageDto,
             {headers: this.headers, observe: 'response'})
             .subscribe(
