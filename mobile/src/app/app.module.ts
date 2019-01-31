@@ -48,7 +48,7 @@ import { FriendsComponent } from './pages/friends/friends.component';
 import { SearchComponent } from './pages/search/search.component';
 import { OptionsComponent } from './pages/options/options.component';
 import { GroupProfileComponent } from './pages/group-profile/group-profile.component';
-
+import { EmojifyModule } from 'angular-emojify';
 @NgModule({
     declarations: [
         AppComponent,
@@ -100,7 +100,9 @@ import { GroupProfileComponent } from './pages/group-profile/group-profile.compo
         AppRoutingModule,
         FormsModule,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        EmojifyModule
+
     ],
     providers: [],
     bootstrap: [AppComponent]

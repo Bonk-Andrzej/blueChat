@@ -13,13 +13,13 @@
             <ng-template #messageOvner>
                 <div class="message" id="sender" [messageOwner]="message.getInterlocutorDisplayName()"
                      [date]="message.getSentDate() |  date :'short'"
-                     [content]="message.getContent()" app-box-message=""></div>
+                     [content]="message.getContent() | emojify" app-box-message=""></div>
             </ng-template>
 
             <ng-template #sessageInterlocutor>
                 <div class="message" id="interlocutor" [messageOwner]="message.getInterlocutorDisplayName()"
                      [date]="message.getSentDate() |  date :'short'"
-                     [content]="message.getContent()" app-box-message=""></div>
+                     [content]="message.getContent() | emojify" app-box-message=""></div>
             </ng-template>
 
         </ng-container>
