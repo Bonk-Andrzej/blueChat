@@ -49,6 +49,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { OptionsComponent } from './pages/options/options.component';
 import { GroupProfileComponent } from './pages/group-profile/group-profile.component';
 import { TileButtonComponent } from './components/tile-button/tile-button.component';
+import { GroupMembersComponent } from './pages/group-members/group-members.component';
 
 @NgModule({
     declarations: [
@@ -96,6 +97,7 @@ import { TileButtonComponent } from './components/tile-button/tile-button.compon
         OptionsComponent,
         GroupProfileComponent,
         TileButtonComponent,
+        GroupMembersComponent,
     ],
     imports: [
         BrowserModule,

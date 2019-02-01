@@ -16,6 +16,7 @@ import {FriendsComponent} from "../pages/friends/friends.component";
 import {SearchComponent} from '../pages/search/search.component';
 import {OptionsComponent} from '../pages/options/options.component';
 import {GroupProfileComponent} from "../pages/group-profile/group-profile.component";
+import {GroupMembersComponent} from "../pages/group-members/group-members.component";
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     {path: 'user-profile/:id', component: UserProfileComponent},
     {path: 'user-profile', component: UserProfileComponent},
     {path: 'group-profile/:id', component: GroupProfileComponent},
+    {path: 'group-members', component: GroupMembersComponent},
     {path: 'search', component: SearchComponent},
     {path: 'options', component: OptionsComponent},
     // {path: '', component: UserProfileComponent},

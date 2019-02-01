@@ -1,0 +1,16 @@
+<div class="grid">
+
+  <div id="left-button" app-button-back=""></div>
+  <div id="title" valueContent="GROUP MEMBERS" app-title=""></div>
+  <div id="right-button"></div>
+
+
+  <div id="input-search" app-input-search=""></div>
+  <div id="group-list" title="MEMBERS" app-list-users-with-title="">
+    <ng-container *ngFor="let user of this.getMembers() | async">
+      <div (click)="showProfile(user.getIdUser())" [objectName]="user.getNick()" [photoColor]="user.getPhoto().photo"
+           app-object-with-x=""></div>
+    </ng-container>
+  </div>
+</div>
+<div id="menu-bottom" app-menu-bottom=""></div>

@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ChannelRepositoryService} from "../../repository/channel/channel-repository.service";
 import {ChannelObs} from "../../services/model/channelObs";
+import {GroupProfileService} from "../../services/group-profile.service";
 
 @Component({
     selector: 'app-group-profile',
@@ -11,23 +12,18 @@ import {ChannelObs} from "../../services/model/channelObs";
 })
 export class GroupProfileComponent implements OnInit {
 
-
-    private groupBehavior: BehaviorSubject<ChannelObs>;
-    public joinButtonStyle = {
-        backgroundImage: ""
-    };
+    private groupObs: Observable<ChannelObs>;
 
     constructor(private router: Router,
                 private activeRout: ActivatedRoute,
-                private channelRepositoryService: ChannelRepositoryService
+                private groupProfile: GroupProfileService
     ) {
-        this.groupBehavior = new BehaviorSubject<ChannelObs>(new ChannelObs());
+        this.groupObs = new BehaviorSubject<ChannelObs>(new ChannelObs());
     }
 
     async ngOnInit() {
         const groupId = this.activeRout.snapshot.params["id"];
-        const channelDto = await this.channelRepositoryService.getById(groupId);
-        this.groupBehavior.next(ChannelObs.create(channelDto));
+        this.groupObs = this.groupProfile.getGroup(groupId);
     }
 
     public joinButtonHandler() {
@@ -35,11 +31,11 @@ export class GroupProfileComponent implements OnInit {
     }
 
     public membersButtonHandler() {
-
+        this.router.navigateByUrl("/group-members").catch()
     }
 
     public getGroupObs(): Observable<ChannelObs> {
-        return this.groupBehavior.asObservable();
+        return this.groupObs;
     }
 
 

@@ -33,9 +33,11 @@ export class BoxProfilesComponent implements OnInit {
         });
 
         this.groupObservable.subscribe( group => {
-            this.title = group.getName();
-            this.content = "Group description";
-            this.color = group.getPhoto().photo;
+            if(group != null){
+                this.title = group.getName();
+                this.content = "Group description";
+                this.color = group.getPhoto().photo;
+            }
         });
 
     }

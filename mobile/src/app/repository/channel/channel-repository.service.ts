@@ -37,7 +37,7 @@ export class ChannelRepositoryService {
     }
 
     public getById(id: number): Promise<ChannelDto> {
-        return this.http.get<ChannelDto>(this.host + '/' + id,{headers: this.headers}).toPromise()
+        return this.http.get<ChannelDto>(this.host + '/' + id,{headers: this.headers}).toPromise();
     }
 
     public addChannel(channelDto: ChannelDto): Observable<ChannelDto> {
