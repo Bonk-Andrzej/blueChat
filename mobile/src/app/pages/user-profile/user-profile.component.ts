@@ -15,8 +15,9 @@ export class UserProfileComponent implements OnInit {
 
 
     private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
-    public addFriendButtonStyle = {
-        backgroundImage: ""
+    public firstButtonProperties = {
+        iconName: "",
+        name: ""
     };
 
     constructor(private router: Router,
@@ -42,12 +43,15 @@ export class UserProfileComponent implements OnInit {
         if(paramId != null){
             let user = this.userProfileService.findFreind(paramId);
             if(user != null){
-                this.addFriendButtonStyle.backgroundImage = "url(assets/remove.svg)";
+                this.firstButtonProperties.iconName = "remove.svg";
+                this.firstButtonProperties.name = "Delete";
             }else {
-                this.addFriendButtonStyle.backgroundImage = "url(assets/add-person-icon.svg)";
+                this.firstButtonProperties.iconName = "add-person-icon.svg";
+                this.firstButtonProperties.name = "Add";
             }
         }else {
-            this.addFriendButtonStyle.backgroundImage = "url(assets/edit.svg)";
+            this.firstButtonProperties.iconName = "edit.svg";
+            this.firstButtonProperties.name = "Edit";
         }
 
     }

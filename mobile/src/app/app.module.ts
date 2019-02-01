@@ -48,6 +48,7 @@ import { FriendsComponent } from './pages/friends/friends.component';
 import { SearchComponent } from './pages/search/search.component';
 import { OptionsComponent } from './pages/options/options.component';
 import { GroupProfileComponent } from './pages/group-profile/group-profile.component';
+import { TileButtonComponent } from './components/tile-button/tile-button.component';
 
 @NgModule({
     declarations: [
@@ -94,6 +95,7 @@ import { GroupProfileComponent } from './pages/group-profile/group-profile.compo
         SearchComponent,
         OptionsComponent,
         GroupProfileComponent,
+        TileButtonComponent,
     ],
     imports: [
         BrowserModule,

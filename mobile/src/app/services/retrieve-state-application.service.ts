@@ -23,7 +23,7 @@ export class RetrieveStateApplicationService {
         if (id != null) {
             const user = await this.userRepository.getUserById(parseInt(id));
             this.onRetrieveApplicationState.emit(user);
-            this.router.navigateByUrl('/main-login').catch();
+            this.router.navigateByUrl('/user-profile/1').catch();
         } else {
             this.router.navigateByUrl('/').catch();
 
