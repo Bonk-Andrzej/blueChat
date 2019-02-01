@@ -50,7 +50,7 @@ import { OptionsComponent } from './pages/options/options.component';
 import { GroupProfileComponent } from './pages/group-profile/group-profile.component';
 import { TileButtonComponent } from './components/tile-button/tile-button.component';
 import { GroupMembersComponent } from './pages/group-members/group-members.component';
-
+import { EmojifyModule } from 'angular-emojify';
 @NgModule({
     declarations: [
         AppComponent,
@@ -104,7 +104,9 @@ import { GroupMembersComponent } from './pages/group-members/group-members.compo
         AppRoutingModule,
         FormsModule,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        EmojifyModule
+
     ],
     providers: [],
     bootstrap: [AppComponent]
