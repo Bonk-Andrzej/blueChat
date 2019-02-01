@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ColorObject} from '../../services/background/colorObject';
 import {ColorService} from '../../services/background/color.service';
 
 @Component({
