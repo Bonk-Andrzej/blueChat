@@ -30,6 +30,8 @@ export class SearchService {
             if (phrase != null && phrase.length > 0) {
                 this.fetchUsers(phrase);
                 this.fetchChannels(phrase);
+            }else {
+                this.deleteResults();
             }
         },500);
 

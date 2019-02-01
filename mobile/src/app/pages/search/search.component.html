@@ -11,7 +11,7 @@
       <div (click)="showUserProfile(user.idUser)" [objectName]="user.nick" [photoColor]="user.photoDto.photo"
            app-object-with-x=""></div>
     </ng-container>
-    <div>___________</div>
+    <hr />
     <ng-container *ngFor="let channel of channels | async">
       <div (click)="showChannelProfile(channel.idChannel)" [objectName]="channel.name" [photoColor]="channel.photoDto.photo"
            app-object-with-x=""></div>
