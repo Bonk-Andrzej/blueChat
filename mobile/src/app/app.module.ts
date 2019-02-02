@@ -51,6 +51,8 @@ import { GroupProfileComponent } from './pages/group-profile/group-profile.compo
 import { TileButtonComponent } from './components/tile-button/tile-button.component';
 import { GroupMembersComponent } from './pages/group-members/group-members.component';
 import { EmojifyModule } from 'angular-emojify';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { OwnEmojiComponent } from './components/own-emoji/own-emoji.component'
 @NgModule({
     declarations: [
         AppComponent,
@@ -98,6 +100,8 @@ import { EmojifyModule } from 'angular-emojify';
         GroupProfileComponent,
         TileButtonComponent,
         GroupMembersComponent,
+        OwnEmojiComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -105,7 +109,8 @@ import { EmojifyModule } from 'angular-emojify';
         FormsModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        EmojifyModule
+        EmojifyModule,
+        PickerModule
 
     ],
     providers: [],
