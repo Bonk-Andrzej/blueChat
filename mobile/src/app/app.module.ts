@@ -52,7 +52,9 @@ import { TileButtonComponent } from './components/tile-button/tile-button.compon
 import { GroupMembersComponent } from './pages/group-members/group-members.component';
 import { EmojifyModule } from 'angular-emojify';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { OwnEmojiComponent } from './components/own-emoji/own-emoji.component'
+import { OwnEmojiComponent } from './components/own-emoji/own-emoji.component';
+import { EmojiPipePipe } from './pipes/emoji-pipe.pipe'
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji'
 @NgModule({
     declarations: [
         AppComponent,
@@ -101,6 +103,7 @@ import { OwnEmojiComponent } from './components/own-emoji/own-emoji.component'
         TileButtonComponent,
         GroupMembersComponent,
         OwnEmojiComponent,
+        EmojiPipePipe,
 
     ],
     imports: [
@@ -110,7 +113,8 @@ import { OwnEmojiComponent } from './components/own-emoji/own-emoji.component'
         BrowserAnimationsModule,
         HttpClientModule,
         EmojifyModule,
-        PickerModule
+        PickerModule,
+        EmojiModule
 
     ],
     providers: [],

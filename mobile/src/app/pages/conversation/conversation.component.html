@@ -5,7 +5,7 @@
     <div id="right-button"></div>
 
     <div id="conversation-wrapper" #conversationListRef>
-        <ng-container class="conversation" *ngFor="let message of conversation | async" >
+        <ng-container class="conversation" *ngFor="let message of conversation | async">
             <ng-container
                     *ngIf="(message.getSendedByMe()); then  messageOvner; else sessageInterlocutor;">
             </ng-container>
@@ -13,17 +13,21 @@
             <ng-template #messageOvner>
                 <div class="message" id="sender" [messageOwner]="message.getInterlocutorDisplayName()"
                      [date]="message.getSentDate() |  date :'short'"
-                     [content]="message.getContent() | emojify" app-box-message=""></div>
+                     [content]="message.getContent() | emojiPipe" app-box-message=""></div>
             </ng-template>
 
             <ng-template #sessageInterlocutor>
                 <div class="message" id="interlocutor" [messageOwner]="message.getInterlocutorDisplayName()"
                      [date]="message.getSentDate() |  date :'short'"
-                     [content]="message.getContent() | emojify" app-box-message=""></div>
+                     [content]="message.getContent() | emojiPipe" app-box-message=""></div>
             </ng-template>
 
         </ng-container>
     </div>
+    <ngx-emoji emoji="innocent" set="emojione" size="16" style="
+    height: 20px;
+    width: 20px;
+"></ngx-emoji>
     <div (onButtonClick)="sendMessage()" [(value)]="messageContent" id="button-sending" app-button-sending></div>
     <app-own-emoji id="app-own-emoji-component"></app-own-emoji>
 </div>

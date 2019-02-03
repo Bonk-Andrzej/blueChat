@@ -1,5 +1,9 @@
 <div id="box-message">
     <div id="messageOwner">{{messageOwner}}</div>
     <div id="date">{{date}}</div>
-    <div id="content">{{content}}</div>
+    <div id="content">
+        <span [outerHTML]="content">{{content}}</span>
+    </div>
+
+
 </div>
