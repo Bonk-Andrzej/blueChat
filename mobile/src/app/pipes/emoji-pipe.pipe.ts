@@ -29,7 +29,7 @@ export class EmojiPipePipe implements PipeTransform {
 
             let emoteData = this.emojiService.emojis.find(value1 => value1.colons == emojiName);
             if (emoteData != null) {
-                const styles = this.emojiService.emojiSpriteStyles(emoteData.sheet, 'google');
+                const styles = this.emojiService.emojiSpriteStyles(emoteData.sheet, (this.ownEmojiService.getType()) as 'apple' | 'google' | 'twitter' | 'emojione' | 'messenger' | 'facebook' | '' );
                 const htmlElement = document.createElement('div');
                 Object.assign(htmlElement.style, styles);
                 content = content.replace(emojiName, htmlElement.outerHTML);

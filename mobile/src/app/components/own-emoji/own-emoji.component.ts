@@ -10,24 +10,13 @@ import {OwnEmojiServiceService} from '../../services/own-emoji-service.service';
 })
 export class OwnEmojiComponent{
 
-    themes = [
-        'native',
-        'apple',
-        'google',
-        'twitter',
-        'emojione',
-        'messenger',
-        'facebook',
-    ];
-    set = 'google';
-    native = true;
 
-    setTheme(set: string) {
-        this.native = set === 'google';
-        this.set = set;
+    emojiType : string;
+
+
+    constructor(private ownEmojiService: OwnEmojiServiceService) {
+        this.emojiType = ownEmojiService.getType();
     }
-
-    constructor(private ownEmojiService: OwnEmojiServiceService) { }
 
     public handleClick($event: EmojiEvent) {
         this.ownEmojiService.pickEmoji($event.emoji);

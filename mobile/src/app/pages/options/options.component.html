@@ -11,6 +11,12 @@
                 <div (click)="setBackground(color)"  [style.backgroundColor]="color.color" class="colorButton"></div>
             </ng-container>
         </div>
+        <div>
+            <ng-container *ngFor="let type of emojiTypeList">
+                <div class="emojiType" (click)="setType(type)"> {{type}}</div>
+
+            </ng-container>
+        </div>
     </div>
 </div>
 <div id="menu-bottom" app-menu-bottom=""></div>

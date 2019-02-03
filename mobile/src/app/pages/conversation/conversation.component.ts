@@ -39,6 +39,7 @@ export class ConversationComponent implements OnInit {
         });
         this.ownEmojiService.onSelectetEmoji.subscribe(emojiString => {
             this.messageContent = this.messageContent + emojiString;
+            // this.messageContent = this.ownEmojiPipe.transform(this.messageContent + emojiString,null);
         });
 
     }
