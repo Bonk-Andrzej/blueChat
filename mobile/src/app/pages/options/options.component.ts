@@ -11,7 +11,7 @@ import {EmojiType, OwnEmojiServiceService} from '../../services/own-emoji-servic
 export class OptionsComponent implements OnInit {
 
     public colorsList: Array<ColorObject>;
-    public emojiTypeList : Array<string> = [];
+    public emojiTypeList: Array<string> = [];
 
     constructor(private bgColorService: ColorService,
                 private ownEmojiService: OwnEmojiServiceService) {
@@ -20,17 +20,19 @@ export class OptionsComponent implements OnInit {
 
     ngOnInit() {
         for (let emojiTypeKey in  EmojiType) {
-            this.emojiTypeList.push(emojiTypeKey.toLowerCase())
+            this.emojiTypeList.push(emojiTypeKey.toLowerCase());
         }
         this.colorsList = this.bgColorService.colors;
     }
 
-    setBackground(color: ColorObject){
+    setBackground(color: ColorObject) {
         this.bgColorService.setCurrentColor(color);
     }
-    setType(type : EmojiType){
+
+    setType(type: EmojiType) {
         console.log(type);
-        this.ownEmojiService.setTupe(type)
+        alert('Enjoy emote type: ' + type);
+        this.ownEmojiService.setTupe(type);
     }
 
 }

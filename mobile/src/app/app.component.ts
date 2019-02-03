@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UserProfileService} from './services/user-profile.service';
 import {WSRClientService} from './WSRClient/wsrclient.service';
 import {ChangeService} from './services/change.service';
 import {ColorService} from './services/background/color.service';
+import {OwnEmojiServiceService} from './services/own-emoji-service.service';
 
 @Component({
     selector: 'app-root',
@@ -12,9 +13,10 @@ import {ColorService} from './services/background/color.service';
 export class AppComponent {
 
     constructor(private userProfileService: UserProfileService,
-                private webSocket : WSRClientService,
+                private webSocket: WSRClientService,
                 private changeService: ChangeService,
-                private colorService: ColorService) {
+                private colorService: ColorService,
+                private ownEmojiService: OwnEmojiServiceService) {
 
     }
 

@@ -1,4 +1,5 @@
 <div id="wrapper-button">
+    <div (click)="emojiButtonClickHandle($event)" id="emoteIcon"></div>
     <textarea (keyup)="textUpdate()" [(ngModel)]="value" id="text-content"></textarea>
     <div (click)="buttonClickHandler($event)" id="red-button"></div>
 </div>

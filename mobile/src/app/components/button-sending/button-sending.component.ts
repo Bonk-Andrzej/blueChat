@@ -10,6 +10,7 @@ export class ButtonSendingComponent implements OnInit {
     @Input() value: string;
     @Output() valueChange = new EventEmitter<string>();
     @Output() onButtonClick = new EventEmitter<Event>();
+    @Output() smileButtonClick = new EventEmitter<Event>();
 
     constructor() {
     }
@@ -23,6 +24,9 @@ export class ButtonSendingComponent implements OnInit {
 
     public textUpdate(){
         this.valueChange.emit(this.value);
+    }
+    public emojiButtonClickHandle(e: Event){
+        this.smileButtonClick.emit(e)
     }
 
 }

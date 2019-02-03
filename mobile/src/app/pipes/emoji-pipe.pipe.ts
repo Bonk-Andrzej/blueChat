@@ -6,9 +6,6 @@ import {OwnEmojiServiceService} from '../services/own-emoji-service.service';
 @Pipe({
     name: 'emojiPipe'
 })
-@Injectable({
-    providedIn: 'root'
-})
 export class EmojiPipePipe implements PipeTransform {
 
     constructor(private sanitizer: DomSanitizer,
@@ -29,7 +26,10 @@ export class EmojiPipePipe implements PipeTransform {
 
             let emoteData = this.emojiService.emojis.find(value1 => value1.colons == emojiName);
             if (emoteData != null) {
-                const styles = this.emojiService.emojiSpriteStyles(emoteData.sheet, (this.ownEmojiService.getType()) as 'apple' | 'google' | 'twitter' | 'emojione' | 'messenger' | 'facebook' | '' );
+                const styles = this.emojiService.emojiSpriteStyles(
+                    emoteData.sheet,
+                    (this.ownEmojiService.getType()) as 'apple' | 'google' | 'twitter' | 'emojione' | 'messenger' | 'facebook' | '' ,
+                    20);
                 const htmlElement = document.createElement('div');
                 Object.assign(htmlElement.style, styles);
                 content = content.replace(emojiName, htmlElement.outerHTML);

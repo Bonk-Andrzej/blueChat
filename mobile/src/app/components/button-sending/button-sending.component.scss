@@ -7,6 +7,16 @@
   box-sizing: border-box;
   overflow: auto;
 
+  #emoteIcon{
+    float: left;
+    height: 100%;
+    width: 40px;
+    background-size: 80%;
+    position: absolute;
+    left: 0;
+    opacity: .5;
+    background: url('~src/assets/icon_logo.svg') no-repeat center;
+  }
   #text-content {
     //height: 100%;
     width: 100%;
@@ -16,7 +26,7 @@
     //padding: 3px;
     border: none;
     outline: none;
-    padding: 3px 42px 3px 3px;
+    padding: 3px 42px 3px 43px;
     border-radius: 0px 10px;
     box-sizing: border-box;
     font-size: 1.16em;

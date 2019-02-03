@@ -16,13 +16,14 @@ export class ConversationComponent implements OnInit {
     messageContent: string;
     conversation: Observable<Array<MessageObs>>;
 
+    isDisplayEmoji: boolean;
     @ViewChild('conversationListRef')
     private conversationListRef: ElementRef<HTMLDivElement>;
 
     constructor(private conversationService: ConversationService,
-                private ownEmojiService: OwnEmojiServiceService,
-                public  ownEmojiPipe: EmojiPipePipe) {
+                private ownEmojiService: OwnEmojiServiceService) {
         this.messageContent = '';
+        this.isDisplayEmoji = false;
     }
 
     ngOnInit() {
@@ -51,5 +52,9 @@ export class ConversationComponent implements OnInit {
 
     private cleanMessageInput() {
         this.messageContent = '';
+    }
+
+    toggleEmojiPicker() {
+        this.isDisplayEmoji = !this.isDisplayEmoji;
     }
 }
