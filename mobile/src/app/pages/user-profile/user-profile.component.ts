@@ -13,7 +13,7 @@ import {UserObs} from "../../services/model/userObs";
 })
 export class UserProfileComponent implements OnInit {
 
-
+    private finc;
     private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
     public firstButtonProperties = {
         iconName: "",
@@ -45,6 +45,9 @@ export class UserProfileComponent implements OnInit {
             if(user != null){
                 this.firstButtonProperties.iconName = "remove.svg";
                 this.firstButtonProperties.name = "Delete";
+                this.finc = ()=>{
+
+                };
             }else {
                 this.firstButtonProperties.iconName = "add-person-icon.svg";
                 this.firstButtonProperties.name = "Add";
@@ -76,6 +79,6 @@ export class UserProfileComponent implements OnInit {
     }
 
     onAddFriend() {
-
+        this.finc()
     }
 }

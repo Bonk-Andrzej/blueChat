@@ -54,7 +54,8 @@ import { EmojifyModule } from 'angular-emojify';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { OwnEmojiComponent } from './components/own-emoji/own-emoji.component';
 import { EmojiPipePipe } from './pipes/emoji-pipe.pipe'
-import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji'
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { ConfirmComponent } from './components/confirm/confirm.component'
 @NgModule({
     declarations: [
         AppComponent,
@@ -104,6 +105,7 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji'
         GroupMembersComponent,
         OwnEmojiComponent,
         EmojiPipePipe,
+        ConfirmComponent,
 
     ],
     imports: [
