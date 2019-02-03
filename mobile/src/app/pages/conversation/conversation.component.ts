@@ -1,10 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ConversationService} from '../../services/conversation.service';
 import {Observable} from 'rxjs';
-import {MessageDto} from '../../repository/message/messageDto';
-import {UserProfileService} from '../../services/user-profile.service';
-import {MessageObs} from "../../services/model/messageObs";
-import {UserObs} from '../../services/model/userObs';
+import {MessageObs} from '../../services/model/messageObs';
+import {OwnEmojiServiceService} from '../../services/own-emoji-service.service';
+import {EmojiPipePipe} from '../../pipes/emoji-pipe.pipe';
 
 @Component({
     selector: 'app-conversation',
@@ -20,7 +19,10 @@ export class ConversationComponent implements OnInit {
     @ViewChild('conversationListRef')
     private conversationListRef: ElementRef<HTMLDivElement>;
 
-    constructor(private conversationService : ConversationService) {
+    constructor(private conversationService: ConversationService,
+                private ownEmojiService: OwnEmojiServiceService,
+                public  ownEmojiPipe: EmojiPipePipe) {
+        this.messageContent = '';
     }
 
     ngOnInit() {
@@ -32,13 +34,16 @@ export class ConversationComponent implements OnInit {
                 const nativeElement = this.conversationListRef.nativeElement;
                 setTimeout(() => {
                     nativeElement.scrollTop = nativeElement.scrollHeight;
-                }, 0)
+                }, 0);
             }
-        })
+        });
+        this.ownEmojiService.onSelectetEmoji.subscribe(emojiString => {
+            this.messageContent = this.messageContent + emojiString;
+        });
 
     }
 
-    public sendMessage(){
+    public sendMessage() {
         this.conversationService.sendMessage(this.messageContent);
         this.cleanMessageInput();
     }

@@ -1,43 +1,42 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {Injectable, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
+import {EmojiService} from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import {OwnEmojiServiceService} from '../services/own-emoji-service.service';
 
 @Pipe({
     name: 'emojiPipe'
 })
+@Injectable({
+    providedIn: 'root'
+})
 export class EmojiPipePipe implements PipeTransform {
 
-    constructor(private sanitizer: DomSanitizer) {
+    constructor(private sanitizer: DomSanitizer,
+                private emojiService: EmojiService,
+                private ownEmojiService: OwnEmojiServiceService) {
+
+        console.log(emojiService);
     }
 
     transform(value: any, args?: any): any {
-        if (value != null) {
 
-            console.log('fdddd', value);
+        let content: string = value || '';
+        const regexp = /[:][A-Za-z_/-]+[:]/g;
+        const emotesNameList: Array<string> = content.match(regexp) || [];
 
-            let content: string = value;
-            var regexp = /[:][A-Za-z_]+[:]/g;
-            var emote: Array<string> = content.match(regexp);
+        emotesNameList.forEach(emojiName => {
 
 
-            if (emote != null) {
-                emote.forEach(emoji => {
-                    let emojiContent = emoji.substr(1, emoji.length - 2);
-                    console.log(emojiContent);
-                    let emojiHtml = `<ngx-emoji emoji='${emojiContent}' set='emojione' size='16'></ngx-emoji>`;
-                    console.log('>>>>>>>>>>>>>>>>>>',emojiHtml);
-                    content = content.replace(emoji, emojiHtml);
-                });
+            let emoteData = this.emojiService.emojis.find(value1 => value1.colons == emojiName);
+            if (emoteData != null) {
+                const styles = this.emojiService.emojiSpriteStyles(emoteData.sheet, 'google');
+                const htmlElement = document.createElement('div');
+                Object.assign(htmlElement.style, styles);
+                content = content.replace(emojiName, htmlElement.outerHTML);
             }
 
-
-            var safeHtml = this.sanitizer.bypassSecurityTrustHtml(content);
-
-
-            return safeHtml;
-        } else {
-            return (value);
-        }
-
+        });
+        return this.sanitizer.bypassSecurityTrustHtml(content);
     }
 
 }
