@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserRepositoryService} from "../../repository/user/user-repository.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {UserObs} from "../../services/model/userObs";
+import {UserShortObs} from '../../services/model/userShortObs';
+import {InvitationService} from '../../services/invitation.service';
 
 @Component({
     selector: 'app-user-profile',
@@ -13,22 +15,26 @@ import {UserObs} from "../../services/model/userObs";
 })
 export class UserProfileComponent implements OnInit {
 
-    private finc;
+    private pointedUser: UserShortObs;
+    private confirmFunction;
     private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
     public firstButtonProperties = {
         iconName: "",
         name: ""
     };
-
+    public titleConfirmBox;
+    public confirmStatus;
     constructor(private router: Router,
                 private activeRout: ActivatedRoute,
                 private userProfileService: UserProfileService,
-                private userRepositoryService: UserRepositoryService
+                private userRepositoryService: UserRepositoryService,
+                private invitationService: InvitationService
     ) {
 }
 
     async ngOnInit() {
         this.setAddButtonIcon();
+        this.confirmStatus = 'none';
         const paramId = this.activeRout.snapshot.params["id"];
         if(paramId != null){
             const userDto = await this.userRepositoryService.getUserById(paramId)
@@ -42,25 +48,71 @@ export class UserProfileComponent implements OnInit {
         const paramId = this.activeRout.snapshot.params["id"];
         if(paramId != null){
             let user = this.userProfileService.findFreind(paramId);
+            console.log('USER >>>>>>>>>>>>>' , user)
+            console.log('ID USER >>>>>>>>>>>>>' , paramId)
             if(user != null){
+                this.pointedUser = user;
                 this.firstButtonProperties.iconName = "remove.svg";
                 this.firstButtonProperties.name = "Delete";
-                this.finc = ()=>{
-
+                this.titleConfirmBox = 'Do you want delete friend ?';
+                this.confirmFunction = ()=>{
+                    console.log('FRIEND >>>>>>')
+                    this.toggleShowConfirm();
                 };
             }else {
+                let userToAdd: UserShortObs = new UserShortObs();
+                userToAdd.setIdUser(paramId);
+                this.pointedUser = userToAdd;
                 this.firstButtonProperties.iconName = "add-person-icon.svg";
                 this.firstButtonProperties.name = "Add";
+                this.titleConfirmBox = 'Do you want add to friend ?';
+                this.confirmFunction = ()=>{
+                    console.log('ADDD >>>>>>')
+                    this.toggleShowConfirm();
+                };
             }
         }else {
             this.firstButtonProperties.iconName = "edit.svg";
             this.firstButtonProperties.name = "Edit";
+            this.titleConfirmBox = 'Do you want edit your profile?';
+            this.confirmFunction = ()=>{
+                console.log('EDIT!!! >>>>>>')
+                this.toggleShowConfirm();
+            };
         }
 
     }
 
     public getUserObs(): Observable<UserObs>{
         return this.userBeh.asObservable();
+    }
+
+    private toggleShowConfirm(){
+        if(this.confirmStatus === 'none'){
+            this.confirmStatus = 'block'
+        }else {
+            this.confirmStatus = 'none'
+        }
+    }
+    private onCancel(){
+        this.confirmStatus = 'none'
+    }
+    private onConfirm(){
+        if(this.firstButtonProperties.name == 'Delete'){
+            console.log('You edit you delete' , this.pointedUser.getNick())
+        }
+        if(this.firstButtonProperties.name == 'Add'){
+            console.log('You sent invitation to user Id >>' , this.pointedUser.getIdUser())
+
+            let sender = this.userProfileService.getUser();
+            console.log('SENDER >>> IN ACCEPT INVITARION',sender.getIdUser())
+
+            this.invitationService.sendInvitation(sender.getIdUser(), this.pointedUser.getIdUser())
+        }
+        if(this.firstButtonProperties.name == 'Edit'){
+            console.log('You edit you profile')
+        }
+
     }
 
 
@@ -79,6 +131,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     onAddFriend() {
-        this.finc()
+
+        this.confirmFunction()
     }
 }
