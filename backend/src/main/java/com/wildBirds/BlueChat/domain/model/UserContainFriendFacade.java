@@ -61,7 +61,7 @@ public class UserContainFriendFacade {
     }
 
     public void remove(FriendsDto friendsDto) {
-        repository.deleteByIdUserContainFriend(friendsDto.getIdFriendship());
+        repository.removeUserContainFriendByIdUserContainFriend(friendsDto.getIdFriendship());
     }
 
     private List<FriendsDto> getFriendsWithNoReadMessage(Long idUser) {

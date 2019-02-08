@@ -51,7 +51,6 @@ public class FriendsController {
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Error", e.getMessage());
             log.error("Method removeFriendship ", e.getMessage());
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
