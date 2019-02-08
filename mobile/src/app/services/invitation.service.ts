@@ -4,6 +4,8 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {InvitationDto} from '../repository/invitation/invitationDto';
 import {UserProfileService} from './user-profile.service';
 import {UserDtoShort} from '../repository/user/userDtoShort';
+import {FriendRepositoryService} from '../repository/friend/friend-repository.service';
+import {FriendsDto} from '../repository/friend/friendsDto';
 
 
 @Injectable({
@@ -14,7 +16,8 @@ export class InvitationService {
     invitationsList: BehaviorSubject<Array<InvitationDto>> = new BehaviorSubject([]);
 
     constructor(private invitationRepository: InvitationRepositoryService,
-                private userProfileService: UserProfileService) {
+                private userProfileService: UserProfileService,
+                private friendsRepository: FriendRepositoryService) {
         this.fetchInvitations();
     }
 
@@ -43,7 +46,7 @@ export class InvitationService {
     public sendInvitation(senderInvitation: number, receiverInvitation: number) {
         let invitationDto = new InvitationDto();
 
-        console.log("senderInvitation>>>>>>>",senderInvitation)
+        console.log('senderInvitation>>>>>>>', senderInvitation);
         let sender = new UserDtoShort();
         sender.idUser = senderInvitation;
         invitationDto.senderInvitation = sender;
@@ -55,7 +58,13 @@ export class InvitationService {
 
 
         invitationDto.receiverInvitation = receiver;
-        console.log("receiverInvitation>>>>>>>",receiverInvitation)
+        console.log('receiverInvitation>>>>>>>', receiverInvitation);
         this.invitationRepository.invite(invitationDto);
+    }
+
+    public removeFriendship(idFriendship: number) {
+        let friendsDto = new FriendsDto();
+        friendsDto.idFriendship = idFriendship;
+        this.friendsRepository.removeFriendship(friendsDto);
     }
 }

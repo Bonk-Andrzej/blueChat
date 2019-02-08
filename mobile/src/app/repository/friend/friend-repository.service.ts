@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {FriendsDto} from './friendsDto';
-import {environment} from "../../environment";
+import {environment} from '../../environment';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +13,7 @@ export class FriendRepositoryService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.host = environment.host +'/friends';
+        this.host = environment.host + '/friends';
         this.headers = this.getHeaders();
     }
 
@@ -32,6 +32,10 @@ export class FriendRepositoryService {
     }
 
     public removeFriendship(friendsDto: FriendsDto) {
-
+        console.log('ID W REPOZYTORIUM >>',friendsDto);
+        // this.http.delete(this.host, {observe : "friendsDto", headers: this.headers});
+        // this.http.put<FriendsDto>(this.host , friendsDto ,{headers: this.headers});
+       // return this.http.patch(this.host , friendsDto, {headers: this.headers}).toPromise();
+        return this.http.request('delete', this.host, { body: friendsDto}).toPromise();
     }
 }

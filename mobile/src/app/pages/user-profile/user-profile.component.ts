@@ -48,15 +48,15 @@ export class UserProfileComponent implements OnInit {
         const paramId = this.activeRout.snapshot.params["id"];
         if(paramId != null){
             let user = this.userProfileService.findFreind(paramId);
-            console.log('USER >>>>>>>>>>>>>' , user)
-            console.log('ID USER >>>>>>>>>>>>>' , paramId)
+            console.log('USER >>>>>>>>>>>>>' , user);
+            console.log('ID USER >>>>>>>>>>>>>' , paramId);
             if(user != null){
                 this.pointedUser = user;
                 this.firstButtonProperties.iconName = "remove.svg";
                 this.firstButtonProperties.name = "Delete";
                 this.titleConfirmBox = 'Do you want delete friend ?';
                 this.confirmFunction = ()=>{
-                    console.log('FRIEND >>>>>>')
+                    console.log('FRIEND >>>>>>');
                     this.toggleShowConfirm();
                 };
             }else {
@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
                 this.firstButtonProperties.name = "Add";
                 this.titleConfirmBox = 'Do you want add to friend ?';
                 this.confirmFunction = ()=>{
-                    console.log('ADDD >>>>>>')
+                    console.log('ADDD >>>>>>');
                     this.toggleShowConfirm();
                 };
             }
@@ -76,7 +76,7 @@ export class UserProfileComponent implements OnInit {
             this.firstButtonProperties.name = "Edit";
             this.titleConfirmBox = 'Do you want edit your profile?';
             this.confirmFunction = ()=>{
-                console.log('EDIT!!! >>>>>>')
+                console.log('EDIT!!! >>>>>>');
                 this.toggleShowConfirm();
             };
         }
@@ -95,19 +95,23 @@ export class UserProfileComponent implements OnInit {
         }
     }
     private onCancel(){
-        this.confirmStatus = 'none'
+        this.toggleShowConfirm();
     }
     private onConfirm(){
         if(this.firstButtonProperties.name == 'Delete'){
-            console.log('You edit you delete' , this.pointedUser.getNick())
+            console.log('You edit you delete' , this.pointedUser.getNick());
+            let idFriendship : number = this.userProfileService.getIdFriendship(this.pointedUser.getIdUser());
+
+            this.invitationService.removeFriendship(idFriendship);
+            this.userProfileService.refreshFriendsList();
+            this.toggleShowConfirm();
+
         }
         if(this.firstButtonProperties.name == 'Add'){
-            console.log('You sent invitation to user Id >>' , this.pointedUser.getIdUser())
-
             let sender = this.userProfileService.getUser();
-            console.log('SENDER >>> IN ACCEPT INVITARION',sender.getIdUser())
-
-            this.invitationService.sendInvitation(sender.getIdUser(), this.pointedUser.getIdUser())
+            this.invitationService.sendInvitation(sender.getIdUser(), this.pointedUser.getIdUser());
+            this.userProfileService.refreshFriendsList();
+            this.toggleShowConfirm();
         }
         if(this.firstButtonProperties.name == 'Edit'){
             console.log('You edit you profile')

@@ -14,6 +14,7 @@ export class FriendsObs {
     public static create(friendsDto: FriendsDto): FriendsObs {
 
         const friend = new FriendsObs();
+        friend.idFriendship = friendsDto.idFriendship;
         friend.dateFriendship = friendsDto.dateFriendship;
         friend.friend = UserShortObs.create(friendsDto.friend);
         friend.dateFriendship = friendsDto.dateFriendship;
