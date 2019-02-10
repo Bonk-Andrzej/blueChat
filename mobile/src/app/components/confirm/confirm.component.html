@@ -1,3 +1,5 @@
 <div id="background">
-  <div [confirmButtonLabel]="confirmButton(confirmButtonLabel)" [cancelButtonLabel]="cancelButtonLabel" id="title" [title]="title" confirm-box=""></div>
+  <div [confirmButtonLabel]="confirmButtonLabel" [cancelButtonLabel]="cancelButtonLabel" id="title" [title]="title" confirm-box
+   (onConfirm)="confirmButton($event)" (onCancel)="cancelButton($event)"
+  ></div>
 </div>

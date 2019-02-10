@@ -5,13 +5,13 @@
 
     <div id="box-profile" [userObservable]="getUserObs()" app-box-profiles ></div>
     <div id="button-wrapper">
-        <div (click)="onAddFriend()" [iconNameFromAssets]="firstButtonProperties.iconName" [buttonName]="firstButtonProperties.name" app-tile-button>
+        <div (click)="onAddFriend()" [iconNameFromAssets]="firstButtonState.getState().iconName" [buttonName]="firstButtonState.getState().name" app-tile-button>
 
         </div>
-        <div (click)="joinButtonHandler()"iconNameFromAssets="friends-icon.svg" buttonName="Friends" app-tile-button>
+        <div (click)="showFriends()"iconNameFromAssets="friends-icon.svg" buttonName="Friends" app-tile-button>
 
         </div>
-        <div (click)="membersButtonHandler()"iconNameFromAssets="groups-icon.svg" buttonName="Groups" app-tile-button >
+        <div (click)="showGroups()"iconNameFromAssets="groups-icon.svg" buttonName="Groups" app-tile-button >
 
         </div>
         <div (click)="onSearch()" id="search" iconNameFromAssets="search-icon.svg" buttonName="Search" app-tile-button>
@@ -19,5 +19,5 @@
         </div>
     </div>
 </div>
-<div [style.display]="confirmStatus" id="confirmComponent" (onCancel)="onCancel()" (onConfirm)="onConfirm()"  [title]="titleConfirmBox" confirm-box=""></div>
+<div [style.display]="confirmStatus" id="confirmComponent" (onCancel)="onCancel()" (onConfirm)="onConfirm()"  [title]="firstButtonState.getState().titleConfirmBox" confirm-box=""></div>
 <div id="menu-bottom" app-menu-bottom=""></div>

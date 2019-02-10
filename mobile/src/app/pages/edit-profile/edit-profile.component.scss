@@ -1,0 +1,23 @@
+@import "~src/stylesAssets";
+
+#bow {
+  pointer-events: all;
+  display: flex;
+  height: 100%;
+  width: 140px;
+  //background: var(--dev-color2);
+  background: url("../../../assets/subtract.svg") no-repeat bottom;
+  background-size: 100%;
+  align-items: center;
+  justify-items: center;
+  #photo {
+    width: 115px;
+    height: 115px;
+    border: 3px solid var(--red);
+    margin: auto auto;
+    border-radius: 50%;
+    //background: var(--dev-color3);
+    //background: grey;
+    @extend %rocket-icon;
+  }
+}

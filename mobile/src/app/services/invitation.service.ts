@@ -65,6 +65,6 @@ export class InvitationService {
     public removeFriendship(idFriendship: number) {
         let friendsDto = new FriendsDto();
         friendsDto.idFriendship = idFriendship;
-        this.friendsRepository.removeFriendship(friendsDto);
+        return this.friendsRepository.removeFriendship(friendsDto);
     }
 }

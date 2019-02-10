@@ -132,10 +132,9 @@ export class UserProfileService {
         return this.userBeh.getValue();
     }
 
-    public refreshFriendsList(){
-        console.log("AKTUALIZACJA LISTY !!!!")
-        this.fetchFriends();
-        console.log(this.friends)
+    public removeFriendFromList(idUser: number){
+        let friends = this.friends.getValue().filter(user => !(user.getFriend().getIdUser() === idUser));
+        this.friends.next(friends);
     }
 
     public getUserObs(): Observable<UserObs> {
