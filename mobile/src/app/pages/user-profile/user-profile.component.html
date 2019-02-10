@@ -5,7 +5,7 @@
 
     <div id="box-profile" [userObservable]="getUserObs()" app-box-profiles ></div>
     <div id="button-wrapper">
-        <div (click)="onAddFriend()" [iconNameFromAssets]="firstButtonState.getState().iconName" [buttonName]="firstButtonState.getState().name" app-tile-button>
+        <div (click)="onAddFriend()"  [buttonsState]="firstButtonState.getStateObs()"  app-tile-button>
 
         </div>
         <div (click)="showFriends()"iconNameFromAssets="friends-icon.svg" buttonName="Friends" app-tile-button>

@@ -14,7 +14,6 @@ import {InvitationService} from '../../services/invitation.service';
 })
 export class UserProfileComponent implements OnInit {
 
-    private pointedUser: UserShortObs;
     public confirmStatus;
 
     private userBeh: BehaviorSubject<UserObs> = new BehaviorSubject<UserObs>(new UserObs());
@@ -38,9 +37,16 @@ export class UserProfileComponent implements OnInit {
             },
             () => {
                 let sender = this.userProfileService.getUser();
-                this.invitationService.sendInvitation(sender.getIdUser(), this.pointedUser.getIdUser());
+                this.invitationService.sendInvitation(sender.getIdUser(), this.userBeh.getValue().getIdUser());
                 this.toggleShowConfirm();
+                this.firstButtonState.setState("ADDDISABLE")
             });
+
+        this.firstButtonState.addState('ADDDISABLE',
+            'add-person-icon.svg',
+            'Add',
+            'Do you want add to friend ?');
+
 
         this.firstButtonState.addState('DELETE',
             'remove.svg',
@@ -53,6 +59,7 @@ export class UserProfileComponent implements OnInit {
                 this.invitationService.removeFriendship(idFriendship);
                 this.userProfileService.removeFriendFromList(this.userBeh.getValue().getIdUser());
                 this.toggleShowConfirm();
+                this.firstButtonState.setState("ADD")
             });
 
         this.firstButtonState.addState('EDIT',
@@ -61,11 +68,9 @@ export class UserProfileComponent implements OnInit {
             'Do you want edit your profile?',
             () => {
                 this.router.navigateByUrl('/edit-profile');
-            },() => {
+            }, () => {
                 this.router.navigateByUrl('/edit-profile');
             });
-
-
     }
 
     async ngOnInit() {
@@ -83,21 +88,15 @@ export class UserProfileComponent implements OnInit {
     private setButtonStatus() {
         const paramId = this.activeRout.snapshot.params['id'];
         if (paramId != null) {
-            let user = this.userProfileService.findFreind(paramId);
-            console.log('USER >>>>>>>>>>>>>', user);
-            console.log('ID USER >>>>>>>>>>>>>', paramId);
-            if (user != null) {
-                this.firstButtonState.setStateName('DELETE');
+            let friend = this.userProfileService.findFreind(paramId);
+            if (friend != null) {
+                this.firstButtonState.setState('DELETE');
             } else {
-                let userToAdd: UserShortObs = new UserShortObs();
-                userToAdd.setIdUser(paramId);
-                this.pointedUser = userToAdd;
-                this.firstButtonState.setStateName('ADD');
+                this.firstButtonState.setState('ADD');
             }
         } else {
-            this.firstButtonState.setStateName('EDIT');
+            this.firstButtonState.setState('EDIT');
         }
-
     }
 
     public getUserObs(): Observable<UserObs> {
@@ -128,7 +127,6 @@ export class UserProfileComponent implements OnInit {
 
     onSearch() {
         this.router.navigateByUrl('/search');
-
     }
 
     showFriends() {
@@ -141,7 +139,7 @@ export class UserProfileComponent implements OnInit {
 }
 
 
-class ButtonState {
+export class ButtonState {
 
     iconName: string;
     name: string;
@@ -149,8 +147,9 @@ class ButtonState {
     confirmFunction: () => void;
     clickFunction: () => void;
 
-
-    constructor(iconName = '', name = '', titleConfirmBox = '', onClickFunction = () => {}, confirmFunction = () => {}) {
+    constructor(iconName = '', name = '', titleConfirmBox = '', onClickFunction = () => {
+    }, confirmFunction = () => {
+    }) {
         this.iconName = iconName;
         this.name = name;
         this.titleConfirmBox = titleConfirmBox;
@@ -158,14 +157,17 @@ class ButtonState {
         this.clickFunction = onClickFunction;
     }
 }
+
 class StatesManager {
 
     private states: Array<ButtonState> = [];
-    private selectedState = 'DEFAULT';
     private readonly defaultStateName = 'DEFAULT';
+    private selectedState = this.defaultStateName;
+    private stateBech: BehaviorSubject<ButtonState>;
 
     constructor() {
-        this.addState('DEFAULT');
+        this.addState(this.defaultStateName);
+        this.stateBech = new BehaviorSubject<ButtonState>(this.getState());
     }
 
     public addState(stateName: string, iconName = '', name = '', titleConfirmBox = '', onClickFunction = () => {
@@ -178,7 +180,12 @@ class StatesManager {
         return (this.states[stateName] != null) ? this.states[stateName] : this.getState(this.defaultStateName);
     }
 
-    setStateName(stateName: string) {
+    getStateObs(): Observable<ButtonState> {
+        return this.stateBech.asObservable();
+    }
+
+    setState(stateName: string) {
         this.selectedState = stateName;
+        this.stateBech.next(this.getState())
     }
 }
