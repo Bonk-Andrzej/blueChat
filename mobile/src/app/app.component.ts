@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserProfileService} from './services/user-profile.service';
 import {WSRClientService} from './WSRClient/wsrclient.service';
 import {ChangeService} from './services/change.service';
@@ -10,7 +10,7 @@ import {OwnEmojiServiceService} from './services/own-emoji-service.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
     constructor(private userProfileService: UserProfileService,
                 private webSocket: WSRClientService,
@@ -21,8 +21,13 @@ export class AppComponent {
     }
 
     title = 'mobile';
-
     ngOnInit() {
+        console.log("init");
+        document.addEventListener('deviceready', function() {
+            alert("ok");
+        }, false);
+
+
         // const mvp = document.getElementById('viewport');
         // if (screen.width > 400) {
         //     mvp.setAttribute('content', 'width='+screen.width+', initial-scale=1');

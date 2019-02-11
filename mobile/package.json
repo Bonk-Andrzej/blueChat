@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "app": "ng build --prod --base-href . --output-path ../cordovaApp/www",
+    "app": "rm -r ../cordovaApp/www/* & ng build --base-href . --output-path ../cordovaApp/www",
     "apk": "ng build --base-href . --output-path ../cordovaApp/www && cd ../cordovaApp && cordova run android",
     "apkprod": "ng build --aot --build-optimizer --prod --base-href . --output-path ../cordovaApp/www && cd ../cordovaApp && cordova run android"
   },
