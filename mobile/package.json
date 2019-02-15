@@ -10,6 +10,7 @@
     "e2e": "ng e2e",
     "app": "rm -r ../cordovaApp/www/* & ng build --base-href . --output-path ../cordovaApp/www",
     "apk": "ng build --base-href . --output-path ../cordovaApp/www && cd ../cordovaApp && cordova run android",
+    "win": "ng build --base-href . --output-path ../cordovaApp/www && cd ../cordovaApp && cordova run browser",
     "apkprod": "ng build --aot --build-optimizer --prod --base-href . --output-path ../cordovaApp/www && cd ../cordovaApp && cordova run android"
   },
   "private": true,

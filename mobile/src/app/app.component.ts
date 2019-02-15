@@ -4,30 +4,27 @@ import {WSRClientService} from './WSRClient/wsrclient.service';
 import {ChangeService} from './services/change.service';
 import {ColorService} from './services/background/color.service';
 import {OwnEmojiServiceService} from './services/own-emoji-service.service';
+import {CordovaService} from "./services/cordova.service";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
     constructor(private userProfileService: UserProfileService,
                 private webSocket: WSRClientService,
                 private changeService: ChangeService,
                 private colorService: ColorService,
-                private ownEmojiService: OwnEmojiServiceService) {
+                private ownEmojiService: OwnEmojiServiceService,
+                private cordovaService: CordovaService) {
 
     }
 
     title = 'mobile';
+
     ngOnInit() {
-        console.log("init");
-        document.addEventListener('deviceready', function() {
-            alert("ok");
-        }, false);
-
-
         // const mvp = document.getElementById('viewport');
         // if (screen.width > 400) {
         //     mvp.setAttribute('content', 'width='+screen.width+', initial-scale=1');

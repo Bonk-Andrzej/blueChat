@@ -22,6 +22,7 @@ export class ButtonBackComponent implements OnInit {
       this.router.navigateByUrl(this.navigateToUrl)
     }else {
         this.location.back();
+        this.router.navigate([])
     }
   }
 

@@ -8,15 +8,10 @@ if (environment.production) {
   enableProdMode();
 }
 
-console.log("main")
+
 let onDeviceReady = () => {
     platformBrowserDynamic().bootstrapModule(AppModule);
-    alert("ready");
+    console.log("onDeviceReady")
 };
-document.addEventListener('deviceready', onDeviceReady, false);
-
-if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
-    document.addEventListener("deviceready", onDeviceReady, false);
-} else {
-    onDeviceReady();
-}
+document.addEventListener("deviceready", onDeviceReady, false);
+// onDeviceReady();
