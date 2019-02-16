@@ -1,17 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Mobile</title>
+    <meta charset="utf-8">
+    <title>Mobile</title>
+    <base href="/">
     <script>
-        window['base-href'] = '.'+window.location.pathname;
-        console.log(window['base-href']);
+
+        // window['base-href'] = '.' + window.location.pathname;
+        window.addEventListener = function () {
+            EventTarget.prototype.addEventListener.apply(this, arguments);
+        };
+
+        window.removeEventListener = function () {
+            EventTarget.prototype.removeEventListener.apply(this, arguments);
+        };
+
+        document.addEventListener = function () {
+            EventTarget.prototype.addEventListener.apply(this, arguments);
+        };
+
+        document.removeEventListener = function () {
+            EventTarget.prototype.removeEventListener.apply(this, arguments);
+        };
+
     </script>
-  <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 </body>
 </html>
