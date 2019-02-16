@@ -6,4 +6,6 @@ export class FriendsDto {
     public dateFriendship : string;
     public noReadMessage: number;
 
+    constructor() {
+    }
 }

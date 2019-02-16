@@ -19,7 +19,7 @@ export class ConfirmBoxComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.title = this.title || "Do you Want To Log Out?";
+        this.title = this.title || "";
         this.confirmButtonLabel = this.confirmButtonLabel || "Ok";
         this.cancelButtonLabel = this.cancelButtonLabel || "Cancel";
 

@@ -95,6 +95,8 @@ export class UserProfileService {
 
     private async fetchFriends() {
         const result = await this.friendsRepository.getFriendshipsList(this.userBeh.getValue().getIdUser());
+
+        console.log('POBRANE DANE >>>>>>>>>>' , result);
         const friends = [];
         console.log(result);
         for (let friendsDto of result) {
@@ -116,8 +118,23 @@ export class UserProfileService {
         this.usersWithNewMessage.next(result);
     }
 
+    public getIdFriendship(idFriend: number) : number{
+        for (let friendsObs of this.friends.getValue()) {
+            // console.log('TUTAJ >>>>>>>>>>>>>>', this.friends.getValue())
+            if (friendsObs.getFriend().getIdUser() == idFriend ){
+                console.log('FOUND FRIENDSHIP IN LIST',friendsObs.getIdFrendship())
+                return friendsObs.getIdFrendship();
+            }
+        }
+    }
+
     public getUser(): UserObs {
         return this.userBeh.getValue();
+    }
+
+    public removeFriendFromList(idUser: number){
+        let friends = this.friends.getValue().filter(user => !(user.getFriend().getIdUser() === idUser));
+        this.friends.next(friends);
     }
 
     public getUserObs(): Observable<UserObs> {

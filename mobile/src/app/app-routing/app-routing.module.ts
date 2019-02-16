@@ -17,6 +17,7 @@ import {SearchComponent} from '../pages/search/search.component';
 import {OptionsComponent} from '../pages/options/options.component';
 import {GroupProfileComponent} from "../pages/group-profile/group-profile.component";
 import {GroupMembersComponent} from "../pages/group-members/group-members.component";
+import {EditProfileComponent} from '../pages/edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
     {path: 'group-members', component: GroupMembersComponent},
     {path: 'search', component: SearchComponent},
     {path: 'options', component: OptionsComponent},
+    {path: 'edit-profile', component: EditProfileComponent},
     // {path: '', component: UserProfileComponent},
     // {path: '', component: ConversationComponent},
 
