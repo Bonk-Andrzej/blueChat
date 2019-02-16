@@ -111,11 +111,11 @@ export class UserProfileComponent implements OnInit {
         }
     }
 
-    private onCancel() {
+    onCancel() {
         this.toggleShowConfirm();
     }
 
-    private onConfirm() {
+    onConfirm() {
         this.firstButtonState.getState().confirmFunction();
     }
 
