@@ -15,6 +15,7 @@ import {UserObs} from './model/userObs';
 import {UserDtoWithMessage} from '../repository/user/userDtoWithMessage';
 import {FriendsDto} from '../repository/friend/friendsDto';
 import {UserShortObs} from './model/userShortObs';
+import {ConversationService} from "./conversation.service";
 
 @Injectable({
     providedIn: 'root'
@@ -76,7 +77,7 @@ export class UserProfileService {
 
     }
 
-    private initUser(user: UserDto){
+    private initUser(user: UserDto) {
 
         this.userBeh.next(UserObs.create(user));
         this.retrieveStateApplicationService.saveUserId(user);
@@ -96,7 +97,7 @@ export class UserProfileService {
     private async fetchFriends() {
         const result = await this.friendsRepository.getFriendshipsList(this.userBeh.getValue().getIdUser());
 
-        console.log('POBRANE DANE >>>>>>>>>>' , result);
+        console.log('POBRANE DANE >>>>>>>>>>', result);
         const friends = [];
         console.log(result);
         for (let friendsDto of result) {
@@ -118,11 +119,11 @@ export class UserProfileService {
         this.usersWithNewMessage.next(result);
     }
 
-    public getIdFriendship(idFriend: number) : number{
+    public getIdFriendship(idFriend: number): number {
         for (let friendsObs of this.friends.getValue()) {
             // console.log('TUTAJ >>>>>>>>>>>>>>', this.friends.getValue())
-            if (friendsObs.getFriend().getIdUser() == idFriend ){
-                console.log('FOUND FRIENDSHIP IN LIST',friendsObs.getIdFrendship())
+            if (friendsObs.getFriend().getIdUser() == idFriend) {
+                console.log('FOUND FRIENDSHIP IN LIST', friendsObs.getIdFrendship())
                 return friendsObs.getIdFrendship();
             }
         }
@@ -132,7 +133,7 @@ export class UserProfileService {
         return this.userBeh.getValue();
     }
 
-    public removeFriendFromList(idUser: number){
+    public removeFriendFromList(idUser: number) {
         let friends = this.friends.getValue().filter(user => !(user.getFriend().getIdUser() === idUser));
         this.friends.next(friends);
     }
@@ -159,7 +160,8 @@ export class UserProfileService {
     public getUsersWuthMsg() {
         return this.usersWithNewMessage.asObservable();
     }
-    public removeUserWithMsg(userDtoWithMsg: UserDtoWithMessage)  {
+
+    public removeUserWithMsg(userDtoWithMsg: UserDtoWithMessage) {
 
         let userDtoWithMessages = this.usersWithNewMessage.getValue().filter(user => !(user.idUser === userDtoWithMsg.idUser));
 
@@ -168,13 +170,13 @@ export class UserProfileService {
             .setNoReadMessage(0);
     }
 
-    public addFrendDtoToFriend(friendsDto: FriendsDto){
+    public addFrendDtoToFriend(friendsDto: FriendsDto) {
         let friendsList = this.friends.getValue();
         friendsList.push(FriendsObs.create(friendsDto))
         this.friends.next(friendsList);
     }
 
-    public findFreind(friendId): UserShortObs{
+    public findFriend(friendId): UserShortObs {
         let result = this.friends.getValue().find((user) => (user.getFriend().getIdUser() == friendId));
         return (result) ? result.getFriend() : null;
     }

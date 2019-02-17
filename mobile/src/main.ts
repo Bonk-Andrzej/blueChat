@@ -8,8 +8,12 @@ if (environment.production) {
     enableProdMode();
 }
 
+
 let onDeviceReady = () => {
     platformBrowserDynamic().bootstrapModule(AppModule);
+    function onConfirm(buttonIndex) {
+        alert('You selected button ' + buttonIndex);
+    }
 };
 
 if (!!window.cordova) {

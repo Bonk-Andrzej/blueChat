@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ConversationService} from '../../services/conversation.service';
 import {Observable} from 'rxjs';
 import {MessageObs} from '../../services/model/messageObs';
@@ -10,7 +10,7 @@ import {EmojiPipePipe} from '../../pipes/emoji-pipe.pipe';
     templateUrl: './conversation.component.html',
     styleUrls: ['./conversation.component.scss']
 })
-export class ConversationComponent implements OnInit {
+export class ConversationComponent implements OnInit, OnDestroy {
 
     conversationHeader: Observable<string>;
     messageContent: string;
@@ -56,5 +56,9 @@ export class ConversationComponent implements OnInit {
 
     toggleEmojiPicker() {
         this.isDisplayEmoji = !this.isDisplayEmoji;
+    }
+
+    ngOnDestroy(): void {
+        this.conversationService.endConversation();
     }
 }

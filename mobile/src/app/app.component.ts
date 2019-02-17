@@ -5,6 +5,7 @@ import {ChangeService} from './services/change.service';
 import {ColorService} from './services/background/color.service';
 import {OwnEmojiServiceService} from './services/own-emoji-service.service';
 import {CordovaService} from "./services/cordova.service";
+import {ConversationService} from "./services/conversation.service";
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
                 private changeService: ChangeService,
                 private colorService: ColorService,
                 private ownEmojiService: OwnEmojiServiceService,
-                private cordovaService: CordovaService) {
+                private cordovaService: CordovaService,
+                private conversationService: ConversationService) {
 
     }
 
