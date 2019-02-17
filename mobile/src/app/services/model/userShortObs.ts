@@ -10,6 +10,7 @@ export class UserShortObs {
 
     constructor() {
         this.active = new BehaviorSubject<boolean>(false);
+        this.photoDto = new PhotoDto();
     }
 
 

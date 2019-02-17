@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {UserProfileService} from './user-profile.service';
 import {MessageRepositoryService} from '../repository/message/message-repository.service';
 import {ChannelDtoShort} from '../repository/channel/channelDtoShort';
@@ -11,6 +11,7 @@ import {UserShortObs} from './model/userShortObs';
 import {MessageObs} from './model/messageObs';
 import {ChannelMessageRepositoryService} from '../repository/channelMessage/channel-message-repository.service';
 import {ChannelMessageDto} from "../repository/channelMessage/channelMessageDto";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -27,15 +28,33 @@ export class ConversationService {
     constructor(private userProfileService: UserProfileService,
                 private messageRepository: MessageRepositoryService,
                 private wsrClientService: WSRClientService,
-                private channelMessageRepositoryService: ChannelMessageRepositoryService
+                private channelMessageRepositoryService: ChannelMessageRepositoryService,
+                private router: Router,
+                private zone: NgZone
     ) {
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMESSAGE, new MessageDto(), message => {
+
             if (message.receiver.idUser == this.userProfileService.getUser().getIdUser() && message.sender.idUser == this.userInterlocutor.getIdUser()) {
                 const conversation = this.conversation.getValue();
                 conversation.push(MessageObs.createFromMessage(message, this.userProfileService));
                 this.conversation.next(conversation);
+            } else {
+                window.cordova.plugins.notification.local.schedule({
+                    title: message.sender.nick,
+                    text: message.content,
+                    foreground: true
+                });
+                window.cordova.plugins.notification.local.on('click', () => {
+                    this.zone.run(()=>{
+                        this.startConversationWithUser(UserShortObs.create(message.sender)).catch()
+                        this.router.navigateByUrl("/conversation").catch()
+                    })
+                });
+                navigator.notification.beep(1);
             }
+
+
         });
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYMESSAGE, new MessageDto(), message => {
             if (message.receiver.idUser == this.userInterlocutor.getIdUser() && message.sender.idUser == this.userProfileService.getUser().getIdUser()) {
@@ -44,20 +63,22 @@ export class ConversationService {
                 this.conversation.next(conversation);
             }
         });
-        this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYCHANNELMESSAGE, new ChannelMessageDto(),channelMessage => {
-            if(channelMessage.channel.idChannel == this.channelInterlocutor.idChannel){
+        this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMYCHANNELMESSAGE, new ChannelMessageDto(), channelMessage => {
+            if (channelMessage.channel.idChannel == this.channelInterlocutor.idChannel) {
                 const conversation = this.conversation.getValue();
                 conversation.push(MessageObs.createFromChannel(channelMessage, this.userProfileService));
                 this.conversation.next(conversation);
             }
         });
-        this.wsrClientService.WRSClient.addProcedure(LocalType.ADDCHANNELMESSAGE, new ChannelMessageDto(),channelMessage => {
-            if(channelMessage.channel.idChannel == this.channelInterlocutor.idChannel){
+        this.wsrClientService.WRSClient.addProcedure(LocalType.ADDCHANNELMESSAGE, new ChannelMessageDto(), channelMessage => {
+            if (channelMessage.channel.idChannel == this.channelInterlocutor.idChannel) {
                 const conversation = this.conversation.getValue();
                 conversation.push(MessageObs.createFromChannel(channelMessage, this.userProfileService));
                 this.conversation.next(conversation);
             }
         })
+
+        this.endConversation()
     }
 
     public async startConversationWithUser(interlocutor: UserShortObs) {
@@ -99,13 +120,13 @@ export class ConversationService {
 
     public sendMessage(messageContent: string) {
 
-        if(this.isChannelConversation){
+        if (this.isChannelConversation) {
             let channelMessageDto = new ChannelMessageDto();
             channelMessageDto.content = messageContent;
             channelMessageDto.sender = this.userProfileService.getUser().toUserDtoShort();
             channelMessageDto.channel = this.getChanelInterlocutor();
             this.wsrClientService.WRSClient.executeRemoteProcedure(RemoteType.FORWARDCHANNELMESSAGE, channelMessageDto);
-        }else {
+        } else {
             let messageDto = new MessageDto();
             messageDto.content = messageContent;
             messageDto.sender = this.userProfileService.getUser().toUserDtoShort();
@@ -118,8 +139,15 @@ export class ConversationService {
         return this.userInterlocutor;
     }
 
-    public getChanelInterlocutor(): ChannelDtoShort{
+    public getChanelInterlocutor(): ChannelDtoShort {
         return this.channelInterlocutor;
+    }
+
+    public endConversation() {
+        this.conversation.next([]);
+        this.userInterlocutor = new UserShortObs();
+        this.channelInterlocutor = new ChannelDtoShort()
+
     }
 
 }

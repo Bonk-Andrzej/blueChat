@@ -88,7 +88,7 @@ export class UserProfileComponent implements OnInit {
     private setButtonStatus() {
         const paramId = this.activeRout.snapshot.params['id'];
         if (paramId != null) {
-            let friend = this.userProfileService.findFreind(paramId);
+            let friend = this.userProfileService.findFriend(paramId);
             if (friend != null) {
                 this.firstButtonState.setState('DELETE');
             } else {
