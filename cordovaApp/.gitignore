@@ -4,3 +4,5 @@
 /platforms/
 /node_modules/
 /plugins/ 
+
+package-lock.json

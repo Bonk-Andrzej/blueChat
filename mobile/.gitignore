@@ -18,7 +18,7 @@
 *.sublime-workspace
 
 # Node
-**/package-lock.json
+package-lock.json
 
 # IDE - VSCode
 .vscode/*
