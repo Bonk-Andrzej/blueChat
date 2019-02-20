@@ -32,6 +32,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <preference name="Fullscreen" value="false" />
+    <preference name="AutoHideSplashScreen" value="false" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <engine name="android" spec="^7.1.4" />
     <engine name="browser" spec="^5.0.4" />

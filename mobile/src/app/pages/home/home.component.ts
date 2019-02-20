@@ -3,6 +3,7 @@ import {ColorsService} from '../../services/colors.service';
 import {Router} from '@angular/router';
 import {LoginService} from '../../services/login.service';
 import {UserPassDto} from '../../repository/user/userPassDto';
+import {SplashScreenService} from '../../services/splash-screen.service';
 
 @Component({
     selector: 'app-home',
@@ -19,16 +20,17 @@ export class HomeComponent implements OnInit {
     constructor(
         private colorService: ColorsService,
         private router: Router,
-        private loginService: LoginService) {
+        private loginService: LoginService,
+        private splashScreen: SplashScreenService) {
     }
 
     ngOnInit() {
         this.colorButton = this.colorService.getColor('--yellow');
         this.colorTextOnButton = this.colorService.getColor('--black');
+       this.splashScreen.hide()
     }
 
     public logIn() {
-
 
         this.loginService.Login(this.user).catch(()=> {
                 alert('INVALID EMAIL OR PASS');

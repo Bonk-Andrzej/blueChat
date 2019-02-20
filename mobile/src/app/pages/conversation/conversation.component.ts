@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {MessageObs} from '../../services/model/messageObs';
 import {OwnEmojiServiceService} from '../../services/own-emoji-service.service';
 import {EmojiPipePipe} from '../../pipes/emoji-pipe.pipe';
+import {SplashScreenService} from '../../services/splash-screen.service';
 
 @Component({
     selector: 'app-conversation',
@@ -21,13 +22,15 @@ export class ConversationComponent implements OnInit, OnDestroy {
     private conversationListRef: ElementRef<HTMLDivElement>;
 
     constructor(private conversationService: ConversationService,
-                private ownEmojiService: OwnEmojiServiceService) {
+                private ownEmojiService: OwnEmojiServiceService,
+                private splashScreen: SplashScreenService) {
         this.messageContent = '';
         this.isDisplayEmoji = false;
     }
 
     ngOnInit() {
 
+        this.splashScreen.hide();
         this.conversationHeader = this.conversationService.getConversationHeaderObs();
         this.conversation = this.conversationService.getConversationObs();
         this.conversation.subscribe(() => {

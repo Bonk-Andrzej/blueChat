@@ -7,6 +7,7 @@ import {UserShortObs} from '../../services/model/userShortObs';
 import {Router} from '@angular/router';
 import {InvitationService} from '../../services/invitation.service';
 import {InvitationDto} from '../../repository/invitation/invitationDto';
+import {SplashScreenService} from '../../services/splash-screen.service';
 
 @Component({
     selector: 'app-main-login',
@@ -21,15 +22,14 @@ export class MainLoginComponent implements OnInit, OnDestroy {
     constructor(private router: Router,
                 private useService: UserProfileService,
                 private conversationService: ConversationService,
-                private invitationService: InvitationService) {
+                private invitationService: InvitationService,
+                private splashScreen: SplashScreenService) {
     }
 
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
         this.invitations = this.invitationService.getInvitations();
-        try{
-            navigator.splashscreen.hide();
-        }catch (e) {}
+        this.splashScreen.hide();
     }
 
     ngOnDestroy(): void {
