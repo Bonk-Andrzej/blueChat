@@ -5,11 +5,9 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ColorsService} from '../../services/colors.service';
 import {Router} from '@angular/router';
 import {UserProfileService} from '../../services/user-profile.service';
-import {FriendsDto} from '../../repository/friend/friendsDto';
 import {Observable} from 'rxjs';
 import {ChannelDtoShort} from '../../repository/channel/channelDtoShort';
 import {ConversationService} from '../../services/conversation.service';
-import {UserDtoShort} from '../../repository/user/userDtoShort';
 import {FriendsObs} from "../../services/model/friendsObs";
 import {UserShortObs} from "../../services/model/userShortObs";
 
@@ -51,12 +49,12 @@ export class LeftMenuComponent implements OnInit {
                 private colorService: ColorsService,
                 private router: Router,
                 private userProfileService: UserProfileService,
-                private conversationService : ConversationService) {
+                private conversationService: ConversationService) {
     }
 
     ngOnInit() {
         this.backgroundAnimationStatus = 'hide';
-        this.leftMenuService.onToggle.subscribe((isDisplay)=>{
+        this.leftMenuService.onToggle.subscribe((isDisplay) => {
             this.onToggleHandler(isDisplay);
         });
         this.backgroundColorList = this.colorService.getColor('--black');
@@ -75,17 +73,13 @@ export class LeftMenuComponent implements OnInit {
     }
 
 
-
-
-    startConversationWithUser(interlocutor :UserShortObs  ) {
-        this.conversationService.startConversationWithUser(interlocutor)
+    startConversationWithUser(interlocutor: UserShortObs) {
+        this.conversationService.startConversationWithUser(interlocutor).catch()
         this.leftMenuService.toggle();
-        this.router.navigateByUrl('/conversation');
     }
 
-    startConversationWithChannel(interlocutor: ChannelDtoShort ) {
+    startConversationWithChannel(interlocutor: ChannelDtoShort) {
         this.conversationService.startConversationWithChannel(interlocutor).catch()
         this.leftMenuService.toggle();
-        this.router.navigateByUrl('/conversation');
     }
 }

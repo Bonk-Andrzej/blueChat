@@ -11,9 +11,7 @@ if (environment.production) {
 
 let onDeviceReady = () => {
     platformBrowserDynamic().bootstrapModule(AppModule);
-    function onConfirm(buttonIndex) {
-        alert('You selected button ' + buttonIndex);
-    }
+    window.cordova.plugins.backgroundMode.enable();
 };
 
 if (!!window.cordova) {

@@ -22,8 +22,9 @@ export class RetrieveStateApplicationService {
         const id: string = localStorage.getItem('userId');
         if (id != null) {
             const user = await this.userRepository.getUserById(parseInt(id));
-            this.onRetrieveApplicationState.emit(user);
-            this.router.navigateByUrl('/main-login').catch();
+            this.router.navigateByUrl('/main-login').catch().then(()=>{
+                this.onRetrieveApplicationState.emit(user);
+            })
         } else {
             this.router.navigateByUrl('/').catch();
 

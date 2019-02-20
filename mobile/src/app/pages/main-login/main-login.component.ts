@@ -29,21 +29,20 @@ export class MainLoginComponent implements OnInit {
         this.invitations = this.invitationService.getInvitations();
     }
 
-    acceptInvitation(invitationDto : InvitationDto) {
+    acceptInvitation(invitationDto: InvitationDto) {
         this.invitationService.acceptInvitation(invitationDto)
     }
 
     startConversation(usersWithNewMessage: UserDtoWithMessage) {
         let user: UserShortObs = new UserShortObs();
 
-        console.log(' >>>>>>>>>> Z LISTY'  +usersWithNewMessage)
+        console.log(' >>>>>>>>>> Z LISTY' + usersWithNewMessage)
         user.setIdUser(usersWithNewMessage.idUser);
         user.setNick(usersWithNewMessage.nick);
 
-        console.log('>>>>>>>>>>>>>>>>>>>>'  + user.getNick());
+        console.log('>>>>>>>>>>>>>>>>>>>>' + user.getNick());
         // user.setPhoto(usersWithNewMessage.photoDto);
-        this.conversationService.startConversationWithUser(user);
-        this.router.navigateByUrl('/conversation')
+        this.conversationService.startConversationWithUser(user).catch()
         this.useService.removeUserWithMsg(usersWithNewMessage);
     }
 }

@@ -1,4 +1,4 @@
-import {Injectable, NgZone} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UserProfileService} from './user-profile.service';
 import {MessageRepositoryService} from '../repository/message/message-repository.service';
 import {ChannelDtoShort} from '../repository/channel/channelDtoShort';
@@ -12,6 +12,7 @@ import {MessageObs} from './model/messageObs';
 import {ChannelMessageRepositoryService} from '../repository/channelMessage/channel-message-repository.service';
 import {ChannelMessageDto} from "../repository/channelMessage/channelMessageDto";
 import {Router} from "@angular/router";
+import {NotificationService} from "./notification.service";
 
 @Injectable({
     providedIn: 'root'
@@ -29,9 +30,14 @@ export class ConversationService {
                 private messageRepository: MessageRepositoryService,
                 private wsrClientService: WSRClientService,
                 private channelMessageRepositoryService: ChannelMessageRepositoryService,
-                private router: Router,
-                private zone: NgZone
+                private notificationService: NotificationService,
+                private router: Router
     ) {
+
+
+        this.notificationService.onGoToConversation.subscribe((message: MessageDto) => {
+            this.startConversationWithUser(UserShortObs.create(message.sender)).catch()
+        });
 
         this.wsrClientService.WRSClient.addProcedure(LocalType.ADDMESSAGE, new MessageDto(), message => {
 
@@ -40,18 +46,7 @@ export class ConversationService {
                 conversation.push(MessageObs.createFromMessage(message, this.userProfileService));
                 this.conversation.next(conversation);
             } else {
-                window.cordova.plugins.notification.local.schedule({
-                    title: message.sender.nick,
-                    text: message.content,
-                    foreground: true
-                });
-                window.cordova.plugins.notification.local.on('click', () => {
-                    this.zone.run(()=>{
-                        this.startConversationWithUser(UserShortObs.create(message.sender)).catch()
-                        this.router.navigateByUrl("/conversation").catch()
-                    })
-                });
-                navigator.notification.beep(1);
+                this.notificationService.notifyNewMessage(message)
             }
 
 
@@ -94,6 +89,8 @@ export class ConversationService {
         }
         this.conversation.next(newConversation);
         this.conversationHeader.next(interlocutor.getNick());
+
+        this.router.navigateByUrl("/conversation").catch();
     }
 
     public async startConversationWithChannel(interlocutor: ChannelDtoShort) {
@@ -108,6 +105,7 @@ export class ConversationService {
         this.conversation.next(newConversation);
         this.conversationHeader.next(interlocutor.name);
 
+        this.router.navigateByUrl("/conversation").catch();
     }
 
     public getConversationObs() {
