@@ -5,4 +5,5 @@ interface Window{
 
 interface Navigator {
     notification: any;
+    splashscreen: any;
 }

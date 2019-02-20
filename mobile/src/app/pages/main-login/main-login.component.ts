@@ -27,6 +27,9 @@ export class MainLoginComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
         this.invitations = this.invitationService.getInvitations();
+        try{
+            navigator.splashscreen.hide();
+        }catch (e) {}
     }
 
     ngOnDestroy(): void {

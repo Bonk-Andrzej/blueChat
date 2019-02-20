@@ -11,7 +11,12 @@ if (environment.production) {
 
 let onDeviceReady = () => {
     platformBrowserDynamic().bootstrapModule(AppModule);
-    window.cordova.plugins.backgroundMode.enable();
+
+    try{
+        window.cordova.plugins.backgroundMode.enable();
+        navigator.splashscreen.show();
+    }catch (e) {}
+
 };
 
 if (!!window.cordova) {
