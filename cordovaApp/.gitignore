@@ -2,3 +2,5 @@
 
 /www/
 /platforms/
+/node_modules/
+/plugins/ 
