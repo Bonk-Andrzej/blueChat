@@ -22,10 +22,10 @@ import {ConversationService} from "./conversation.service";
 })
 export class UserProfileService {
 
-    public userBeh: BehaviorSubject<UserObs> = new BehaviorSubject(null);
-    public friends: BehaviorSubject<Array<FriendsObs>> = new BehaviorSubject([]);
-    public channels: BehaviorSubject<Array<ChannelDtoShort>> = new BehaviorSubject([]);
-    public usersWithNewMessage: BehaviorSubject<Array<UserDtoWithMessage>> = new BehaviorSubject([]);
+    private readonly userBeh: BehaviorSubject<UserObs> = new BehaviorSubject(null);
+    private readonly friends: BehaviorSubject<Array<FriendsObs>> = new BehaviorSubject([]);
+    private readonly channels: BehaviorSubject<Array<ChannelDtoShort>> = new BehaviorSubject([]);
+    private readonly usersWithNewMessage: BehaviorSubject<Array<UserDtoWithMessage>> = new BehaviorSubject([]);
     private wsrIsConnected: boolean;
 
     constructor(private userRepository: UserRepositoryService,
@@ -78,7 +78,6 @@ export class UserProfileService {
     }
 
     private initUser(user: UserDto) {
-
         this.userBeh.next(UserObs.create(user));
         this.retrieveStateApplicationService.saveUserId(user);
 
@@ -121,7 +120,6 @@ export class UserProfileService {
 
     public getIdFriendship(idFriend: number): number {
         for (let friendsObs of this.friends.getValue()) {
-            // console.log('TUTAJ >>>>>>>>>>>>>>', this.friends.getValue())
             if (friendsObs.getFriend().getIdUser() == idFriend) {
                 console.log('FOUND FRIENDSHIP IN LIST', friendsObs.getIdFrendship())
                 return friendsObs.getIdFrendship();
@@ -151,7 +149,7 @@ export class UserProfileService {
     }
 
     public eraseData() {
-        this.userBeh = new BehaviorSubject<UserObs>(null);
+        this.userBeh.next(null);
         this.friends.next([]);
         this.channels.next([]);
         this.wsrIsConnected = false;

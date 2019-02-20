@@ -22,12 +22,17 @@ export class InvitationService {
     }
 
     private fetchInvitations() {
-        this.userProfileService.userBeh.subscribe(async (user) => {
+
+        this.userProfileService.getUserObs().subscribe(async (user) => {
             if (user != null) {
                 const result = await this.invitationRepository.getInvitations(user.getIdUser());
                 this.invitationsList.next(result);
             }
         });
+    }
+
+    public cleanInviation(){
+        this.invitationsList.next([]);
     }
 
     public getInvitations(): Observable<Array<InvitationDto>> {

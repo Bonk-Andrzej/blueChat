@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserProfileService} from '../../services/user-profile.service';
 import {UserDtoWithMessage} from '../../repository/user/userDtoWithMessage';
 import {Observable} from 'rxjs';
@@ -13,7 +13,7 @@ import {InvitationDto} from '../../repository/invitation/invitationDto';
     templateUrl: './main-login.component.html',
     styleUrls: ['./main-login.component.scss']
 })
-export class MainLoginComponent implements OnInit {
+export class MainLoginComponent implements OnInit, OnDestroy {
 
     usersWithNewMessage: Observable<Array<UserDtoWithMessage>>;
     invitations: Observable<Array<InvitationDto>>;
@@ -27,6 +27,10 @@ export class MainLoginComponent implements OnInit {
     ngOnInit() {
         this.usersWithNewMessage = this.useService.getUsersWuthMsg();
         this.invitations = this.invitationService.getInvitations();
+    }
+
+    ngOnDestroy(): void {
+        this.invitationService.cleanInviation();
     }
 
     acceptInvitation(invitationDto: InvitationDto) {
