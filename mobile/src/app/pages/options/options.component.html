@@ -25,7 +25,10 @@
             <div>
                 <div (click)="triggerDisplayEmoji()" title="Emoji type" app-button-display=""></div>
                 <ng-container *ngFor="let type of emojiTypeList">
-                    <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [content]="' :smile:' | emojiPipe" [title]="type" app-button-display-option=""></div>
+                    <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [title]="type" app-button-display-option="">
+                    </div>
+                    <ngx-emoji id="emoji" emoji=':smile:' size="20" [set]="type"></ngx-emoji>
+
                 </ng-container>
             </div>
         </div>
