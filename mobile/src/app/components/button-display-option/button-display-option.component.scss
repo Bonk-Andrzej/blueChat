@@ -8,7 +8,7 @@
     height: 100%;
   }
   #state {
-    background: red;
+    background: var(--white-light);
     width: 50%;
     height: 100%;
     border-radius: 0px 10px;
@@ -26,7 +26,6 @@
     }
     #right-object {
       float: left;
-      background: var(--green-light);
       height: 20px;
       width: 20px;
       margin: 4px 0;

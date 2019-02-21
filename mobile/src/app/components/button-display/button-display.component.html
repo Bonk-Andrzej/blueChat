@@ -1,8 +1,4 @@
 <div id="wrapper">
-    <div id="title">
-        {{title}}
-    </div>
-    <div id="state">
-        {{state}}
-    </div>
+    <div id="title">{{title}}</div>
+    <div id="state" [style.backgroundColor]="currentColor | async">{{state}}</div>
 </div>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ColorObject} from '../../services/background/colorObject';
 import {ColorService} from '../../services/background/color.service';
 import {EmojiType, OwnEmojiServiceService} from '../../services/own-emoji-service.service';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-options',
@@ -12,7 +13,8 @@ export class OptionsComponent implements OnInit {
 
     public colorsList: Array<ColorObject>;
     public emojiTypeList: Array<string> = [];
-
+    public fontSizes: Array<string> =[];
+    public currentColor: Observable<string>;
     constructor(private bgColorService: ColorService,
                 private ownEmojiService: OwnEmojiServiceService) {
 
@@ -23,6 +25,10 @@ export class OptionsComponent implements OnInit {
             this.emojiTypeList.push(emojiTypeKey.toLowerCase());
         }
         this.colorsList = this.bgColorService.colors;
+        this.fontSizes.push('14');
+        this.fontSizes.push('15');
+        this.fontSizes.push('16');
+        this.currentColor = this.bgColorService.getCurrentColor();
     }
 
     setBackground(color: ColorObject) {
@@ -35,4 +41,7 @@ export class OptionsComponent implements OnInit {
         this.ownEmojiService.setTupe(type);
     }
 
+    setFont(font: string) {
+        alert('You choose font size '+ font)
+    }
 }
