@@ -9,6 +9,7 @@ export class ButtonDisplayOptionComponent implements OnInit {
 
   @Input() title: string;
   @Input() colorObject: string;
+  @Input() content: string;
 
   constructor() { }
 

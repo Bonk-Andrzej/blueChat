@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: '[app-button-wide-on-off]',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./button-wide-on-off.component.scss']
 })
 export class ButtonWideOnOffComponent implements OnInit {
+
+  @Input() title: string;
 
   constructor() { }
 

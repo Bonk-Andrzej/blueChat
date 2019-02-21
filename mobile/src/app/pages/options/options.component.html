@@ -25,15 +25,15 @@
             <div>
                 <div (click)="triggerDisplayEmoji()" title="Emoji type" app-button-display=""></div>
                 <ng-container *ngFor="let type of emojiTypeList">
-                    <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [title]="type" app-button-display-option=""></div>
+                    <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [content]="' :smile:' | emojiPipe" [title]="type" app-button-display-option=""></div>
                 </ng-container>
             </div>
         </div>
 
 
         <div id="notification" title="NOTIFICATIONS" app-list-users-with-title="">
-            <div app-button-wide-on-off=""></div>
-            <div app-button-wide-on-off=""></div>
+            <div title="Sound" app-button-wide-on-off=""></div>
+            <div title="Show" app-button-wide-on-off=""></div>
         </div>
     </div>
 </div>
