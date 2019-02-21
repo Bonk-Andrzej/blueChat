@@ -22,17 +22,18 @@
     grid-column: 9/11;
     grid-row: 1/2;
   }
-
-  //#input-search {
-  //  grid-column: 1/11;
-  //  grid-row: 2/3;
-  //}
-
   #options-list {
     grid-column: 1/11;
     grid-row: 2/21;
     justify-content: end;
 
+    #display{
+
+    }
+
+    #notification{
+
+    }
     .colorButton {
       margin: 10px;
       float: left;

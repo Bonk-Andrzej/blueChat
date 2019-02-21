@@ -56,7 +56,9 @@ import { OwnEmojiComponent } from './components/own-emoji/own-emoji.component';
 import { EmojiPipePipe } from './pipes/emoji-pipe.pipe'
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ConfirmComponent } from './components/confirm/confirm.component';
-import { EditProfileComponent } from './pages/edit-profile/edit-profile.component'
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { ButtonDisplayComponent } from './components/button-display/button-display.component';
+import { ButtonDisplayOptionComponent } from './components/button-display-option/button-display-option.component'
 @NgModule({
     declarations: [
         AppComponent,
@@ -108,6 +110,8 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
         EmojiPipePipe,
         ConfirmComponent,
         EditProfileComponent,
+        ButtonDisplayComponent,
+        ButtonDisplayOptionComponent,
 
     ],
     imports: [

@@ -4,18 +4,26 @@
     <div id="title" valueContent="OPTIONS" app-title=""></div>
     <div id="right-button"></div>
 
+    <div id="options-list">
+        <div id="display" title="DISPLAY" app-list-users-with-title="">
+            <div title="Theme" state="Cyan" app-button-display=""></div>
+            <div>
+                <ng-container *ngFor="let color of colorsList">
+                    <div (click)="setBackground(color)" [title]=color.name [colorObject]=color.color app-button-display-option=""></div>
+                </ng-container>
+            </div>
 
-    <div id="options-list" title="OPTIONS" app-list-users-with-title="">
-        <div>
-            <ng-container *ngFor="let color of colorsList">
-                <div (click)="setBackground(color)"  [style.backgroundColor]="color.color" class="colorButton"></div>
-            </ng-container>
+            <div title="Green" colorObject="green" app-button-display-option=""></div>
+            <div title="Blue" colorObject="blue" app-button-display-option=""></div>
+            <div title="Yellow" colorObject="yellow" app-button-display-option=""></div>
+            <div title="Black" colorObject="black" app-button-display-option=""></div>
         </div>
-        <div>
-            <ng-container *ngFor="let type of emojiTypeList">
-                <div class="emojiType" (click)="setType(type)"> {{type}}</div>
-
-            </ng-container>
+        <div id="notification" title="NOTIFICATIONS" app-list-users-with-title="">
+            <div>
+                <ng-container *ngFor="let type of emojiTypeList">
+                    <div class="emojiType" (click)="setType(type)"> {{type}}</div>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>
