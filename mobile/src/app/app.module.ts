@@ -58,7 +58,8 @@ import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { ButtonDisplayComponent } from './components/button-display/button-display.component';
-import { ButtonDisplayOptionComponent } from './components/button-display-option/button-display-option.component'
+import { ButtonDisplayOptionComponent } from './components/button-display-option/button-display-option.component';
+import { ButtonWideOnOffComponent } from './components/button-wide-on-off/button-wide-on-off.component'
 @NgModule({
     declarations: [
         AppComponent,
@@ -112,6 +113,7 @@ import { ButtonDisplayOptionComponent } from './components/button-display-option
         EditProfileComponent,
         ButtonDisplayComponent,
         ButtonDisplayOptionComponent,
+        ButtonWideOnOffComponent,
 
     ],
     imports: [

@@ -15,6 +15,9 @@ export class OptionsComponent implements OnInit {
     public emojiTypeList: Array<string> = [];
     public fontSizes: Array<string> =[];
     public currentColor: Observable<string>;
+    isDisplayTheme: boolean;
+    isDisplayFont: boolean;
+    isDisplayEmoji: boolean;
     constructor(private bgColorService: ColorService,
                 private ownEmojiService: OwnEmojiServiceService) {
 
@@ -25,10 +28,16 @@ export class OptionsComponent implements OnInit {
             this.emojiTypeList.push(emojiTypeKey.toLowerCase());
         }
         this.colorsList = this.bgColorService.colors;
+        this.currentColor = this.bgColorService.getCurrentColor();
+
+        this.isDisplayEmoji = false;
+        this.isDisplayFont = false;
+        this.isDisplayTheme = false;
+
+        // change for service
         this.fontSizes.push('14');
         this.fontSizes.push('15');
         this.fontSizes.push('16');
-        this.currentColor = this.bgColorService.getCurrentColor();
     }
 
     setBackground(color: ColorObject) {
@@ -43,5 +52,18 @@ export class OptionsComponent implements OnInit {
 
     setFont(font: string) {
         alert('You choose font size '+ font)
+    }
+
+    triggerDisplayEmoji() {
+        this.isDisplayEmoji = !this.isDisplayEmoji;
+    }
+
+    triggerDisplayTheme() {
+        this.isDisplayTheme = !this.isDisplayTheme;
+    }
+
+    triggerDisplayFont() {
+        this.isDisplayFont = !this.isDisplayFont;
+
     }
 }

@@ -7,36 +7,33 @@
     <div id="options-list">
         <div id="display" title="DISPLAY" app-list-users-with-title="">
             <div>
-                <div title="Theme" [state]=currentColor app-button-display=""></div>
+                <div (click)="triggerDisplayTheme()" title="Theme" [state]=currentColor app-button-display=""></div>
                 <ng-container *ngFor="let color of colorsList">
-                    <div class="element" (click)="setBackground(color)" [title]=color.name [colorObject]=color.color app-button-display-option=""></div>
+                    <div *ngIf="isDisplayTheme" class="element" (click)="setBackground(color)" [title]=color.name
+                         [colorObject]=color.color
+                         app-button-display-option=""></div>
                 </ng-container>
             </div>
             <div>
-                <div title="Font size" app-button-display=""></div>
+                <div (click)="triggerDisplayFont()" title="Font size" app-button-display=""></div>
                 <ng-container *ngFor="let font of fontSizes">
-                    <div class="element" (click)="setFont(font)" [title]=font  app-button-display-option=""></div>
+                    <div *ngIf="isDisplayFont" class="element" (click)="setFont(font)" [title]=font
+                         app-button-display-option=""></div>
                 </ng-container>
             </div>
 
             <div>
-                <div title="Emoji type" app-button-display=""></div>
+                <div (click)="triggerDisplayEmoji()" title="Emoji type" app-button-display=""></div>
                 <ng-container *ngFor="let type of emojiTypeList">
-                    <div class="element" (click)="setType(type)" [title]="type" app-button-display-option=""></div>
-                    <!--<div class="emojiType" (click)="setType(type)"> {{type}}</div>-->
+                    <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [title]="type" app-button-display-option=""></div>
                 </ng-container>
             </div>
         </div>
 
 
-
-
         <div id="notification" title="NOTIFICATIONS" app-list-users-with-title="">
-            <!--<div>-->
-                <!--<ng-container *ngFor="let type of emojiTypeList">-->
-                    <!--<div class="emojiType" (click)="setType(type)"> {{type}}</div>-->
-                <!--</ng-container>-->
-            <!--</div>-->
+            <div app-button-wide-on-off=""></div>
+            <div app-button-wide-on-off=""></div>
         </div>
     </div>
 </div>
