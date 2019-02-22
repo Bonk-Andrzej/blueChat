@@ -1,7 +1,10 @@
 <div id="wrapper">
   <div id="title">{{title}}</div>
   <div id="buttons">
-    <div id="on">on</div>
-    <div id="off">off</div>
+    <!--<div (click)="toggleButton()" [(ngModel)]="isActive" [style.background]="onButtonColor |async" id="on">on</div>-->
+    <!--<div (click)="toggleButton()" [(ngModel)]="isActive" [style.background]="offButtonColor |async" id="off">off</div>-->
+
+    <div (click)="toggleButton()" [style.background]="onButtonColor |async" id="on">on</div>
+    <div (click)="toggleButton()"  [style.background]="offButtonColor |async" id="off">off</div>
   </div>
 </div>

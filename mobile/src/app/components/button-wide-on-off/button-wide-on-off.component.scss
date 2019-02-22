@@ -29,14 +29,16 @@
       padding: 0;
       width: 50%;
       height: 100%;
-      background: blue;
+      //background: blue;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
     }
     #off {
       margin: 0;
       padding: 0;
       width: 50%;
       height: 100%;
-      background: red;
+      //background: red;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
     }
   }
 }

@@ -18,6 +18,9 @@ export class OptionsComponent implements OnInit {
     isDisplayTheme: boolean;
     isDisplayFont: boolean;
     isDisplayEmoji: boolean;
+
+    soundActive: boolean;
+    notificationActive: boolean;
     constructor(private bgColorService: ColorService,
                 private ownEmojiService: OwnEmojiServiceService) {
 
@@ -66,4 +69,6 @@ export class OptionsComponent implements OnInit {
         this.isDisplayFont = !this.isDisplayFont;
 
     }
+
+
 }
