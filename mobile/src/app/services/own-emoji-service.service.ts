@@ -39,7 +39,7 @@ export enum EmojiType {
     APPLE = 'apple',
     TWITTER = 'twitter',
     EMOJIONE = 'emojione',
-    MESSAGER = 'messenger',
+    // MESSAGER = 'messenger',
     FACEBOOK = 'facebook',
 
 }

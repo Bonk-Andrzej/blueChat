@@ -3,6 +3,10 @@
     <div id="state">
         <div id="left-object"></div>
         <div id="title">{{title}}</div>
-        <div id="right-object" [style.backgroundColor]="colorObject">{{content}}</div>
+        <div id="right-object" [style.backgroundColor]="colorObject">
+            <div *ngIf="emoji">
+                <ngx-emoji id="emoji" emoji=':smile:' size="20" [set]='emoji'></ngx-emoji>
+            </div>
+        </div>
     </div>
 </div>

@@ -14,6 +14,7 @@
                          app-button-display-option=""></div>
                 </ng-container>
             </div>
+
             <div>
                 <div (click)="triggerDisplayFont()" title="Font size" app-button-display=""></div>
                 <ng-container *ngFor="let font of fontSizes">
@@ -25,14 +26,10 @@
             <div>
                 <div (click)="triggerDisplayEmoji()" title="Emoji type" app-button-display=""></div>
                 <ng-container *ngFor="let type of emojiTypeList">
-                    <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [title]="type" app-button-display-option="">
-                    </div>
-                    <ngx-emoji id="emoji" emoji=':smile:' size="20" [set]="type"></ngx-emoji>
-
+                    <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [title]="type" [emoji]="type" app-button-display-option=""></div>
                 </ng-container>
             </div>
         </div>
-
 
         <div id="notification" title="NOTIFICATIONS" app-list-users-with-title="">
             <div title="Sound" app-button-wide-on-off=""></div>
