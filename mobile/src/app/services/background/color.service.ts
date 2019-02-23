@@ -8,7 +8,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 export class ColorService {
 
     public colors: Array<ColorObject> = [];
-    currentBacground: BehaviorSubject<string> = new BehaviorSubject(null);
+    private readonly currentBacground: BehaviorSubject<ColorObject> = new BehaviorSubject(new ColorObject("",""));
 
     constructor() {
 
@@ -16,7 +16,7 @@ export class ColorService {
         const green = new ColorObject('green', '#89ed3b');
         const orange = new ColorObject('orange', '#ed553b');
         const yellow = new ColorObject('yellow', '#f2b134');
-        const cyan = new ColorObject('cyan', '#068587');
+        const cyan: ColorObject = new ColorObject('cyan', '#068587');
         const black_light = new ColorObject('black light', '#464646');
         const black = new ColorObject('black', '#323232');
         const black_dark = new ColorObject('black_dark', 'rgba(30, 30, 30, 0.95)');
@@ -29,27 +29,35 @@ export class ColorService {
         this.colors.push(black_light);
         this.colors.push(black);
         this.colors.push(black_dark);
-        this.setDefoultColor(cyan);
+        this.setDefaultColor(cyan);
     }
 
-    private setDefoultColor(cyan) {
+    private setDefaultColor(cyan: ColorObject) {
         let selectedColor = localStorage.getItem('color');
         if (selectedColor != null) {
-            this.currentBacground.next(selectedColor);
+            let object : ColorObject = JSON.parse(selectedColor)
+            this.currentBacground.next(object);
         } else {
             this.setCurrentColor(cyan);
         }
     }
 
     public setCurrentColor(bgColor: ColorObject) {
-        this.currentBacground.next(bgColor.color);
-        localStorage.setItem("color",bgColor.color);
-
+        this.currentBacground.next(bgColor);
+        localStorage.setItem('color',JSON.stringify(bgColor));
     }
 
-    public getCurrentColor(): Observable<string> {
-       return this.currentBacground.asObservable();
+    public getCurrentColor(): Observable<ColorObject> {
+        return this.currentBacground.asObservable();
     }
+
+    public getColor(name: string) : ColorObject{
+        return this.colors.find(color => (color.name == name));
+    }
+
+    // public getWhiteColor() : Observable<ColorObject> {
+    //     return new ColorObject('orange', '#ed553b').o;
+    // }
 
 
 }

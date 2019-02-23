@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ColorService} from '../../services/background/color.service';
+import {ColorObject} from '../../services/background/colorObject';
 
 @Component({
     selector: '[app-button-display]',
@@ -11,8 +12,8 @@ export class ButtonDisplayComponent implements OnInit {
 
 
     @Input() title: string;
-    @Input() state: string;
-    currentColor: Observable<string>;
+    @Input() state = new Observable<string>();
+    currentColor: Observable<ColorObject>;
 
     constructor(private colorService: ColorService) {
     }

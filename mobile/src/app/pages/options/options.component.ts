@@ -13,16 +13,28 @@ export class OptionsComponent implements OnInit {
 
     public colorsList: Array<ColorObject>;
     public emojiTypeList: Array<string> = [];
-    public fontSizes: Array<string> =[];
-    public currentColor: Observable<string>;
+    public fontSizes: Array<string> = [];
+
+    public currentColor: Observable<ColorObject>;
+    public currentFont = new Observable<string>();
+    public currentEmoji = new Observable<EmojiType>();
+
     isDisplayTheme: boolean;
     isDisplayFont: boolean;
     isDisplayEmoji: boolean;
 
+    color: Observable<ColorObject>;
+
+
+
+
     soundActive: boolean;
     notificationActive: boolean;
+
     constructor(private bgColorService: ColorService,
                 private ownEmojiService: OwnEmojiServiceService) {
+
+        // this.color.
 
     }
 
@@ -32,12 +44,16 @@ export class OptionsComponent implements OnInit {
         }
         this.colorsList = this.bgColorService.colors;
         this.currentColor = this.bgColorService.getCurrentColor();
+        this.currentEmoji = this.ownEmojiService.getTypeObs();
 
         this.isDisplayEmoji = false;
         this.isDisplayFont = false;
         this.isDisplayTheme = false;
 
         // change for service
+        this.currentFont.subscribe(value => {
+            value = '14';
+        });
         this.fontSizes.push('14');
         this.fontSizes.push('15');
         this.fontSizes.push('16');
@@ -54,7 +70,7 @@ export class OptionsComponent implements OnInit {
     }
 
     setFont(font: string) {
-        alert('You choose font size '+ font)
+        alert('You choose font size ' + font);
     }
 
     triggerDisplayEmoji() {

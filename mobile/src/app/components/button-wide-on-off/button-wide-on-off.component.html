@@ -4,7 +4,7 @@
     <!--<div (click)="toggleButton()" [(ngModel)]="isActive" [style.background]="onButtonColor |async" id="on">on</div>-->
     <!--<div (click)="toggleButton()" [(ngModel)]="isActive" [style.background]="offButtonColor |async" id="off">off</div>-->
 
-    <div (click)="toggleButton()" [style.background]="onButtonColor |async" id="on">on</div>
-    <div (click)="toggleButton()"  [style.background]="offButtonColor |async" id="off">off</div>
+    <div (click)="toggleButton()" [style.background]="onButtonColor.color" id="on">on</div>
+    <div (click)="toggleButton()"  [style.background]="offButtonColor.color" id="off">off</div>
   </div>
 </div>
