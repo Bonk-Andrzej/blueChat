@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ColorObject} from '../../services/background/colorObject';
 import {BackgroundColorService} from '../../services/background/background-color.service';
 import {EmojiType, OwnEmojiServiceService} from '../../services/own-emoji-service.service';
+import {FontService} from '../../services/font.service';
 
 @Component({
     selector: 'app-options',
@@ -26,7 +27,8 @@ export class OptionsComponent implements OnInit {
     notificationActive: boolean;
 
     constructor(private bgColorService: BackgroundColorService,
-                private ownEmojiService: OwnEmojiServiceService) {
+                private ownEmojiService: OwnEmojiServiceService,
+                private fontService: FontService) {
 
     }
 
@@ -49,12 +51,13 @@ export class OptionsComponent implements OnInit {
         this.isDisplayEmoji = false;
 
 
-        // change for service
-        this.currentFont = '14';
+        // font settings
+        this.fontService.getCurrentFontSizeObs().subscribe(fontSize=>{
+            this.currentFont = fontSize;
+        });
         this.isDisplayFont = false;
-        this.fontSizes.push('14');
-        this.fontSizes.push('15');
-        this.fontSizes.push('16');
+
+        this.fontSizes = this.fontService.getFontSize()
     }
 
     setBackground(color: ColorObject) {
@@ -68,6 +71,7 @@ export class OptionsComponent implements OnInit {
     }
 
     setFont(font: string) {
+        this.fontService.setCurrentSize(font);
         alert('You choose font size ' + font);
     }
 
