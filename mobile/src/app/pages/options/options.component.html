@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <div (click)="triggerDisplayEmoji()" title="Emoji type" [style]=currentEmoji app-button-display=""></div>
+                <div (click)="triggerDisplayEmoji()" title="Emoji type" [state]=currentEmoji app-button-display=""></div>
                 <ng-container *ngFor="let type of emojiTypeList">
                     <div *ngIf="isDisplayEmoji" class="element" (click)="setType(type)" [title]="type" [emoji]="type" app-button-display-option=""></div>
                 </ng-container>

@@ -33,10 +33,6 @@ export class OptionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        for (let emojiTypeKey in  EmojiType) {
-            this.emojiTypeList.push(emojiTypeKey.toLowerCase());
-        }
-
         //color settings
         this.colorsList = this.bgColorService.colors;
         this.bgColorService.getCurrentColor().subscribe(color => {
@@ -45,9 +41,16 @@ export class OptionsComponent implements OnInit {
         this.isDisplayTheme = false;
 
         //emoji settings
+        for (let emojiTypeKey in  EmojiType) {
+            this.emojiTypeList.push(emojiTypeKey.toLowerCase());
+        }
         this.ownEmojiService.getTypeObs().subscribe(emoji => {
-            this.currentEmoji = emoji.toString();
+            this.currentEmoji = emoji;
+            console.log('>>>>>>>>>>>>>> CURRENT EMOJI' + this.currentEmoji)
         });
+
+        // this.currentEmoji = this.ownEmojiService.getType().valueOf();
+
         this.isDisplayEmoji = false;
 
 
@@ -55,9 +58,8 @@ export class OptionsComponent implements OnInit {
         this.fontService.getCurrentFontSizeObs().subscribe(fontSize=>{
             this.currentFont = fontSize;
         });
-        this.isDisplayFont = false;
-
         this.fontSizes = this.fontService.getFontSize()
+        this.isDisplayFont = false;
     }
 
     setBackground(color: ColorObject) {
