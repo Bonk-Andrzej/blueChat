@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ColorService} from '../../services/background/color.service';
+import {BackgroundColorService} from '../../services/background/background-color.service';
 import {ColorObject} from '../../services/background/colorObject';
 import {ColorsService} from '../../services/colors.service';
 
@@ -20,7 +20,7 @@ export class ButtonWideOnOffComponent implements OnInit {
 
     private whiteColor: ColorObject;
 
-    constructor(private bgColorService: ColorService,
+    constructor(private bgColorService: BackgroundColorService,
                 private colorService: ColorsService) {
 
         this.whiteColor = new ColorObject("",this.colorService.getColor("--white"));

@@ -7,7 +7,7 @@
     <div id="options-list">
         <div id="display" title="DISPLAY" app-list-users-with-title="">
             <div>
-                <div (click)="triggerDisplayTheme()" title="Theme" [state]=currentColor app-button-display=""></div>
+                <div (click)="triggerDisplayTheme()" title="Theme" [state]=currentColor.name app-button-display=""></div>
                 <ng-container *ngFor="let color of colorsList">
                     <div *ngIf="isDisplayTheme" class="element" (click)="setBackground(color)" [title]=color.name
                          [colorObject]=color.color

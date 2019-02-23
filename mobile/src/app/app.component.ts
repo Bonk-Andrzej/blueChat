@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserProfileService} from './services/user-profile.service';
 import {WSRClientService} from './WSRClient/wsrclient.service';
 import {ChangeService} from './services/change.service';
-import {ColorService} from './services/background/color.service';
+import {BackgroundColorService} from './services/background/background-color.service';
 import {OwnEmojiServiceService} from './services/own-emoji-service.service';
 import {CordovaService} from "./services/cordova.service";
 import {ConversationService} from "./services/conversation.service";
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     constructor(private userProfileService: UserProfileService,
                 private webSocket: WSRClientService,
                 private changeService: ChangeService,
-                private colorService: ColorService,
+                private colorService: BackgroundColorService,
                 private ownEmojiService: OwnEmojiServiceService,
                 private cordovaService: CordovaService,
                 private conversationService: ConversationService) {

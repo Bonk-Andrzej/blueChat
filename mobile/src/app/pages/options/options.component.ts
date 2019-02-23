@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ColorObject} from '../../services/background/colorObject';
-import {ColorService} from '../../services/background/color.service';
+import {BackgroundColorService} from '../../services/background/background-color.service';
 import {EmojiType, OwnEmojiServiceService} from '../../services/own-emoji-service.service';
-import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-options',
@@ -15,26 +14,19 @@ export class OptionsComponent implements OnInit {
     public emojiTypeList: Array<string> = [];
     public fontSizes: Array<string> = [];
 
-    public currentColor: Observable<ColorObject>;
-    public currentFont = new Observable<string>();
-    public currentEmoji = new Observable<EmojiType>();
+    public currentColor: ColorObject;
+    public currentFont: string;
+    public currentEmoji :string;
 
     isDisplayTheme: boolean;
     isDisplayFont: boolean;
     isDisplayEmoji: boolean;
 
-    color: Observable<ColorObject>;
-
-
-
-
     soundActive: boolean;
     notificationActive: boolean;
 
-    constructor(private bgColorService: ColorService,
+    constructor(private bgColorService: BackgroundColorService,
                 private ownEmojiService: OwnEmojiServiceService) {
-
-        // this.color.
 
     }
 
@@ -42,18 +34,24 @@ export class OptionsComponent implements OnInit {
         for (let emojiTypeKey in  EmojiType) {
             this.emojiTypeList.push(emojiTypeKey.toLowerCase());
         }
-        this.colorsList = this.bgColorService.colors;
-        this.currentColor = this.bgColorService.getCurrentColor();
-        this.currentEmoji = this.ownEmojiService.getTypeObs();
 
-        this.isDisplayEmoji = false;
-        this.isDisplayFont = false;
+        //color settings
+        this.colorsList = this.bgColorService.colors;
+        this.bgColorService.getCurrentColor().subscribe(color => {
+            this.currentColor = color;
+        });
         this.isDisplayTheme = false;
 
-        // change for service
-        this.currentFont.subscribe(value => {
-            value = '14';
+        //emoji settings
+        this.ownEmojiService.getTypeObs().subscribe(emoji => {
+            this.currentEmoji = emoji.toString();
         });
+        this.isDisplayEmoji = false;
+
+
+        // change for service
+        this.currentFont = '14';
+        this.isDisplayFont = false;
         this.fontSizes.push('14');
         this.fontSizes.push('15');
         this.fontSizes.push('16');

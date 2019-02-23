@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class ColorService {
+export class BackgroundColorService {
 
     public colors: Array<ColorObject> = [];
     private readonly currentBacground: BehaviorSubject<ColorObject> = new BehaviorSubject(new ColorObject("",""));
@@ -54,10 +54,5 @@ export class ColorService {
     public getColor(name: string) : ColorObject{
         return this.colors.find(color => (color.name == name));
     }
-
-    // public getWhiteColor() : Observable<ColorObject> {
-    //     return new ColorObject('orange', '#ed553b').o;
-    // }
-
 
 }

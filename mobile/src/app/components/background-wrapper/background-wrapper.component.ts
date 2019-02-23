@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ColorService} from '../../services/background/color.service';
+import {BackgroundColorService} from '../../services/background/background-color.service';
 import {ColorObject} from '../../services/background/colorObject';
 
 @Component({
@@ -11,7 +10,7 @@ import {ColorObject} from '../../services/background/colorObject';
 export class BackgroundWrapperComponent implements OnInit {
 
   currentColor : ColorObject;
-  constructor(private colorService: ColorService) { }
+  constructor(private colorService: BackgroundColorService) { }
 
   ngOnInit() {
     this.colorService.getCurrentColor().subscribe(color=>{
