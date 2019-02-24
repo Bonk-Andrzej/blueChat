@@ -25,7 +25,7 @@ export class OptionsComponent implements OnInit {
     isDisplayEmoji: boolean;
 
     soundActive: Boolean;
-    notificationActive: boolean;
+    isMessageActive: Boolean;
 
     constructor(private bgColorService: BackgroundColorService,
                 private ownEmojiService: OwnEmojiServiceService,
@@ -60,8 +60,9 @@ export class OptionsComponent implements OnInit {
         this.isDisplayFont = false;
 
         //sound notification settings
-
         this.soundActive = this.notificationService.getNotificationSound();
+        this.isMessageActive = this.notificationService.getNotificationMessage();
+
     }
 
     setBackground(color: ColorObject) {
@@ -95,5 +96,9 @@ export class OptionsComponent implements OnInit {
 
     setSound(isSound: boolean) {
         this.notificationService.setNotificationSound(isSound);
+    }
+
+    setMsgNotifi(isMessageActive: boolean) {
+    this.notificationService.setNotificationMessage(isMessageActive)
     }
 }

@@ -13,6 +13,7 @@ export class NotificationService {
     private readonly NOTIFICATIONSOUND: string = 'NotificationSound';
     public onGoToConversation = new EventEmitter<MessageDto>();
     private isNotificationSound: Boolean;
+    private isNotificatnioMessage: Boolean;
 
     constructor(private zone: NgZone,
                 private router: Router,
@@ -21,9 +22,8 @@ export class NotificationService {
 
         this.addClickEventsToNotification();
         this.restoreNotificationSettings();
-
+        this.setNotificationMessage(true);
     }
-
 
 
     private addClickEventsToNotification() {
@@ -56,17 +56,31 @@ export class NotificationService {
         }
     }
 
-    public setNotificationSound(isSound: boolean){
+    public setNotificationSound(isSound: boolean) {
         this.isNotificationSound = isSound;
-        this.storage.saveObject(this.NOTIFICATIONSOUND,isSound)
+        this.storage.saveObject(this.NOTIFICATIONSOUND, isSound);
     }
 
-    public getNotificationSound() : Boolean{
+    public getNotificationSound(): Boolean {
         return this.isNotificationSound;
     }
 
-    public notifyNewMessage(message: MessageDto) {
+    public setNotificationMessage(isMessageActive: Boolean) {
+        this.isNotificatnioMessage = isMessageActive;
+    }
 
+    public getNotificationMessage(): Boolean {
+        return this.isNotificatnioMessage;
+    }
+
+    public notifyNewMessage(message: MessageDto) {
+        if (this.isNotificatnioMessage) this.sendNotification(message);
+
+        if (this.isNotificationSound) navigator.notification.beep(1);
+
+    }
+
+    sendNotification(message: MessageDto) {
         window.cordova.plugins.notification.local.schedule({
             title: 'Text Jet - ' + message.sender.nick,
             text: 'New Message: ' + message.content,
@@ -82,10 +96,6 @@ export class NotificationService {
 
         });
         this.storage.saveObject(this.MESSAGENOTIFICATIONKEY, message);
-
-        if (this.isNotificationSound) navigator.notification.beep(1);
-
-
     }
 
     public notifiNewChannelMessage() {

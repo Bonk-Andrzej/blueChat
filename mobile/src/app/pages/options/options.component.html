@@ -33,7 +33,7 @@
 
         <div id="notification" title="NOTIFICATIONS" app-list-users-with-title="">
             <div title="Sound" (onToggle)="setSound($event)" [isActive]=soundActive app-button-wide-on-off=""></div>
-            <div title="Show"  [isActive]=false app-button-wide-on-off=""></div>
+            <div title="Show"  (onToggle)="setMsgNotifi($event)" [isActive]=isMessageActive app-button-wide-on-off=""></div>
         </div>
     </div>
 </div>
