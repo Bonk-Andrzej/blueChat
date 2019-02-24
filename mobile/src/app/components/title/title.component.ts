@@ -20,7 +20,7 @@ export class TitleComponent implements OnInit {
 
         this.titleStyle = {
             textAlign : this.textAlign || "center" ,
-            fontSize : this.fontSize || '15px'
+            fontSize : this.fontSize || '1.5em'
         }
 
     }

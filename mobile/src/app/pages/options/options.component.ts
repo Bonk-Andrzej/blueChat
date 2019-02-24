@@ -3,6 +3,7 @@ import {ColorObject} from '../../services/background/colorObject';
 import {BackgroundColorService} from '../../services/background/background-color.service';
 import {EmojiType, OwnEmojiServiceService} from '../../services/own-emoji-service.service';
 import {FontService} from '../../services/font.service';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
     selector: 'app-options',
@@ -17,18 +18,19 @@ export class OptionsComponent implements OnInit {
 
     public currentColor: ColorObject;
     public currentFont: string;
-    public currentEmoji :string;
+    public currentEmoji: string;
 
     isDisplayTheme: boolean;
     isDisplayFont: boolean;
     isDisplayEmoji: boolean;
 
-    soundActive: boolean;
+    soundActive: Boolean;
     notificationActive: boolean;
 
     constructor(private bgColorService: BackgroundColorService,
                 private ownEmojiService: OwnEmojiServiceService,
-                private fontService: FontService) {
+                private fontService: FontService,
+                private notificationService: NotificationService) {
 
     }
 
@@ -46,20 +48,20 @@ export class OptionsComponent implements OnInit {
         }
         this.ownEmojiService.getTypeObs().subscribe(emoji => {
             this.currentEmoji = emoji;
-            console.log('>>>>>>>>>>>>>> CURRENT EMOJI' + this.currentEmoji)
         });
-
-        // this.currentEmoji = this.ownEmojiService.getType().valueOf();
-
         this.isDisplayEmoji = false;
 
 
         // font settings
-        this.fontService.getCurrentFontSizeObs().subscribe(fontSize=>{
+        this.fontService.getCurrentFontSizeObs().subscribe(fontSize => {
             this.currentFont = fontSize;
         });
-        this.fontSizes = this.fontService.getFontSize()
+        this.fontSizes = this.fontService.getFontSize();
         this.isDisplayFont = false;
+
+        //sound notification settings
+
+        this.soundActive = this.notificationService.getNotificationSound();
     }
 
     setBackground(color: ColorObject) {
@@ -91,4 +93,7 @@ export class OptionsComponent implements OnInit {
     }
 
 
+    setSound(isSound: boolean) {
+        this.notificationService.setNotificationSound(isSound);
+    }
 }

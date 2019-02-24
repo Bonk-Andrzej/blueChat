@@ -13,7 +13,7 @@ export class ButtonWideOnOffComponent implements OnInit {
 
     @Input() title: string;
     @Input() isActive: boolean;
-    @Output() isActiveChange = new EventEmitter<boolean>();
+    @Output() onToggle = new EventEmitter<boolean>();
 
     onButtonColor: ColorObject;
     offButtonColor: ColorObject;
@@ -51,6 +51,6 @@ export class ButtonWideOnOffComponent implements OnInit {
             this.offButtonColor = this.onButtonColor
             this.onButtonColor = this.whiteColor;
         }
-        this.isActiveChange.emit(this.isActive);
+        this.onToggle.emit(this.isActive);
     }
 }

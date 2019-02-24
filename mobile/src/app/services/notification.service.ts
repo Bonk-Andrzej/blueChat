@@ -1,16 +1,18 @@
 import {EventEmitter, Injectable, NgZone} from '@angular/core';
-import {MessageDto} from "../repository/message/messageDto";
-import {Router} from "@angular/router";
-import {LocalStorageService} from "./local-storage.service";
-import {RetrieveStateApplicationService} from "./retrieve-state-application.service";
+import {MessageDto} from '../repository/message/messageDto';
+import {Router} from '@angular/router';
+import {LocalStorageService} from './local-storage.service';
+import {RetrieveStateApplicationService} from './retrieve-state-application.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NotificationService {
 
-    private readonly MESSAGENOTIFICATIONKEY: string = "Notification";
-    public onGoToConversation = new EventEmitter<MessageDto>()
+    private readonly MESSAGENOTIFICATIONKEY: string = 'Notification';
+    private readonly NOTIFICATIONSOUND: string = 'NotificationSound';
+    public onGoToConversation = new EventEmitter<MessageDto>();
+    private isNotificationSound: Boolean;
 
     constructor(private zone: NgZone,
                 private router: Router,
@@ -18,7 +20,11 @@ export class NotificationService {
                 public  appState: RetrieveStateApplicationService) {
 
         this.addClickEventsToNotification();
+        this.restoreNotificationSettings();
+
     }
+
+
 
     private addClickEventsToNotification() {
         document.addEventListener('deviceready', () => {
@@ -30,7 +36,7 @@ export class NotificationService {
                         this.onGoToConversation.emit(messageDto);
                         this.storage.removeObject(this.MESSAGENOTIFICATIONKEY);
                     }
-                })
+                });
 
             });
             window.cordova.plugins.notification.local.on('cancel', () => {
@@ -42,11 +48,28 @@ export class NotificationService {
         });
     }
 
+    private restoreNotificationSettings() {
+        if (this.storage.hasObject(this.NOTIFICATIONSOUND)) {
+            this.isNotificationSound = this.storage.fetchObject(this.NOTIFICATIONSOUND, Boolean);
+        } else {
+            this.isNotificationSound = true;
+        }
+    }
+
+    public setNotificationSound(isSound: boolean){
+        this.isNotificationSound = isSound;
+        this.storage.saveObject(this.NOTIFICATIONSOUND,isSound)
+    }
+
+    public getNotificationSound() : Boolean{
+        return this.isNotificationSound;
+    }
+
     public notifyNewMessage(message: MessageDto) {
 
         window.cordova.plugins.notification.local.schedule({
-            title: "Text Jet - " + message.sender.nick,
-            text: "New Message: " + message.content,
+            title: 'Text Jet - ' + message.sender.nick,
+            text: 'New Message: ' + message.content,
             foreground: true,
             smallIcon: 'res://icon',
             icon: 'res://icon'
@@ -59,7 +82,9 @@ export class NotificationService {
 
         });
         this.storage.saveObject(this.MESSAGENOTIFICATIONKEY, message);
-        navigator.notification.beep(1);
+
+        if (this.isNotificationSound) navigator.notification.beep(1);
+
 
     }
 

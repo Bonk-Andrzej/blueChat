@@ -10,16 +10,15 @@ export class FontService {
     private currentFontSize: BehaviorSubject<string> = new BehaviorSubject('');
 
     constructor() {
-        this.fontSizeList.push('14');
-        this.fontSizeList.push('15');
-        this.fontSizeList.push('16');
+        this.fontSizeList.push('10');
+        this.fontSizeList.push('11');
+        this.fontSizeList.push('12');
+        this.fontSizeList.push('13');
 
-       this.setCurrentFontSize();
+       this.setCurrentSize('10');
     }
 
-    setCurrentFontSize() {
-        this.currentFontSize.next('14')
-    }
+
 
     public getCurrentFontSizeObs() : Observable<string>{
         return this.currentFontSize.asObservable();
@@ -31,5 +30,6 @@ export class FontService {
 
     public setCurrentSize(fontSize: string){
         this.currentFontSize.next(fontSize);
+        document.body.style.fontSize = fontSize + 'px';
     }
 }
