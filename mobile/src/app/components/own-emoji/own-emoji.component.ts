@@ -12,10 +12,11 @@ export class OwnEmojiComponent{
 
 
     emojiType : string;
-
+    emojiQuality: number;
 
     constructor(private ownEmojiService: OwnEmojiServiceService) {
         this.emojiType = ownEmojiService.getType();
+        this.emojiQuality = ownEmojiService.getQuality();
     }
 
     public handleClick($event: EmojiEvent) {
