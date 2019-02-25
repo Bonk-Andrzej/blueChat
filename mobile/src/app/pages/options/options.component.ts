@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ColorObject} from '../../services/background/colorObject';
 import {BackgroundColorService} from '../../services/background/background-color.service';
-import {EmojiType, OwnEmojiServiceService} from '../../services/own-emoji-service.service';
+import {EmojiQuality, EmojiType, OwnEmojiServiceService} from '../../services/own-emoji-service.service';
 import {FontService} from '../../services/font.service';
 import {NotificationService} from '../../services/notification.service';
 
@@ -14,15 +14,18 @@ export class OptionsComponent implements OnInit {
 
     public colorsList: Array<ColorObject>;
     public emojiTypeList: Array<string> = [];
+    public emojiQualityList: Array<string> = [];
     public fontSizes: Array<string> = [];
 
     public currentColor: ColorObject;
     public currentFont: string;
     public currentEmoji: string;
+    public currentQuality: string;
 
     isDisplayTheme: boolean;
     isDisplayFont: boolean;
     isDisplayEmoji: boolean;
+    isDisplayEmojiQuality: boolean;
 
     soundActive: Boolean;
     isMessageActive: Boolean;
@@ -50,6 +53,17 @@ export class OptionsComponent implements OnInit {
             this.currentEmoji = emoji;
         });
         this.isDisplayEmoji = false;
+
+
+        //emoji quality settings
+
+
+        this.emojiQualityList = Object.values(EmojiQuality).filter(x => typeof x === 'string');
+
+        this.ownEmojiService.getQualityObs().subscribe(quality => {
+            this.currentQuality = quality.toLowerCase();
+        });
+        this.isDisplayEmojiQuality = false;
 
 
         // font settings
@@ -80,8 +94,17 @@ export class OptionsComponent implements OnInit {
         alert('You choose font size ' + font);
     }
 
+    setQuality(quality: string) {
+        console.warn(quality);
+        this.ownEmojiService.setQuality(quality);
+    }
+
     triggerDisplayEmoji() {
         this.isDisplayEmoji = !this.isDisplayEmoji;
+    }
+
+    triggerDisplayQuality() {
+        this.isDisplayEmojiQuality = !this.isDisplayEmojiQuality;
     }
 
     triggerDisplayTheme() {
@@ -90,7 +113,6 @@ export class OptionsComponent implements OnInit {
 
     triggerDisplayFont() {
         this.isDisplayFont = !this.isDisplayFont;
-
     }
 
 
@@ -99,6 +121,6 @@ export class OptionsComponent implements OnInit {
     }
 
     setMsgNotifi(isMessageActive: boolean) {
-    this.notificationService.setNotificationMessage(isMessageActive)
+        this.notificationService.setNotificationMessage(isMessageActive);
     }
 }

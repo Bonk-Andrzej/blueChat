@@ -1,4 +1,4 @@
-import {Injectable, Pipe, PipeTransform} from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {EmojiService} from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import {OwnEmojiServiceService} from '../services/own-emoji-service.service';
@@ -11,7 +11,6 @@ export class EmojiPipePipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer,
                 private emojiService: EmojiService,
                 private ownEmojiService: OwnEmojiServiceService) {
-
         console.log(emojiService);
     }
 
@@ -29,7 +28,7 @@ export class EmojiPipePipe implements PipeTransform {
                 const styles = this.emojiService.emojiSpriteStyles(
                     emoteData.sheet,
                     (this.ownEmojiService.getType()) as 'apple' | 'google' | 'twitter' | 'emojione' | 'messenger' | 'facebook' | '' ,
-                    20);
+                    20,this.ownEmojiService.getQuality());
                 const htmlElement = document.createElement('div');
                 Object.assign(htmlElement.style, styles);
                 content = content.replace(emojiName, htmlElement.outerHTML);
