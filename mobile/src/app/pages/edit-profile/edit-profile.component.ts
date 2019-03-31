@@ -2,26 +2,42 @@ import {Component, OnInit} from '@angular/core';
 import {UserProfileService} from '../../services/user-profile.service';
 import {UserObs} from '../../services/model/userObs';
 import {Observable} from 'rxjs';
+import {UserDto} from '../../repository/user/userDto';
 
 @Component({
-    selector: '[app-edit-profile]',
+    selector: 'app-edit-profile',
     templateUrl: './edit-profile.component.html',
     styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
 
     public userObse: Observable<UserObs>;
+    public editedUser: UserDto;
+    public rollButtonColor: string = '';
+    public colorTextOnRollButton = 'white';
+    public colorTextOnConfirmButton = 'white';
+    public confirmColorButton = 'red';
 
     constructor(private userProfileService: UserProfileService) {
     }
 
     ngOnInit() {
         this.userObse = this.userProfileService.getUserObs();
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> USER W PROFILE', this.userObse)
+
+        this.userObse.subscribe(user =>{
+                this.rollButtonColor = user.getPhoto().photo
+            }
+        );
+
+        this.editedUser = new UserDto(null,"","","",null)
 
     }
 
-    // getUserObs() : UserObs {
-    // return this.userObse;
-    // }
+    rollCollor() {
+
+    }
+
+    confirmEdit() {
+
+    }
 }
