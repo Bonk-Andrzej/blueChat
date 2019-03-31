@@ -4,6 +4,7 @@ import {UserObs} from '../../services/model/userObs';
 import {Observable} from 'rxjs';
 import {UserDto} from '../../repository/user/userDto';
 import {ColorsService} from '../../services/colors.service';
+import {PhotoDto} from '../../repository/photo/photoDto';
 
 @Component({
     selector: 'app-edit-profile',
@@ -18,6 +19,8 @@ export class EditProfileComponent implements OnInit {
     public colorTextOnRollButton = 'white';
     public colorTextOnConfirmButton = 'white';
     public confirmColorButton = 'red';
+
+    private currentPhoto: string = '';
 
     constructor(private userProfileService: UserProfileService,
                 private colorService: ColorsService) {
@@ -36,7 +39,11 @@ export class EditProfileComponent implements OnInit {
     }
 
     rollCollor() {
-        console.log(this.colorService.getRandomColor());
+        let randColor = this.colorService.getRandomColor();
+        this.rollButtonColor = randColor;
+        let photo: PhotoDto = new PhotoDto();
+        photo.photo = randColor;
+        this.editedUser.photoDto = photo;
     }
 
     confirmEdit() {
