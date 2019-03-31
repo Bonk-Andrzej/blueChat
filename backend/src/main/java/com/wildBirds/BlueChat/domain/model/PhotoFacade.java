@@ -21,19 +21,14 @@ public class PhotoFacade {
     protected Photo checkPhoto(String color) {
         Photo photo = new Photo();
         photo.setPhoto(color);
-//        photoRepository.findByP
-        Photo save = photoRepository.save(photo);
-        return save;
+        Photo result = photoRepository.findByPhoto(color);
+        System.out.println("PRZED >>>>>" + result);
+        if (result == null) {
+            result = photoRepository.save(photo);
+            System.out.println("PO >>>>>>" + result);
+        }
+        return result;
     }
-
-//    public PhotoDto addRandomPhotoToUser(User user){
-//        Photo photo = new Photo();
-//        photo.setPhoto(generateColor());
-//        Photo photoProfile = photoRepository.save(photo);
-//
-//        user.setProfilePhoto(photoProfile);
-
-//    }
 
 
 
