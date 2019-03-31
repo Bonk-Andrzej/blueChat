@@ -74,7 +74,6 @@ export class OwnEmojiServiceService {
     }
 
     public getQuality(): EmojiQuality {
-        console.error(this.currentQuality.getValue());
         return EmojiQuality[this.currentQuality.getValue()];
     }
 

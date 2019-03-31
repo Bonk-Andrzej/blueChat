@@ -15,7 +15,6 @@ import {UserObs} from './model/userObs';
 import {UserDtoWithMessage} from '../repository/user/userDtoWithMessage';
 import {FriendsDto} from '../repository/friend/friendsDto';
 import {UserShortObs} from './model/userShortObs';
-import {ConversationService} from "./conversation.service";
 
 @Injectable({
     providedIn: 'root'
@@ -121,7 +120,7 @@ export class UserProfileService {
     public getIdFriendship(idFriend: number): number {
         for (let friendsObs of this.friends.getValue()) {
             if (friendsObs.getFriend().getIdUser() == idFriend) {
-                console.log('FOUND FRIENDSHIP IN LIST', friendsObs.getIdFrendship())
+                console.log('FOUND FRIENDSHIP IN LIST', friendsObs.getIdFrendship());
                 return friendsObs.getIdFrendship();
             }
         }
@@ -170,7 +169,7 @@ export class UserProfileService {
 
     public addFrendDtoToFriend(friendsDto: FriendsDto) {
         let friendsList = this.friends.getValue();
-        friendsList.push(FriendsObs.create(friendsDto))
+        friendsList.push(FriendsObs.create(friendsDto));
         this.friends.next(friendsList);
     }
 
@@ -179,5 +178,25 @@ export class UserProfileService {
         return (result) ? result.getFriend() : null;
     }
 
+    public editUser(editedUser: UserDto) {
+        let oldUser = this.getUser();
 
+        editedUser.idUser = oldUser.getIdUser();
+
+        if (editedUser.nick == '') {
+            editedUser.nick = oldUser.getNick();
+        }
+        if (editedUser.description == '') {
+            editedUser.description = oldUser.getDescription();
+        }
+        if (editedUser.email == '') {
+            editedUser.email = oldUser.getNick();
+        }
+        if (editedUser.photoDto == null) {
+            editedUser.photoDto = oldUser.getPhoto();
+        }
+        let userObs = UserObs.create(editedUser);
+        this.userBeh.next(userObs);
+        this.userRepository.updateUser(editedUser);
+    }
 }

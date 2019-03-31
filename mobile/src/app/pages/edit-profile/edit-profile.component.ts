@@ -15,12 +15,13 @@ export class EditProfileComponent implements OnInit {
 
     public userObse: Observable<UserObs>;
     public editedUser: UserDto;
-    public rollButtonColor: string = '';
-    public colorTextOnRollButton = 'white';
-    public colorTextOnConfirmButton = 'white';
-    public confirmColorButton = 'red';
+    public rollButtonColor: string;
+    public colorTextOnRollButton: string;
+    public colorTextOnConfirmButton: string;
+    public confirmColorButton: string;
 
-    private currentPhoto: string = '';
+
+    public confirmStatus;
 
     constructor(private userProfileService: UserProfileService,
                 private colorService: ColorsService) {
@@ -28,14 +29,17 @@ export class EditProfileComponent implements OnInit {
 
     ngOnInit() {
         this.userObse = this.userProfileService.getUserObs();
-
         this.userObse.subscribe(user => {
                 this.rollButtonColor = user.getPhoto().photo;
             }
         );
-
         this.editedUser = new UserDto(null, '', '', '', null);
 
+        // set basic view of page
+        this.confirmStatus = 'none';
+        this.colorTextOnRollButton = this.colorService.getColor('--white-light');
+        this.colorTextOnConfirmButton = this.colorService.getColor('--white-light');
+        this.confirmColorButton = this.colorService.getColor('--orange');
     }
 
     rollCollor() {
@@ -46,7 +50,21 @@ export class EditProfileComponent implements OnInit {
         this.editedUser.photoDto = photo;
     }
 
-    confirmEdit() {
+    edit() {
+        this.confirmStatus = 'block';
+    }
 
+    onCancel() {
+        this.confirmStatus = 'none';
+    }
+
+    onConfirmEdit() {
+
+        this.userProfileService.editUser(this.editedUser);
+        this.confirmStatus = 'none';
+        console.log('>>>>>>>>>>>>>>>>>>>>>>> accepted' + this.editedUser.nick);
+        this.editedUser.email = '';
+        this.editedUser.description = '';
+        this.editedUser.nick = '';
     }
 }

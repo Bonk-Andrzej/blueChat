@@ -19,9 +19,8 @@ export class UserObs {
         user.nick = userDto.nick;
         user.email = userDto.email;
         user.description = userDto.description;
-        user.photo = userDto.photoDto
+        user.photo = userDto.photoDto;
         return user;
-
     }
 
     public toUserDto(): UserDto{
@@ -30,7 +29,7 @@ export class UserObs {
         dto.nick = this.nick;
         dto.email = this.email;
         dto.description = this.description;
-        dto.photoDto = this.photo
+        dto.photoDto = this.photo;
 
         return dto;
     }
@@ -50,7 +49,7 @@ export class UserObs {
     public getNick():string{
         return this.nick;
     }
-    public  getEmail():string{
+    public getEmail():string{
         return this.email;
     }
     public  getDescription(): string{

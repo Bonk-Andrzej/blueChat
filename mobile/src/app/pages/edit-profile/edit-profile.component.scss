@@ -46,9 +46,22 @@
     grid-row: 19/19;
     justify-content: end;
   }
-  #confirmButton {
+  #editButton {
     grid-column: 1/11;
     grid-row: 20/20;
     justify-content: end;
   }
+}
+#confirmComponent{
+  top: 0;
+  position: absolute;
+
+  width:  calc(100% - 15px);
+  height: 100% ;
+  background: rgba(20, 20, 20, 0.5);
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: calc(100% - 55px);
+
 }
