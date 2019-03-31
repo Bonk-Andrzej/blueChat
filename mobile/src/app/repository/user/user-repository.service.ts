@@ -35,10 +35,6 @@ export class UserRepositoryService {
         return this.http.get<Array<UserDto>>(this.host + '/users').toPromise();
     }
 
-    // public getUserDtoShortList(): Observable<Array<UserDtoShort>> {
-    //     return this.http.get<Array<UserDtoShort>>(this.host + '/users/short');
-    // }
-
     public findUserByPhrase(phrase: string): Promise<Array<UserDtoShort>> {
         return this.http.get<Array<UserDtoShort>>(this.host + '/users/short/' + phrase).toPromise();
     }
@@ -52,12 +48,6 @@ export class UserRepositoryService {
     }
 
     public async updateUser(userDto: UserDto): Promise<UserDto> {
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.idUser);
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.nick);
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.description);
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.email);
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.photoDto.photo);
-
         return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers}).toPromise();
     }
 

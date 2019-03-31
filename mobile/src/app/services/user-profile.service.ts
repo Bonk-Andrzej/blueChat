@@ -201,6 +201,7 @@ export class UserProfileService {
                 this.userBeh.next(userObs);
             })
             .catch(reason => {
+                alert('Duplicate nick or email');
                 throw(reason);
             });
     }
