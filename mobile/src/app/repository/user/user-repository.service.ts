@@ -40,7 +40,7 @@ export class UserRepositoryService {
     // }
 
     public findUserByPhrase(phrase: string): Promise<Array<UserDtoShort>> {
-        return this.http.get<Array<UserDtoShort>>(this.host + '/users/short/' + phrase).toPromise()
+        return this.http.get<Array<UserDtoShort>>(this.host + '/users/short/' + phrase).toPromise();
     }
 
     public postNewUser(userPassDto: UserPassDto): Observable<UserPassDto> {
@@ -51,8 +51,14 @@ export class UserRepositoryService {
         return this.http.patch(this.host + '/users/pass', email, {headers: this.headers});
     }
 
-    public updateUser(userDto: UserDto): Observable<UserDto> {
-        return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers});
+    public updateUser(userDto: UserDto): Promise<UserDto> {
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.idUser);
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.nick);
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.description);
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.email);
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.photoDto.photo);
+
+        return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers}).toPromise();
     }
 
     public getUserById(id: number): Promise<UserDto> {

@@ -190,7 +190,7 @@ export class UserProfileService {
             editedUser.description = oldUser.getDescription();
         }
         if (editedUser.email == '') {
-            editedUser.email = oldUser.getNick();
+            editedUser.email = oldUser.getEmail();
         }
         if (editedUser.photoDto == null) {
             editedUser.photoDto = oldUser.getPhoto();

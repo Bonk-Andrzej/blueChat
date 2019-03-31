@@ -59,10 +59,8 @@ export class EditProfileComponent implements OnInit {
     }
 
     onConfirmEdit() {
-
         this.userProfileService.editUser(this.editedUser);
         this.confirmStatus = 'none';
-        console.log('>>>>>>>>>>>>>>>>>>>>>>> accepted' + this.editedUser.nick);
         this.editedUser.email = '';
         this.editedUser.description = '';
         this.editedUser.nick = '';

@@ -53,9 +53,8 @@ export class ColorsService {
         let num1: string = this.randomNum().toString();
         let num2: string = this.randomNum().toString();
         let num3: string = this.randomNum().toString();
-        let num4: string = this.randomNum().toString();
 
-        return 'rgba(' + num1 + ',' + num2 + ',' + num3 + ',' + num4 + ')';
+        return 'rgb(' + num1 + ',' + num2 + ',' + num3 + ')';
 
     }
 
