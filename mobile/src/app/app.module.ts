@@ -41,7 +41,6 @@ import { ButtonSendingComponent } from './components/button-sending/button-sendi
 import { InputWithInsideTextComponent } from './components/input-with-inside-text/input-with-inside-text.component';
 import { ObjectWithCheckboxComponent } from './components/object-with-checkbox/object-with-checkbox.component';
 import { BoxProfilesComponent } from './components/box-profiles/box-profiles.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { ButtonAddFriendComponent } from './components/button-add-friend/button-add-friend.component';
 import { FriendsComponent } from './pages/friends/friends.component';
@@ -98,7 +97,6 @@ import { ButtonWideOnOffComponent } from './components/button-wide-on-off/button
         InputWithInsideTextComponent,
         ObjectWithCheckboxComponent,
         BoxProfilesComponent,
-        ProfileComponent,
         UserProfileComponent,
         ButtonAddFriendComponent,
         FriendsComponent,

@@ -10,14 +10,14 @@ import {Observable} from 'rxjs';
 })
 export class EditProfileComponent implements OnInit {
 
-    public userObse: UserObs;
+    public userObse: Observable<UserObs>;
 
     constructor(private userProfileService: UserProfileService) {
     }
 
     ngOnInit() {
-        this.userObse = this.userProfileService.getUser();
-        // console.log('>>>>>>>>>>>>>>>>>>>>>>>> USER W PROFILE', user2)
+        this.userObse = this.userProfileService.getUserObs();
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>> USER W PROFILE', this.userObse)
 
     }
 
