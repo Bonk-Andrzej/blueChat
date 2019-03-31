@@ -1,74 +1,3 @@
-////@import "~src/stylesAssets";
-////
-////#bow {
-////  pointer-events: all;
-////  display: flex;
-////  height: 100%;
-////  width: 140px;
-////  //background: var(--dev-color2);
-////  background: url("../../../assets/subtract.svg") no-repeat bottom;
-////  background-size: 100%;
-////  align-items: center;
-////  justify-items: center;
-////  #photo {
-////    width: 115px;
-////    height: 115px;
-////    border: 3px solid var(--red);
-////    margin: auto auto;
-////    border-radius: 50%;
-////    //background: var(--dev-color3);
-////    //background: grey;
-////    @extend %rocket-icon;
-////  }
-//
-////}
-//@import "~src/stylesAssets";
-//
-//.grid {
-//  @extend %default-grid;
-//  height: calc(100% - 550px);
-//  float: left;
-//  grid-gap: 20px;
-//  padding-bottom: 0;
-//
-//
-//  #left-button {
-//    grid-column: 1/3;
-//    grid-row: 1/2;
-//  }
-//
-//  #title {
-//    grid-column: 3/9;
-//    grid-row: 1/2;
-//  }
-//
-//  #right-button {
-//    grid-column: 9/11;
-//    grid-row: 1/2;
-//  }
-//
-  #box-profile {
-    grid-column: 1/11;
-    grid-row: 2/10;
-    overflow: hidden;
-    pointer-events: none;
-  }
-//  //#nick{
-//  //
-//  //}
-//  //#email{
-//  //
-//  //}
-//  //#descreption{
-//  //
-//  //}
-//
-//}
-//#menu-bottom{
-//
-//}
-//
-
 @import "~src/stylesAssets";
 
 .grid {
@@ -83,12 +12,10 @@
     grid-column: 1/3;
     grid-row: 1/2;
   }
-
   #title {
     grid-column: 3/9;
     grid-row: 1/2;
   }
-
   #right-button {
     grid-column: 9/11;
     grid-row: 1/2;
@@ -100,7 +27,6 @@
     overflow: hidden;
     pointer-events: none;
   }
-
   #nick {
     grid-column: 1/11;
     grid-row: 13/13;
@@ -110,7 +36,6 @@
     grid-row: 14/14;
     justify-content: end;
   }
-
   #descreption{
     grid-column: 1/11;
     grid-row: 15/19;
@@ -126,6 +51,4 @@
     grid-row: 20/20;
     justify-content: end;
   }
-
-
 }

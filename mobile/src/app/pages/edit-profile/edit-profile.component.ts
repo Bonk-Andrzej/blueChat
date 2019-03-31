@@ -3,6 +3,7 @@ import {UserProfileService} from '../../services/user-profile.service';
 import {UserObs} from '../../services/model/userObs';
 import {Observable} from 'rxjs';
 import {UserDto} from '../../repository/user/userDto';
+import {ColorsService} from '../../services/colors.service';
 
 @Component({
     selector: 'app-edit-profile',
@@ -18,23 +19,24 @@ export class EditProfileComponent implements OnInit {
     public colorTextOnConfirmButton = 'white';
     public confirmColorButton = 'red';
 
-    constructor(private userProfileService: UserProfileService) {
+    constructor(private userProfileService: UserProfileService,
+                private colorService: ColorsService) {
     }
 
     ngOnInit() {
         this.userObse = this.userProfileService.getUserObs();
 
-        this.userObse.subscribe(user =>{
-                this.rollButtonColor = user.getPhoto().photo
+        this.userObse.subscribe(user => {
+                this.rollButtonColor = user.getPhoto().photo;
             }
         );
 
-        this.editedUser = new UserDto(null,"","","",null)
+        this.editedUser = new UserDto(null, '', '', '', null);
 
     }
 
     rollCollor() {
-
+        console.log(this.colorService.getRandomColor());
     }
 
     confirmEdit() {
