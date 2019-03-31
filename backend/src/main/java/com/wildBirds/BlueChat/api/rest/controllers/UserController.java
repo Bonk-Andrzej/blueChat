@@ -90,6 +90,13 @@ public class UserController {
             UserDto response = userFacade.updateUser(userDto);
 //            logger.info("UPDATE USER AFTER UPDATE " + response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
+
+        } catch (DataIntegrityViolationException e) {
+            HttpHeaders headers = new HttpHeaders();
+            logger.debug("ERROR EDIT CONFLICT", e.fillInStackTrace());
+            headers.add("Error", "Name or Email already exist");
+            return new ResponseEntity(headers, HttpStatus.CONFLICT);
+
         } catch (Exception e) {
             HttpHeaders headers = new HttpHeaders();
             logger.debug("ERROR EDIT", e.fillInStackTrace());

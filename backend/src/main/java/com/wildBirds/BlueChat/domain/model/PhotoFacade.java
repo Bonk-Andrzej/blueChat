@@ -17,7 +17,6 @@ public class PhotoFacade {
         Photo save = photoRepository.save(photo);
         return save;
     }
-
     protected Photo checkPhoto(String color) {
         Photo photo = new Photo();
         photo.setPhoto(color);
@@ -29,13 +28,6 @@ public class PhotoFacade {
         }
         return result;
     }
-
-
-
-
-
-
-
     private String generateColor() {
         return "rgb("+part()+(",")+part()+(",") +part() +")";
     }
