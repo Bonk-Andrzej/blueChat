@@ -196,7 +196,12 @@ export class UserProfileService {
             editedUser.photoDto = oldUser.getPhoto();
         }
         let userObs = UserObs.create(editedUser);
-        this.userBeh.next(userObs);
-        this.userRepository.updateUser(editedUser);
+        this.userRepository.updateUser(editedUser)
+            .then(() => {
+                this.userBeh.next(userObs);
+            })
+            .catch(reason => {
+                throw(reason);
+            });
     }
 }

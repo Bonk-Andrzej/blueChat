@@ -51,7 +51,7 @@ export class UserRepositoryService {
         return this.http.patch(this.host + '/users/pass', email, {headers: this.headers});
     }
 
-    public updateUser(userDto: UserDto): Promise<UserDto> {
+    public async updateUser(userDto: UserDto): Promise<UserDto> {
         console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.idUser);
         console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.nick);
         console.log('>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> ' + userDto.description);
