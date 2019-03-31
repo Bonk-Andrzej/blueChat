@@ -83,6 +83,23 @@ public class UserController {
 //    }
 
     @CrossOrigin
+    @PatchMapping
+    public ResponseEntity updateUser(@RequestBody UserDto userDto) {
+        try {
+//            logger.info("UPDATE USER BEFORE " + userDto.toString());
+            UserDto response = userFacade.updateUser(userDto);
+//            logger.info("UPDATE USER AFTER UPDATE " + response.toString());
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (Exception e) {
+            HttpHeaders headers = new HttpHeaders();
+            logger.debug("ERROR EDIT", e.fillInStackTrace());
+            headers.add("Error", "Bad request");
+            return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @CrossOrigin
     @GetMapping("/short/{phrase}")
     public ResponseEntity getShortListByPhrase(@PathVariable String phrase) {
 
@@ -97,6 +114,7 @@ public class UserController {
             return new ResponseEntity(headers, HttpStatus.BAD_REQUEST);
         }
     }
+
     @CrossOrigin
     @GetMapping("/noRead/{idUser}")
     public ResponseEntity getFirstNoReadMessages(@PathVariable String idUser){

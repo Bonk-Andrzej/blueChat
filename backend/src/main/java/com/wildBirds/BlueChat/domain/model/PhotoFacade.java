@@ -18,6 +18,14 @@ public class PhotoFacade {
         return save;
     }
 
+    protected Photo checkPhoto(String color) {
+        Photo photo = new Photo();
+        photo.setPhoto(color);
+//        photoRepository.findByP
+        Photo save = photoRepository.save(photo);
+        return save;
+    }
+
 //    public PhotoDto addRandomPhotoToUser(User user){
 //        Photo photo = new Photo();
 //        photo.setPhoto(generateColor());
