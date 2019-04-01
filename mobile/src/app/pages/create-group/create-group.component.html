@@ -10,7 +10,11 @@
     <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title>
 
         <ng-container *ngFor="let friend of friends | async">
-            <div [photoColor]="friend.getFriend().getPhoto().photo"  [objectName]="friend.getFriend().getNick()" [iconImg]="image"  app-object-with-x ></div>
+            <div *ngIf="listToCreate.includes(friend)" [photoColor]="friend.getFriend().getPhoto().photo" [objectName]="friend.getFriend().getNick()" (click)="removeFromList(friend)" [iconImg]="'url(assets/checkbox-none.svg)'" app-object-with-x ></div>
+        </ng-container>
+
+        <ng-container *ngFor="let friend of friends | async">
+            <div *ngIf="!listToCreate.includes(friend)" [photoColor]="friend.getFriend().getPhoto().photo" [objectName]="friend.getFriend().getNick()"  (click)="addToList(friend)" [iconImg]="'url(assets/checkbox-accept.svg)'" app-object-with-x ></div>
         </ng-container>
     </div>
 

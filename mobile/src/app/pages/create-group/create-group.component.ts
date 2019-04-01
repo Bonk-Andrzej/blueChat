@@ -14,6 +14,8 @@ export class CreateGroupComponent implements OnInit {
     colorButton: string;
     colorTextOnButton: string;
     image: string;
+    public listToCreate: Array<FriendsObs> = new Array<FriendsObs>();
+
     public form = {
         groupName: "",
         description: ""
@@ -33,16 +35,24 @@ export class CreateGroupComponent implements OnInit {
         this.colorTextOnButton = this.colorService.getColor('--white-light');
         this.friends = this.userProfileService.getFriends()
         let x = true;
-        setInterval(()=>{
-
-            if(x){
-                this.image = `url(assets/checkbox-none.svg)`;
-            }else{
-                this.image = `url(assets/checkbox-accept.svg)`;
-            }
-            x = !x;
-
-        },500)
+        this.image = `url(assets/checkbox-none.svg)`;
+        // setInterval(()=>{
+        //
+        //     if(x){
+        //         this.image = `url(assets/checkbox-none.svg)`;
+        //     }else{
+        //         this.image = `url(assets/checkbox-accept.svg)`;
+        //     }
+        //     x = !x;
+        //
+        // },500)
     }
 
+    addToList(friend: FriendsObs) {
+        this.listToCreate.push(friend);
+    }
+
+    removeFromList(friendToRemove: FriendsObs) {
+        this.listToCreate = this.listToCreate.filter(friend => friend !== friendToRemove)
+    }
 }
