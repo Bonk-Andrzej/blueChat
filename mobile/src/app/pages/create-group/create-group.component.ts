@@ -13,6 +13,7 @@ export class CreateGroupComponent implements OnInit {
 
     colorButton: string;
     colorTextOnButton: string;
+    image: string;
     public form = {
         groupName: "",
         description: ""
@@ -31,7 +32,17 @@ export class CreateGroupComponent implements OnInit {
         this.colorButton = this.colorService.getColor('--orange');
         this.colorTextOnButton = this.colorService.getColor('--white-light');
         this.friends = this.userProfileService.getFriends()
+        let x = true;
+        setInterval(()=>{
 
+            if(x){
+                this.image = `url(assets/checkbox-none.svg)`;
+            }else{
+                this.image = `url(assets/checkbox-accept.svg)`;
+            }
+            x = !x;
+
+        },500)
     }
 
 }
