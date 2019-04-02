@@ -19,9 +19,10 @@
     </div>
 
     <div id="rangeChannel" title="ACCESSIBILITY" app-list-users-with-title="">
-        <div title="Scope" (onToggle)="setPublic($event)" [isActive]=true nameTrue="public" nameFalse="private" app-button-wide-on-off=""></div>
+        <div title="Scope" (onToggle)="changeRange($event)" [isActive]=form.public nameTrue="public" nameFalse="private" app-button-wide-on-off=""></div>
     </div>
 
-    <div id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
+    <div (click)="createGroup()" id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
          app-button-wide ></div>
 </div>
+<div [style.display]="confirmStatus" id="confirmComponent" (onCancel)="onCancel()" (onConfirm)="onConfirmEdit()"  [title]="'Do you want create new group ?'" confirm-box=""></div>
