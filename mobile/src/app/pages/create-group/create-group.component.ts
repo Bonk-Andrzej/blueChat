@@ -3,6 +3,9 @@ import {ColorsService} from '../../services/colors.service';
 import {UserProfileService} from '../../services/user-profile.service';
 import {Observable} from 'rxjs';
 import {FriendsObs} from '../../services/model/friendsObs';
+import {ChannelDtoCreate} from '../../repository/channel/channelDtoCreate';
+import {PhotoDto} from '../../repository/photo/photoDto';
+import {GroupManageService} from '../../services/group-manage.service';
 
 @Component({
     selector: 'app-create-group',
@@ -13,10 +16,8 @@ export class CreateGroupComponent implements OnInit {
 
     colorButton: string;
     colorTextOnButton: string;
-    // image: string;
     confirmStatus: string;
     public listToCreate: Array<FriendsObs> = new Array<FriendsObs>();
-
     public form = {
         groupName: '',
         description: '',
@@ -27,7 +28,8 @@ export class CreateGroupComponent implements OnInit {
     public friends: Observable<Array<FriendsObs>>;
 
     constructor(private colorService: ColorsService,
-                private userProfileService: UserProfileService) {
+                private userProfileService: UserProfileService,
+                private gruopManagerService: GroupManageService) {
         this.friends = new Observable<Array<FriendsObs>>();
 
     }
@@ -36,8 +38,8 @@ export class CreateGroupComponent implements OnInit {
         this.colorButton = this.colorService.getColor('--orange');
         this.colorTextOnButton = this.colorService.getColor('--white-light');
         this.friends = this.userProfileService.getFriends();
+
         this.confirmStatus = 'none';
-        // this.image = `url(assets/checkbox-none.svg)`;
     }
 
     //settings current list
@@ -75,7 +77,15 @@ export class CreateGroupComponent implements OnInit {
     }
 
     onConfirmEdit(): void {
-        console.log('UDALO CI SIE ');
+        let channelToCreate: ChannelDtoCreate = new ChannelDtoCreate();
+        channelToCreate.name = this.form.groupName;
+        channelToCreate.isPublic = this.form.public;
+        channelToCreate.photoDto = this.setDefaultPhoto();
+        channelToCreate.userIdChannelOwner = this.userProfileService.getUser().getIdUser();
+        channelToCreate.userList = this.form.userListId;
+        this.gruopManagerService.createChannel(channelToCreate);
+
+
         this.clearForm();
     }
 
@@ -100,6 +110,19 @@ export class CreateGroupComponent implements OnInit {
         this.changeRange(true);
         this.form.userListId = [];
         this.listToCreate = new Array<FriendsObs>();
+        this.confirmStatus = 'none';
+    }
+
+    private setDefaultPhoto(): PhotoDto {
+        if (this.form.public == true) {
+            let publicPhoto = new PhotoDto();
+            publicPhoto.photo = 'rgb(33,27,29)';
+            return publicPhoto;
+        } else {
+            let privatePhoto = new PhotoDto();
+            privatePhoto.photo = 'rgb(23,151,11)';
+            return privatePhoto
+        }
     }
 
 }
