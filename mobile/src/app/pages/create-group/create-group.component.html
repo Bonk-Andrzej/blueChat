@@ -17,7 +17,9 @@
             <div *ngIf="!listToCreate.includes(friend)" [photoColor]="friend.getFriend().getPhoto().photo" [objectName]="friend.getFriend().getNick()"  (click)="addToList(friend)" [iconImg]="'url(assets/checkbox-accept.svg)'" app-object-with-x ></div>
         </ng-container>
     </div>
-
+    <div id="rangeChannel" title="ACCESSIBILITY" app-list-users-with-title="">
+        <div title="Range" (onToggle)="setPublic($event)" [isActive]=true app-button-wide-on-off=""></div>
+    </div>
     <div id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
          app-button-wide ></div>
 </div>

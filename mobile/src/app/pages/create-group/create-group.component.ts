@@ -55,4 +55,8 @@ export class CreateGroupComponent implements OnInit {
     removeFromList(friendToRemove: FriendsObs) {
         this.listToCreate = this.listToCreate.filter(friend => friend !== friendToRemove)
     }
+
+    setPublic(isPublic: boolean) {
+
+    }
 }
