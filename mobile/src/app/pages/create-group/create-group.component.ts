@@ -6,6 +6,7 @@ import {FriendsObs} from '../../services/model/friendsObs';
 import {ChannelDtoCreate} from '../../repository/channel/channelDtoCreate';
 import {PhotoDto} from '../../repository/photo/photoDto';
 import {GroupManageService} from '../../services/group-manage.service';
+import {GroupProfileService} from '../../services/group-profile.service';
 
 @Component({
     selector: 'app-create-group',
@@ -29,7 +30,7 @@ export class CreateGroupComponent implements OnInit {
 
     constructor(private colorService: ColorsService,
                 private userProfileService: UserProfileService,
-                private gruopManagerService: GroupManageService) {
+                private groupProfileService: GroupProfileService) {
         this.friends = new Observable<Array<FriendsObs>>();
 
     }
@@ -83,7 +84,7 @@ export class CreateGroupComponent implements OnInit {
         channelToCreate.photoDto = this.setDefaultPhoto();
         channelToCreate.userIdChannelOwner = this.userProfileService.getUser().getIdUser();
         channelToCreate.userList = this.form.userListId;
-        this.gruopManagerService.createChannel(channelToCreate);
+        this.groupProfileService.createChannel(channelToCreate);
 
 
         this.clearForm();
