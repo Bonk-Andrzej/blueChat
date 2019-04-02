@@ -13,6 +13,8 @@ export class ButtonWideOnOffComponent implements OnInit {
 
     @Input() title: string;
     @Input() isActive: boolean;
+    @Input() nameTrue: string;
+    @Input() nameFalse: string;
     @Output() onToggle = new EventEmitter<boolean>();
 
     onButtonColor: ColorObject;
