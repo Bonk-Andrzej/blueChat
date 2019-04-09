@@ -42,11 +42,12 @@ export class ChannelRepositoryService {
     }
 
     public addChannel(channelDto: ChannelDtoCreate): Promise<ChannelDtoCreate> {
-        return this.http.post<ChannelDtoCreate>(this.host, channelDto, {headers: this.headers}).toPromise();
+        console.log('HANAL W REPOZYTORIUM ' + channelDto.publicChannel)
+        return this.http.post<ChannelDtoCreate>(this.host  + '/addChannel' , channelDto, {headers: this.headers}).toPromise();
     }
 
     public deleteChannel(idChannel: number) {
-        return this.http.delete(this.host + idChannel, {headers: this.headers});
+        return this.http.delete(this.host+ idChannel, {headers: this.headers});
     }
 
     public addUserToChannel(idUser: number, idChannel: number) {

@@ -30,6 +30,8 @@ export class GroupProfileService {
     }
 
     public createChannel(channelDtoCreate: ChannelDtoCreate){
+
+        console.log('JAKI HANAL ? z gtup service' + channelDtoCreate.publicChannel)
         this.channelRepository.addChannel(channelDtoCreate);
     }
 

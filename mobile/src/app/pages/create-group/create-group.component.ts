@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 import {FriendsObs} from '../../services/model/friendsObs';
 import {ChannelDtoCreate} from '../../repository/channel/channelDtoCreate';
 import {PhotoDto} from '../../repository/photo/photoDto';
-import {GroupManageService} from '../../services/group-manage.service';
 import {GroupProfileService} from '../../services/group-profile.service';
 
 @Component({
@@ -76,14 +75,17 @@ export class CreateGroupComponent implements OnInit {
         this.confirmStatus = 'none';
 
     }
-
+    //TODO REFACTOR RESPONSIBILITY TO SERVICE
     onConfirmEdit(): void {
         let channelToCreate: ChannelDtoCreate = new ChannelDtoCreate();
         channelToCreate.name = this.form.groupName;
-        channelToCreate.isPublic = this.form.public;
+        channelToCreate.publicChannel = this.form.public;
+        console.log('hanał jaki ???? ' + this.form.public);
         channelToCreate.photoDto = this.setDefaultPhoto();
         channelToCreate.userIdChannelOwner = this.userProfileService.getUser().getIdUser();
         channelToCreate.userList = this.form.userListId;
+        //added himself to the channel user
+        channelToCreate.userList.push(this.userProfileService.getUser().getIdUser());
         this.groupProfileService.createChannel(channelToCreate);
 
 
@@ -117,10 +119,12 @@ export class CreateGroupComponent implements OnInit {
     private setDefaultPhoto(): PhotoDto {
         if (this.form.public == true) {
             let publicPhoto = new PhotoDto();
+            publicPhoto.idPhoto = 7;
             publicPhoto.photo = 'rgb(33,27,29)';
             return publicPhoto;
         } else {
             let privatePhoto = new PhotoDto();
+            privatePhoto.idPhoto = 6;
             privatePhoto.photo = 'rgb(23,151,11)';
             return privatePhoto
         }
