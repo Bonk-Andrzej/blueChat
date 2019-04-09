@@ -40,12 +40,26 @@ export class ColorsService {
     constructor() {
     }
 
-    getColor(name: string): string {
+    public getColor(name: string): string {
         let color = this.colors[name];
         if (color == null) {
             color = 'red';
-            console.error("ColorServices: Color Not Exist")
+            console.error('ColorServices: Color Not Exist');
         }
         return color;
     }
+
+    public getRandomColor(): string {
+        let num1: string = this.randomNum().toString();
+        let num2: string = this.randomNum().toString();
+        let num3: string = this.randomNum().toString();
+
+        return 'rgb(' + num1 + ',' + num2 + ',' + num3 + ')';
+
+    }
+
+    private randomNum(): number {
+        return Math.round(Math.random() * 255);
+    }
+
 }

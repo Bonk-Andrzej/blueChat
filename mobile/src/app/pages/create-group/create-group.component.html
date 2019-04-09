@@ -10,10 +10,19 @@
     <div id="add-friend" title="ADD FRIEND TO GROUP" app-list-users-with-title>
 
         <ng-container *ngFor="let friend of friends | async">
-            <div [photoColor]="friend.getFriend().getPhoto().photo"  [objectName]="friend.getFriend().getNick()" app-object-with-x ></div>
+            <div *ngIf="listToCreate.includes(friend)" [photoColor]="friend.getFriend().getPhoto().photo" [objectName]="friend.getFriend().getNick()" (click)="removeFromList(friend)" [iconImg]="'url(assets/checkbox-none.svg)'" app-object-with-x ></div>
+        </ng-container>
+
+        <ng-container *ngFor="let friend of friends | async">
+            <div *ngIf="!listToCreate.includes(friend)" [photoColor]="friend.getFriend().getPhoto().photo" [objectName]="friend.getFriend().getNick()"  (click)="addToList(friend)" [iconImg]="'url(assets/checkbox-accept.svg)'" app-object-with-x ></div>
         </ng-container>
     </div>
 
-    <div id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
+    <div id="rangeChannel" title="ACCESSIBILITY" app-list-users-with-title="">
+        <div title="Scope" (onToggle)="changeRange($event)" [isActive]=form.public nameTrue="public" nameFalse="private" app-button-wide-on-off=""></div>
+    </div>
+
+    <div (click)="createGroup()" id="button" buttonTitle="CREATE" [colorButton]="colorButton" [colorTextOnButton]="colorTextOnButton"
          app-button-wide ></div>
 </div>
+<div [style.display]="confirmStatus" id="confirmComponent" (onCancel)="onCancel()" (onConfirm)="onConfirmEdit()"  [title]="'Do you want create new group ?'" confirm-box=""></div>

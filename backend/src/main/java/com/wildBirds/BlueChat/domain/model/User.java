@@ -20,6 +20,10 @@ class User extends BaseEntity{
         this.password = password;
     }
 
+    public User(Long idUser){
+        this.idUser = idUser;
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +35,7 @@ class User extends BaseEntity{
     @Column(nullable = false)
     private String password;
 
-    //    @Column(nullable = false)
+    @Column(unique = true)
     private String email;
 
     private String description;

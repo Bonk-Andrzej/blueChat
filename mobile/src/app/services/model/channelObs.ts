@@ -23,7 +23,7 @@ export class ChannelObs {
         const newChannel = new ChannelObs();
         newChannel.idChannel = channelDto.idChannel;
         newChannel.name = channelDto.name;
-        newChannel.isPublic = channelDto.isPublic;
+        newChannel.publicChannel = channelDto.isPublic;
         newChannel.userIdChannelOwner = channelDto.userIdChannelOwner;
         newChannel.userList.next(channelDto.userList.map(user => UserShortObs.create(user)));
         newChannel.photoDto = channelDto.photoDto;

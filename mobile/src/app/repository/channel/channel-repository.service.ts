@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {ChannelDtoShort} from './channelDtoShort';
 import {ChannelDto} from './channelDto';
 import {environment} from "../../environment";
+import {ChannelDtoCreate} from './channelDtoCreate';
 
 @Injectable({
     providedIn: 'root'
@@ -40,12 +41,13 @@ export class ChannelRepositoryService {
         return this.http.get<ChannelDto>(this.host + '/' + id,{headers: this.headers}).toPromise();
     }
 
-    public addChannel(channelDto: ChannelDto): Observable<ChannelDto> {
-        return this.http.post<ChannelDto>(this.host, channelDto, {headers: this.headers});
+    public addChannel(channelDto: ChannelDtoCreate): Promise<ChannelDtoCreate> {
+        console.log('HANAL W REPOZYTORIUM ' + channelDto.publicChannel)
+        return this.http.post<ChannelDtoCreate>(this.host  + '/addChannel' , channelDto, {headers: this.headers}).toPromise();
     }
 
     public deleteChannel(idChannel: number) {
-        return this.http.delete(this.host + idChannel, {headers: this.headers});
+        return this.http.delete(this.host+ idChannel, {headers: this.headers});
     }
 
     public addUserToChannel(idUser: number, idChannel: number) {

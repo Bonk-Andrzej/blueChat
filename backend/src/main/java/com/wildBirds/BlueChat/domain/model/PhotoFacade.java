@@ -17,22 +17,17 @@ public class PhotoFacade {
         Photo save = photoRepository.save(photo);
         return save;
     }
-
-//    public PhotoDto addRandomPhotoToUser(User user){
-//        Photo photo = new Photo();
-//        photo.setPhoto(generateColor());
-//        Photo photoProfile = photoRepository.save(photo);
-//
-//        user.setProfilePhoto(photoProfile);
-
-//    }
-
-
-
-
-
-
-
+    protected Photo checkPhoto(String color) {
+        Photo photo = new Photo();
+        photo.setPhoto(color);
+        Photo result = photoRepository.findByPhoto(color);
+        System.out.println("PRZED >>>>>" + result);
+        if (result == null) {
+            result = photoRepository.save(photo);
+            System.out.println("PO >>>>>>" + result);
+        }
+        return result;
+    }
     private String generateColor() {
         return "rgb("+part()+(",")+part()+(",") +part() +")";
     }

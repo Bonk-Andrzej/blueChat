@@ -38,7 +38,10 @@
     height: 23px;
     width: 23px;
     margin: 6px;
-    background: url('~src/assets/colose-icon.svg') no-repeat center;
+    //background: url('~src/assets/colose-icon.svg') no-repeat center;
+    //background-: no-repeat center;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
 }

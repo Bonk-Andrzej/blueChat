@@ -2,9 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {ChannelObs} from "./model/channelObs";
 import {ChannelRepositoryService} from "../repository/channel/channel-repository.service";
-import {UserDtoShort} from "../repository/user/userDtoShort";
-import {UserObs} from "./model/userObs";
-import {UserShortObs} from "./model/userShortObs";
+import {ChannelDtoCreate} from '../repository/channel/channelDtoCreate';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +11,7 @@ export class GroupProfileService {
 
     private groupBehavior: BehaviorSubject<ChannelObs>;
 
-    constructor(private channelRepositoryService: ChannelRepositoryService) {
+    constructor(private channelRepository: ChannelRepositoryService) {
         this.groupBehavior = new BehaviorSubject(null);
     }
 
@@ -31,8 +29,14 @@ export class GroupProfileService {
         return this.groupBehavior.asObservable()
     }
 
+    public createChannel(channelDtoCreate: ChannelDtoCreate){
+
+        console.log('JAKI HANAL ? z gtup service' + channelDtoCreate.publicChannel)
+        this.channelRepository.addChannel(channelDtoCreate);
+    }
+
     private async fetchGroup(groupId: number) {
-        const channelDto = await this.channelRepositoryService.getById(groupId);
+        const channelDto = await this.channelRepository.getById(groupId);
         this.groupBehavior.subscribe(value => {
             console.warn(">>>", value)
         })

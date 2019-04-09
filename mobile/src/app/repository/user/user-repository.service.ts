@@ -35,12 +35,8 @@ export class UserRepositoryService {
         return this.http.get<Array<UserDto>>(this.host + '/users').toPromise();
     }
 
-    // public getUserDtoShortList(): Observable<Array<UserDtoShort>> {
-    //     return this.http.get<Array<UserDtoShort>>(this.host + '/users/short');
-    // }
-
     public findUserByPhrase(phrase: string): Promise<Array<UserDtoShort>> {
-        return this.http.get<Array<UserDtoShort>>(this.host + '/users/short/' + phrase).toPromise()
+        return this.http.get<Array<UserDtoShort>>(this.host + '/users/short/' + phrase).toPromise();
     }
 
     public postNewUser(userPassDto: UserPassDto): Observable<UserPassDto> {
@@ -51,8 +47,8 @@ export class UserRepositoryService {
         return this.http.patch(this.host + '/users/pass', email, {headers: this.headers});
     }
 
-    public updateUser(userDto: UserDto): Observable<UserDto> {
-        return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers});
+    public async updateUser(userDto: UserDto): Promise<UserDto> {
+        return this.http.patch<UserDto>(this.host + '/users', userDto, {headers: this.headers}).toPromise();
     }
 
     public getUserById(id: number): Promise<UserDto> {

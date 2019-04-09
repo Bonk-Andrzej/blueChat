@@ -39,8 +39,8 @@ class ModelConfiguration {
     }
 
     @Bean
-    UserFacade userFacade(UserRepository userRepository, UserService userService, ChannelFacade channelFacade, PhotoFacade photoFacade, MessageControllerWSR messageControllerWSR) {
-        return new UserFacade(userRepository, userService, channelFacade, photoFacade, messageControllerWSR);
+    UserFacade userFacade(UserRepository userRepository, UserService userService, ChannelFacade channelFacade, PhotoFacade photoFacade, MessageControllerWSR messageControllerWSR, PhotoService photoService) {
+        return new UserFacade(userRepository, userService, channelFacade, photoFacade, messageControllerWSR,photoService);
     }
 
     @Bean

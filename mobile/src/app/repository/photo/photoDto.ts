@@ -1,5 +1,5 @@
 export class PhotoDto {
-    public id : number;
+    public idPhoto : number;
     public photo: string;
 
     constructor() {

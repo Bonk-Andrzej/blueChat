@@ -20,6 +20,7 @@ public class UserFacade {
     private UserService userService;
     private ChannelFacade channelFacade;
     private PhotoFacade photoFacade;
+    private PhotoService photoService;
     private MessageControllerWSR wsr;
     private Logger log = LoggerFactory.getLogger(UserFacade.class);
 
@@ -27,31 +28,15 @@ public class UserFacade {
                       UserService userService,
                       ChannelFacade channelFacade,
                       PhotoFacade photoFacade,
-                      MessageControllerWSR wsr) {
+                      MessageControllerWSR wsr,
+                      PhotoService photoService) {
         this.userRep = userRep;
         this.userService = userService;
         this.channelFacade = channelFacade;
         this.photoFacade = photoFacade;
         this.wsr = wsr;
+        this.photoService = photoService;
     }
-
-
-//    public List<UserDto> getUsers() {
-//        List<User> getUsers = userRep.findAll();
-//        List<Long> authorizedSessionsIdentifications = wsr.getAuthorizedSessionsIdentifications();
-//        List<UserDto> userDtoList = getUsers.stream()
-//                .map(user -> userService.toDto(user))
-//                .map(userDto -> {
-//                    if (authorizedSessionsIdentifications.contains(userDto.getIdUser())) {
-////                        userDto.setActive(true);
-//                    }
-//                    return userDto;
-//                })
-//                .collect(Collectors.toList());
-//        log.info("Method getUsers ", userDtoList.toString());
-//        return userDtoList;
-//    }
-
 
 
     public UserDto registerNewUser(UserDtoPass userDtoPass) {
@@ -76,6 +61,19 @@ public class UserFacade {
         UserDto responseDto = userService.toDto(onlineUser);
         log.info("Method loginUser ", responseDto.toString());
         return responseDto;
+    }
+
+    public UserDto updateUser(UserDto userDto) {
+        User oldUser = userRep.getOne(userDto.getIdUser());
+
+        if (userDto.getPhotoDto().getIdPhoto() == null) {
+            Photo photo = photoFacade.checkPhoto(userDto.getPhotoDto().getPhoto());
+            userDto.setPhotoDto(photoService.toDto(photo));
+        }
+        User user = userService.toEntity(userDto);
+
+        user.setPassword(oldUser.getPassword());
+        return userService.toDto(userRep.saveUser(user));
     }
 
     @Transactional

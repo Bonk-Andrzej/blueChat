@@ -1,6 +1,7 @@
 package com.wildBirds.BlueChat.api.rest.controllers;
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoCreate;
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
 import com.wildBirds.BlueChat.domain.model.ChannelFacade;
 import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
@@ -97,10 +98,10 @@ public class ChannelController {
 
     @CrossOrigin
     @PostMapping("addChannel")
-    public ResponseEntity addChannel(@RequestBody ChannelDto channelDto) {
+    public ResponseEntity addChannel(@RequestBody ChannelDtoCreate channelDtoCreate) {
 
         try {
-            ChannelDto response = channelFacade.addChannel(channelDto);
+            ChannelDto response = channelFacade.addChannel(channelDtoCreate);
             log.info("Method addChannel", response.toString());
             return new ResponseEntity(response, HttpStatus.OK);
         } catch (ChannelServiceExceptions e) {
