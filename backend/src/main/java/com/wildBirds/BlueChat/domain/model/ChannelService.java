@@ -1,10 +1,7 @@
 package com.wildBirds.BlueChat.domain.model;
 
 
-import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
-import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
-import com.wildBirds.BlueChat.api.rest.dto.UserDto;
-import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
+import com.wildBirds.BlueChat.api.rest.dto.*;
 import com.wildBirds.BlueChat.domain.model.exceptions.ChannelServiceExceptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +54,20 @@ class ChannelService {
             throw new ChannelServiceExceptions("Channel Service Exception");
         }
 
+
+        return channel;
+    }
+    protected Channel toEntity(ChannelDtoCreate channelDtoCreate){
+        Channel channel = new Channel();
+
+        channel.setName(channelDtoCreate.getName());
+        channel.setIsPublic(channelDtoCreate.isPublicChannel());
+        channel.setProfilePhoto(photoService.toEntity(channelDtoCreate.getPhotoDto()));
+        channel.setChannelOwner(new User(channelDtoCreate.getUserIdChannelOwner()));
+
+        for (Long userId : channelDtoCreate.getUserList()) {
+            channel.getUsersInChannel().add(new User(userId));
+        }
 
         return channel;
     }

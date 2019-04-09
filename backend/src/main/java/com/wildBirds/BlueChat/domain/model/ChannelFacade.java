@@ -2,6 +2,7 @@ package com.wildBirds.BlueChat.domain.model;
 
 
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDto;
+import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoCreate;
 import com.wildBirds.BlueChat.api.rest.dto.ChannelDtoShort;
 import com.wildBirds.BlueChat.api.rest.dto.UserDtoShort;
 import lombok.AllArgsConstructor;
@@ -18,8 +19,10 @@ public class ChannelFacade {
     private UserRepository userRepository;
     private UserService userService;
 
-    public ChannelDto addChannel(ChannelDto channelDto){
-        Channel channel = channelService.toEntity(channelDto);
+    public ChannelDto addChannel(ChannelDtoCreate channelDtoCreate){
+        // TODO: 4/2/2019 HAVE TO FINISH IMPLEMENTATION
+//        ChannelDto channelDto = new ChannelDto();
+        Channel channel = channelService.toEntity(channelDtoCreate);
 
         Channel addedChannel = channelRepository.saveChannel(channel);
 
